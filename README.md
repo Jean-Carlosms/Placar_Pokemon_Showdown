@@ -37,6 +37,7 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - Historico de partidas em formato de timeline com vencedor, formato e data/hora.
 - Estatisticas gerais em cards com totais, percentuais e barras de progresso.
 - Persistencia local usando `localStorage`.
+- Alternancia entre tema claro e tema escuro com preferencia salva no navegador.
 - Layout responsivo em estilo dashboard gamer inspirado em Pokemon Showdown.
 - Cards de batalha para Jean Carlos e Felipe Eckert, com destaque visual para lider ou empate.
 - Sprites pixel art de Annihilape e Trubbish com fallback visual.
@@ -54,6 +55,14 @@ Os cards dos jogadores destacam o Pokemon parceiro, o total de vitorias, pontuac
 As estatisticas foram transformadas em cards compactos com barras de progresso para percentual de vitorias. O historico agora aparece como uma timeline visual e responsiva.
 
 As sprites continuam usando `image-rendering: pixelated` e contam com fallback em camadas para evitar blocos vazios quando imagens externas nao carregam.
+
+## Tema Claro e Escuro
+
+O projeto possui alternancia entre tema claro e tema escuro pelo botao no header.
+
+A preferencia visual fica salva no `localStorage`, entao o tema escolhido continua ativo ao recarregar a pagina. Se ainda nao houver tema salvo, a aplicacao detecta a preferencia do sistema com `prefers-color-scheme`.
+
+Os temas sao aplicados no elemento raiz com `data-theme="light"` ou `data-theme="dark"` e usam variaveis CSS para cores, superficies, bordas, sombras e gradientes.
 
 ## API de Sprites
 

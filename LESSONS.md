@@ -42,6 +42,18 @@ A interface foi modernizada sem alterar a regra de negocio principal. Os compone
 
 As cores, sombras, raios de borda e medidas principais foram centralizadas em variaveis CSS no `:root`, facilitando ajustes futuros de tema.
 
+## Gerenciamento de Tema em React
+
+O tema claro/escuro foi controlado com `useState` em `App.jsx`, mantendo a preferencia visual separada da logica principal do placar.
+
+## localStorage para Preferencias Visuais
+
+Assim como o placar usa persistencia local, o tema escolhido tambem fica salvo no `localStorage`, garantindo que a interface abra com a preferencia anterior.
+
+## prefers-color-scheme
+
+Quando ainda nao existe tema salvo, a aplicacao consulta `window.matchMedia("(prefers-color-scheme: dark)")` para respeitar a configuracao do sistema operacional.
+
 ## Estados Visuais
 
 Foram adicionados estados para lider, empate, disputa, carregamento de sprite e fallback visual. Isso melhora a leitura do placar sem depender apenas de cor.

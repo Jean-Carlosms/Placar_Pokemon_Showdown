@@ -12,14 +12,21 @@ import {
   undoLastWinFromScoreboard,
 } from "./utils/scoreboard.js";
 import { loadScoreboard, saveScoreboard } from "./utils/storage.js";
+import { applyTheme, getInitialTheme, getNextTheme, saveTheme } from "./utils/theme.js";
 
 function App() {
   const [scoreboard, setScoreboard] = useState(() => loadScoreboard());
   const [lastScoredPlayer, setLastScoredPlayer] = useState("");
+  const [currentTheme, setCurrentTheme] = useState(() => getInitialTheme());
 
   useEffect(() => {
     saveScoreboard(scoreboard);
   }, [scoreboard]);
+
+  useEffect(() => {
+    applyTheme(currentTheme);
+    saveTheme(currentTheme);
+  }, [currentTheme]);
 
   useEffect(() => {
     if (!lastScoredPlayer) {
@@ -53,6 +60,10 @@ function App() {
     setLastScoredPlayer("");
   }
 
+  function handleToggleTheme() {
+    setCurrentTheme((theme) => getNextTheme(theme));
+  }
+
   const playerScores = PLAYERS.reduce((scores, player) => {
     scores[player.id] = getPlayerScore(scoreboard, player.id);
     return scores;
@@ -63,7 +74,7 @@ function App() {
 
   return (
     <main className="app-shell">
-      <Header />
+      <Header currentTheme={currentTheme} onToggleTheme={handleToggleTheme} />
 
       <section className="scoreboard" aria-label="Placar dos jogadores">
         {PLAYERS.map((player) => (

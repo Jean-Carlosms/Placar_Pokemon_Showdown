@@ -2,7 +2,6 @@
 
 Proximas melhorias planejadas para o Placar Pokemon Showdown:
 
-- Adicionar tema dark/light com estado persistido no navegador.
 - Exportar historico em CSV.
 - Registrar replay/link da batalha do Pokemon Showdown.
 - Criar grafico de evolucao do placar ao longo do tempo.
