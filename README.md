@@ -149,6 +149,19 @@ npm run check:replay
 
 Esse comando valida o parser com um HTML minimo contendo `battle-log-data`.
 
+Se o replay importar vencedor, formato e turnos, mas nao importar jogadores ou times, abra o
+DevTools do navegador e procure pelos logs:
+
+- `First 20 battle log lines`
+- `Extracted showdown players`
+- `Extracted teams`
+
+Tambem e possivel validar um arquivo real pelo terminal:
+
+```bash
+node scripts/checkReplayParser.mjs caminho/do/replay.html
+```
+
 ## API de Sprites
 
 O projeto usa o repositorio [PokeAPI/sprites](https://github.com/PokeAPI/sprites) como fonte visual principal para as sprites dos Pokémon exibidos nos cards dos jogadores.

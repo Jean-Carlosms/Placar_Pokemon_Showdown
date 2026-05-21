@@ -10,7 +10,18 @@ function ReplayImport({ players, onRegisterReplayWin }) {
   const [messageType, setMessageType] = useState("info");
 
   function getMappedPlayerName(playerId) {
-    return players.find((player) => player.id === playerId)?.name ?? "Não mapeado";
+    return players.find((player) => player.id === playerId)?.name ?? "Nao mapeado";
+  }
+
+  function hasTeams(parsedReplay) {
+    return (
+      (parsedReplay?.teams?.jean?.length ?? 0) > 0 ||
+      (parsedReplay?.teams?.felipe?.length ?? 0) > 0
+    );
+  }
+
+  function hasShowdownPlayers(parsedReplay) {
+    return Boolean(parsedReplay?.showdownPlayers?.p1 && parsedReplay?.showdownPlayers?.p2);
   }
 
   function handleFileChange(event) {
@@ -22,7 +33,7 @@ function ReplayImport({ players, onRegisterReplayWin }) {
 
     if (!file.name.toLowerCase().endsWith(".html") && file.type !== "text/html") {
       setPreview(null);
-      setMessage("Selecione um arquivo HTML de replay do Pokémon Showdown.");
+      setMessage("Selecione um arquivo HTML de replay do Pokemon Showdown.");
       setMessageType("error");
       event.target.value = "";
       return;
@@ -33,11 +44,13 @@ function ReplayImport({ players, onRegisterReplayWin }) {
     reader.onload = () => {
       try {
         const parsedReplay = parsePokemonShowdownReplay(String(reader.result || ""));
+
         if (import.meta.env.DEV) {
           console.debug("Parsed replay:", parsedReplay);
         }
+
         setPreview(parsedReplay);
-        setMessage(parsedReplay.warning ?? "Replay lido com sucesso. Confira a prévia antes de registrar.");
+        setMessage(parsedReplay.warning ?? "Replay lido com sucesso. Confira a previa antes de registrar.");
         setMessageType(parsedReplay.warning ? "error" : "success");
       } catch (error) {
         setPreview(null);
@@ -50,7 +63,7 @@ function ReplayImport({ players, onRegisterReplayWin }) {
 
     reader.onerror = () => {
       setPreview(null);
-      setMessage("Não foi possível ler o arquivo selecionado.");
+      setMessage("Nao foi possivel ler o arquivo selecionado.");
       setMessageType("error");
       event.target.value = "";
     };
@@ -63,13 +76,28 @@ function ReplayImport({ players, onRegisterReplayWin }) {
       return;
     }
 
+    if (!preview.mappedWinnerId) {
+      setMessage("Nao foi possivel registrar: vencedor nao mapeado para Jean ou Felipe.");
+      setMessageType("error");
+      return;
+    }
+
     const mappedWinnerName = getMappedPlayerName(preview.mappedWinnerId);
-    const shouldRegister = confirm(
-      `Registrar vitória de ${mappedWinnerName} em ${BATTLE_TYPES[preview.battleType]}?`,
-    );
+    const battleTypeLabel = BATTLE_TYPES[preview.battleType];
+    const shouldRegister = confirm(`Registrar vitoria de ${mappedWinnerName} em ${battleTypeLabel}?`);
 
     if (!shouldRegister) {
       return;
+    }
+
+    if (!hasTeams(preview)) {
+      const shouldRegisterWithoutTeams = confirm(
+        "Times nao encontrados. Deseja registrar mesmo assim sem os Pokemon no historico?",
+      );
+
+      if (!shouldRegisterWithoutTeams) {
+        return;
+      }
     }
 
     onRegisterReplayWin(preview.mappedWinnerId, preview.battleType, {
@@ -86,7 +114,7 @@ function ReplayImport({ players, onRegisterReplayWin }) {
         teams: preview.teams,
       },
     });
-    setMessage("Vitória importada do replay com sucesso.");
+    setMessage("Vitoria importada do replay com sucesso.");
     setMessageType("success");
     setPreview(null);
   }
@@ -96,7 +124,7 @@ function ReplayImport({ players, onRegisterReplayWin }) {
       <div className="section-heading">
         <div>
           <h2 id="replay-title">Importar replay</h2>
-          <p>Leia um HTML exportado do Pokémon Showdown e registre a vitória automaticamente.</p>
+          <p>Leia um HTML exportado do Pokemon Showdown e registre a vitoria automaticamente.</p>
         </div>
       </div>
 
@@ -121,11 +149,24 @@ function ReplayImport({ players, onRegisterReplayWin }) {
 
       {preview && (
         <div className="replay-preview">
-          <h3>Prévia do replay</h3>
+          <h3>Previa do replay</h3>
+
+          {!hasShowdownPlayers(preview) && (
+            <p className="backup-message backup-message-error">
+              Jogadores nao encontrados no battle-log-data.
+            </p>
+          )}
+
+          {!hasTeams(preview) && (
+            <p className="backup-message backup-message-error">
+              Times nao encontrados. O parser nao detectou linhas switch/drag.
+            </p>
+          )}
+
           <dl>
             <div>
               <dt>Formato</dt>
-              <dd>{preview.format || "Não informado"}</dd>
+              <dd>{preview.format || "Nao informado"}</dd>
             </div>
             <div>
               <dt>Tipo</dt>
@@ -133,11 +174,11 @@ function ReplayImport({ players, onRegisterReplayWin }) {
             </div>
             <div>
               <dt>Jogador 1</dt>
-              <dd>{preview.showdownPlayers.p1 || "Não encontrado"}</dd>
+              <dd>{preview.showdownPlayers.p1 || "Nao encontrado"}</dd>
             </div>
             <div>
               <dt>Jogador 2</dt>
-              <dd>{preview.showdownPlayers.p2 || "Não encontrado"}</dd>
+              <dd>{preview.showdownPlayers.p2 || "Nao encontrado"}</dd>
             </div>
             <div>
               <dt>Vencedor no replay</dt>
@@ -152,12 +193,19 @@ function ReplayImport({ players, onRegisterReplayWin }) {
               <dd>{preview.turns}</dd>
             </div>
           </dl>
+
           <div className="replay-preview-teams">
             <PokemonMiniTeam title="Time Jean Carlos" pokemons={preview.teams.jean} />
             <PokemonMiniTeam title="Time Felipe Eckert" pokemons={preview.teams.felipe} />
           </div>
-          <button className="replay-confirm-button" type="button" onClick={handleConfirmImport}>
-            Registrar vitória do replay
+
+          <button
+            className="replay-confirm-button"
+            type="button"
+            onClick={handleConfirmImport}
+            disabled={!preview.mappedWinnerId}
+          >
+            Registrar vitoria do replay
           </button>
         </div>
       )}

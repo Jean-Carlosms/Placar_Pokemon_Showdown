@@ -1,32 +1,52 @@
 import { PLAYER_ALIASES } from "../data/playerAliases.js";
 
 export function extractBattleLogFromHtml(htmlText) {
-  const fallbackMatch = htmlText.match(
-    /<script[^>]*class=["'][^"']*battle-log-data[^"']*["'][^>]*>([\s\S]*?)<\/script>/i,
-  );
-
-  if (fallbackMatch?.[1]) {
-    return fallbackMatch[1].trim();
+  if (!htmlText || typeof htmlText !== "string") {
+    throw new Error("Arquivo HTML vazio ou invalido.");
   }
 
   if (typeof DOMParser !== "undefined") {
-    const document = new DOMParser().parseFromString(htmlText, "text/html");
-    const battleLogNode = document.querySelector("script.battle-log-data");
+    try {
+      const document = new DOMParser().parseFromString(htmlText, "text/html");
+      const battleLogNode = document.querySelector("script.battle-log-data");
 
-    if (battleLogNode?.textContent) {
-      return battleLogNode.textContent.trim();
+      if (battleLogNode?.textContent?.trim()) {
+        return battleLogNode.textContent.trim();
+      }
+    } catch {
+      // Regex fallbacks keep parser checks working outside the browser.
     }
   }
 
-  throw new Error("Não foi possível encontrar os dados da batalha no HTML do replay.");
+  const classRegex =
+    /<script[^>]*class=["'][^"']*battle-log-data[^"']*["'][^>]*>([\s\S]*?)<\/script>/i;
+  const classMatch = htmlText.match(classRegex);
+
+  if (classMatch?.[1]?.trim()) {
+    return classMatch[1].trim();
+  }
+
+  const genericScriptRegex = /<script[^>]*battle-log-data[^>]*>([\s\S]*?)<\/script>/i;
+  const genericMatch = htmlText.match(genericScriptRegex);
+
+  if (genericMatch?.[1]?.trim()) {
+    return genericMatch[1].trim();
+  }
+
+  throw new Error("Nao foi possivel encontrar battle-log-data no HTML do replay.");
 }
 
 export function parseBattleLogLines(logText) {
-  return logText.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  return String(logText)
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 }
 
 export function parseShowdownLine(line) {
-  const parts = line.trim().split("|");
+  const parts = String(line).trim().split("|");
 
   return {
     raw: line,
@@ -43,6 +63,30 @@ export function normalizePokemonDisplayName(name) {
   return String(name || "")
     .replace(/\s+/g, " ")
     .replace(/^\s+|\s+$/g, "");
+}
+
+export function extractPlayersFromBattleLogLines(lines) {
+  return lines.reduce((players, line) => {
+    const { command, args } = parseShowdownLine(line);
+
+    if (command === "player") {
+      const slot = args[0];
+      const username = args[1];
+
+      if (["p1", "p2"].includes(slot) && username) {
+        players[slot] = username;
+      }
+    }
+
+    return players;
+  }, {});
+}
+
+export function mapShowdownPlayers(showdownPlayers) {
+  return Object.entries(showdownPlayers).reduce((mappedPlayers, [side, username]) => {
+    mappedPlayers[side] = mapReplayWinnerToPlayer(username);
+    return mappedPlayers;
+  }, {});
 }
 
 export function extractPokemonNameFromSwitchLine(line) {
@@ -94,7 +138,6 @@ export function extractTeamsFromBattleLogLines(lines, mappedPlayers) {
   });
 
   return Object.entries(mappedPlayers).reduce((teams, [side, mappedPlayerId]) => {
-
     if (mappedPlayerId) {
       teams[mappedPlayerId] = teamsBySide[side] ?? [];
     }
@@ -110,14 +153,17 @@ export function mapReplayWinnerToPlayer(winnerName) {
 export function parsePokemonShowdownReplay(htmlText) {
   const battleLog = extractBattleLogFromHtml(htmlText);
   const lines = parseBattleLogLines(battleLog);
+  const showdownPlayers = extractPlayersFromBattleLogLines(lines);
+  const mappedPlayers = mapShowdownPlayers(showdownPlayers);
+  const teams = extractTeamsFromBattleLogLines(lines, mappedPlayers);
   const parsedReplay = {
     source: "pokemon-showdown-replay",
     format: "",
     battleType: "single",
     gametype: "",
-    showdownPlayers: {},
-    mappedPlayers: {},
-    teams: {},
+    showdownPlayers,
+    mappedPlayers,
+    teams,
     winner: "",
     mappedWinnerId: "",
     turns: 0,
@@ -130,10 +176,6 @@ export function parsePokemonShowdownReplay(htmlText) {
 
     if (command === "gametype") {
       parsedReplay.gametype = args[0] || "";
-    }
-
-    if (command === "player") {
-      parsedReplay.showdownPlayers[args[0]] = args[1] || "";
     }
 
     if (command === "tier") {
@@ -149,27 +191,41 @@ export function parsePokemonShowdownReplay(htmlText) {
     }
   });
 
-  parsedReplay.mappedPlayers = Object.entries(parsedReplay.showdownPlayers).reduce(
-    (mappedPlayers, [side, username]) => {
-      mappedPlayers[side] = mapReplayWinnerToPlayer(username);
-      return mappedPlayers;
-    },
-    {},
-  );
-  parsedReplay.teams = extractTeamsFromBattleLogLines(lines, parsedReplay.mappedPlayers);
   parsedReplay.battleType = getBattleType(parsedReplay.gametype, parsedReplay.format);
   parsedReplay.mappedWinnerId = mapReplayWinnerToPlayer(parsedReplay.winner);
 
+  const isDev = typeof import.meta !== "undefined" && import.meta.env && import.meta.env.DEV;
+
+  if (isDev) {
+    console.debug("Battle log lines count:", lines.length);
+    console.debug("First 20 battle log lines:", lines.slice(0, 20));
+    console.debug("Extracted showdown players:", parsedReplay.showdownPlayers);
+    console.debug("Extracted mapped players:", parsedReplay.mappedPlayers);
+    console.debug("Extracted teams:", parsedReplay.teams);
+  }
+
   if (!parsedReplay.winner) {
-    throw new Error("Não foi possível identificar o vencedor no replay.");
+    throw new Error("Nao foi possivel identificar o vencedor no replay.");
   }
 
   if (!parsedReplay.mappedWinnerId) {
-    throw new Error(`Não foi possível mapear o vencedor "${parsedReplay.winner}" para Jean ou Felipe.`);
+    throw new Error(`Nao foi possivel mapear o vencedor "${parsedReplay.winner}" para Jean ou Felipe.`);
   }
 
-  if ((parsedReplay.teams.jean?.length ?? 0) === 0 && (parsedReplay.teams.felipe?.length ?? 0) === 0) {
-    parsedReplay.warning = "Replay importado, mas nenhum Pokémon foi encontrado nas linhas switch/drag.";
+  const hasJeanTeam = (parsedReplay.teams.jean?.length ?? 0) > 0;
+  const hasFelipeTeam = (parsedReplay.teams.felipe?.length ?? 0) > 0;
+  const warnings = [];
+
+  if (!parsedReplay.showdownPlayers.p1 || !parsedReplay.showdownPlayers.p2) {
+    warnings.push("Jogadores nao encontrados no battle-log-data.");
+  }
+
+  if (!hasJeanTeam && !hasFelipeTeam) {
+    warnings.push("Times nao encontrados. O parser nao detectou linhas switch/drag.");
+  }
+
+  if (warnings.length > 0) {
+    parsedReplay.warning = warnings.join(" ");
   }
 
   return parsedReplay;
