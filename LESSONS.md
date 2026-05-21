@@ -61,3 +61,23 @@ Foram adicionados estados para lider, empate, disputa, carregamento de sprite e 
 ## Componentizacao Visual
 
 A componentizacao passou a separar melhor os papeis visuais: cards de jogador, controles, estatisticas e historico possuem estruturas proprias e mais faceis de evoluir.
+
+## Exportacao de Dados em JSON
+
+O projeto passou a gerar um arquivo JSON com versao, data de exportacao, placar, historico, estatisticas e metadados. Isso permite criar backups manuais sem backend.
+
+## Importacao de Arquivos no Navegador
+
+O navegador pode ler arquivos selecionados pelo usuario com `FileReader`. Depois da leitura, o conteudo e convertido de JSON para objeto e aplicado ao estado do React.
+
+## Validacao de Payload
+
+Antes de importar, o app valida a estrutura minima do backup: `version`, `data`, `data.scoreboard` e `data.history`. Isso evita substituir dados atuais por arquivos invalidos.
+
+## localStorage vs Persistencia Remota
+
+O `localStorage` salva dados apenas no navegador atual. Um backup JSON pode ser versionado no GitHub manualmente, mas isso nao e sincronizacao remota automatica.
+
+## Token do GitHub no Frontend
+
+Uma aplicacao estatica nao deve guardar token do GitHub no codigo frontend, porque a credencial ficaria visivel para quem abrisse o site. Para escrita automatica no GitHub, seria necessario um backend ou servico seguro intermediario.

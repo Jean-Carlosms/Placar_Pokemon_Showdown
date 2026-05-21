@@ -3,6 +3,11 @@
 Proximas melhorias planejadas para o Placar Pokemon Showdown:
 
 - Exportar historico em CSV.
+- Integrar com backend seguro.
+- Sincronizar automaticamente em banco online.
+- Criar GitHub Actions para validar arquivos de backup.
+- Adicionar multiplas temporadas.
+- Implementar restauracao seletiva do historico.
 - Registrar replay/link da batalha do Pokemon Showdown.
 - Criar grafico de evolucao do placar ao longo do tempo.
 - Permitir edicao/remocao manual de uma partida.

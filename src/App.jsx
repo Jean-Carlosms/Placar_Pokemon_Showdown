@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BackupControls from "./components/BackupControls.jsx";
 import Header from "./components/Header.jsx";
 import MatchHistory from "./components/MatchHistory.jsx";
 import PlayerCard from "./components/PlayerCard.jsx";
@@ -7,6 +8,7 @@ import StatsPanel from "./components/StatsPanel.jsx";
 import { PLAYERS } from "./data/players.js";
 import {
   addWinToScoreboard,
+  calculateStats,
   createInitialScoreboard,
   getPlayerScore,
   undoLastWinFromScoreboard,
@@ -64,6 +66,11 @@ function App() {
     setCurrentTheme((theme) => getNextTheme(theme));
   }
 
+  function handleImportBackup(importedScoreboard) {
+    setScoreboard(importedScoreboard);
+    setLastScoredPlayer("");
+  }
+
   const playerScores = PLAYERS.reduce((scores, player) => {
     scores[player.id] = getPlayerScore(scoreboard, player.id);
     return scores;
@@ -71,6 +78,7 @@ function App() {
   const totals = PLAYERS.map((player) => playerScores[player.id].total);
   const highestScore = Math.max(...totals);
   const isTie = new Set(totals).size === 1;
+  const stats = calculateStats(scoreboard);
 
   return (
     <main className="app-shell">
@@ -93,6 +101,13 @@ function App() {
         onAddWin={handleAddWin}
         onUndoLastWin={handleUndoLastWin}
         onResetScoreboard={handleResetScoreboard}
+      />
+
+      <BackupControls
+        scoreboard={scoreboard}
+        history={scoreboard.history}
+        stats={stats}
+        onImportBackup={handleImportBackup}
       />
 
       <StatsPanel scoreboard={scoreboard} players={PLAYERS} />

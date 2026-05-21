@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "exportedAt": "2026-05-21T18:20:00.000Z",
+  "project": "Placar_Pokemon_Showdown",
+  "data": {
+    "scoreboard": {
+      "scores": {
+        "jean": {
+          "single": 2,
+          "double": 1
+        },
+        "felipe": {
+          "single": 1,
+          "double": 2
+        }
+      },
+      "history": [
+        {
+          "id": "example-1",
+          "player": "jean",
+          "battleType": "single",
+          "timestamp": "2026-05-21T18:00:00.000Z"
+        },
+        {
+          "id": "example-2",
+          "player": "felipe",
+          "battleType": "double",
+          "timestamp": "2026-05-21T18:10:00.000Z"
+        }
+      ]
+    },
+    "history": [
+      {
+        "id": "example-1",
+        "player": "jean",
+        "battleType": "single",
+        "timestamp": "2026-05-21T18:00:00.000Z"
+      },
+      {
+        "id": "example-2",
+        "player": "felipe",
+        "battleType": "double",
+        "timestamp": "2026-05-21T18:10:00.000Z"
+      }
+    ],
+    "stats": {
+      "totalMatches": 6,
+      "totalSingle": 3,
+      "totalDouble": 3,
+      "percentages": {
+        "jean": "50%",
+        "felipe": "50%"
+      }
+    }
+  },
+  "metadata": {
+    "source": "example",
+    "format": "manual-json-backup"
+  }
+}

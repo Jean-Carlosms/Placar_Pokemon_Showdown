@@ -34,6 +34,7 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - Botoes para adicionar vitorias de Jean Carlos e Felipe Eckert.
 - Botao para desfazer a ultima vitoria registrada.
 - Reset do placar com confirmacao.
+- Exportacao e importacao de backup JSON.
 - Historico de partidas em formato de timeline com vencedor, formato e data/hora.
 - Estatisticas gerais em cards com totais, percentuais e barras de progresso.
 - Persistencia local usando `localStorage`.
@@ -63,6 +64,26 @@ O projeto possui alternancia entre tema claro e tema escuro pelo botao no header
 A preferencia visual fica salva no `localStorage`, entao o tema escolhido continua ativo ao recarregar a pagina. Se ainda nao houver tema salvo, a aplicacao detecta a preferencia do sistema com `prefers-color-scheme`.
 
 Os temas sao aplicados no elemento raiz com `data-theme="light"` ou `data-theme="dark"` e usam variaveis CSS para cores, superficies, bordas, sombras e gradientes.
+
+## Backup dos Dados no GitHub
+
+O app salva automaticamente placar e historico no `localStorage` do navegador. Para versionar esses dados no GitHub de forma segura, use os botoes de backup da interface:
+
+- `Exportar backup JSON`: gera um arquivo `scoreboard-backup-YYYY-MM-DD.json`.
+- `Importar backup JSON`: restaura um backup selecionado e substitui os dados atuais apos confirmacao.
+
+O arquivo exportado pode ser colocado manualmente na pasta `data/` e versionado no GitHub:
+
+```bash
+git status
+git add data/scoreboard-backup.json
+git commit -m "data: update scoreboard backup"
+git push origin main
+```
+
+O GitHub nao e atualizado automaticamente. O projeto nao usa token do GitHub no frontend, e isso e intencional por seguranca: expor um token em uma aplicacao estatica permitiria que qualquer pessoa com acesso ao site visualizasse essa credencial.
+
+Um exemplo de estrutura compativel esta em `data/scoreboard.example.json`.
 
 ## API de Sprites
 
@@ -134,6 +155,8 @@ Os arquivos finais serao gerados na pasta `dist/`.
 |-- LESSONS.md
 |-- docs/
 |   `-- screenshot-placeholder.svg
+|-- data/
+|   `-- scoreboard.example.json
 `-- src/
     |-- main.jsx
     |-- App.jsx
@@ -141,6 +164,7 @@ Os arquivos finais serao gerados na pasta `dist/`.
     |-- data/
     |   `-- players.js
     |-- components/
+    |   |-- BackupControls.jsx
     |   |-- Header.jsx
     |   |-- PlayerCard.jsx
     |   |-- ScoreControls.jsx
@@ -149,6 +173,7 @@ Os arquivos finais serao gerados na pasta `dist/`.
     |-- services/
     |   `-- pokemonApi.js
     `-- utils/
+        |-- backup.js
         |-- storage.js
         `-- scoreboard.js
 ```
