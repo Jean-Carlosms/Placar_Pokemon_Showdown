@@ -1,6 +1,6 @@
 # Placar Pokemon Showdown
 
-Aplicacao web local para controlar o placar das partidas diarias de Pokemon Showdown entre Jean Carlos e Felipe Eckert.
+Aplicacao web local feita com React + Vite para controlar o placar das partidas diarias de Pokemon Showdown entre Jean Carlos e Felipe Eckert.
 
 ## Print Placeholder
 
@@ -18,9 +18,11 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 
 ## Tecnologias Usadas
 
+- React
+- Vite
+- JavaScript
 - HTML5
 - CSS3
-- JavaScript
 - localStorage
 - Sprites publicas do Pokemon Showdown
 
@@ -37,32 +39,69 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - Layout responsivo inspirado em Pokemon classico e Pokemon Showdown.
 - Sprites pixel art de Annihilape e Trubbish via URLs publicas do Pokemon Showdown.
 
+## Como Instalar
+
+```bash
+npm install
+```
+
 ## Como Abrir Localmente
 
-Abra o arquivo `index.html` diretamente no navegador.
+```bash
+npm run dev
+```
 
-Nao e necessario instalar dependencias, rodar backend ou configurar banco de dados.
+Depois, abra a URL exibida no terminal, geralmente:
+
+```text
+http://localhost:5173/
+```
+
+## Como Gerar Build
+
+```bash
+npm run build
+```
+
+Os arquivos finais serao gerados na pasta `dist/`.
 
 ## Estrutura de Arquivos
 
 ```text
 .
+|-- package.json
+|-- vite.config.js
 |-- index.html
-|-- style.css
-|-- script.js
 |-- README.md
 |-- TODO.md
-`-- LESSONS.md
+|-- LESSONS.md
+|-- docs/
+|   `-- screenshot-placeholder.svg
+`-- src/
+    |-- main.jsx
+    |-- App.jsx
+    |-- styles.css
+    |-- data/
+    |   `-- players.js
+    |-- components/
+    |   |-- Header.jsx
+    |   |-- PlayerCard.jsx
+    |   |-- ScoreControls.jsx
+    |   |-- StatsPanel.jsx
+    |   `-- MatchHistory.jsx
+    `-- utils/
+        |-- storage.js
+        `-- scoreboard.js
 ```
 
 ## Como Publicar Futuramente com GitHub Pages
 
-1. Envie o projeto para um repositorio no GitHub.
-2. Acesse `Settings` no repositorio.
-3. Entre em `Pages`.
-4. Em `Build and deployment`, escolha `Deploy from a branch`.
-5. Selecione a branch `main` e a pasta `/root`.
-6. Salve e aguarde o GitHub gerar o link publico.
+1. Gere o build com `npm run build`.
+2. Configure o repositorio no GitHub.
+3. Acesse `Settings` no repositorio.
+4. Entre em `Pages`.
+5. Escolha a branch e a origem de publicacao desejada.
+6. Publique a pasta gerada pelo Vite, ou configure uma action para publicar `dist/`.
 
 ## Proximas Melhorias Possiveis
 

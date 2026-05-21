@@ -245,7 +245,7 @@ button:active {
   margin-bottom: 14px;
 }
 
-#history-count {
+.section-heading span {
   color: var(--muted);
   font-weight: 800;
 }
@@ -301,10 +301,6 @@ button:active {
 .empty-history {
   color: var(--muted);
   font-weight: 700;
-}
-
-.history-list:not(:empty) + .empty-history {
-  display: none;
 }
 
 @media (max-width: 860px) {

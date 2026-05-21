@@ -1,30 +1,34 @@
 # Lessons Learned
 
-Este projeto serviu como pratica de fundamentos importantes de desenvolvimento frontend sem framework.
+Este projeto serviu como pratica de fundamentos importantes de desenvolvimento frontend com React e Vite.
 
-## Manipulacao de DOM
+## React Components
 
-Foi usado JavaScript para buscar elementos da pagina, atualizar textos, preencher imagens e criar itens do historico dinamicamente.
+A interface foi dividida em componentes menores, como `Header`, `PlayerCard`, `ScoreControls`, `StatsPanel` e `MatchHistory`. Isso deixa cada parte da tela com uma responsabilidade clara.
 
-## Eventos em JavaScript
+## Props
 
-Os botoes usam `addEventListener` para registrar acoes de clique, como adicionar vitorias, desfazer a ultima partida e resetar o placar.
+Os componentes recebem dados e funcoes por props. Por exemplo, `PlayerCard` recebe os dados do jogador e sua pontuacao, enquanto `ScoreControls` recebe as funcoes para adicionar vitorias, desfazer e resetar.
 
-## Uso de localStorage
+## State
 
-O `localStorage` permite salvar o estado do placar e do historico diretamente no navegador, mantendo os dados mesmo depois de recarregar a pagina.
+O estado principal do placar fica em `App.jsx` usando `useState`. Quando uma vitoria e adicionada, desfeita ou resetada, o estado muda e o React atualiza a tela.
 
-## Organizacao de Estado
+## localStorage com React
 
-O placar foi centralizado em um objeto de estado com pontuacoes e historico. Isso facilita calcular totais, salvar dados e redesenhar a interface.
+O projeto continua usando `localStorage`, agora integrado ao ciclo do React com `useEffect`. Sempre que o estado muda, os dados sao salvos no navegador.
+
+## Componentizacao
+
+A separacao em `components`, `data` e `utils` ajuda a evitar duplicacao, facilita manutencao e deixa a logica principal fora do JSX.
+
+## Vite
+
+O Vite fornece um ambiente rapido para desenvolvimento com React, scripts simples para rodar localmente e build otimizado para publicacao.
 
 ## Renderizacao Dinamica
 
-Sempre que o estado muda, a interface e renderizada novamente para refletir pontuacoes, estatisticas e historico atualizados.
-
-## Persistencia Local
-
-Como o projeto nao usa backend nem banco de dados, a persistencia local garante uma experiencia simples e suficiente para uso no proprio navegador.
+O historico, os cards de jogadores e as estatisticas sao renderizados a partir do estado atual, reduzindo manipulacao manual de DOM.
 
 ## Responsividade com CSS
 
