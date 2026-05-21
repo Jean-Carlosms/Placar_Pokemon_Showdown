@@ -8,6 +8,7 @@ import ScoreControls from "./components/ScoreControls.jsx";
 import SeasonControls from "./components/SeasonControls.jsx";
 import StatsPanel from "./components/StatsPanel.jsx";
 import { PLAYERS } from "./data/players.js";
+import { getFeaturedPokemonForPlayer } from "./utils/pokemonStats.js";
 import {
   addWinToScoreboard,
   calculateStats,
@@ -102,6 +103,16 @@ function App() {
   const generalStats = calculateStats(scoreboard);
   const visibleHistory =
     historyFilter === "active" ? getHistoryForSeason(scoreboard, activeSeason.id) : scoreboard.history;
+  const historySignature = scoreboard.history.map((entry) => entry.id).join("|");
+  const featuredPokemonByPlayer = PLAYERS.reduce((featuredPokemon, player) => {
+    featuredPokemon[player.id] = getFeaturedPokemonForPlayer(
+      player.id,
+      scoreboard.history,
+      PLAYERS,
+      historySignature,
+    );
+    return featuredPokemon;
+  }, {});
 
   return (
     <main className="app-shell">
@@ -115,6 +126,7 @@ function App() {
             score={playerScores[player.id]}
             status={isTie ? "tie" : playerScores[player.id].total === highestScore ? "leader" : "chaser"}
             isRecentlyScored={lastScoredPlayer === player.id}
+            featuredPokemon={featuredPokemonByPlayer[player.id]}
           />
         ))}
       </section>

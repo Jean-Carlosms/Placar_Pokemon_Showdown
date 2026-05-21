@@ -19,15 +19,82 @@ export function extractBattleLogFromHtml(htmlText) {
   throw new Error("Não foi possível encontrar os dados da batalha no HTML do replay.");
 }
 
+export function parseBattleLogLines(logText) {
+  return logText.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+}
+
+export function normalizeShowdownUsername(username) {
+  return String(username || "").trim().toLowerCase();
+}
+
+export function normalizePokemonDisplayName(name) {
+  return String(name || "")
+    .replace(/\s+/g, " ")
+    .replace(/^\s+|\s+$/g, "");
+}
+
+export function extractPokemonNameFromSwitchLine(line) {
+  const parts = line.split("|");
+  const details = parts[3] || parts[2] || "";
+  const fallbackName = details.includes(":") ? details.split(":").pop() : details;
+  const species = (parts[3] || fallbackName).split(",")[0];
+
+  return normalizePokemonDisplayName(species);
+}
+
+export function extractTeamsFromBattleLogLines(lines, showdownPlayers) {
+  const teamsBySide = { p1: [], p2: [] };
+
+  lines.forEach((line) => {
+    const parts = line.split("|");
+    const eventType = parts[1];
+
+    if (eventType !== "switch" && eventType !== "drag") {
+      return;
+    }
+
+    const side = parts[2]?.slice(0, 2);
+    const pokemonName = extractPokemonNameFromSwitchLine(line);
+
+    if (!teamsBySide[side] || !pokemonName) {
+      return;
+    }
+
+    const alreadyAdded = teamsBySide[side].some(
+      (name) => normalizePokemonDisplayName(name).toLowerCase() === pokemonName.toLowerCase(),
+    );
+
+    if (!alreadyAdded && teamsBySide[side].length < 6) {
+      teamsBySide[side].push(pokemonName);
+    }
+  });
+
+  return Object.entries(showdownPlayers).reduce((teams, [side, username]) => {
+    const mappedPlayerId = mapReplayWinnerToPlayer(username);
+
+    if (mappedPlayerId) {
+      teams[mappedPlayerId] = teamsBySide[side] ?? [];
+    }
+
+    return teams;
+  }, {});
+}
+
+export function mapReplayWinnerToPlayer(winnerName) {
+  return PLAYER_ALIASES[normalizeShowdownUsername(winnerName)] ?? "";
+}
+
 export function parsePokemonShowdownReplay(htmlText) {
   const battleLog = extractBattleLogFromHtml(htmlText);
-  const lines = battleLog.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const lines = parseBattleLogLines(battleLog);
   const parsedReplay = {
     source: "pokemon-showdown-replay",
     format: "",
     battleType: "single",
     gametype: "",
-    players: {},
+    showdownPlayers: {},
+    mappedPlayers: {},
+    teams: {},
     winner: "",
     mappedWinnerId: "",
     turns: 0,
@@ -44,7 +111,7 @@ export function parsePokemonShowdownReplay(htmlText) {
     }
 
     if (eventType === "player") {
-      parsedReplay.players[parts[2]] = parts[3] || "";
+      parsedReplay.showdownPlayers[parts[2]] = parts[3] || "";
     }
 
     if (eventType === "tier") {
@@ -60,6 +127,14 @@ export function parsePokemonShowdownReplay(htmlText) {
     }
   });
 
+  parsedReplay.mappedPlayers = Object.entries(parsedReplay.showdownPlayers).reduce(
+    (mappedPlayers, [side, username]) => {
+      mappedPlayers[side] = mapReplayWinnerToPlayer(username);
+      return mappedPlayers;
+    },
+    {},
+  );
+  parsedReplay.teams = extractTeamsFromBattleLogLines(lines, parsedReplay.showdownPlayers);
   parsedReplay.battleType = getBattleType(parsedReplay.gametype, parsedReplay.format);
   parsedReplay.mappedWinnerId = mapReplayWinnerToPlayer(parsedReplay.winner);
 
@@ -74,13 +149,9 @@ export function parsePokemonShowdownReplay(htmlText) {
   return parsedReplay;
 }
 
-export function mapReplayWinnerToPlayer(winnerName) {
-  return PLAYER_ALIASES[normalizeAlias(winnerName)] ?? "";
-}
-
 function getBattleType(gametype, format) {
-  const normalizedGametype = normalizeAlias(gametype);
-  const normalizedFormat = normalizeAlias(format);
+  const normalizedGametype = normalizeShowdownUsername(gametype);
+  const normalizedFormat = normalizeShowdownUsername(format);
 
   if (normalizedGametype === "doubles") {
     return "double";
@@ -123,8 +194,4 @@ function extractPlayedAt(htmlText) {
   }
 
   return new Date().toISOString();
-}
-
-function normalizeAlias(value) {
-  return String(value || "").trim().toLowerCase();
 }

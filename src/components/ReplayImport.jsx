@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { BATTLE_TYPES } from "../data/players.js";
 import { parsePokemonShowdownReplay } from "../utils/replayParser.js";
+import PokemonMiniTeam from "./PokemonMiniTeam.jsx";
 
 function ReplayImport({ players, onRegisterReplayWin }) {
   const fileInputRef = useRef(null);
@@ -70,11 +71,17 @@ function ReplayImport({ players, onRegisterReplayWin }) {
 
     onRegisterReplayWin(preview.mappedWinnerId, preview.battleType, {
       source: preview.source,
-      format: preview.format,
-      replayId: preview.replayId,
-      turns: preview.turns,
-      originalWinner: preview.winner,
       playedAt: preview.playedAt,
+      replay: {
+        replayId: preview.replayId,
+        format: preview.format,
+        gametype: preview.gametype,
+        originalWinner: preview.winner,
+        turns: preview.turns,
+        showdownPlayers: preview.showdownPlayers,
+        mappedPlayers: preview.mappedPlayers,
+        teams: preview.teams,
+      },
     });
     setMessage("Vitória importada do replay com sucesso.");
     setMessageType("success");
@@ -123,11 +130,11 @@ function ReplayImport({ players, onRegisterReplayWin }) {
             </div>
             <div>
               <dt>Jogador 1</dt>
-              <dd>{preview.players.p1 || "Não encontrado"}</dd>
+              <dd>{preview.showdownPlayers.p1 || "Não encontrado"}</dd>
             </div>
             <div>
               <dt>Jogador 2</dt>
-              <dd>{preview.players.p2 || "Não encontrado"}</dd>
+              <dd>{preview.showdownPlayers.p2 || "Não encontrado"}</dd>
             </div>
             <div>
               <dt>Vencedor no replay</dt>
@@ -142,6 +149,10 @@ function ReplayImport({ players, onRegisterReplayWin }) {
               <dd>{preview.turns}</dd>
             </div>
           </dl>
+          <div className="replay-preview-teams">
+            <PokemonMiniTeam title="Time Jean Carlos" pokemons={preview.teams.jean} />
+            <PokemonMiniTeam title="Time Felipe Eckert" pokemons={preview.teams.felipe} />
+          </div>
           <button className="replay-confirm-button" type="button" onClick={handleConfirmImport}>
             Registrar vitória do replay
           </button>

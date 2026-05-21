@@ -3,13 +3,13 @@ export const PLAYERS = [
     id: "jean",
     name: "Jean Carlos",
     shortName: "Jean",
-    pokemon: "Annihilape",
+    defaultPokemon: "annihilape",
   },
   {
     id: "felipe",
     name: "Felipe Eckert",
     shortName: "Felipe",
-    pokemon: "Trubbish",
+    defaultPokemon: "trubbish",
   },
 ];
 

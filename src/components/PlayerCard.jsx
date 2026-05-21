@@ -5,26 +5,28 @@ import {
   getPokemonSpriteFallbacks,
 } from "../services/pokemonApi.js";
 
-function PlayerCard({ player, score, status, isRecentlyScored }) {
+function PlayerCard({ player, score, status, isRecentlyScored, featuredPokemon }) {
   const [spriteUrl, setSpriteUrl] = useState("");
   const [isLoadingSprite, setIsLoadingSprite] = useState(true);
+  const pokemonName = featuredPokemon?.displayName ?? player.defaultPokemon;
   const statusLabel = status === "leader" ? "Líder atual" : "Empate técnico";
 
   useEffect(() => {
     let isMounted = true;
 
     async function loadSprite() {
-      const localSprite = getLocalPokemonSprite(player.pokemon);
+      setIsLoadingSprite(true);
+      const localSprite = getLocalPokemonSprite(pokemonName);
 
       if (isMounted) {
         setSpriteUrl(localSprite);
         setIsLoadingSprite(false);
       }
 
-      const loadedSpriteUrl = await getPokemonSprite(player.pokemon);
+      const loadedSpriteUrl = await getPokemonSprite(pokemonName);
       const spriteCandidates = [
         loadedSpriteUrl,
-        ...getPokemonSpriteFallbacks(player.pokemon),
+        ...getPokemonSpriteFallbacks(pokemonName),
       ].filter((url, index, urls) => url && url !== localSprite && urls.indexOf(url) === index);
       const displayableSprite = await getFirstLoadableSprite(spriteCandidates);
 
@@ -38,10 +40,10 @@ function PlayerCard({ player, score, status, isRecentlyScored }) {
     return () => {
       isMounted = false;
     };
-  }, [player.pokemon]);
+  }, [pokemonName]);
 
   function handleSpriteError() {
-    setSpriteUrl(getLocalPokemonSprite(player.pokemon));
+    setSpriteUrl(getLocalPokemonSprite(pokemonName));
   }
 
   return (
@@ -57,12 +59,12 @@ function PlayerCard({ player, score, status, isRecentlyScored }) {
       <div className="player-heading">
         <div className="sprite-frame">
           {isLoadingSprite ? (
-            <div className="sprite-loading" aria-label={`Carregando sprite de ${player.pokemon}`} />
+            <div className="sprite-loading" aria-label={`Carregando sprite de ${pokemonName}`} />
           ) : (
             <img
               className="pokemon-sprite"
               src={spriteUrl}
-              alt={`Sprite de ${player.pokemon}`}
+              alt={`Sprite de ${pokemonName}`}
               width="112"
               height="112"
               onError={handleSpriteError}
@@ -70,9 +72,12 @@ function PlayerCard({ player, score, status, isRecentlyScored }) {
           )}
         </div>
         <div>
-          <p className="pokemon-name">{player.pokemon}</p>
+          <p className="pokemon-name">Pokémon destaque</p>
           <h2>{player.name}</h2>
-          <span className="partner-label">Pokémon parceiro</span>
+          <span className="partner-label">{pokemonName}</span>
+          <span className="featured-wins">
+            Vitórias com este Pokémon: {featuredPokemon?.wins ?? 0}
+          </span>
         </div>
       </div>
 

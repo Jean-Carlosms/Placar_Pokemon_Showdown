@@ -38,7 +38,28 @@
           "player": "jean",
           "battleType": "single",
           "seasonId": "season-current",
-          "timestamp": "2026-05-21T18:00:00.000Z"
+          "timestamp": "2026-05-21T18:00:00.000Z",
+          "source": "pokemon-showdown-replay",
+          "playedAt": "2026-05-21T17:55:00.000Z",
+          "replay": {
+            "replayId": "gen9randombattle-0000000001",
+            "format": "[Gen 9] Random Battle",
+            "gametype": "singles",
+            "originalWinner": "demikimi",
+            "turns": 12,
+            "showdownPlayers": {
+              "p1": "demikimi",
+              "p2": "tergoat"
+            },
+            "mappedPlayers": {
+              "p1": "jean",
+              "p2": "felipe"
+            },
+            "teams": {
+              "jean": ["Regieleki", "Ninetales", "Armarouge", "Frosmoth", "Arboliva", "Polteageist"],
+              "felipe": ["Chien-Pao", "Copperajah", "Raging Bolt", "Sunflora", "Pecharunt", "Swampert"]
+            }
+          }
         },
         {
           "id": "example-2",
@@ -55,7 +76,28 @@
         "player": "jean",
         "battleType": "single",
         "seasonId": "season-current",
-        "timestamp": "2026-05-21T18:00:00.000Z"
+        "timestamp": "2026-05-21T18:00:00.000Z",
+        "source": "pokemon-showdown-replay",
+        "playedAt": "2026-05-21T17:55:00.000Z",
+        "replay": {
+          "replayId": "gen9randombattle-0000000001",
+          "format": "[Gen 9] Random Battle",
+          "gametype": "singles",
+          "originalWinner": "demikimi",
+          "turns": 12,
+          "showdownPlayers": {
+            "p1": "demikimi",
+            "p2": "tergoat"
+          },
+          "mappedPlayers": {
+            "p1": "jean",
+            "p2": "felipe"
+          },
+          "teams": {
+            "jean": ["Regieleki", "Ninetales", "Armarouge", "Frosmoth", "Arboliva", "Polteageist"],
+            "felipe": ["Chien-Pao", "Copperajah", "Raging Bolt", "Sunflora", "Pecharunt", "Swampert"]
+          }
+        }
       },
       {
         "id": "example-2",

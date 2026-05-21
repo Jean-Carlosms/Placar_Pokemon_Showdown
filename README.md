@@ -122,6 +122,25 @@ O mapeamento atual de aliases e:
 
 Esse mapeamento fica em `src/data/playerAliases.js`.
 
+## Importacao Continua de Replays
+
+Apos cada batalha, o usuario pode salvar/exportar o HTML do replay do Pokemon Showdown e importar esse arquivo no app.
+
+Cada replay importado vira uma nova partida no historico. O sistema extrai automaticamente:
+
+- vencedor;
+- formato;
+- tipo da batalha;
+- quantidade de turnos;
+- jogadores originais do Showdown;
+- times usados por Jean Carlos e Felipe Eckert.
+
+Os Pokemon dos times sao extraidos das linhas `switch` e `drag` do log, limitados a 6 Pokemon unicos por jogador. Quando disponivel, o historico mostra as sprites pequenas e os nomes dos Pokemon usados.
+
+O Pokemon destaque no card principal de cada jogador e calculado a partir do historico: para cada vitoria importada de replay, todos os Pokemon do time vencedor recebem +1 vitoria. O card mostra o Pokemon com mais participacoes em vitorias daquele jogador.
+
+Se houver empate entre Pokemon, o app escolhe um dos empatados de forma estavel com base no historico. Se ainda nao houver vitorias importadas com times, Jean Carlos usa Annihilape e Felipe Eckert usa Trubbish como padroes.
+
 ## API de Sprites
 
 O projeto usa o repositorio [PokeAPI/sprites](https://github.com/PokeAPI/sprites) como fonte visual principal para as sprites dos Pokémon exibidos nos cards dos jogadores.
@@ -206,6 +225,7 @@ Os arquivos finais serao gerados na pasta `dist/`.
     |   |-- Header.jsx
     |   |-- MatchHistory.jsx
     |   |-- PlayerCard.jsx
+    |   |-- PokemonMiniTeam.jsx
     |   |-- ReplayImport.jsx
     |   |-- ScoreControls.jsx
     |   |-- SeasonControls.jsx
@@ -214,6 +234,7 @@ Os arquivos finais serao gerados na pasta `dist/`.
     |   `-- pokemonApi.js
     `-- utils/
         |-- backup.js
+        |-- pokemonStats.js
         |-- replayParser.js
         |-- storage.js
         `-- scoreboard.js

@@ -109,3 +109,27 @@ Aliases do Pokemon Showdown, como `demikimi` e `tergoat`, foram separados em `pl
 ## Historico com Metadados
 
 Entradas importadas de replay enriquecem o historico com campos opcionais como `source`, `format`, `replayId`, `turns` e `originalWinner`, mantendo compatibilidade com partidas antigas sem esses metadados.
+
+## Parser Reutilizavel para Multiplos Replays
+
+O parser foi ajustado para nao depender de um replay especifico. Ele interpreta qualquer HTML que contenha o padrao `battle-log-data` usado pelo Pokemon Showdown.
+
+## Extracao de Times por Switch e Drag
+
+As linhas `switch` e `drag` revelam quais Pokemon entraram em campo. A partir delas, o app monta times unicos de ate 6 Pokemon por jogador.
+
+## Historico como Fonte da Verdade
+
+As estatisticas de Pokemon sao derivadas do historico, evitando criar uma contagem paralela que poderia ficar inconsistente com importacoes, backups ou desfazer.
+
+## Estatisticas Derivadas do Historico
+
+O Pokemon destaque de cada jogador e recalculado a partir das partidas importadas com times. Apenas o time do vencedor soma participacao em vitoria.
+
+## Desempate Estavel
+
+Quando varios Pokemon empatam em vitorias, o app usa um desempate deterministico baseado no jogador e no historico, evitando que o destaque mude a cada renderizacao.
+
+## Compatibilidade com Backups Antigos
+
+Historicos antigos sem `replay.teams` continuam validos. Backups novos preservam os times dentro do proprio historico.

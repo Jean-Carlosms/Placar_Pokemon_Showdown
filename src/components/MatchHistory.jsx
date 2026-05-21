@@ -1,4 +1,5 @@
 import { BATTLE_TYPES } from "../data/players.js";
+import PokemonMiniTeam from "./PokemonMiniTeam.jsx";
 
 function MatchHistory({
   history,
@@ -47,21 +48,7 @@ function MatchHistory({
 
       <ol className="history-list">
         {reversedHistory.map((entry) => (
-          <li className="history-item" key={entry.id}>
-            <span className="timeline-dot" aria-hidden="true" />
-            <div>
-              <strong>{getPlayerName(entry.player)}</strong>
-              <span>{formatDateTime(entry.timestamp)}</span>
-              {entry.source === "pokemon-showdown-replay" && (
-                <small>
-                  Replay importado
-                  {entry.format ? ` - ${entry.format}` : ""}
-                  {entry.turns ? ` - ${entry.turns} turnos` : ""}
-                </small>
-              )}
-            </div>
-            <span className={`battle-badge ${entry.battleType}`}>{BATTLE_TYPES[entry.battleType]}</span>
-          </li>
+          <HistoryItem key={entry.id} entry={entry} getPlayerName={getPlayerName} />
         ))}
       </ol>
 
@@ -71,6 +58,36 @@ function MatchHistory({
         </p>
       )}
     </section>
+  );
+}
+
+function HistoryItem({ entry, getPlayerName }) {
+  const replay = entry.replay;
+
+  return (
+    <li className="history-item">
+      <span className="timeline-dot" aria-hidden="true" />
+      <div className="history-main">
+        <div>
+          <strong>{getPlayerName(entry.player)}</strong>
+          <span>{formatDateTime(entry.timestamp)}</span>
+          {entry.source === "pokemon-showdown-replay" && (
+            <small>
+              Replay importado
+              {replay?.format ? ` - ${replay.format}` : entry.format ? ` - ${entry.format}` : ""}
+              {replay?.turns ? ` - ${replay.turns} turnos` : entry.turns ? ` - ${entry.turns} turnos` : ""}
+            </small>
+          )}
+        </div>
+        {replay?.teams && (
+          <div className="history-teams">
+            <PokemonMiniTeam title="Jean Carlos" pokemons={replay.teams.jean} />
+            <PokemonMiniTeam title="Felipe Eckert" pokemons={replay.teams.felipe} />
+          </div>
+        )}
+      </div>
+      <span className={`battle-badge ${entry.battleType}`}>{BATTLE_TYPES[entry.battleType]}</span>
+    </li>
   );
 }
 
