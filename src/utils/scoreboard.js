@@ -52,8 +52,10 @@ export function addWinToScoreboard(scoreboard, playerId, battleType, metadata = 
   const historyEntry = {
     id: createHistoryId(),
     player: playerId,
+    winnerId: playerId,
     battleType,
     seasonId: activeSeasonId,
+    createdAt: metadata.playedAt || new Date().toISOString(),
     timestamp: new Date().toISOString(),
     ...metadata,
   };

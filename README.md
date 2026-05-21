@@ -141,6 +141,14 @@ O Pokemon destaque no card principal de cada jogador e calculado a partir do his
 
 Se houver empate entre Pokemon, o app escolhe um dos empatados de forma estavel com base no historico. Se ainda nao houver vitorias importadas com times, Jean Carlos usa Annihilape e Felipe Eckert usa Trubbish como padroes.
 
+Se os Pokemon nao aparecerem apos importar um replay, rode:
+
+```bash
+npm run check:replay
+```
+
+Esse comando valida o parser com um HTML minimo contendo `battle-log-data`.
+
 ## API de Sprites
 
 O projeto usa o repositorio [PokeAPI/sprites](https://github.com/PokeAPI/sprites) como fonte visual principal para as sprites dos Pokémon exibidos nos cards dos jogadores.

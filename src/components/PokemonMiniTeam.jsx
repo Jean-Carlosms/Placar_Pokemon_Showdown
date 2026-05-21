@@ -6,15 +6,14 @@ import {
 } from "../services/pokemonApi.js";
 
 function PokemonMiniTeam({ title, pokemons }) {
-  if (!Array.isArray(pokemons) || pokemons.length === 0) {
-    return null;
-  }
-
   return (
     <div className="mini-team">
       <h4>{title}</h4>
+      {(!Array.isArray(pokemons) || pokemons.length === 0) && (
+        <p>Time não encontrado neste replay.</p>
+      )}
       <ul>
-        {pokemons.map((pokemon) => (
+        {(Array.isArray(pokemons) ? pokemons : []).map((pokemon) => (
           <MiniPokemon key={pokemon} pokemon={pokemon} />
         ))}
       </ul>

@@ -5,7 +5,7 @@ export function normalizePokemonKey(name) {
 export function calculatePokemonWinStatsFromHistory(history) {
   return history.reduce((stats, entry) => {
     const replay = entry.replay;
-    const winnerId = entry.player ?? entry.winnerId;
+    const winnerId = entry.winnerId ?? entry.player;
     const winnerTeam = replay?.teams?.[winnerId];
 
     if (entry.source !== "pokemon-showdown-replay" && !winnerTeam) {

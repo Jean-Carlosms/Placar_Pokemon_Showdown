@@ -1,13 +1,6 @@
 import { PLAYER_ALIASES } from "../data/playerAliases.js";
 
 export function extractBattleLogFromHtml(htmlText) {
-  const document = new DOMParser().parseFromString(htmlText, "text/html");
-  const battleLogNode = document.querySelector("script.battle-log-data");
-
-  if (battleLogNode?.textContent) {
-    return battleLogNode.textContent.trim();
-  }
-
   const fallbackMatch = htmlText.match(
     /<script[^>]*class=["'][^"']*battle-log-data[^"']*["'][^>]*>([\s\S]*?)<\/script>/i,
   );
@@ -16,11 +9,30 @@ export function extractBattleLogFromHtml(htmlText) {
     return fallbackMatch[1].trim();
   }
 
+  if (typeof DOMParser !== "undefined") {
+    const document = new DOMParser().parseFromString(htmlText, "text/html");
+    const battleLogNode = document.querySelector("script.battle-log-data");
+
+    if (battleLogNode?.textContent) {
+      return battleLogNode.textContent.trim();
+    }
+  }
+
   throw new Error("Não foi possível encontrar os dados da batalha no HTML do replay.");
 }
 
 export function parseBattleLogLines(logText) {
   return logText.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+}
+
+export function parseShowdownLine(line) {
+  const parts = line.trim().split("|");
+
+  return {
+    raw: line,
+    command: parts[1] || "",
+    args: parts.slice(2),
+  };
 }
 
 export function normalizeShowdownUsername(username) {
@@ -34,43 +46,54 @@ export function normalizePokemonDisplayName(name) {
 }
 
 export function extractPokemonNameFromSwitchLine(line) {
-  const parts = line.split("|");
-  const details = parts[3] || parts[2] || "";
-  const fallbackName = details.includes(":") ? details.split(":").pop() : details;
-  const species = (parts[3] || fallbackName).split(",")[0];
+  const { command, args } = parseShowdownLine(line);
 
-  return normalizePokemonDisplayName(species);
+  if (command !== "switch" && command !== "drag") {
+    return null;
+  }
+
+  const position = args[0] || "";
+  const details = args[1] || "";
+  const playerSlot = position.slice(0, 2);
+  const pokemonName = normalizePokemonDisplayName(details.split(",")[0]);
+
+  if (!pokemonName || !["p1", "p2"].includes(playerSlot)) {
+    return null;
+  }
+
+  return {
+    playerSlot,
+    pokemonName,
+  };
 }
 
-export function extractTeamsFromBattleLogLines(lines, showdownPlayers) {
+export function extractTeamsFromBattleLogLines(lines, mappedPlayers) {
   const teamsBySide = { p1: [], p2: [] };
 
   lines.forEach((line) => {
-    const parts = line.split("|");
-    const eventType = parts[1];
+    const { command } = parseShowdownLine(line);
 
-    if (eventType !== "switch" && eventType !== "drag") {
+    if (command !== "switch" && command !== "drag") {
       return;
     }
 
-    const side = parts[2]?.slice(0, 2);
-    const pokemonName = extractPokemonNameFromSwitchLine(line);
+    const extractedPokemon = extractPokemonNameFromSwitchLine(line);
 
-    if (!teamsBySide[side] || !pokemonName) {
+    if (!extractedPokemon) {
       return;
     }
 
-    const alreadyAdded = teamsBySide[side].some(
+    const { playerSlot, pokemonName } = extractedPokemon;
+    const alreadyAdded = teamsBySide[playerSlot].some(
       (name) => normalizePokemonDisplayName(name).toLowerCase() === pokemonName.toLowerCase(),
     );
 
-    if (!alreadyAdded && teamsBySide[side].length < 6) {
-      teamsBySide[side].push(pokemonName);
+    if (!alreadyAdded && teamsBySide[playerSlot].length < 6) {
+      teamsBySide[playerSlot].push(pokemonName);
     }
   });
 
-  return Object.entries(showdownPlayers).reduce((teams, [side, username]) => {
-    const mappedPlayerId = mapReplayWinnerToPlayer(username);
+  return Object.entries(mappedPlayers).reduce((teams, [side, mappedPlayerId]) => {
 
     if (mappedPlayerId) {
       teams[mappedPlayerId] = teamsBySide[side] ?? [];
@@ -103,27 +126,26 @@ export function parsePokemonShowdownReplay(htmlText) {
   };
 
   lines.forEach((line) => {
-    const parts = line.split("|");
-    const eventType = parts[1];
+    const { command, args } = parseShowdownLine(line);
 
-    if (eventType === "gametype") {
-      parsedReplay.gametype = parts[2] || "";
+    if (command === "gametype") {
+      parsedReplay.gametype = args[0] || "";
     }
 
-    if (eventType === "player") {
-      parsedReplay.showdownPlayers[parts[2]] = parts[3] || "";
+    if (command === "player") {
+      parsedReplay.showdownPlayers[args[0]] = args[1] || "";
     }
 
-    if (eventType === "tier") {
-      parsedReplay.format = parts[2] || "";
+    if (command === "tier") {
+      parsedReplay.format = args[0] || "";
     }
 
-    if (eventType === "turn") {
-      parsedReplay.turns = Math.max(parsedReplay.turns, Number(parts[2] || 0));
+    if (command === "turn") {
+      parsedReplay.turns = Math.max(parsedReplay.turns, Number(args[0] || 0));
     }
 
-    if (eventType === "win") {
-      parsedReplay.winner = parts[2] || "";
+    if (command === "win") {
+      parsedReplay.winner = args[0] || "";
     }
   });
 
@@ -134,7 +156,7 @@ export function parsePokemonShowdownReplay(htmlText) {
     },
     {},
   );
-  parsedReplay.teams = extractTeamsFromBattleLogLines(lines, parsedReplay.showdownPlayers);
+  parsedReplay.teams = extractTeamsFromBattleLogLines(lines, parsedReplay.mappedPlayers);
   parsedReplay.battleType = getBattleType(parsedReplay.gametype, parsedReplay.format);
   parsedReplay.mappedWinnerId = mapReplayWinnerToPlayer(parsedReplay.winner);
 
@@ -144,6 +166,10 @@ export function parsePokemonShowdownReplay(htmlText) {
 
   if (!parsedReplay.mappedWinnerId) {
     throw new Error(`Não foi possível mapear o vencedor "${parsedReplay.winner}" para Jean ou Felipe.`);
+  }
+
+  if ((parsedReplay.teams.jean?.length ?? 0) === 0 && (parsedReplay.teams.felipe?.length ?? 0) === 0) {
+    parsedReplay.warning = "Replay importado, mas nenhum Pokémon foi encontrado nas linhas switch/drag.";
   }
 
   return parsedReplay;

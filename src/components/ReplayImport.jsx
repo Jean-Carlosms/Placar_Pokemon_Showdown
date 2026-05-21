@@ -33,9 +33,12 @@ function ReplayImport({ players, onRegisterReplayWin }) {
     reader.onload = () => {
       try {
         const parsedReplay = parsePokemonShowdownReplay(String(reader.result || ""));
+        if (import.meta.env.DEV) {
+          console.debug("Parsed replay:", parsedReplay);
+        }
         setPreview(parsedReplay);
-        setMessage("Replay lido com sucesso. Confira a prévia antes de registrar.");
-        setMessageType("success");
+        setMessage(parsedReplay.warning ?? "Replay lido com sucesso. Confira a prévia antes de registrar.");
+        setMessageType(parsedReplay.warning ? "error" : "success");
       } catch (error) {
         setPreview(null);
         setMessage(error.message);

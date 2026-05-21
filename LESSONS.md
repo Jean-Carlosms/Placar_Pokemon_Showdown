@@ -133,3 +133,7 @@ Quando varios Pokemon empatam em vitorias, o app usa um desempate deterministico
 ## Compatibilidade com Backups Antigos
 
 Historicos antigos sem `replay.teams` continuam validos. Backups novos preservam os times dentro do proprio historico.
+
+## Split em Logs do Pokemon Showdown
+
+As linhas do log comecam com `|`, entao `line.split("|")` gera uma primeira posicao vazia. O comando real fica em `parts[1]`, e os argumentos comecam em `parts[2]`. Criar um helper como `parseShowdownLine` evita erros sutis no parser.
