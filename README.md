@@ -1,45 +1,73 @@
-# Placar Pokémon Showdown
+# Placar Pokemon Showdown
 
-Aplicação web local para controlar o placar das partidas diárias de Pokémon Showdown entre Jean Carlos e Felipe Eckert.
+Aplicacao web local para controlar o placar das partidas diarias de Pokemon Showdown entre Jean Carlos e Felipe Eckert.
+
+## Print Placeholder
+
+![Print placeholder da aplicacao](docs/screenshot-placeholder.svg)
+
+> Placeholder reservado para um print futuro da tela principal da aplicacao.
+
+## Objetivo
+
+O objetivo do projeto e oferecer um placar simples, visual e persistente para registrar vitorias em Single Battles e Double Battles, acompanhar estatisticas gerais e manter um historico das partidas jogadas.
+
+## Motivacao
+
+Este projeto foi criado para acompanhar de forma divertida e visual o placar diario de partidas de Pokemon Showdown entre Jean Carlos e Felipe Eckert, separando vitorias em Single Battles e Double Battles.
+
+## Tecnologias Usadas
+
+- HTML5
+- CSS3
+- JavaScript
+- localStorage
+- Sprites publicas do Pokemon Showdown
 
 ## Funcionalidades
 
 - Placar total por jogador.
-- Pontuação separada para Single Battles e Double Battles.
-- Botões para adicionar vitórias de Jean Carlos e Felipe Eckert.
-- Botão para desfazer a última vitória registrada.
-- Reset do placar com confirmação.
-- Histórico de partidas com vencedor, formato e data/hora.
-- Estatísticas gerais com totais e percentuais de vitórias.
-- Persistência local usando `localStorage`.
-- Layout responsivo inspirado em Pokémon clássico e Pokémon Showdown.
-- Sprites pixel art de Annihilape e Trubbish via URLs públicas do Pokémon Showdown.
+- Pontuacao separada para Single Battles e Double Battles.
+- Botoes para adicionar vitorias de Jean Carlos e Felipe Eckert.
+- Botao para desfazer a ultima vitoria registrada.
+- Reset do placar com confirmacao.
+- Historico de partidas com vencedor, formato e data/hora.
+- Estatisticas gerais com totais e percentuais de vitorias.
+- Persistencia local usando `localStorage`.
+- Layout responsivo inspirado em Pokemon classico e Pokemon Showdown.
+- Sprites pixel art de Annihilape e Trubbish via URLs publicas do Pokemon Showdown.
 
-## Como Rodar Localmente
+## Como Abrir Localmente
 
 Abra o arquivo `index.html` diretamente no navegador.
 
-Não é necessário instalar dependências, rodar backend ou configurar banco de dados.
+Nao e necessario instalar dependencias, rodar backend ou configurar banco de dados.
 
 ## Estrutura de Arquivos
 
 ```text
 .
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+|-- index.html
+|-- style.css
+|-- script.js
+|-- README.md
+|-- TODO.md
+`-- LESSONS.md
 ```
 
-## Próximas Melhorias Possíveis
+## Como Publicar Futuramente com GitHub Pages
 
-- Exportar e importar o histórico em JSON.
-- Adicionar filtros por jogador e tipo de batalha.
-- Mostrar sequência atual de vitórias.
-- Permitir editar ou remover entradas específicas do histórico.
-- Criar tema escuro.
-- Publicar a página no GitHub Pages.
+1. Envie o projeto para um repositorio no GitHub.
+2. Acesse `Settings` no repositorio.
+3. Entre em `Pages`.
+4. Em `Build and deployment`, escolha `Deploy from a branch`.
+5. Selecione a branch `main` e a pasta `/root`.
+6. Salve e aguarde o GitHub gerar o link publico.
+
+## Proximas Melhorias Possiveis
+
+As ideias de evolucao do projeto estao organizadas em [TODO.md](TODO.md).
 
 ## Links
 
-- [Pokémon Showdown](https://pokemonshowdown.com/)
+- [Pokemon Showdown](https://pokemonshowdown.com/)
