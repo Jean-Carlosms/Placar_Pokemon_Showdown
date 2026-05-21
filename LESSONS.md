@@ -33,3 +33,19 @@ O historico, os cards de jogadores e as estatisticas sao renderizados a partir d
 ## Responsividade com CSS
 
 O layout usa CSS Grid, media queries e tamanhos adaptaveis para funcionar bem em telas maiores e menores.
+
+## Modernizacao de UI em React
+
+A interface foi modernizada sem alterar a regra de negocio principal. Os componentes receberam novas estruturas visuais, mas continuam recebendo dados por props e disparando as mesmas acoes.
+
+## CSS Variables
+
+As cores, sombras, raios de borda e medidas principais foram centralizadas em variaveis CSS no `:root`, facilitando ajustes futuros de tema.
+
+## Estados Visuais
+
+Foram adicionados estados para lider, empate, disputa, carregamento de sprite e fallback visual. Isso melhora a leitura do placar sem depender apenas de cor.
+
+## Componentizacao Visual
+
+A componentizacao passou a separar melhor os papeis visuais: cards de jogador, controles, estatisticas e historico possuem estruturas proprias e mais faceis de evoluir.

@@ -15,15 +15,27 @@ import { loadScoreboard, saveScoreboard } from "./utils/storage.js";
 
 function App() {
   const [scoreboard, setScoreboard] = useState(() => loadScoreboard());
+  const [lastScoredPlayer, setLastScoredPlayer] = useState("");
 
   useEffect(() => {
     saveScoreboard(scoreboard);
   }, [scoreboard]);
 
+  useEffect(() => {
+    if (!lastScoredPlayer) {
+      return undefined;
+    }
+
+    const timeoutId = setTimeout(() => setLastScoredPlayer(""), 450);
+
+    return () => clearTimeout(timeoutId);
+  }, [lastScoredPlayer]);
+
   function handleAddWin(playerId, battleType) {
     setScoreboard((currentScoreboard) =>
       addWinToScoreboard(currentScoreboard, playerId, battleType),
     );
+    setLastScoredPlayer(playerId);
   }
 
   function handleUndoLastWin() {
@@ -38,7 +50,16 @@ function App() {
     }
 
     setScoreboard(createInitialScoreboard());
+    setLastScoredPlayer("");
   }
+
+  const playerScores = PLAYERS.reduce((scores, player) => {
+    scores[player.id] = getPlayerScore(scoreboard, player.id);
+    return scores;
+  }, {});
+  const totals = PLAYERS.map((player) => playerScores[player.id].total);
+  const highestScore = Math.max(...totals);
+  const isTie = new Set(totals).size === 1;
 
   return (
     <main className="app-shell">
@@ -46,7 +67,13 @@ function App() {
 
       <section className="scoreboard" aria-label="Placar dos jogadores">
         {PLAYERS.map((player) => (
-          <PlayerCard key={player.id} player={player} score={getPlayerScore(scoreboard, player.id)} />
+          <PlayerCard
+            key={player.id}
+            player={player}
+            score={playerScores[player.id]}
+            status={isTie ? "tie" : playerScores[player.id].total === highestScore ? "leader" : "chaser"}
+            isRecentlyScored={lastScoredPlayer === player.id}
+          />
         ))}
       </section>
 

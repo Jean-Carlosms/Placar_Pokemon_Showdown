@@ -24,6 +24,7 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - HTML5
 - CSS3
 - localStorage
+- PokéAPI
 - Sprites publicas do Pokemon Showdown
 
 ## Funcionalidades
@@ -33,11 +34,58 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - Botoes para adicionar vitorias de Jean Carlos e Felipe Eckert.
 - Botao para desfazer a ultima vitoria registrada.
 - Reset do placar com confirmacao.
-- Historico de partidas com vencedor, formato e data/hora.
-- Estatisticas gerais com totais e percentuais de vitorias.
+- Historico de partidas em formato de timeline com vencedor, formato e data/hora.
+- Estatisticas gerais em cards com totais, percentuais e barras de progresso.
 - Persistencia local usando `localStorage`.
-- Layout responsivo inspirado em Pokemon classico e Pokemon Showdown.
-- Sprites pixel art de Annihilape e Trubbish via URLs publicas do Pokemon Showdown.
+- Layout responsivo em estilo dashboard gamer inspirado em Pokemon Showdown.
+- Cards de batalha para Jean Carlos e Felipe Eckert, com destaque visual para lider ou empate.
+- Sprites pixel art de Annihilape e Trubbish com fallback visual.
+
+## Interface Modernizada
+
+A interface foi modernizada com uma composicao de dashboard responsivo, cards de jogador com visual de batalha, badges de tecnologia no header, controles agrupados por jogador e microinteracoes em hover/active.
+
+Os cards dos jogadores destacam o Pokemon parceiro, o total de vitorias, pontuacoes em Single e Double Battles e o estado atual do duelo:
+
+- `Lider atual` quando um jogador esta na frente.
+- `Empate tecnico` quando os dois jogadores possuem o mesmo total.
+- `Na disputa` para o jogador que esta atras.
+
+As estatisticas foram transformadas em cards compactos com barras de progresso para percentual de vitorias. O historico agora aparece como uma timeline visual e responsiva.
+
+As sprites continuam usando `image-rendering: pixelated` e contam com fallback em camadas para evitar blocos vazios quando imagens externas nao carregam.
+
+## API de Sprites
+
+O projeto usa o repositorio [PokeAPI/sprites](https://github.com/PokeAPI/sprites) como fonte visual principal para as sprites dos Pokémon exibidos nos cards dos jogadores.
+
+Para os jogadores atuais, as imagens sao carregadas diretamente do GitHub:
+
+```text
+https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemonId}.png
+```
+
+IDs usados:
+
+- Annihilape: `979`
+- Trubbish: `568`
+
+O service tambem preserva suporte ao endpoint da PokéAPI para casos futuros:
+
+A busca por API acontece em `src/services/pokemonApi.js`, usando o endpoint:
+
+```text
+https://pokeapi.co/api/v2/pokemon/{pokemonName}
+```
+
+O service tenta encontrar uma sprite pixel art nesta ordem:
+
+1. `generation-v` / `black-white` / `animated` / `front_default`
+2. `generation-v` / `black-white` / `front_default`
+3. `sprites.front_default`
+4. fallback manual com sprites do Pokémon Showdown
+
+Em desenvolvimento, o Vite usa um proxy local em `/pokeapi` para evitar erros de CORS no navegador quando o endpoint JSON for necessario. Se a rede bloquear a PokéAPI, a aplicacao continua funcionando com as sprites diretas do GitHub e com fallback visual do Pokémon Showdown para Annihilape e Trubbish. Se o navegador tambem nao conseguir carregar a imagem externa, o card tenta URLs alternativas e, por ultimo, usa um fallback local simples para evitar caixas vazias.
 
 ## Como Instalar
 
@@ -89,6 +137,8 @@ Os arquivos finais serao gerados na pasta `dist/`.
     |   |-- ScoreControls.jsx
     |   |-- StatsPanel.jsx
     |   `-- MatchHistory.jsx
+    |-- services/
+    |   `-- pokemonApi.js
     `-- utils/
         |-- storage.js
         `-- scoreboard.js

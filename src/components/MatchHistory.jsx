@@ -11,13 +11,17 @@ function MatchHistory({ history, players }) {
   return (
     <section className="history-section" aria-labelledby="history-title">
       <div className="section-heading">
-        <h2 id="history-title">Histórico de partidas</h2>
-        <span>{historyCountLabel}</span>
+        <div>
+          <h2 id="history-title">Histórico de partidas</h2>
+          <p>A linha do tempo das vitórias registradas.</p>
+        </div>
+        <span className="history-count">{historyCountLabel}</span>
       </div>
 
       <ol className="history-list">
         {reversedHistory.map((entry) => (
           <li className="history-item" key={entry.id}>
+            <span className="timeline-dot" aria-hidden="true" />
             <div>
               <strong>{getPlayerName(entry.player)}</strong>
               <span>{formatDateTime(entry.timestamp)}</span>
@@ -27,7 +31,11 @@ function MatchHistory({ history, players }) {
         ))}
       </ol>
 
-      {history.length === 0 && <p className="empty-history">Nenhuma partida registrada ainda.</p>}
+      {history.length === 0 && (
+        <p className="empty-history">
+          Nenhuma partida registrada ainda. Adicione a primeira vitória para começar o placar.
+        </p>
+      )}
     </section>
   );
 }
