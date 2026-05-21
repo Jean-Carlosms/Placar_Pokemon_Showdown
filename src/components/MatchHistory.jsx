@@ -1,6 +1,12 @@
 import { BATTLE_TYPES } from "../data/players.js";
 
-function MatchHistory({ history, players }) {
+function MatchHistory({
+  history,
+  players,
+  historyFilter,
+  activeSeasonName,
+  onHistoryFilterChange,
+}) {
   const historyCountLabel = `${history.length} registro${history.length === 1 ? "" : "s"}`;
   const reversedHistory = [...history].reverse();
 
@@ -13,9 +19,30 @@ function MatchHistory({ history, players }) {
       <div className="section-heading">
         <div>
           <h2 id="history-title">Histórico de partidas</h2>
-          <p>A linha do tempo das vitórias registradas.</p>
+          <p>
+            {historyFilter === "active"
+              ? `Mostrando apenas ${activeSeasonName}.`
+              : "Mostrando todas as temporadas."}
+          </p>
         </div>
         <span className="history-count">{historyCountLabel}</span>
+      </div>
+
+      <div className="history-filter" aria-label="Filtro do histórico">
+        <button
+          className={historyFilter === "active" ? "active-filter" : ""}
+          type="button"
+          onClick={() => onHistoryFilterChange("active")}
+        >
+          Temporada ativa
+        </button>
+        <button
+          className={historyFilter === "all" ? "active-filter" : ""}
+          type="button"
+          onClick={() => onHistoryFilterChange("all")}
+        >
+          Todas as temporadas
+        </button>
       </div>
 
       <ol className="history-list">
@@ -25,6 +52,13 @@ function MatchHistory({ history, players }) {
             <div>
               <strong>{getPlayerName(entry.player)}</strong>
               <span>{formatDateTime(entry.timestamp)}</span>
+              {entry.source === "pokemon-showdown-replay" && (
+                <small>
+                  Replay importado
+                  {entry.format ? ` - ${entry.format}` : ""}
+                  {entry.turns ? ` - ${entry.turns} turnos` : ""}
+                </small>
+              )}
             </div>
             <span className={`battle-badge ${entry.battleType}`}>{BATTLE_TYPES[entry.battleType]}</span>
           </li>

@@ -81,3 +81,31 @@ O `localStorage` salva dados apenas no navegador atual. Um backup JSON pode ser 
 ## Token do GitHub no Frontend
 
 Uma aplicacao estatica nao deve guardar token do GitHub no codigo frontend, porque a credencial ficaria visivel para quem abrisse o site. Para escrita automatica no GitHub, seria necessario um backend ou servico seguro intermediario.
+
+## Modelagem de Temporadas
+
+O suporte a temporadas foi adicionado mantendo o placar geral e criando placares separados por temporada. Cada item do historico ganhou `seasonId`, permitindo filtrar partidas sem perder a visao geral.
+
+## Migracao de Dados Antigos
+
+Dados antigos do `localStorage` e backups JSON sem temporadas sao normalizados automaticamente para `Temporada Atual`. Isso evita quebrar usuarios que ja tinham placar salvo antes da mudanca.
+
+## Estatisticas Derivadas por Contexto
+
+As mesmas funcoes de estatistica podem ser usadas com o placar geral ou com o placar de uma temporada, desde que recebam o recorte correto de dados.
+
+## Parsing de HTML Local
+
+O app passou a ler arquivos HTML selecionados pelo usuario e extrair o bloco `battle-log-data` dos replays do Pokemon Showdown sem enviar o arquivo para servidor.
+
+## Extracao de Dados de Replay
+
+O parser interpreta linhas do log como `gametype`, `player`, `tier`, `turn` e `win` para descobrir formato, jogadores, vencedor e quantidade de turnos.
+
+## Mapeamento de Aliases
+
+Aliases do Pokemon Showdown, como `demikimi` e `tergoat`, foram separados em `playerAliases.js` para mapear nomes do replay aos jogadores do placar.
+
+## Historico com Metadados
+
+Entradas importadas de replay enriquecem o historico com campos opcionais como `source`, `format`, `replayId`, `turns` e `originalWinner`, mantendo compatibilidade com partidas antigas sem esses metadados.

@@ -1,17 +1,23 @@
-import { calculateStats } from "../utils/scoreboard.js";
-
-function StatsPanel({ scoreboard, players }) {
-  const stats = calculateStats(scoreboard);
-
+function StatsPanel({ seasonName, seasonStats, generalStats, players }) {
   return (
     <section className="stats-section" aria-labelledby="stats-title">
       <div className="section-heading">
         <div>
           <h2 id="stats-title">Estatísticas</h2>
-          <p>Resumo do duelo em tempo real.</p>
+          <p>Resumo da temporada selecionada e do duelo completo.</p>
         </div>
       </div>
 
+      <StatsGrid title={seasonName} stats={seasonStats} players={players} />
+      <StatsGrid title="Geral - todas as temporadas" stats={generalStats} players={players} />
+    </section>
+  );
+}
+
+function StatsGrid({ title, stats, players }) {
+  return (
+    <div className="stats-block">
+      <h3>{title}</h3>
       <dl className="stats-grid">
         <div className="stat-card">
           <dt>Total de partidas</dt>
@@ -35,7 +41,7 @@ function StatsPanel({ scoreboard, players }) {
           </div>
         ))}
       </dl>
-    </section>
+    </div>
   );
 }
 

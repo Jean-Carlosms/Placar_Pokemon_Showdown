@@ -35,6 +35,8 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - Botao para desfazer a ultima vitoria registrada.
 - Reset do placar com confirmacao.
 - Exportacao e importacao de backup JSON.
+- Importacao de replay HTML do Pokemon Showdown para registrar vitorias automaticamente.
+- Suporte a temporadas com seletor e criacao de novas temporadas.
 - Historico de partidas em formato de timeline com vencedor, formato e data/hora.
 - Estatisticas gerais em cards com totais, percentuais e barras de progresso.
 - Persistencia local usando `localStorage`.
@@ -56,6 +58,20 @@ Os cards dos jogadores destacam o Pokemon parceiro, o total de vitorias, pontuac
 As estatisticas foram transformadas em cards compactos com barras de progresso para percentual de vitorias. O historico agora aparece como uma timeline visual e responsiva.
 
 As sprites continuam usando `image-rendering: pixelated` e contam com fallback em camadas para evitar blocos vazios quando imagens externas nao carregam.
+
+## Temporadas
+
+O placar possui suporte a temporadas. A primeira temporada criada automaticamente se chama `Temporada Atual`.
+
+Cada nova vitoria fica associada a temporada ativa no momento do registro. A interface permite:
+
+- criar uma nova temporada informando um nome;
+- selecionar a temporada ativa;
+- visualizar estatisticas da temporada selecionada;
+- visualizar estatisticas gerais somando todas as temporadas;
+- filtrar o historico entre temporada ativa e todas as temporadas.
+
+Dados antigos salvos no `localStorage` ou em backups JSON sem temporadas sao migrados automaticamente para `Temporada Atual`.
 
 ## Tema Claro e Escuro
 
@@ -84,6 +100,27 @@ git push origin main
 O GitHub nao e atualizado automaticamente. O projeto nao usa token do GitHub no frontend, e isso e intencional por seguranca: expor um token em uma aplicacao estatica permitiria que qualquer pessoa com acesso ao site visualizasse essa credencial.
 
 Um exemplo de estrutura compativel esta em `data/scoreboard.example.json`.
+
+Backups novos incluem `seasons` e `activeSeasonId`. Backups antigos sem esses campos continuam aceitos e sao migrados automaticamente para `Temporada Atual`.
+
+## Importacao de Replay do Pokemon Showdown
+
+O app permite importar um arquivo `.html` de replay exportado do Pokemon Showdown. O parser procura o bloco:
+
+```html
+<script type="text/plain" class="battle-log-data">
+```
+
+A partir desse log, o app identifica formato da batalha, tipo Single ou Double, jogadores do replay, vencedor, quantidade de turnos e id do replay quando disponivel.
+
+Depois da leitura, a interface mostra uma previa e pede confirmacao antes de registrar a vitoria no placar.
+
+O mapeamento atual de aliases e:
+
+- `demikimi` = Jean Carlos
+- `tergoat` = Felipe Eckert
+
+Esse mapeamento fica em `src/data/playerAliases.js`.
 
 ## API de Sprites
 
@@ -162,18 +199,22 @@ Os arquivos finais serao gerados na pasta `dist/`.
     |-- App.jsx
     |-- styles.css
     |-- data/
+    |   |-- playerAliases.js
     |   `-- players.js
     |-- components/
     |   |-- BackupControls.jsx
     |   |-- Header.jsx
+    |   |-- MatchHistory.jsx
     |   |-- PlayerCard.jsx
+    |   |-- ReplayImport.jsx
     |   |-- ScoreControls.jsx
-    |   |-- StatsPanel.jsx
-    |   `-- MatchHistory.jsx
+    |   |-- SeasonControls.jsx
+    |   `-- StatsPanel.jsx
     |-- services/
     |   `-- pokemonApi.js
     `-- utils/
         |-- backup.js
+        |-- replayParser.js
         |-- storage.js
         `-- scoreboard.js
 ```

@@ -3,14 +3,21 @@ import BackupControls from "./components/BackupControls.jsx";
 import Header from "./components/Header.jsx";
 import MatchHistory from "./components/MatchHistory.jsx";
 import PlayerCard from "./components/PlayerCard.jsx";
+import ReplayImport from "./components/ReplayImport.jsx";
 import ScoreControls from "./components/ScoreControls.jsx";
+import SeasonControls from "./components/SeasonControls.jsx";
 import StatsPanel from "./components/StatsPanel.jsx";
 import { PLAYERS } from "./data/players.js";
 import {
   addWinToScoreboard,
   calculateStats,
+  createSeasonInScoreboard,
   createInitialScoreboard,
+  getActiveSeason,
+  getActiveSeasonScoreboard,
+  getHistoryForSeason,
   getPlayerScore,
+  selectSeasonInScoreboard,
   undoLastWinFromScoreboard,
 } from "./utils/scoreboard.js";
 import { loadScoreboard, saveScoreboard } from "./utils/storage.js";
@@ -20,6 +27,7 @@ function App() {
   const [scoreboard, setScoreboard] = useState(() => loadScoreboard());
   const [lastScoredPlayer, setLastScoredPlayer] = useState("");
   const [currentTheme, setCurrentTheme] = useState(() => getInitialTheme());
+  const [historyFilter, setHistoryFilter] = useState("active");
 
   useEffect(() => {
     saveScoreboard(scoreboard);
@@ -40,9 +48,9 @@ function App() {
     return () => clearTimeout(timeoutId);
   }, [lastScoredPlayer]);
 
-  function handleAddWin(playerId, battleType) {
+  function handleAddWin(playerId, battleType, metadata = {}) {
     setScoreboard((currentScoreboard) =>
-      addWinToScoreboard(currentScoreboard, playerId, battleType),
+      addWinToScoreboard(currentScoreboard, playerId, battleType, metadata),
     );
     setLastScoredPlayer(playerId);
   }
@@ -71,14 +79,29 @@ function App() {
     setLastScoredPlayer("");
   }
 
+  function handleCreateSeason(seasonName) {
+    setScoreboard((currentScoreboard) => createSeasonInScoreboard(currentScoreboard, seasonName));
+    setHistoryFilter("active");
+  }
+
+  function handleSelectSeason(seasonId) {
+    setScoreboard((currentScoreboard) => selectSeasonInScoreboard(currentScoreboard, seasonId));
+    setHistoryFilter("active");
+  }
+
+  const activeSeason = getActiveSeason(scoreboard);
+  const activeSeasonScoreboard = getActiveSeasonScoreboard(scoreboard);
   const playerScores = PLAYERS.reduce((scores, player) => {
-    scores[player.id] = getPlayerScore(scoreboard, player.id);
+    scores[player.id] = getPlayerScore(activeSeasonScoreboard, player.id);
     return scores;
   }, {});
   const totals = PLAYERS.map((player) => playerScores[player.id].total);
   const highestScore = Math.max(...totals);
   const isTie = new Set(totals).size === 1;
-  const stats = calculateStats(scoreboard);
+  const seasonStats = calculateStats(activeSeasonScoreboard);
+  const generalStats = calculateStats(scoreboard);
+  const visibleHistory =
+    historyFilter === "active" ? getHistoryForSeason(scoreboard, activeSeason.id) : scoreboard.history;
 
   return (
     <main className="app-shell">
@@ -103,15 +126,35 @@ function App() {
         onResetScoreboard={handleResetScoreboard}
       />
 
+      <SeasonControls
+        seasons={scoreboard.seasons}
+        activeSeasonId={activeSeason.id}
+        onCreateSeason={handleCreateSeason}
+        onSelectSeason={handleSelectSeason}
+      />
+
+      <ReplayImport players={PLAYERS} onRegisterReplayWin={handleAddWin} />
+
       <BackupControls
         scoreboard={scoreboard}
         history={scoreboard.history}
-        stats={stats}
+        stats={{ season: seasonStats, general: generalStats }}
         onImportBackup={handleImportBackup}
       />
 
-      <StatsPanel scoreboard={scoreboard} players={PLAYERS} />
-      <MatchHistory history={scoreboard.history} players={PLAYERS} />
+      <StatsPanel
+        seasonName={activeSeason.name}
+        seasonStats={seasonStats}
+        generalStats={generalStats}
+        players={PLAYERS}
+      />
+      <MatchHistory
+        history={visibleHistory}
+        players={PLAYERS}
+        historyFilter={historyFilter}
+        activeSeasonName={activeSeason.name}
+        onHistoryFilterChange={setHistoryFilter}
+      />
     </main>
   );
 }

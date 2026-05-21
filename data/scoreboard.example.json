@@ -14,17 +14,37 @@
           "double": 2
         }
       },
+      "seasons": [
+        {
+          "id": "season-current",
+          "name": "Temporada Atual",
+          "createdAt": "2026-05-21T17:00:00.000Z",
+          "scores": {
+            "jean": {
+              "single": 2,
+              "double": 1
+            },
+            "felipe": {
+              "single": 1,
+              "double": 2
+            }
+          }
+        }
+      ],
+      "activeSeasonId": "season-current",
       "history": [
         {
           "id": "example-1",
           "player": "jean",
           "battleType": "single",
+          "seasonId": "season-current",
           "timestamp": "2026-05-21T18:00:00.000Z"
         },
         {
           "id": "example-2",
           "player": "felipe",
           "battleType": "double",
+          "seasonId": "season-current",
           "timestamp": "2026-05-21T18:10:00.000Z"
         }
       ]
@@ -34,12 +54,14 @@
         "id": "example-1",
         "player": "jean",
         "battleType": "single",
+        "seasonId": "season-current",
         "timestamp": "2026-05-21T18:00:00.000Z"
       },
       {
         "id": "example-2",
         "player": "felipe",
         "battleType": "double",
+        "seasonId": "season-current",
         "timestamp": "2026-05-21T18:10:00.000Z"
       }
     ],

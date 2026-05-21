@@ -136,6 +136,8 @@ h2 {
 
 .player-card,
 .controls,
+.season-section,
+.replay-section,
 .backup-section,
 .stats-section,
 .history-section {
@@ -397,6 +399,49 @@ dd {
   animation: card-enter 520ms ease both;
 }
 
+/* seasons */
+.season-section {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 22px;
+  padding: 22px;
+  animation: card-enter 530ms ease both;
+}
+
+.season-controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1.2fr);
+  gap: 14px;
+}
+
+.season-controls label,
+.season-form {
+  display: grid;
+  gap: 8px;
+}
+
+.season-controls label span {
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.season-controls select,
+.season-controls input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.season-form {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
 /* backup */
 .backup-section {
   display: grid;
@@ -404,6 +449,59 @@ dd {
   margin-bottom: 22px;
   padding: 22px;
   animation: card-enter 540ms ease both;
+}
+
+/* replay import */
+.replay-section {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 22px;
+  padding: 22px;
+  animation: card-enter 550ms ease both;
+}
+
+.replay-actions {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px);
+  gap: 12px;
+}
+
+.replay-import-button,
+.replay-confirm-button {
+  background: linear-gradient(135deg, var(--color-blue), var(--color-violet));
+}
+
+.replay-preview {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+}
+
+.replay-preview h3 {
+  margin: 0;
+  color: var(--color-ink-soft);
+}
+
+.replay-preview dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.replay-preview dl div {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.replay-preview dd {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
 }
 
 .backup-actions {
@@ -529,6 +627,22 @@ button:active {
   margin-top: 18px;
 }
 
+.stats-block {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.stats-block + .stats-block {
+  margin-top: 26px;
+}
+
+.stats-block h3 {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+}
+
 .stat-card-progress {
   display: grid;
   align-content: start;
@@ -567,6 +681,26 @@ button:active {
   overflow: auto;
 }
 
+.history-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.history-filter button {
+  min-height: 40px;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-soft);
+}
+
+.history-filter .active-filter {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--color-blue), var(--color-violet));
+}
+
 .history-list::before {
   position: absolute;
   top: 8px;
@@ -603,6 +737,13 @@ button:active {
   display: block;
   margin-bottom: 3px;
   color: var(--color-ink);
+}
+
+.history-item small {
+  display: block;
+  margin-top: 5px;
+  color: var(--color-muted);
+  font-weight: 800;
 }
 
 .history-item span {
@@ -710,6 +851,8 @@ button:active {
 
   .player-card,
   .controls,
+  .season-section,
+  .replay-section,
   .backup-section,
   .stats-section,
   .history-section {
@@ -718,6 +861,8 @@ button:active {
 
   .player-card,
   .controls,
+  .season-section,
+  .replay-section,
   .backup-section,
   .stats-section,
   .history-section {
@@ -740,6 +885,9 @@ button:active {
   }
 
   .score-grid,
+  .season-controls,
+  .season-form,
+  .replay-preview dl,
   .control-group,
   .backup-actions,
   .maintenance-buttons {

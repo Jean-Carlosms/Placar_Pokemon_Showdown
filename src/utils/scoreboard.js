@@ -1,58 +1,72 @@
 import { BATTLE_TYPES, PLAYERS } from "../data/players.js";
 
+export const DEFAULT_SEASON_ID = "season-current";
+export const DEFAULT_SEASON_NAME = "Temporada Atual";
+
 const PLAYER_IDS = PLAYERS.map((player) => player.id);
 const BATTLE_TYPE_IDS = Object.keys(BATTLE_TYPES);
 
 export function createInitialScoreboard() {
   return {
-    scores: PLAYER_IDS.reduce((scores, playerId) => {
-      scores[playerId] = { single: 0, double: 0 };
-      return scores;
-    }, {}),
+    scores: createEmptyScores(),
     history: [],
+    seasons: [createSeason(DEFAULT_SEASON_NAME, DEFAULT_SEASON_ID)],
+    activeSeasonId: DEFAULT_SEASON_ID,
   };
 }
 
 export function normalizeScoreboard(savedScoreboard) {
   const cleanScoreboard = createInitialScoreboard();
-
-  PLAYER_IDS.forEach((playerId) => {
-    BATTLE_TYPE_IDS.forEach((battleType) => {
-      cleanScoreboard.scores[playerId][battleType] = Number(
-        savedScoreboard?.scores?.[playerId]?.[battleType] || 0,
-      );
-    });
-  });
-
-  cleanScoreboard.history = Array.isArray(savedScoreboard?.history)
-    ? savedScoreboard.history.filter(isValidHistoryEntry)
+  const normalizedHistory = Array.isArray(savedScoreboard?.history)
+    ? savedScoreboard.history.filter(isValidHistoryEntry).map(normalizeHistoryEntry)
     : [];
+  const normalizedGlobalScores = normalizeScores(savedScoreboard?.scores);
+  const savedSeasons = Array.isArray(savedScoreboard?.seasons) ? savedScoreboard.seasons : [];
+  const seasons = savedSeasons.length > 0
+    ? savedSeasons.map((season) => normalizeSeason(season, normalizedHistory))
+    : [
+        {
+          ...createSeason(DEFAULT_SEASON_NAME, DEFAULT_SEASON_ID),
+          scores: normalizedGlobalScores,
+        },
+      ];
+  const activeSeasonId = seasons.some((season) => season.id === savedScoreboard?.activeSeasonId)
+    ? savedScoreboard.activeSeasonId
+    : seasons[0]?.id ?? DEFAULT_SEASON_ID;
 
-  return cleanScoreboard;
+  return {
+    ...cleanScoreboard,
+    scores: normalizedGlobalScores,
+    history: normalizedHistory,
+    seasons,
+    activeSeasonId,
+  };
 }
 
-export function addWinToScoreboard(scoreboard, playerId, battleType) {
+export function addWinToScoreboard(scoreboard, playerId, battleType, metadata = {}) {
   if (!isValidPlayerId(playerId) || !isValidBattleType(battleType)) {
     return scoreboard;
   }
 
+  const activeSeasonId = getSafeActiveSeasonId(scoreboard);
+  const historyEntry = {
+    id: createHistoryId(),
+    player: playerId,
+    battleType,
+    seasonId: activeSeasonId,
+    timestamp: new Date().toISOString(),
+    ...metadata,
+  };
+
   return {
-    scores: {
-      ...scoreboard.scores,
-      [playerId]: {
-        ...scoreboard.scores[playerId],
-        [battleType]: scoreboard.scores[playerId][battleType] + 1,
-      },
-    },
-    history: [
-      ...scoreboard.history,
-      {
-        id: createHistoryId(),
-        player: playerId,
-        battleType,
-        timestamp: new Date().toISOString(),
-      },
-    ],
+    ...scoreboard,
+    scores: incrementScore(scoreboard.scores, playerId, battleType),
+    seasons: scoreboard.seasons.map((season) =>
+      season.id === activeSeasonId
+        ? { ...season, scores: incrementScore(season.scores, playerId, battleType) }
+        : season,
+    ),
+    history: [...scoreboard.history, historyEntry],
   };
 }
 
@@ -64,18 +78,63 @@ export function undoLastWinFromScoreboard(scoreboard) {
   }
 
   return {
-    scores: {
-      ...scoreboard.scores,
-      [lastWin.player]: {
-        ...scoreboard.scores[lastWin.player],
-        [lastWin.battleType]: Math.max(
-          0,
-          scoreboard.scores[lastWin.player][lastWin.battleType] - 1,
-        ),
-      },
-    },
+    ...scoreboard,
+    scores: decrementScore(scoreboard.scores, lastWin.player, lastWin.battleType),
+    seasons: scoreboard.seasons.map((season) =>
+      season.id === lastWin.seasonId
+        ? { ...season, scores: decrementScore(season.scores, lastWin.player, lastWin.battleType) }
+        : season,
+    ),
     history: scoreboard.history.slice(0, -1),
   };
+}
+
+export function createSeasonInScoreboard(scoreboard, seasonName) {
+  const cleanSeasonName = seasonName.trim();
+
+  if (!cleanSeasonName) {
+    return scoreboard;
+  }
+
+  const season = createSeason(cleanSeasonName);
+
+  return {
+    ...scoreboard,
+    seasons: [...scoreboard.seasons, season],
+    activeSeasonId: season.id,
+  };
+}
+
+export function selectSeasonInScoreboard(scoreboard, seasonId) {
+  if (!scoreboard.seasons.some((season) => season.id === seasonId)) {
+    return scoreboard;
+  }
+
+  return {
+    ...scoreboard,
+    activeSeasonId: seasonId,
+  };
+}
+
+export function getActiveSeason(scoreboard) {
+  return (
+    scoreboard.seasons.find((season) => season.id === scoreboard.activeSeasonId) ??
+    scoreboard.seasons[0] ??
+    createSeason(DEFAULT_SEASON_NAME, DEFAULT_SEASON_ID)
+  );
+}
+
+export function getActiveSeasonScoreboard(scoreboard) {
+  const activeSeason = getActiveSeason(scoreboard);
+
+  return {
+    scores: activeSeason.scores,
+    history: getHistoryForSeason(scoreboard, activeSeason.id),
+  };
+}
+
+export function getHistoryForSeason(scoreboard, seasonId) {
+  return scoreboard.history.filter((entry) => entry.seasonId === seasonId);
 }
 
 export function calculateStats(scoreboard) {
@@ -103,6 +162,86 @@ export function getPlayerScore(scoreboard, playerId) {
     double: playerScore.double,
     total: playerScore.single + playerScore.double,
   };
+}
+
+function createSeason(name, id = createSeasonId()) {
+  return {
+    id,
+    name,
+    createdAt: new Date().toISOString(),
+    scores: createEmptyScores(),
+  };
+}
+
+function normalizeSeason(season, history) {
+  const id = String(season?.id || createSeasonId());
+  const scores = season?.scores
+    ? normalizeScores(season.scores)
+    : calculateScoresFromHistory(history.filter((entry) => entry.seasonId === id));
+
+  return {
+    id,
+    name: String(season?.name || DEFAULT_SEASON_NAME),
+    createdAt: season?.createdAt || new Date().toISOString(),
+    scores,
+  };
+}
+
+function createEmptyScores() {
+  return PLAYER_IDS.reduce((scores, playerId) => {
+    scores[playerId] = { single: 0, double: 0 };
+    return scores;
+  }, {});
+}
+
+function normalizeScores(savedScores) {
+  const scores = createEmptyScores();
+
+  PLAYER_IDS.forEach((playerId) => {
+    BATTLE_TYPE_IDS.forEach((battleType) => {
+      scores[playerId][battleType] = Number(savedScores?.[playerId]?.[battleType] || 0);
+    });
+  });
+
+  return scores;
+}
+
+function calculateScoresFromHistory(history) {
+  return history.reduce((scores, entry) => {
+    scores[entry.player][entry.battleType] += 1;
+    return scores;
+  }, createEmptyScores());
+}
+
+function normalizeHistoryEntry(entry) {
+  return {
+    ...entry,
+    seasonId: entry.seasonId || DEFAULT_SEASON_ID,
+  };
+}
+
+function incrementScore(scores, playerId, battleType) {
+  return {
+    ...scores,
+    [playerId]: {
+      ...scores[playerId],
+      [battleType]: scores[playerId][battleType] + 1,
+    },
+  };
+}
+
+function decrementScore(scores, playerId, battleType) {
+  return {
+    ...scores,
+    [playerId]: {
+      ...scores[playerId],
+      [battleType]: Math.max(0, scores[playerId][battleType] - 1),
+    },
+  };
+}
+
+function getSafeActiveSeasonId(scoreboard) {
+  return getActiveSeason(scoreboard).id;
 }
 
 function getPlayerTotal(scoreboard, playerId) {
@@ -139,4 +278,8 @@ function isValidBattleType(battleType) {
 
 function createHistoryId() {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function createSeasonId() {
+  return `season-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
