@@ -16,6 +16,9 @@ const html = `
 |switch|p2a: Chien-Pao|Chien-Pao, L75|100/100
 |switch|p2b: Copperajah|Copperajah, L86, M|100/100
 |switch|p2b: Raging Bolt|Raging Bolt, L77|100/100
+|move|p1a: Regieleki|Protect|p1a: Regieleki
+|move|p1a: Regieleki|Tera Blast|p2b: Raging Bolt
+|move|p2a: Chien-Pao|Sucker Punch|p1a: Regieleki
 |turn|1
 |win|tergoat
     </script>
@@ -45,6 +48,21 @@ if (replayPath) {
   assertEqual(parsed.showdownPlayers.p2, "tergoat", "Player p2 should be tergoat");
   assertEqual(parsed.mappedWinnerId, "felipe", "Winner should map to Felipe");
   assertEqual(parsed.battleType, "double", "Battle type should be double");
+  assertIncludes(
+    parsed.movesByPokemon.jean.Regieleki,
+    "Protect",
+    "Regieleki moves should include Protect",
+  );
+  assertIncludes(
+    parsed.movesByPokemon.jean.Regieleki,
+    "Tera Blast",
+    "Regieleki moves should include Tera Blast",
+  );
+  assertIncludes(
+    parsed.movesByPokemon.felipe["Chien-Pao"],
+    "Sucker Punch",
+    "Chien-Pao moves should include Sucker Punch",
+  );
 
   console.log("Replay parser check passed.");
 }
@@ -61,6 +79,13 @@ function validateRealReplay(parsed, replayHtml) {
 
   if (replayHtml.includes("Chien-Pao")) {
     assertIncludes(parsed.teams.felipe, "Chien-Pao", "Felipe team should include Chien-Pao");
+  }
+
+  if (replayHtml.includes("|move|")) {
+    const hasJeanMoves = Object.keys(parsed.movesByPokemon.jean ?? {}).length > 0;
+    const hasFelipeMoves = Object.keys(parsed.movesByPokemon.felipe ?? {}).length > 0;
+
+    assertTruthy(hasJeanMoves || hasFelipeMoves, "Real replay should include Pokemon moves");
   }
 }
 

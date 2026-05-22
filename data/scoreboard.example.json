@@ -58,6 +58,16 @@
             "teams": {
               "jean": ["Regieleki", "Ninetales", "Armarouge", "Frosmoth", "Arboliva", "Polteageist"],
               "felipe": ["Chien-Pao", "Copperajah", "Raging Bolt", "Sunflora", "Pecharunt", "Swampert"]
+            },
+            "movesByPokemon": {
+              "jean": {
+                "Regieleki": ["Protect", "Tera Blast"],
+                "Ninetales": ["Heat Wave", "Protect"]
+              },
+              "felipe": {
+                "Chien-Pao": ["Sucker Punch", "Protect"],
+                "Raging Bolt": ["Dragon Pulse", "Thunderclap"]
+              }
             }
           }
         },
@@ -96,6 +106,16 @@
           "teams": {
             "jean": ["Regieleki", "Ninetales", "Armarouge", "Frosmoth", "Arboliva", "Polteageist"],
             "felipe": ["Chien-Pao", "Copperajah", "Raging Bolt", "Sunflora", "Pecharunt", "Swampert"]
+          },
+          "movesByPokemon": {
+            "jean": {
+              "Regieleki": ["Protect", "Tera Blast"],
+              "Ninetales": ["Heat Wave", "Protect"]
+            },
+            "felipe": {
+              "Chien-Pao": ["Sucker Punch", "Protect"],
+              "Raging Bolt": ["Dragon Pulse", "Thunderclap"]
+            }
           }
         }
       },

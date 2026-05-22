@@ -112,6 +112,7 @@ function ReplayImport({ players, onRegisterReplayWin }) {
         showdownPlayers: preview.showdownPlayers,
         mappedPlayers: preview.mappedPlayers,
         teams: preview.teams,
+        movesByPokemon: preview.movesByPokemon,
       },
     });
     setMessage("Vitoria importada do replay com sucesso.");
@@ -195,8 +196,18 @@ function ReplayImport({ players, onRegisterReplayWin }) {
           </dl>
 
           <div className="replay-preview-teams">
-            <PokemonMiniTeam title="Time Jean Carlos" pokemons={preview.teams.jean} />
-            <PokemonMiniTeam title="Time Felipe Eckert" pokemons={preview.teams.felipe} />
+            <PokemonMiniTeam
+              title="Time Jean Carlos"
+              playerId="jean"
+              pokemons={preview.teams.jean}
+              movesByPokemon={preview.movesByPokemon}
+            />
+            <PokemonMiniTeam
+              title="Time Felipe Eckert"
+              playerId="felipe"
+              pokemons={preview.teams.felipe}
+              movesByPokemon={preview.movesByPokemon}
+            />
           </div>
 
           <button

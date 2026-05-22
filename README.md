@@ -41,8 +41,9 @@ Um GIF ou video curto da aplicacao podera ser adicionado futuramente. Veja as in
 - Reset do placar com confirmacao.
 - Exportacao e importacao de backup JSON.
 - Importacao de replay HTML do Pokemon Showdown.
-- Extracao automatica de vencedor, formato, turnos e times.
+- Extracao automatica de vencedor, formato, turnos, times e ataques usados.
 - Historico em timeline com sprites dos Pokemon usados.
+- Tooltip no historico com os ataques usados por cada Pokemon no replay.
 - Pokemon destaque calculado por participacao em vitorias.
 - Suporte a temporadas.
 - Estatisticas gerais e por temporada.
@@ -56,7 +57,7 @@ Um GIF ou video curto da aplicacao podera ser adicionado futuramente. Veja as in
 flowchart LR
   A[Upload do replay HTML] --> B[ReplayImport]
   B --> C[replayParser]
-  C --> D[Extrai vencedor, formato, turnos e times]
+  C --> D[Extrai vencedor, formato, turnos, times e ataques]
   D --> E[Atualiza historico]
   E --> F[Salva no localStorage]
   E --> G[Calcula Pokemon destaque]
@@ -77,11 +78,12 @@ flowchart TD
   C --> C1[scoreboard.js]
   C --> C2[replayParser.js]
   C --> C3[pokemonStats.js]
-  C --> C4[backup.js]
-  C --> C5[storage.js]
+  C --> C4[pokemonMoveStats.js]
+  C --> C5[backup.js]
+  C --> C6[storage.js]
   A --> D[services]
   D --> D1[pokemonApi.js]
-  C5 --> E[localStorage]
+  C6 --> E[localStorage]
   D1 --> F[PokeAPI]
   D1 --> G[Pokemon Showdown sprites]
 ```
@@ -99,6 +101,22 @@ Win Rate = (vitorias do jogador / total de partidas) * 100
 Quando nao existe nenhuma partida registrada, os percentuais ficam em `0%` para evitar divisao por zero.
 
 O Pokemon destaque e calculado a partir do historico importado por replay: para cada vitoria, todos os Pokemon do time vencedor recebem +1 participacao em vitoria. O Pokemon com mais participacoes aparece no card principal do jogador.
+
+## Banco de Ataques por Pokemon
+
+Durante a importacao do replay HTML, o app tambem le as linhas `move` do log do Pokemon Showdown.
+
+Exemplo:
+
+```text
+|move|p1a: Regieleki|Protect|p1a: Regieleki
+```
+
+Com isso, os ataques usados por cada Pokemon ficam salvos dentro do proprio item do historico em `replay.movesByPokemon`.
+
+No historico da batalha, ao passar o mouse ou focar com o teclado em um Pokemon do time, a interface mostra um pop-up com os ataques usados por ele naquele replay. Historicos antigos sem `movesByPokemon` continuam funcionando e exibem a mensagem de que nenhum ataque foi registrado.
+
+O banco agregado de ataques e derivado do historico com `pokemonMoveStats.js`, sem criar um estado paralelo obrigatorio. Assim, backups JSON preservam os ataques automaticamente, porque exportam o historico inteiro.
 
 <details>
 <summary><strong>Como Rodar Localmente</strong></summary>
@@ -158,6 +176,7 @@ A partir desse log, o app identifica:
 - quantidade de turnos;
 - id do replay, quando disponivel;
 - times usados por Jean Carlos e Felipe Eckert.
+- ataques usados por cada Pokemon durante a batalha.
 
 Depois da leitura, a interface mostra uma previa e pede confirmacao antes de registrar a vitoria.
 
@@ -245,6 +264,7 @@ Tambem e possivel validar o parser com:
 
 ```bash
 npm run check:replay
+npm run check:moves
 ```
 
 Para validar um replay real pelo terminal:
@@ -316,6 +336,7 @@ git push origin main
     |   |-- Header.jsx
     |   |-- MatchHistory.jsx
     |   |-- PlayerCard.jsx
+    |   |-- PokemonMoveTooltip.jsx
     |   |-- PokemonMiniTeam.jsx
     |   |-- ReplayImport.jsx
     |   |-- ScoreControls.jsx
@@ -325,6 +346,7 @@ git push origin main
     |   `-- pokemonApi.js
     `-- utils/
         |-- backup.js
+        |-- pokemonMoveStats.js
         |-- pokemonStats.js
         |-- replayParser.js
         |-- storage.js

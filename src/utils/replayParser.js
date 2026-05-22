@@ -146,6 +146,46 @@ export function extractTeamsFromBattleLogLines(lines, mappedPlayers) {
   }, {});
 }
 
+export function extractMovesFromBattleLogLines(lines, mappedPlayers) {
+  const movesByPokemon = { jean: {}, felipe: {} };
+
+  lines.forEach((line) => {
+    const { command, args } = parseShowdownLine(line);
+
+    if (command !== "move") {
+      return;
+    }
+
+    const actor = args[0] || "";
+    const moveName = normalizePokemonDisplayName(args[1]);
+    const playerSlot = actor.slice(0, 2);
+    const playerId = mappedPlayers[playerSlot];
+    const pokemonName = normalizePokemonDisplayName(actor.split(":")[1]);
+
+    if (!playerId || !pokemonName || !moveName) {
+      return;
+    }
+
+    if (!movesByPokemon[playerId]) {
+      movesByPokemon[playerId] = {};
+    }
+
+    if (!movesByPokemon[playerId][pokemonName]) {
+      movesByPokemon[playerId][pokemonName] = [];
+    }
+
+    const alreadyAdded = movesByPokemon[playerId][pokemonName].some(
+      (registeredMove) => registeredMove.toLowerCase() === moveName.toLowerCase(),
+    );
+
+    if (!alreadyAdded) {
+      movesByPokemon[playerId][pokemonName].push(moveName);
+    }
+  });
+
+  return movesByPokemon;
+}
+
 export function mapReplayWinnerToPlayer(winnerName) {
   return PLAYER_ALIASES[normalizeShowdownUsername(winnerName)] ?? "";
 }
@@ -156,6 +196,7 @@ export function parsePokemonShowdownReplay(htmlText) {
   const showdownPlayers = extractPlayersFromBattleLogLines(lines);
   const mappedPlayers = mapShowdownPlayers(showdownPlayers);
   const teams = extractTeamsFromBattleLogLines(lines, mappedPlayers);
+  const movesByPokemon = extractMovesFromBattleLogLines(lines, mappedPlayers);
   const parsedReplay = {
     source: "pokemon-showdown-replay",
     format: "",
@@ -164,6 +205,7 @@ export function parsePokemonShowdownReplay(htmlText) {
     showdownPlayers,
     mappedPlayers,
     teams,
+    movesByPokemon,
     winner: "",
     mappedWinnerId: "",
     turns: 0,
@@ -202,6 +244,7 @@ export function parsePokemonShowdownReplay(htmlText) {
     console.debug("Extracted showdown players:", parsedReplay.showdownPlayers);
     console.debug("Extracted mapped players:", parsedReplay.mappedPlayers);
     console.debug("Extracted teams:", parsedReplay.teams);
+    console.debug("Extracted moves by Pokemon:", parsedReplay.movesByPokemon);
   }
 
   if (!parsedReplay.winner) {

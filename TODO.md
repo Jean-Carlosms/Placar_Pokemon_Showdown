@@ -18,6 +18,12 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Criar estatisticas de Pokemon por formato Single/Double.
 - Criar grafico de evolucao por Pokemon.
 - Exportar estatisticas por Pokemon em CSV.
+- Criar ranking dos ataques mais usados.
+- Adicionar filtros por ataque.
+- Criar estatisticas de ataques por Pokemon.
+- Diferenciar ataques por Single/Double.
+- Mostrar quantidade de vezes que cada ataque foi usado no tooltip.
+- Adicionar tooltip tambem no Pokemon destaque do card principal.
 - Adicionar testes automatizados para multiplos replays reais.
 - Adicionar arquivamento de temporadas antigas.
 - Comparar desempenho entre temporadas.

@@ -138,6 +138,22 @@ Historicos antigos sem `replay.teams` continuam validos. Backups novos preservam
 
 As linhas do log comecam com `|`, entao `line.split("|")` gera uma primeira posicao vazia. O comando real fica em `parts[1]`, e os argumentos comecam em `parts[2]`. Criar um helper como `parseShowdownLine` evita erros sutis no parser.
 
+## Extracao de Comandos Move
+
+As linhas `move` do Pokemon Showdown indicam qual Pokemon usou cada ataque. Ao interpretar `args[0]` como ator e `args[1]` como golpe, o app consegue enriquecer cada partida com os ataques usados no replay.
+
+## Historico como Banco de Dados Local
+
+Como times, ataques e metadados ficam dentro do item do historico, o `localStorage` passa a funcionar como um banco local simples. Exportar e importar JSON preserva esses dados sem precisar de uma estrutura paralela.
+
+## Tooltip Acessivel com Hover e Focus
+
+O tooltip dos ataques aparece tanto no hover quanto no foco de teclado. Isso melhora a experiencia visual sem impedir navegacao por Tab.
+
+## Estatisticas Derivadas sem Estado Paralelo Fragil
+
+O banco agregado de ataques e calculado a partir do historico. Essa abordagem evita inconsistencia quando o usuario desfaz partidas, importa backup antigo ou restaura um JSON novo.
+
 ## Mermaid Diagrams
 
 Diagramas Mermaid no README ajudam a explicar fluxos sem depender de imagens estaticas. O GitHub renderiza esses blocos automaticamente, o que facilita mostrar a importacao de replay e a arquitetura geral do app.

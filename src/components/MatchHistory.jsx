@@ -64,6 +64,7 @@ function MatchHistory({
 function HistoryItem({ entry, getPlayerName }) {
   const replay = entry.replay;
   const teams = replay?.teams;
+  const movesByPokemon = replay?.movesByPokemon;
   const hasTeams = teams && (Array.isArray(teams.jean) || Array.isArray(teams.felipe));
 
   return (
@@ -87,8 +88,18 @@ function HistoryItem({ entry, getPlayerName }) {
         </div>
         {hasTeams && (
           <div className="history-teams">
-            <PokemonMiniTeam title="Time Jean Carlos" pokemons={teams.jean} />
-            <PokemonMiniTeam title="Time Felipe Eckert" pokemons={teams.felipe} />
+            <PokemonMiniTeam
+              title="Time Jean Carlos"
+              playerId="jean"
+              pokemons={teams.jean}
+              movesByPokemon={movesByPokemon}
+            />
+            <PokemonMiniTeam
+              title="Time Felipe Eckert"
+              playerId="felipe"
+              pokemons={teams.felipe}
+              movesByPokemon={movesByPokemon}
+            />
           </div>
         )}
       </div>

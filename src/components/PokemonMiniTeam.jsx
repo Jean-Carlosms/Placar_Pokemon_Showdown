@@ -4,8 +4,10 @@ import {
   getPokemonSprite,
   getPokemonSpriteFallbacks,
 } from "../services/pokemonApi.js";
+import { getMovesFromPokemonMap } from "../utils/pokemonMoveStats.js";
+import PokemonMoveTooltip from "./PokemonMoveTooltip.jsx";
 
-function PokemonMiniTeam({ title, pokemons }) {
+function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
   return (
     <div className="mini-team">
       <h4>{title}</h4>
@@ -14,14 +16,18 @@ function PokemonMiniTeam({ title, pokemons }) {
       )}
       <ul>
         {(Array.isArray(pokemons) ? pokemons : []).map((pokemon) => (
-          <MiniPokemon key={pokemon} pokemon={pokemon} />
+          <MiniPokemon
+            key={pokemon}
+            pokemon={pokemon}
+            moves={getMovesFromPokemonMap(movesByPokemon?.[playerId], pokemon)}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-function MiniPokemon({ pokemon }) {
+function MiniPokemon({ pokemon, moves }) {
   const [spriteUrl, setSpriteUrl] = useState(() => getLocalPokemonSprite(pokemon));
 
   useEffect(() => {
@@ -49,9 +55,10 @@ function MiniPokemon({ pokemon }) {
   }, [pokemon]);
 
   return (
-    <li>
+    <li className="pokemon-mini-card" tabIndex={0}>
       <img src={spriteUrl} alt={`Sprite de ${pokemon}`} width="36" height="36" />
       <span>{pokemon}</span>
+      <PokemonMoveTooltip pokemonName={pokemon} moves={moves} />
     </li>
   );
 }
