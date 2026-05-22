@@ -2,19 +2,21 @@
 
 Aplicacao web local feita com React + Vite para controlar o placar das partidas diarias de Pokemon Showdown entre Jean Carlos e Felipe Eckert.
 
-## Print Placeholder
+## Objetivo
+
+O objetivo do projeto e oferecer um placar visual, responsivo e persistente para registrar vitorias em Single Battles e Double Battles, acompanhar estatisticas, importar replays HTML do Pokemon Showdown e manter um historico detalhado com os times usados em cada partida.
+
+## Motivacao
+
+Este projeto foi criado para acompanhar de forma divertida e visual o placar diario de partidas de Pokemon Showdown entre Jean Carlos e Felipe Eckert, separando vitorias em Single Battles e Double Battles.
+
+## Demonstracao Visual
 
 ![Print placeholder da aplicacao](docs/screenshot-placeholder.svg)
 
 > Placeholder reservado para um print futuro da tela principal da aplicacao.
 
-## Objetivo
-
-O objetivo do projeto e oferecer um placar simples, visual e persistente para registrar vitorias em Single Battles e Double Battles, acompanhar estatisticas gerais e manter um historico das partidas jogadas.
-
-## Motivacao
-
-Este projeto foi criado para acompanhar de forma divertida e visual o placar diario de partidas de Pokemon Showdown entre Jean Carlos e Felipe Eckert, separando vitorias em Single Battles e Double Battles.
+Um GIF ou video curto da aplicacao podera ser adicionado futuramente. Veja as instrucoes em [docs/demo-placeholder.md](docs/demo-placeholder.md).
 
 ## Tecnologias Usadas
 
@@ -24,71 +26,172 @@ Este projeto foi criado para acompanhar de forma divertida e visual o placar dia
 - HTML5
 - CSS3
 - localStorage
-- PokéAPI
-- Sprites publicas do Pokemon Showdown
+- PokeAPI
+- PokeAPI/sprites
+- Pokemon Showdown sprites
+- GitHub Markdown
+- Mermaid diagrams
 
 ## Funcionalidades
 
 - Placar total por jogador.
 - Pontuacao separada para Single Battles e Double Battles.
-- Botoes para adicionar vitorias de Jean Carlos e Felipe Eckert.
+- Botoes para adicionar vitorias manualmente.
 - Botao para desfazer a ultima vitoria registrada.
 - Reset do placar com confirmacao.
 - Exportacao e importacao de backup JSON.
-- Importacao de replay HTML do Pokemon Showdown para registrar vitorias automaticamente.
-- Suporte a temporadas com seletor e criacao de novas temporadas.
-- Historico de partidas em formato de timeline com vencedor, formato e data/hora.
-- Estatisticas gerais em cards com totais, percentuais e barras de progresso.
+- Importacao de replay HTML do Pokemon Showdown.
+- Extracao automatica de vencedor, formato, turnos e times.
+- Historico em timeline com sprites dos Pokemon usados.
+- Pokemon destaque calculado por participacao em vitorias.
+- Suporte a temporadas.
+- Estatisticas gerais e por temporada.
 - Persistencia local usando `localStorage`.
-- Alternancia entre tema claro e tema escuro com preferencia salva no navegador.
-- Layout responsivo em estilo dashboard gamer inspirado em Pokemon Showdown.
-- Cards de batalha para Jean Carlos e Felipe Eckert, com destaque visual para lider ou empate.
-- Sprites pixel art de Annihilape e Trubbish com fallback visual.
+- Tema claro e escuro com preferencia salva.
+- Layout responsivo em estilo dashboard gamer.
 
-## Interface Modernizada
+## Fluxo de Importacao de Replay
 
-A interface foi modernizada com uma composicao de dashboard responsivo, cards de jogador com visual de batalha, badges de tecnologia no header, controles agrupados por jogador e microinteracoes em hover/active.
+```mermaid
+flowchart LR
+  A[Upload do replay HTML] --> B[ReplayImport]
+  B --> C[replayParser]
+  C --> D[Extrai vencedor, formato, turnos e times]
+  D --> E[Atualiza historico]
+  E --> F[Salva no localStorage]
+  E --> G[Calcula Pokemon destaque]
+  G --> H[PlayerCard]
+```
 
-Os cards dos jogadores destacam o Pokemon parceiro, o total de vitorias, pontuacoes em Single e Double Battles e o estado atual do duelo:
+## Arquitetura
 
-- `Lider atual` quando um jogador esta na frente.
-- `Empate tecnico` quando os dois jogadores possuem o mesmo total.
-- `Na disputa` para o jogador que esta atras.
+```mermaid
+flowchart TD
+  A[App.jsx] --> B[components]
+  A --> C[utils]
+  B --> B1[Header]
+  B --> B2[PlayerCard]
+  B --> B3[ReplayImport]
+  B --> B4[MatchHistory]
+  B --> B5[PokemonMiniTeam]
+  C --> C1[scoreboard.js]
+  C --> C2[replayParser.js]
+  C --> C3[pokemonStats.js]
+  C --> C4[backup.js]
+  C --> C5[storage.js]
+  A --> D[services]
+  D --> D1[pokemonApi.js]
+  C5 --> E[localStorage]
+  D1 --> F[PokeAPI]
+  D1 --> G[Pokemon Showdown sprites]
+```
 
-As estatisticas foram transformadas em cards compactos com barras de progresso para percentual de vitorias. O historico agora aparece como uma timeline visual e responsiva.
+## Calculo das Estatisticas
 
-As sprites continuam usando `image-rendering: pixelated` e contam com fallback em camadas para evitar blocos vazios quando imagens externas nao carregam.
+O total de partidas e a soma das vitorias registradas para Jean Carlos e Felipe Eckert.
 
-## Temporadas
+O percentual de vitorias de cada jogador e calculado assim:
 
-O placar possui suporte a temporadas. A primeira temporada criada automaticamente se chama `Temporada Atual`.
+```text
+Win Rate = (vitorias do jogador / total de partidas) * 100
+```
 
-Cada nova vitoria fica associada a temporada ativa no momento do registro. A interface permite:
+Quando nao existe nenhuma partida registrada, os percentuais ficam em `0%` para evitar divisao por zero.
 
-- criar uma nova temporada informando um nome;
-- selecionar a temporada ativa;
-- visualizar estatisticas da temporada selecionada;
-- visualizar estatisticas gerais somando todas as temporadas;
-- filtrar o historico entre temporada ativa e todas as temporadas.
+O Pokemon destaque e calculado a partir do historico importado por replay: para cada vitoria, todos os Pokemon do time vencedor recebem +1 participacao em vitoria. O Pokemon com mais participacoes aparece no card principal do jogador.
 
-Dados antigos salvos no `localStorage` ou em backups JSON sem temporadas sao migrados automaticamente para `Temporada Atual`.
+<details>
+<summary><strong>Como Rodar Localmente</strong></summary>
 
-## Tema Claro e Escuro
+Instale as dependencias:
 
-O projeto possui alternancia entre tema claro e tema escuro pelo botao no header.
+```bash
+npm install
+```
 
-A preferencia visual fica salva no `localStorage`, entao o tema escolhido continua ativo ao recarregar a pagina. Se ainda nao houver tema salvo, a aplicacao detecta a preferencia do sistema com `prefers-color-scheme`.
+Inicie o servidor local:
 
-Os temas sao aplicados no elemento raiz com `data-theme="light"` ou `data-theme="dark"` e usam variaveis CSS para cores, superficies, bordas, sombras e gradientes.
+```bash
+npm run dev
+```
 
-## Backup dos Dados no GitHub
+Abra a URL exibida no terminal. Normalmente:
 
-O app salva automaticamente placar e historico no `localStorage` do navegador. Para versionar esses dados no GitHub de forma segura, use os botoes de backup da interface:
+```text
+http://localhost:5173/
+```
 
-- `Exportar backup JSON`: gera um arquivo `scoreboard-backup-YYYY-MM-DD.json`.
-- `Importar backup JSON`: restaura um backup selecionado e substitui os dados atuais apos confirmacao.
+Se `localhost` nao abrir, tente:
 
-O arquivo exportado pode ser colocado manualmente na pasta `data/` e versionado no GitHub:
+```text
+http://127.0.0.1:5173/
+```
+
+Gere o build de producao:
+
+```bash
+npm run build
+```
+
+Os arquivos finais sao gerados na pasta `dist/`.
+
+</details>
+
+<details>
+<summary><strong>Como Importar Replay HTML</strong></summary>
+
+O app permite importar um arquivo `.html` de replay exportado do Pokemon Showdown.
+
+O parser procura o bloco:
+
+```html
+<script type="text/plain" class="battle-log-data">
+```
+
+A partir desse log, o app identifica:
+
+- formato da batalha;
+- tipo da batalha: Single ou Double;
+- jogadores originais do Showdown;
+- vencedor original;
+- vencedor mapeado para o placar;
+- quantidade de turnos;
+- id do replay, quando disponivel;
+- times usados por Jean Carlos e Felipe Eckert.
+
+Depois da leitura, a interface mostra uma previa e pede confirmacao antes de registrar a vitoria.
+
+Mapeamento atual de aliases:
+
+- `demikimi` = Jean Carlos
+- `tergoat` = Felipe Eckert
+- `tergoak` = Felipe Eckert
+
+O mapeamento fica em `src/data/playerAliases.js`.
+
+</details>
+
+<details>
+<summary><strong>Como Exportar e Importar Backup JSON</strong></summary>
+
+O app salva automaticamente placar, historico, temporadas e preferencias no `localStorage` do navegador.
+
+Para criar um backup manual:
+
+1. Clique em `Exportar backup JSON`.
+2. Guarde o arquivo gerado.
+3. Opcionalmente coloque o arquivo na pasta `data/`.
+4. Versione no GitHub com um commit.
+
+Para restaurar:
+
+1. Clique em `Importar backup JSON`.
+2. Selecione o arquivo `.json`.
+3. Confirme a substituicao dos dados atuais.
+
+O GitHub nao e atualizado automaticamente. O projeto nao usa token do GitHub no frontend por seguranca.
+
+Comandos para versionar um backup:
 
 ```bash
 git status
@@ -97,130 +200,96 @@ git commit -m "data: update scoreboard backup"
 git push origin main
 ```
 
-O GitHub nao e atualizado automaticamente. O projeto nao usa token do GitHub no frontend, e isso e intencional por seguranca: expor um token em uma aplicacao estatica permitiria que qualquer pessoa com acesso ao site visualizasse essa credencial.
-
 Um exemplo de estrutura compativel esta em `data/scoreboard.example.json`.
 
-Backups novos incluem `seasons` e `activeSeasonId`. Backups antigos sem esses campos continuam aceitos e sao migrados automaticamente para `Temporada Atual`.
+</details>
 
-## Importacao de Replay do Pokemon Showdown
+<details>
+<summary><strong>Troubleshooting</strong></summary>
 
-O app permite importar um arquivo `.html` de replay exportado do Pokemon Showdown. O parser procura o bloco:
+### A aplicacao nao abre
 
-```html
-<script type="text/plain" class="battle-log-data">
-```
+Depois da migracao para React + Vite, o projeto nao deve ser aberto com duplo clique no `index.html`.
 
-A partir desse log, o app identifica formato da batalha, tipo Single ou Double, jogadores do replay, vencedor, quantidade de turnos e id do replay quando disponivel.
-
-Depois da leitura, a interface mostra uma previa e pede confirmacao antes de registrar a vitoria no placar.
-
-O mapeamento atual de aliases e:
-
-- `demikimi` = Jean Carlos
-- `tergoat` = Felipe Eckert
-
-Esse mapeamento fica em `src/data/playerAliases.js`.
-
-## Importacao Continua de Replays
-
-Apos cada batalha, o usuario pode salvar/exportar o HTML do replay do Pokemon Showdown e importar esse arquivo no app.
-
-Cada replay importado vira uma nova partida no historico. O sistema extrai automaticamente:
-
-- vencedor;
-- formato;
-- tipo da batalha;
-- quantidade de turnos;
-- jogadores originais do Showdown;
-- times usados por Jean Carlos e Felipe Eckert.
-
-Os Pokemon dos times sao extraidos das linhas `switch` e `drag` do log, limitados a 6 Pokemon unicos por jogador. Quando disponivel, o historico mostra as sprites pequenas e os nomes dos Pokemon usados.
-
-O Pokemon destaque no card principal de cada jogador e calculado a partir do historico: para cada vitoria importada de replay, todos os Pokemon do time vencedor recebem +1 vitoria. O card mostra o Pokemon com mais participacoes em vitorias daquele jogador.
-
-Se houver empate entre Pokemon, o app escolhe um dos empatados de forma estavel com base no historico. Se ainda nao houver vitorias importadas com times, Jean Carlos usa Annihilape e Felipe Eckert usa Trubbish como padroes.
-
-Se os Pokemon nao aparecerem apos importar um replay, rode:
-
-```bash
-npm run check:replay
-```
-
-Esse comando valida o parser com um HTML minimo contendo `battle-log-data`.
-
-Se o replay importar vencedor, formato e turnos, mas nao importar jogadores ou times, abra o
-DevTools do navegador e procure pelos logs:
-
-- `First 20 battle log lines`
-- `Extracted showdown players`
-- `Extracted teams`
-
-Tambem e possivel validar um arquivo real pelo terminal:
-
-```bash
-node scripts/checkReplayParser.mjs caminho/do/replay.html
-```
-
-## API de Sprites
-
-O projeto usa o repositorio [PokeAPI/sprites](https://github.com/PokeAPI/sprites) como fonte visual principal para as sprites dos Pokémon exibidos nos cards dos jogadores.
-
-Para os jogadores atuais, as imagens sao carregadas diretamente do GitHub:
-
-```text
-https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemonId}.png
-```
-
-IDs usados:
-
-- Annihilape: `979`
-- Trubbish: `568`
-
-O service tambem preserva suporte ao endpoint da PokéAPI para casos futuros:
-
-A busca por API acontece em `src/services/pokemonApi.js`, usando o endpoint:
-
-```text
-https://pokeapi.co/api/v2/pokemon/{pokemonName}
-```
-
-O service tenta encontrar uma sprite pixel art nesta ordem:
-
-1. `generation-v` / `black-white` / `animated` / `front_default`
-2. `generation-v` / `black-white` / `front_default`
-3. `sprites.front_default`
-4. fallback manual com sprites do Pokémon Showdown
-
-Em desenvolvimento, o Vite usa um proxy local em `/pokeapi` para evitar erros de CORS no navegador quando o endpoint JSON for necessario. Se a rede bloquear a PokéAPI, a aplicacao continua funcionando com as sprites diretas do GitHub e com fallback visual do Pokémon Showdown para Annihilape e Trubbish. Se o navegador tambem nao conseguir carregar a imagem externa, o card tenta URLs alternativas e, por ultimo, usa um fallback local simples para evitar caixas vazias.
-
-## Como Instalar
-
-```bash
-npm install
-```
-
-## Como Abrir Localmente
+Use:
 
 ```bash
 npm run dev
 ```
 
-Depois, abra a URL exibida no terminal, geralmente:
+Depois abra:
 
 ```text
-http://localhost:5173/
+http://127.0.0.1:5173/
 ```
 
-## Como Gerar Build
+### O build falha com `spawn EPERM`
+
+Em alguns ambientes Windows com sandbox ou politica restrita, o `esbuild` pode falhar com `spawn EPERM`.
+
+Quando isso acontece, rode novamente o comando em um terminal normal do Windows:
 
 ```bash
 npm run build
 ```
 
-Os arquivos finais serao gerados na pasta `dist/`.
+### O replay importa vencedor, mas nao importa jogadores ou times
 
-## Estrutura de Arquivos
+Abra o DevTools do navegador e procure pelos logs:
+
+- `First 20 battle log lines`
+- `Extracted showdown players`
+- `Extracted teams`
+
+Tambem e possivel validar o parser com:
+
+```bash
+npm run check:replay
+```
+
+Para validar um replay real pelo terminal:
+
+```bash
+node scripts/checkReplayParser.mjs caminho/do/replay.html
+```
+
+### Sprites nao aparecem
+
+O app tenta carregar sprites em camadas:
+
+1. PokeAPI/sprites no GitHub.
+2. Endpoint JSON da PokeAPI.
+3. Pokemon Showdown sprites.
+4. Fallback visual local.
+
+Se a rede bloquear fontes externas, o fallback local evita que a interface quebre.
+
+</details>
+
+<details>
+<summary><strong>Comandos Git</strong></summary>
+
+Fluxo comum de commit:
+
+```bash
+git status
+git add .
+git commit -m "mensagem do commit"
+git push origin main
+```
+
+Quando o push for rejeitado por falta de commits remotos:
+
+```bash
+git fetch origin
+git rebase origin/main
+git push origin main
+```
+
+</details>
+
+<details>
+<summary><strong>Estrutura do Projeto</strong></summary>
 
 ```text
 .
@@ -231,6 +300,7 @@ Os arquivos finais serao gerados na pasta `dist/`.
 |-- TODO.md
 |-- LESSONS.md
 |-- docs/
+|   |-- demo-placeholder.md
 |   `-- screenshot-placeholder.svg
 |-- data/
 |   `-- scoreboard.example.json
@@ -261,6 +331,24 @@ Os arquivos finais serao gerados na pasta `dist/`.
         `-- scoreboard.js
 ```
 
+</details>
+
+<details>
+<summary><strong>Roadmap</strong></summary>
+
+As proximas melhorias estao organizadas em [TODO.md](TODO.md).
+
+Algumas ideias principais:
+
+- importar replay por URL;
+- editar aliases pela interface;
+- exportar historico em CSV;
+- criar ranking global de Pokemon mais vencedores;
+- gravar GIF real de demonstracao;
+- publicar com GitHub Pages.
+
+</details>
+
 ## Como Publicar Futuramente com GitHub Pages
 
 1. Gere o build com `npm run build`.
@@ -268,12 +356,10 @@ Os arquivos finais serao gerados na pasta `dist/`.
 3. Acesse `Settings` no repositorio.
 4. Entre em `Pages`.
 5. Escolha a branch e a origem de publicacao desejada.
-6. Publique a pasta gerada pelo Vite, ou configure uma action para publicar `dist/`.
-
-## Proximas Melhorias Possiveis
-
-As ideias de evolucao do projeto estao organizadas em [TODO.md](TODO.md).
+6. Publique a pasta gerada pelo Vite, ou configure uma GitHub Action para publicar `dist/`.
 
 ## Links
 
 - [Pokemon Showdown](https://pokemonshowdown.com/)
+- [PokeAPI](https://pokeapi.co/)
+- [PokeAPI/sprites](https://github.com/PokeAPI/sprites)

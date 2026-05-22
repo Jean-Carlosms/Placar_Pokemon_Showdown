@@ -137,3 +137,19 @@ Historicos antigos sem `replay.teams` continuam validos. Backups novos preservam
 ## Split em Logs do Pokemon Showdown
 
 As linhas do log comecam com `|`, entao `line.split("|")` gera uma primeira posicao vazia. O comando real fica em `parts[1]`, e os argumentos comecam em `parts[2]`. Criar um helper como `parseShowdownLine` evita erros sutis no parser.
+
+## Mermaid Diagrams
+
+Diagramas Mermaid no README ajudam a explicar fluxos sem depender de imagens estaticas. O GitHub renderiza esses blocos automaticamente, o que facilita mostrar a importacao de replay e a arquitetura geral do app.
+
+## Details no GitHub Markdown
+
+Blocos `<details>` deixam o README mais leve: informacoes longas como comandos, troubleshooting e estrutura de arquivos ficam recolhidas, mas continuam acessiveis para quem precisa.
+
+## Documentacao Tecnica para Portfolio
+
+Um README bem organizado mostra nao apenas como rodar o projeto, mas tambem quais problemas ele resolve, como os dados fluem e quais decisoes tecnicas foram tomadas. Isso transforma o repositorio em material de portfolio.
+
+## Organizacao de README para Projeto React
+
+Em projetos React, a documentacao fica mais clara quando separa objetivo, tecnologias, funcionalidades, fluxo de dados, arquitetura, comandos locais, build, troubleshooting e roadmap. Essa organizacao facilita manutencao e apresentacao do projeto.

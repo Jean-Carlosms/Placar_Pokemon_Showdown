@@ -31,3 +31,7 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Adicionar botao para zerar apenas Single ou apenas Double.
 - Criar testes unitarios para as funcoes puras de `scoreboard.js`.
 - Melhorar fluxo de publicacao com GitHub Pages.
+- Gravar GIF real de demonstracao.
+- Adicionar banner SVG animado.
+- Criar loader SVG de Pokebola.
+- Adicionar video curto da importacao de replay.
