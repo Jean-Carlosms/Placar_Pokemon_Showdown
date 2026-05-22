@@ -19,9 +19,16 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Criar grafico de evolucao por Pokemon.
 - Exportar estatisticas por Pokemon em CSV.
 - Criar ranking dos ataques mais usados.
+- Criar ranking dos moves mais usados.
+- Criar grafico de moves por jogador.
 - Adicionar filtros por ataque.
+- Adicionar filtro por tipo do move.
+- Adicionar filtro por categoria Physical/Special/Status.
 - Criar estatisticas de ataques por Pokemon.
 - Diferenciar ataques por Single/Double.
+- Comparar moves usados por Jean e Felipe.
+- Criar cache persistente de detalhes dos moves no localStorage.
+- Expandir fallbacks locais de detalhes dos moves.
 - Mostrar quantidade de vezes que cada ataque foi usado no tooltip.
 - Adicionar tooltip tambem no Pokemon destaque do card principal.
 - Criar cache persistente dos tipos no localStorage.

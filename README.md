@@ -45,6 +45,7 @@ Um GIF ou video curto da aplicacao podera ser adicionado futuramente. Veja as in
 - Historico em timeline com sprites dos Pokemon usados.
 - Tooltip no historico com os ataques usados por cada Pokemon no replay.
 - Badges de tipo dos Pokemon no card principal e no historico.
+- Consulta de detalhes dos moves usados nos replays importados.
 - Pokemon destaque calculado por participacao em vitorias.
 - Suporte a temporadas.
 - Estatisticas gerais e por temporada.
@@ -80,13 +81,16 @@ flowchart TD
   C --> C2[replayParser.js]
   C --> C3[pokemonStats.js]
   C --> C4[pokemonMoveStats.js]
-  C --> C5[backup.js]
-  C --> C6[storage.js]
+  C --> C5[moveCatalog.js]
+  C --> C6[backup.js]
+  C --> C7[storage.js]
   A --> D[services]
   D --> D1[pokemonApi.js]
-  C6 --> E[localStorage]
+  D --> D2[moveApi.js]
+  C7 --> E[localStorage]
   D1 --> F[PokeAPI]
   D1 --> G[Pokemon Showdown sprites]
+  D2 --> F
 ```
 
 ## Calculo das Estatisticas
@@ -118,6 +122,14 @@ Com isso, os ataques usados por cada Pokemon ficam salvos dentro do proprio item
 No historico da batalha, ao passar o mouse ou focar com o teclado em um Pokemon do time, a interface mostra um pop-up com os ataques usados por ele naquele replay. Historicos antigos sem `movesByPokemon` continuam funcionando e exibem a mensagem de que nenhum ataque foi registrado.
 
 O banco agregado de ataques e derivado do historico com `pokemonMoveStats.js`, sem criar um estado paralelo obrigatorio. Assim, backups JSON preservam os ataques automaticamente, porque exportam o historico inteiro.
+
+## Consulta de Moves
+
+O card `Consulta de Moves` fica abaixo da secao de estatisticas e lista apenas os moves que apareceram nos replays importados.
+
+Ao selecionar um move, o app busca detalhes na PokeAPI e mostra tipo, categoria, power, accuracy, PP, priority, target, generation, descricao curta, efeito e flavor text.
+
+Se a PokeAPI falhar ou a rede bloquear a chamada, o app tenta usar fallbacks locais para moves comuns. Quando nao houver fallback, ele mostra uma mensagem amigavel. O historico continua sendo a fonte da verdade: nenhum move externo e baixado em massa.
 
 ## Tipagens dos Pokemon
 
@@ -347,6 +359,7 @@ git push origin main
     |   |-- BackupControls.jsx
     |   |-- Header.jsx
     |   |-- MatchHistory.jsx
+    |   |-- MoveInfoCard.jsx
     |   |-- PlayerCard.jsx
     |   |-- PokemonMoveTooltip.jsx
     |   |-- PokemonMiniTeam.jsx
@@ -356,9 +369,11 @@ git push origin main
     |   |-- SeasonControls.jsx
     |   `-- StatsPanel.jsx
     |-- services/
+    |   |-- moveApi.js
     |   `-- pokemonApi.js
     `-- utils/
         |-- backup.js
+        |-- moveCatalog.js
         |-- pokemonMoveStats.js
         |-- pokemonStats.js
         |-- replayParser.js

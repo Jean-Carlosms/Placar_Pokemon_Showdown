@@ -39,6 +39,36 @@ const POKEAPI_NAME_ALIASES = {
   "ogerpon-hearthflame": "ogerpon-hearthflame-mask",
 };
 
+const POKEMON_TYPE_FALLBACKS = {
+  annihilape: ["Fighting", "Ghost"],
+  arboliva: ["Grass", "Normal"],
+  "arceus-dragon": ["Dragon"],
+  armarouge: ["Fire", "Psychic"],
+  "chien-pao": ["Dark", "Ice"],
+  copperajah: ["Steel"],
+  diancie: ["Rock", "Fairy"],
+  dudunsparce: ["Normal"],
+  empoleon: ["Water", "Steel"],
+  frosmoth: ["Ice", "Bug"],
+  gardevoir: ["Psychic", "Fairy"],
+  "great-tusk": ["Ground", "Fighting"],
+  infernape: ["Fire", "Fighting"],
+  "iron-hands": ["Fighting", "Electric"],
+  ninetales: ["Fire"],
+  "ogerpon-hearthflame": ["Grass", "Fire"],
+  "ogerpon-hearthflame-mask": ["Grass", "Fire"],
+  pecharunt: ["Poison", "Ghost"],
+  polteageist: ["Ghost"],
+  "raging-bolt": ["Electric", "Dragon"],
+  regieleki: ["Electric"],
+  sunflora: ["Grass"],
+  swampert: ["Water", "Ground"],
+  trubbish: ["Poison"],
+  umbreon: ["Dark"],
+  vespiquen: ["Bug", "Flying"],
+  "walking-wake": ["Water", "Dragon"],
+};
+
 const SHOWDOWN_FALLBACK_SPRITES = {
   annihilape: `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/annihilape.png`,
   trubbish: `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/trubbish.png`,
@@ -126,6 +156,13 @@ export async function getPokemonTypes(pokemonName) {
     return pokemonTypesCache.get(normalizedName);
   }
 
+  const fallbackTypes = getPokemonTypeFallback(normalizedName);
+
+  if (fallbackTypes.length > 0) {
+    pokemonTypesCache.set(normalizedName, fallbackTypes);
+    return fallbackTypes;
+  }
+
   const typesRequest = fetchPokemonTypes(normalizedName);
   pokemonTypesCache.set(normalizedName, typesRequest);
 
@@ -133,12 +170,14 @@ export async function getPokemonTypes(pokemonName) {
 }
 
 async function fetchPokemonTypes(normalizedName) {
+  const fallbackTypes = getPokemonTypeFallback(normalizedName);
+
   try {
     const apiLookupName = getPokemonApiLookupName(normalizedName);
     const response = await fetch(`${POKEAPI_BASE_URL}/${apiLookupName}`);
 
     if (!response.ok) {
-      return [];
+      return fallbackTypes;
     }
 
     const pokemon = await response.json();
@@ -149,7 +188,7 @@ async function fetchPokemonTypes(normalizedName) {
       .map((item) => formatPokemonType(item?.type?.name))
       .filter(Boolean);
   } catch (error) {
-    return [];
+    return fallbackTypes;
   }
 }
 
@@ -193,6 +232,12 @@ function getGithubSprite(normalizedName) {
 
 function getPokemonApiLookupName(normalizedName) {
   return POKEAPI_NAME_ALIASES[normalizedName] ?? normalizedName;
+}
+
+function getPokemonTypeFallback(normalizedName) {
+  const apiLookupName = getPokemonApiLookupName(normalizedName);
+
+  return POKEMON_TYPE_FALLBACKS[normalizedName] ?? POKEMON_TYPE_FALLBACKS[apiLookupName] ?? [];
 }
 
 function getShowdownSpriteCandidates(normalizedName) {

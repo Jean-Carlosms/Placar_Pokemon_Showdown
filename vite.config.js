@@ -8,6 +8,7 @@ export default defineConfig({
       "/pokeapi": {
         target: "https://pokeapi.co",
         changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/pokeapi/, ""),
       },
     },

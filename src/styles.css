@@ -144,6 +144,7 @@ h2 {
 .replay-section,
 .backup-section,
 .stats-section,
+.move-info-card,
 .history-section {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -880,13 +881,15 @@ button:active {
 
 /* stats */
 .stats-section,
+.move-info-card,
 .history-section {
   padding: 22px;
   animation: card-enter 580ms ease both;
   overflow: visible;
 }
 
-.stats-section {
+.stats-section,
+.move-info-card {
   margin-bottom: 22px;
 }
 
@@ -932,6 +935,151 @@ button:active {
   border-radius: inherit;
   background: linear-gradient(90deg, var(--color-blue), var(--color-violet));
   transition: width 240ms ease;
+}
+
+/* move info */
+.move-info-card {
+  display: grid;
+  gap: 18px;
+}
+
+.move-info-controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(240px, 1.2fr);
+  gap: 12px;
+}
+
+.move-info-controls label {
+  display: grid;
+  gap: 8px;
+}
+
+.move-info-controls label span {
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.move-select,
+.move-search {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.move-select:focus-visible,
+.move-search:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.move-details {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+}
+
+.move-details-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.move-details h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 1.25rem;
+}
+
+.move-details-title p,
+.move-details-unavailable p {
+  margin-top: 5px;
+  color: var(--color-muted);
+  font-weight: 850;
+}
+
+.move-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.damage-class-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.18rem 0.5rem;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.damage-class-physical {
+  background: #d24d3d;
+}
+
+.damage-class-special {
+  background: #4a6ee0;
+}
+
+.damage-class-status {
+  background: #7a8193;
+}
+
+.move-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.move-meta-item {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+
+.move-meta-item dd {
+  margin-top: 6px;
+  color: var(--color-text);
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.move-description {
+  display: grid;
+  gap: 10px;
+  color: var(--color-ink-soft);
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.move-description strong {
+  color: var(--color-ink);
+}
+
+.move-empty-state {
+  padding: 18px;
+  color: var(--color-muted);
+  font-weight: 800;
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
 }
 
 /* history */
@@ -1149,6 +1297,7 @@ button:active {
   .replay-section,
   .backup-section,
   .stats-section,
+  .move-info-card,
   .history-section {
     border-radius: var(--radius-md);
   }
@@ -1159,6 +1308,7 @@ button:active {
   .replay-section,
   .backup-section,
   .stats-section,
+  .move-info-card,
   .history-section {
     padding: 18px;
   }
@@ -1184,6 +1334,8 @@ button:active {
   .score-grid,
   .season-controls,
   .season-form,
+  .move-info-controls,
+  .move-meta-grid,
   .replay-preview dl,
   .replay-preview-teams,
   .history-teams,
@@ -1221,6 +1373,14 @@ button:active {
   .battle-badge {
     justify-self: start;
     width: max-content;
+  }
+
+  .move-details-title {
+    display: grid;
+  }
+
+  .move-badge-row {
+    justify-content: flex-start;
   }
 
   .pokemon-type-badge {

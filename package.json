@@ -9,6 +9,7 @@
     "check:replay": "node scripts/checkReplayParser.mjs",
     "check:moves": "node scripts/checkPokemonMoveStats.mjs",
     "check:types": "node scripts/checkPokemonTypes.mjs",
+    "check:move-catalog": "node scripts/checkMoveCatalog.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -174,6 +174,26 @@ Classes CSS como `type-electric`, `type-water` e `type-dark` ajudam a transforma
 
 Quando uma API externa falha, o componente deve degradar com elegancia: sem erro visual, sem quebrar o layout e sem interromper o fluxo principal do app.
 
+## Consulta Dinamica de Moves
+
+Detalhes de moves podem ser carregados sob demanda pela PokeAPI, evitando baixar uma lista enorme de ataques que talvez nunca aparecam no historico.
+
+## Catalogo Derivado do Historico
+
+O card de consulta lista somente moves encontrados em `replay.movesByPokemon`. Isso mantem o historico como fonte da verdade e torna a busca relevante para as partidas jogadas.
+
+## Cache de Metadados em Memoria
+
+Assim como nos tipos dos Pokemon, detalhes de moves ficam em cache durante a sessao para evitar chamadas repetidas quando o usuario troca de selecao.
+
+## API Externa Indisponivel
+
+O componente de consulta precisa lidar com loading, estado vazio e erro amigavel. Fallbacks locais ajudam a manter informacoes uteis mesmo quando a rede ou o certificado bloqueiam a PokeAPI.
+
+## Componentes de Consulta
+
+Cards de consulta funcionam melhor quando separam fonte de dados, filtro, selecao e detalhes carregados. Isso deixa o JSX mais previsivel e facilita evoluir para filtros por tipo ou categoria.
+
 ## Mermaid Diagrams
 
 Diagramas Mermaid no README ajudam a explicar fluxos sem depender de imagens estaticas. O GitHub renderiza esses blocos automaticamente, o que facilita mostrar a importacao de replay e a arquitetura geral do app.
