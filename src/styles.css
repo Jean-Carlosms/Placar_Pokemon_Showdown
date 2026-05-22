@@ -370,6 +370,10 @@ h2 {
   font-weight: 900;
 }
 
+.player-heading .pokemon-type-badges {
+  justify-content: flex-start;
+}
+
 .score-grid {
   position: relative;
   z-index: 1;
@@ -556,7 +560,7 @@ dd {
 .mini-team > ul > li {
   position: relative;
   display: flex;
-  min-height: 118px;
+  min-height: 136px;
   min-width: 0;
   padding: 0.75rem;
   flex-direction: column;
@@ -664,6 +668,110 @@ dd {
   font-size: 0.8rem;
   font-weight: 850;
   line-height: 1.3;
+}
+
+.pokemon-type-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.pokemon-type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.18rem 0.5rem;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.type-normal {
+  background: #a8a77a;
+}
+
+.type-fire {
+  background: #ee8130;
+}
+
+.type-water {
+  background: #6390f0;
+}
+
+.type-electric {
+  color: #2b2400;
+  background: #f7d02c;
+}
+
+.type-grass {
+  background: #7ac74c;
+}
+
+.type-ice {
+  color: #083b3a;
+  background: #96d9d6;
+}
+
+.type-fighting {
+  background: #c22e28;
+}
+
+.type-poison {
+  background: #a33ea1;
+}
+
+.type-ground {
+  color: #3b2b00;
+  background: #e2bf65;
+}
+
+.type-flying {
+  background: #a98ff3;
+}
+
+.type-psychic {
+  background: #f95587;
+}
+
+.type-bug {
+  color: #222222;
+  background: #a6b91a;
+}
+
+.type-rock {
+  background: #b6a136;
+}
+
+.type-ghost {
+  background: #735797;
+}
+
+.type-dragon {
+  background: #6f35fc;
+}
+
+.type-dark {
+  background: #705746;
+}
+
+.type-steel {
+  color: #202030;
+  background: #b7b7ce;
+}
+
+.type-fairy {
+  background: #d685ad;
+}
+
+.type-unknown {
+  background: var(--color-muted);
 }
 
 .backup-actions {
@@ -1091,7 +1199,7 @@ button:active {
   }
 
   .mini-team > ul > li {
-    min-height: 104px;
+    min-height: 122px;
     padding: 0.65rem;
   }
 
@@ -1114,5 +1222,10 @@ button:active {
   .battle-badge {
     justify-self: start;
     width: max-content;
+  }
+
+  .pokemon-type-badge {
+    padding: 0.16rem 0.42rem;
+    font-size: 0.62rem;
   }
 }

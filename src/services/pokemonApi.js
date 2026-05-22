@@ -1,4 +1,5 @@
-const POKEAPI_BASE_URL = import.meta.env.DEV
+const IS_DEV = Boolean(import.meta.env?.DEV);
+const POKEAPI_BASE_URL = IS_DEV
   ? "/pokeapi/api/v2/pokemon"
   : "https://pokeapi.co/api/v2/pokemon";
 const POKEAPI_SPRITES_GITHUB_BASE_URL =
@@ -55,6 +56,7 @@ const EXTRA_FALLBACK_SPRITES = {
 };
 
 const spriteRequestCache = new Map();
+const pokemonTypesCache = new Map();
 
 export async function getPokemonSprite(pokemonName) {
   const normalizedName = normalizePokemonApiName(pokemonName);
@@ -113,8 +115,56 @@ export function getLocalPokemonSprite(pokemonName) {
   return createLocalFallbackSprite(pokemonName);
 }
 
+export async function getPokemonTypes(pokemonName) {
+  const normalizedName = normalizePokemonApiName(pokemonName);
+
+  if (!normalizedName) {
+    return [];
+  }
+
+  if (pokemonTypesCache.has(normalizedName)) {
+    return pokemonTypesCache.get(normalizedName);
+  }
+
+  const typesRequest = fetchPokemonTypes(normalizedName);
+  pokemonTypesCache.set(normalizedName, typesRequest);
+
+  return typesRequest;
+}
+
+async function fetchPokemonTypes(normalizedName) {
+  try {
+    const apiLookupName = getPokemonApiLookupName(normalizedName);
+    const response = await fetch(`${POKEAPI_BASE_URL}/${apiLookupName}`);
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const pokemon = await response.json();
+
+    return (pokemon?.types ?? [])
+      .slice()
+      .sort((a, b) => a.slot - b.slot)
+      .map((item) => formatPokemonType(item?.type?.name))
+      .filter(Boolean);
+  } catch (error) {
+    return [];
+  }
+}
+
+export function formatPokemonType(type) {
+  const normalizedType = String(type || "").trim().toLowerCase();
+
+  if (!normalizedType) {
+    return "";
+  }
+
+  return normalizedType.charAt(0).toUpperCase() + normalizedType.slice(1);
+}
+
 function normalizePokemonName(pokemonName) {
-  return pokemonName.trim().toLowerCase();
+  return String(pokemonName || "").trim().toLowerCase();
 }
 
 export function normalizePokemonApiName(name) {

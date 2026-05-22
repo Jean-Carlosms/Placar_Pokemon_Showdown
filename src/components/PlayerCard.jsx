@@ -4,6 +4,7 @@ import {
   getPokemonSprite,
   getPokemonSpriteFallbacks,
 } from "../services/pokemonApi.js";
+import PokemonTypeBadges from "./PokemonTypeBadges.jsx";
 
 function PlayerCard({ player, score, status, isRecentlyScored, featuredPokemon }) {
   const [spriteUrl, setSpriteUrl] = useState("");
@@ -75,6 +76,7 @@ function PlayerCard({ player, score, status, isRecentlyScored, featuredPokemon }
           <p className="pokemon-name">Pokémon destaque</p>
           <h2>{player.name}</h2>
           <span className="partner-label">{pokemonName}</span>
+          <PokemonTypeBadges pokemonName={pokemonName} />
           <span className="featured-wins">
             Vitórias com este Pokémon: {featuredPokemon?.wins ?? 0}
           </span>

@@ -6,6 +6,7 @@ import {
 } from "../services/pokemonApi.js";
 import { getMovesFromPokemonMap } from "../utils/pokemonMoveStats.js";
 import PokemonMoveTooltip from "./PokemonMoveTooltip.jsx";
+import PokemonTypeBadges from "./PokemonTypeBadges.jsx";
 
 function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
   return (
@@ -58,6 +59,7 @@ function MiniPokemon({ pokemon, moves }) {
     <li className="pokemon-mini-card" tabIndex={0}>
       <img src={spriteUrl} alt={`Sprite de ${pokemon}`} width="36" height="36" />
       <span>{pokemon}</span>
+      <PokemonTypeBadges pokemonName={pokemon} />
       <PokemonMoveTooltip pokemonName={pokemon} moves={moves} />
     </li>
   );

@@ -44,6 +44,7 @@ Um GIF ou video curto da aplicacao podera ser adicionado futuramente. Veja as in
 - Extracao automatica de vencedor, formato, turnos, times e ataques usados.
 - Historico em timeline com sprites dos Pokemon usados.
 - Tooltip no historico com os ataques usados por cada Pokemon no replay.
+- Badges de tipo dos Pokemon no card principal e no historico.
 - Pokemon destaque calculado por participacao em vitorias.
 - Suporte a temporadas.
 - Estatisticas gerais e por temporada.
@@ -117,6 +118,17 @@ Com isso, os ataques usados por cada Pokemon ficam salvos dentro do proprio item
 No historico da batalha, ao passar o mouse ou focar com o teclado em um Pokemon do time, a interface mostra um pop-up com os ataques usados por ele naquele replay. Historicos antigos sem `movesByPokemon` continuam funcionando e exibem a mensagem de que nenhum ataque foi registrado.
 
 O banco agregado de ataques e derivado do historico com `pokemonMoveStats.js`, sem criar um estado paralelo obrigatorio. Assim, backups JSON preservam os ataques automaticamente, porque exportam o historico inteiro.
+
+## Tipagens dos Pokemon
+
+Os tipos dos Pokemon sao buscados dinamicamente pela PokeAPI usando a mesma normalizacao de nomes usada para sprites.
+
+Eles aparecem:
+
+- no card principal, abaixo do Pokemon destaque;
+- nos times do historico, abaixo do nome de cada Pokemon.
+
+Se a PokeAPI estiver indisponivel ou a rede bloquear a chamada, o app continua funcionando normalmente e apenas deixa de exibir os badges de tipo naquele momento.
 
 <details>
 <summary><strong>Como Rodar Localmente</strong></summary>
@@ -338,6 +350,7 @@ git push origin main
     |   |-- PlayerCard.jsx
     |   |-- PokemonMoveTooltip.jsx
     |   |-- PokemonMiniTeam.jsx
+    |   |-- PokemonTypeBadges.jsx
     |   |-- ReplayImport.jsx
     |   |-- ScoreControls.jsx
     |   |-- SeasonControls.jsx

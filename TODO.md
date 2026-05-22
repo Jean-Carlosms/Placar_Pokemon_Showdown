@@ -24,6 +24,11 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Diferenciar ataques por Single/Double.
 - Mostrar quantidade de vezes que cada ataque foi usado no tooltip.
 - Adicionar tooltip tambem no Pokemon destaque do card principal.
+- Criar cache persistente dos tipos no localStorage.
+- Adicionar filtros por tipo.
+- Criar estatisticas de vitoria por tipo.
+- Criar grafico de tipos mais usados.
+- Comparar tipos usados por Jean e Felipe.
 - Adicionar testes automatizados para multiplos replays reais.
 - Adicionar arquivamento de temporadas antigas.
 - Comparar desempenho entre temporadas.

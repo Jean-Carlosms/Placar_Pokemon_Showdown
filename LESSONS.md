@@ -154,6 +154,26 @@ O tooltip dos ataques aparece tanto no hover quanto no foco de teclado. Isso mel
 
 O banco agregado de ataques e calculado a partir do historico. Essa abordagem evita inconsistencia quando o usuario desfaz partidas, importa backup antigo ou restaura um JSON novo.
 
+## PokeAPI Alem de Sprites
+
+A PokeAPI tambem pode fornecer metadados como tipos dos Pokemon. Reaproveitar a normalizacao de nomes evita duplicar regras para especies com nomes compostos.
+
+## Cache Simples em Memoria
+
+Um `Map` em memoria reduz chamadas repetidas para os mesmos tipos durante a sessao, melhorando a experiencia sem adicionar persistencia extra.
+
+## Renderizacao Condicional
+
+Os badges de tipo so aparecem quando a API retorna dados. Se a chamada falhar, a interface continua estavel e apenas omite aquela informacao.
+
+## Badges Visuais por Tipo
+
+Classes CSS como `type-electric`, `type-water` e `type-dark` ajudam a transformar metadados em informacao visual facil de escanear.
+
+## Fallback para API Externa
+
+Quando uma API externa falha, o componente deve degradar com elegancia: sem erro visual, sem quebrar o layout e sem interromper o fluxo principal do app.
+
 ## Mermaid Diagrams
 
 Diagramas Mermaid no README ajudam a explicar fluxos sem depender de imagens estaticas. O GitHub renderiza esses blocos automaticamente, o que facilita mostrar a importacao de replay e a arquitetura geral do app.
