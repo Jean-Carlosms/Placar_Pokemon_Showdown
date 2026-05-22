@@ -3,17 +3,25 @@ const POKEAPI_BASE_URL = import.meta.env.DEV
   : "https://pokeapi.co/api/v2/pokemon";
 const POKEAPI_SPRITES_GITHUB_BASE_URL =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+const POKEMON_SHOWDOWN_SPRITES_BASE_URL = "https://play.pokemonshowdown.com/sprites";
 
 const POKEAPI_SPRITE_IDS = {
   annihilape: 979,
   arboliva: 930,
+  "arceus-dragon": 493,
   armarouge: 936,
   "chien-pao": 1002,
   copperajah: 879,
+  diancie: 719,
+  dudunsparce: 982,
+  empoleon: 395,
   frosmoth: 873,
+  gardevoir: 282,
   "great-tusk": 984,
+  infernape: 392,
   "iron-hands": 992,
   ninetales: 38,
+  "ogerpon-hearthflame": 1017,
   pecharunt: 1025,
   polteageist: 855,
   "raging-bolt": 1021,
@@ -21,22 +29,28 @@ const POKEAPI_SPRITE_IDS = {
   sunflora: 192,
   swampert: 260,
   trubbish: 568,
+  umbreon: 197,
+  vespiquen: 416,
   "walking-wake": 1009,
 };
 
+const POKEAPI_NAME_ALIASES = {
+  "ogerpon-hearthflame": "ogerpon-hearthflame-mask",
+};
+
 const SHOWDOWN_FALLBACK_SPRITES = {
-  annihilape: "https://play.pokemonshowdown.com/sprites/gen5/annihilape.png",
-  trubbish: "https://play.pokemonshowdown.com/sprites/gen5/trubbish.png",
+  annihilape: `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/annihilape.png`,
+  trubbish: `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/trubbish.png`,
 };
 
 const EXTRA_FALLBACK_SPRITES = {
   annihilape: [
-    "https://play.pokemonshowdown.com/sprites/ani/annihilape.gif",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/979.png",
+    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/ani/annihilape.gif`,
+    `${POKEAPI_SPRITES_GITHUB_BASE_URL}/979.png`,
   ],
   trubbish: [
-    "https://play.pokemonshowdown.com/sprites/ani/trubbish.gif",
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/568.png",
+    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/ani/trubbish.gif`,
+    `${POKEAPI_SPRITES_GITHUB_BASE_URL}/568.png`,
   ],
 };
 
@@ -58,13 +72,14 @@ export async function getPokemonSprite(pokemonName) {
 async function fetchPokemonSprite(normalizedName) {
   const githubSprite = getGithubSprite(normalizedName);
   const fallbackSprite = getFallbackSprite(normalizedName);
+  const apiLookupName = getPokemonApiLookupName(normalizedName);
 
   if (githubSprite) {
     return githubSprite;
   }
 
   try {
-    const response = await fetch(`${POKEAPI_BASE_URL}/${normalizedName}`);
+    const response = await fetch(`${POKEAPI_BASE_URL}/${apiLookupName}`);
 
     if (!response.ok) {
       return fallbackSprite;
@@ -89,8 +104,9 @@ export function getPokemonSpriteFallbacks(pokemonName) {
   return [
     getGithubSprite(normalizedName),
     getFallbackSprite(normalizedName),
+    ...getShowdownSpriteCandidates(normalizedName),
     ...(EXTRA_FALLBACK_SPRITES[normalizedName] ?? []),
-  ].filter(Boolean);
+  ].filter((url, index, urls) => url && urls.indexOf(url) === index);
 }
 
 export function getLocalPokemonSprite(pokemonName) {
@@ -112,7 +128,7 @@ export function normalizePokemonApiName(name) {
 }
 
 function getFallbackSprite(normalizedName) {
-  return SHOWDOWN_FALLBACK_SPRITES[normalizedName] ?? "";
+  return SHOWDOWN_FALLBACK_SPRITES[normalizedName] ?? getShowdownSpriteCandidates(normalizedName)[0] ?? "";
 }
 
 function getGithubSprite(normalizedName) {
@@ -123,6 +139,18 @@ function getGithubSprite(normalizedName) {
   }
 
   return `${POKEAPI_SPRITES_GITHUB_BASE_URL}/${spriteId}.png`;
+}
+
+function getPokemonApiLookupName(normalizedName) {
+  return POKEAPI_NAME_ALIASES[normalizedName] ?? normalizedName;
+}
+
+function getShowdownSpriteCandidates(normalizedName) {
+  return [
+    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/ani/${normalizedName}.gif`,
+    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/${normalizedName}.png`,
+    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/dex/${normalizedName}.png`,
+  ];
 }
 
 function createLocalFallbackSprite(pokemonName) {
