@@ -29,6 +29,12 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Comparar moves usados por Jean e Felipe.
 - Criar cache persistente de detalhes dos moves no localStorage.
 - Expandir fallbacks locais de detalhes dos moves.
+- Criar cache persistente de sprites.
+- Criar banco local de Pokemon.
+- Criar banco local de tipos.
+- Atualizar base de moves via GitHub Actions.
+- Criar botao para verificar idade do banco local.
+- Criar tela de administracao dos dados baixados.
 - Mostrar quantidade de vezes que cada ataque foi usado no tooltip.
 - Adicionar tooltip tambem no Pokemon destaque do card principal.
 - Criar cache persistente dos tipos no localStorage.

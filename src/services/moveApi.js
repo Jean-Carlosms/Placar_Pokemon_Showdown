@@ -1,4 +1,5 @@
 import { MOVE_DETAIL_FALLBACKS } from "../data/moveFallbacks.js";
+import moveDetailsData from "../data/moveDetails.generated.json";
 
 const IS_DEV = Boolean(import.meta.env?.DEV);
 const POKEAPI_MOVE_BASE_URL = IS_DEV
@@ -33,7 +34,7 @@ export async function getMoveDetails(moveName) {
   const apiName = normalizeMoveApiName(moveName);
 
   if (!apiName) {
-    return createUnavailableMove(moveName);
+    return createBasicFallbackMove(moveName);
   }
 
   if (moveDetailsCache.has(apiName)) {
@@ -47,20 +48,39 @@ export async function getMoveDetails(moveName) {
 }
 
 async function fetchMoveDetails(apiName) {
+  const localMove = getLocalMove(apiName);
+
+  if (localMove) {
+    return {
+      ...localMove,
+      source: "local-move-database",
+    };
+  }
+
   const fallbackMove = getMoveFallback(apiName);
+
+  if (fallbackMove) {
+    return {
+      ...fallbackMove,
+      source: "local-fallback",
+    };
+  }
 
   try {
     const response = await fetch(`${POKEAPI_MOVE_BASE_URL}/${apiName}`);
 
     if (!response.ok) {
-      return fallbackMove ?? createUnavailableMove(apiName);
+      return createBasicFallbackMove(apiName);
     }
 
     const move = await response.json();
 
-    return mapMoveDetails(move, fallbackMove);
+    return {
+      ...mapMoveDetails(move),
+      source: "pokeapi",
+    };
   } catch (error) {
-    return fallbackMove ?? createUnavailableMove(apiName);
+    return createBasicFallbackMove(apiName);
   }
 }
 
@@ -93,14 +113,31 @@ function getMoveFallback(apiName) {
   return MOVE_DETAIL_FALLBACKS[apiName] ?? null;
 }
 
-function createUnavailableMove(moveName) {
+function getLocalMove(apiName) {
+  return moveDetailsData.moves?.[apiName] ?? null;
+}
+
+function createBasicFallbackMove(moveName) {
   const apiName = normalizeMoveApiName(moveName);
 
   return {
-    unavailable: true,
+    unavailable: false,
+    isBasicFallback: true,
+    id: null,
     name: apiName,
     displayName: formatMoveApiName(moveName || apiName),
-    message: "Nao foi possivel carregar detalhes deste move.",
+    type: "",
+    damageClass: "",
+    power: null,
+    accuracy: null,
+    pp: null,
+    priority: null,
+    target: "",
+    generation: "",
+    shortEffect: "Detalhes completos indisponiveis no momento.",
+    effect: "O move foi encontrado no historico, mas a PokeAPI nao respondeu e ainda nao existe um fallback detalhado local para ele.",
+    flavorText: "Adicione este move aos fallbacks locais para exibir dados completos mesmo offline.",
+    source: "basic-fallback",
   };
 }
 

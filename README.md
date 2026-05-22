@@ -131,6 +131,31 @@ Ao selecionar um move, o app busca detalhes na PokeAPI e mostra tipo, categoria,
 
 Se a PokeAPI falhar ou a rede bloquear a chamada, o app tenta usar fallbacks locais para moves comuns. Quando nao houver fallback, ele mostra uma mensagem amigavel. O historico continua sendo a fonte da verdade: nenhum move externo e baixado em massa.
 
+## Banco Local de Moves
+
+O projeto pode gerar um banco local com detalhes de todos os moves da PokeAPI:
+
+```bash
+npm run data:moves
+```
+
+O arquivo gerado fica em:
+
+```text
+src/data/moveDetails.generated.json
+```
+
+Durante o uso do app, a consulta de moves segue esta ordem:
+
+1. banco local gerado;
+2. fallbacks locais manuais;
+3. PokeAPI online;
+4. dados basicos universais.
+
+Se o banco local estiver vazio, o app continua funcionando com fallbacks e API online. O arquivo gerado pode ser versionado no GitHub para evitar chamadas move por move durante o uso normal.
+
+Em ambiente corporativo com certificado self-signed, o download pode falhar. A solucao recomendada e executar `npm run data:moves` em uma rede sem bloqueio, configurar corretamente o certificado corporativo no Node ou manter o JSON versionado depois de gerado em outra rede. Evite usar `NODE_TLS_REJECT_UNAUTHORIZED=0` como solucao permanente.
+
 ## Tipagens dos Pokemon
 
 Os tipos dos Pokemon sao buscados dinamicamente pela PokeAPI usando a mesma normalizacao de nomes usada para sprites.

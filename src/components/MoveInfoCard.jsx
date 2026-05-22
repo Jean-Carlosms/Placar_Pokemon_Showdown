@@ -112,21 +112,15 @@ function MoveInfoCard({ history }) {
 }
 
 function MoveDetails({ moveDetails, usageCount }) {
-  if (moveDetails.unavailable) {
-    return (
-      <div className="move-details move-details-unavailable">
-        <h3>{moveDetails.displayName}</h3>
-        <p>{moveDetails.message}</p>
-      </div>
-    );
-  }
-
   return (
     <article className="move-details">
       <div className="move-details-title">
         <div>
           <h3>{moveDetails.displayName}</h3>
           <p>Uso nos historicos: {usageCount} vez{usageCount === 1 ? "" : "es"}</p>
+          {moveDetails.isBasicFallback && (
+            <p className="move-fallback-note">Dados basicos exibidos por fallback local.</p>
+          )}
         </div>
         <div className="move-badge-row">
           {moveDetails.type && (
@@ -172,6 +166,8 @@ function MoveDetails({ moveDetails, usageCount }) {
           </p>
         )}
       </div>
+
+      <p className="move-data-source">Fonte: {getMoveSourceLabel(moveDetails.source)}</p>
     </article>
   );
 }
@@ -199,6 +195,17 @@ function includeSelectedMove(moves, selectedMove) {
   }
 
   return [selectedMove, ...moves];
+}
+
+function getMoveSourceLabel(source) {
+  const sourceLabels = {
+    "local-move-database": "banco local",
+    pokeapi: "PokeAPI",
+    "local-fallback": "fallback local",
+    "basic-fallback": "dados basicos",
+  };
+
+  return sourceLabels[source] ?? "dados basicos";
 }
 
 export default MoveInfoCard;

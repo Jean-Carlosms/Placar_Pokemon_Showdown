@@ -1006,6 +1006,17 @@ button:active {
   font-weight: 850;
 }
 
+.move-fallback-note {
+  color: var(--color-yellow) !important;
+}
+
+.move-data-source {
+  justify-self: end;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
 .move-badge-row {
   display: flex;
   flex-wrap: wrap;

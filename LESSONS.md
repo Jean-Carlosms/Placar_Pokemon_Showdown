@@ -194,6 +194,26 @@ O componente de consulta precisa lidar com loading, estado vazio e erro amigavel
 
 Cards de consulta funcionam melhor quando separam fonte de dados, filtro, selecao e detalhes carregados. Isso deixa o JSX mais previsivel e facilita evoluir para filtros por tipo ou categoria.
 
+## Pre-processamento de Dados Externos
+
+Dados grandes de APIs publicas podem ser baixados antes do uso da aplicacao e salvos como JSON local. Isso reduz chamadas em runtime e melhora estabilidade em redes restritas.
+
+## Geracao de JSON Local
+
+Um script Node pode transformar respostas detalhadas da PokeAPI em um formato menor e direto para a UI. Gravar primeiro em arquivo temporario reduz o risco de deixar um JSON corrompido.
+
+## Dados Gerados no React
+
+Arquivos JSON dentro de `src/data` podem ser importados diretamente por componentes e servicos no Vite. O app passa a ter uma base local disponivel no build.
+
+## Fallback em Camadas
+
+A consulta de moves usa uma ordem de confianca: banco local gerado, fallback manual, API online e fallback basico. Isso evita quebrar a interface quando uma camada falha.
+
+## Runtime vs Build-time
+
+Dados carregados em runtime dependem da rede do usuario. Dados gerados em build-time ou versionados no repositorio ficam disponiveis imediatamente, mas precisam de processo de atualizacao.
+
 ## Mermaid Diagrams
 
 Diagramas Mermaid no README ajudam a explicar fluxos sem depender de imagens estaticas. O GitHub renderiza esses blocos automaticamente, o que facilita mostrar a importacao de replay e a arquitetura geral do app.
