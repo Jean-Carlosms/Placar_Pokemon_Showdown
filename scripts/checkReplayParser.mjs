@@ -11,13 +11,13 @@ const html = `
 |player|p2|tergoat|170|
 |gametype|doubles
 |tier|[Gen 9] Random Doubles Battle
-|switch|p1a: Regieleki|Regieleki, L79|100/100
+|switch|p1a: Spark|Regieleki, L79|100/100
 |switch|p1b: Ninetales|Ninetales, L79, M|100/100
 |switch|p2a: Chien-Pao|Chien-Pao, L75|100/100
 |switch|p2b: Copperajah|Copperajah, L86, M|100/100
 |switch|p2b: Raging Bolt|Raging Bolt, L77|100/100
-|move|p1a: Regieleki|Protect|p1a: Regieleki
-|move|p1a: Regieleki|Tera Blast|p2b: Raging Bolt
+|move|p1a: Spark|Protect|p1a: Spark
+|move|p1a: Spark|Tera Blast|p2b: Raging Bolt
 |move|p2a: Chien-Pao|Sucker Punch|p1a: Regieleki
 |turn|1
 |win|tergoat

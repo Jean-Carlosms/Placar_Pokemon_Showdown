@@ -11,7 +11,7 @@ function PokemonMoveTooltip({ pokemonName, moves }) {
           ))}
         </ul>
       ) : (
-        <p>Nenhum ataque registrado neste replay.</p>
+        <p>Nenhum ataque encontrado neste registro. Reimporte o replay para preencher dados antigos.</p>
       )}
     </div>
   );

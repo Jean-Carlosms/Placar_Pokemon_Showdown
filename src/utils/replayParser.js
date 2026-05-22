@@ -99,6 +99,7 @@ export function extractPokemonNameFromSwitchLine(line) {
   const position = args[0] || "";
   const details = args[1] || "";
   const playerSlot = position.slice(0, 2);
+  const positionSlot = extractPositionSlot(position);
   const pokemonName = normalizePokemonDisplayName(details.split(",")[0]);
 
   if (!pokemonName || !["p1", "p2"].includes(playerSlot)) {
@@ -107,6 +108,7 @@ export function extractPokemonNameFromSwitchLine(line) {
 
   return {
     playerSlot,
+    positionSlot,
     pokemonName,
   };
 }
@@ -148,9 +150,20 @@ export function extractTeamsFromBattleLogLines(lines, mappedPlayers) {
 
 export function extractMovesFromBattleLogLines(lines, mappedPlayers) {
   const movesByPokemon = { jean: {}, felipe: {} };
+  const activePokemonBySlot = {};
 
   lines.forEach((line) => {
     const { command, args } = parseShowdownLine(line);
+
+    if (command === "switch" || command === "drag") {
+      const extractedPokemon = extractPokemonNameFromSwitchLine(line);
+
+      if (extractedPokemon?.positionSlot) {
+        activePokemonBySlot[extractedPokemon.positionSlot] = extractedPokemon.pokemonName;
+      }
+
+      return;
+    }
 
     if (command !== "move") {
       return;
@@ -159,8 +172,10 @@ export function extractMovesFromBattleLogLines(lines, mappedPlayers) {
     const actor = args[0] || "";
     const moveName = normalizePokemonDisplayName(args[1]);
     const playerSlot = actor.slice(0, 2);
+    const positionSlot = extractPositionSlot(actor);
     const playerId = mappedPlayers[playerSlot];
-    const pokemonName = normalizePokemonDisplayName(actor.split(":")[1]);
+    const actorPokemonName = normalizePokemonDisplayName(actor.split(":")[1]);
+    const pokemonName = activePokemonBySlot[positionSlot] || actorPokemonName;
 
     if (!playerId || !pokemonName || !moveName) {
       return;
@@ -184,6 +199,10 @@ export function extractMovesFromBattleLogLines(lines, mappedPlayers) {
   });
 
   return movesByPokemon;
+}
+
+function extractPositionSlot(position) {
+  return String(position || "").split(":")[0].trim();
 }
 
 export function mapReplayWinnerToPlayer(winnerName) {
