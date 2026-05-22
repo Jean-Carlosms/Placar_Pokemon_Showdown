@@ -310,6 +310,14 @@ O Pokemon Showdown Dex traz nomes, formas e stats, mas nem sempre entrega uma UR
 
 Para formas especiais, e melhor testar variacoes como nome com hifen e nome compactado. Assim `Chien-Pao`, `Toxtricity-Low-Key` e `Oricorio-Pa'u` podem tentar varias URLs antes de cair no fallback local.
 
+## Fallback em Cadeia para Sprites
+
+Sprites nao devem depender de uma URL unica. Um componente reutilizavel que tenta banco local, Pokemon Showdown, GitHub da PokeAPI e fallback visual reduz falhas entre cards diferentes.
+
+## Banco Local com Candidatos
+
+Guardar apenas `sprite` deixa o app fragil quando aquela URL falha. Guardar `spriteCandidates` no banco local torna a consulta mais resiliente e facilita testar formas especiais.
+
 ## Descricao em Cadeia
 
 Moves podem ter `shortDesc`, `desc`, ambos ou nenhum texto util. Usar uma cadeia como `description`, `shortEffect`, `effect`, `flavorText` e fallback evita campos vazios no card de consulta.

@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react";
-import {
-  getLocalPokemonSprite,
-  getPokemonSprite,
-  getPokemonSpriteFallbacks,
-} from "../services/pokemonApi.js";
 import { getMovesFromPokemonMap } from "../utils/pokemonMoveStats.js";
 import PokemonMoveTooltip from "./PokemonMoveTooltip.jsx";
+import PokemonSprite from "./PokemonSprite.jsx";
 import PokemonTypeBadges from "./PokemonTypeBadges.jsx";
 
 function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
@@ -29,72 +24,19 @@ function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
 }
 
 function MiniPokemon({ pokemon, moves }) {
-  const [spriteUrl, setSpriteUrl] = useState(() => getLocalPokemonSprite(pokemon));
-
-  useEffect(() => {
-    let isMounted = true;
-
-    async function loadSprite() {
-      const localSprite = getLocalPokemonSprite(pokemon);
-      const loadedSpriteUrl = await getPokemonSprite(pokemon);
-      const spriteCandidates = [
-        loadedSpriteUrl,
-        ...getPokemonSpriteFallbacks(pokemon),
-      ].filter((url, index, urls) => url && url !== localSprite && urls.indexOf(url) === index);
-      const displayableSprite = await getFirstLoadableSprite(spriteCandidates);
-
-      if (isMounted && displayableSprite) {
-        setSpriteUrl(displayableSprite);
-      }
-    }
-
-    loadSprite();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [pokemon]);
-
-  function handleSpriteError() {
-    setSpriteUrl(getLocalPokemonSprite(pokemon));
-  }
-
   return (
     <li className="pokemon-mini-card" tabIndex={0}>
-      <img
-        src={spriteUrl}
+      <PokemonSprite
+        pokemonName={pokemon}
+        className="mini-team-sprite"
         alt={`Sprite de ${pokemon}`}
-        width="36"
-        height="36"
-        onError={handleSpriteError}
+        fallbackLabel={pokemon}
       />
       <span>{pokemon}</span>
       <PokemonTypeBadges pokemonName={pokemon} />
       <PokemonMoveTooltip pokemonName={pokemon} moves={moves} />
     </li>
   );
-}
-
-async function getFirstLoadableSprite(spriteUrls) {
-  for (const spriteUrl of spriteUrls) {
-    const canLoad = await canLoadImage(spriteUrl);
-
-    if (canLoad) {
-      return spriteUrl;
-    }
-  }
-
-  return "";
-}
-
-function canLoadImage(spriteUrl) {
-  return new Promise((resolve) => {
-    const image = new Image();
-
-    image.onload = () => resolve(true);
-    image.onerror = () => resolve(false);
-    image.src = spriteUrl;
-  });
 }
 
 export default PokemonMiniTeam;

@@ -44,6 +44,10 @@ assertTruthy(pokemonWithSpriteCandidates, "At least one Pokemon should include s
     Array.isArray(pokemon.spriteCandidates) && pokemon.spriteCandidates.length > 0,
     `${pokemonKey} should include spriteCandidates`,
   );
+  assertTruthy(
+    pokemon.spriteCandidates.some(isSupportedSpriteUrl),
+    `${pokemonKey} should include a supported sprite URL`,
+  );
 });
 
 if (pokemonData.pokemon.regieleki) {
@@ -69,6 +73,10 @@ if (pokemonData.pokemon["chien-pao"]) {
       pokemonData.pokemon["chien-pao"].spriteCandidates.length > 0,
     "Chien-Pao should include spriteCandidates",
   );
+  assertTruthy(
+    pokemonData.pokemon["chien-pao"].spriteCandidates.some(isSupportedSpriteUrl),
+    "Chien-Pao should include a supported sprite URL",
+  );
 }
 
 if (pokemonData.pokemon.pikachu) {
@@ -76,6 +84,10 @@ if (pokemonData.pokemon.pikachu) {
     Array.isArray(pokemonData.pokemon.pikachu.spriteCandidates) &&
       pokemonData.pokemon.pikachu.spriteCandidates.length > 0,
     "Pikachu should include spriteCandidates",
+  );
+  assertTruthy(
+    pokemonData.pokemon.pikachu.spriteCandidates.some(isSupportedSpriteUrl),
+    "Pikachu should include a supported sprite URL",
   );
 }
 
@@ -85,4 +97,11 @@ function assertTruthy(value, message) {
   if (!value) {
     throw new Error(message);
   }
+}
+
+function isSupportedSpriteUrl(url) {
+  return (
+    typeof url === "string" &&
+    (url.includes("play.pokemonshowdown.com") || url.includes("raw.githubusercontent.com"))
+  );
 }

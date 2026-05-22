@@ -73,6 +73,12 @@ const SHOWDOWN_SPRITE_NAME_OVERRIDES = {
   "chien-pao": ["chien-pao"],
   "iron-treads": ["iron-treads"],
   "lycanroc-dusk": ["lycanroc-dusk", "lycanrocdusk"],
+  "mr-mime": ["mrmime"],
+  mrmime: ["mrmime"],
+  "nidoran-f": ["nidoranf"],
+  nidoranf: ["nidoranf"],
+  "nidoran-m": ["nidoranm"],
+  nidoranm: ["nidoranm"],
   "ogerpon-hearthflame": ["ogerpon-hearthflame", "ogerpon-hearthflame-mask"],
   "ogerpon-hearthflame-mask": ["ogerpon-hearthflame", "ogerpon-hearthflame-mask"],
   "oricorio-pa-u": ["oricorio-pau", "oricoriopau"],
@@ -302,18 +308,30 @@ export function normalizePokemonShowdownSpriteName(name) {
 export function getPokemonShowdownSpriteCandidates(name) {
   const apiName = normalizePokemonApiName(name);
   const overrideCandidates = SHOWDOWN_SPRITE_NAME_OVERRIDES[apiName] ?? [];
+  const spriteId = POKEAPI_SPRITE_IDS[apiName];
   const baseCandidates = [
     apiName,
     apiName.replace(/[’‘'`.]/g, ""),
     apiName.replace(/-/g, ""),
   ];
   const uniqueNames = [...new Set([...overrideCandidates, ...baseCandidates].filter(Boolean))];
+  const githubUrls = spriteId
+    ? [
+        `${POKEAPI_SPRITES_GITHUB_BASE_URL}/${spriteId}.png`,
+        `${POKEAPI_SPRITES_GITHUB_BASE_URL}/other/showdown/${spriteId}.gif`,
+        `${POKEAPI_SPRITES_GITHUB_BASE_URL}/other/official-artwork/${spriteId}.png`,
+      ]
+    : [];
 
-  return uniqueNames.flatMap((spriteName) => [
-    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/${spriteName}.png`,
-    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/dex/${spriteName}.png`,
-    `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/ani/${spriteName}.gif`,
-  ]);
+  return [
+    ...uniqueNames.flatMap((spriteName) => [
+      `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/dex/${spriteName}.png`,
+      `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5/${spriteName}.png`,
+      `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/ani/${spriteName}.gif`,
+      `${POKEMON_SHOWDOWN_SPRITES_BASE_URL}/gen5ani/${spriteName}.gif`,
+    ]),
+    ...githubUrls,
+  ];
 }
 
 function createLocalFallbackSprite(pokemonName) {

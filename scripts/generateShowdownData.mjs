@@ -11,6 +11,8 @@ const POKEMON_OUTPUT_PATH = resolve("src/data/pokemonDetails.generated.json");
 const POKEMON_TMP_PATH = resolve("src/data/pokemonDetails.generated.tmp.json");
 const SOURCE = "pokemon-showdown-dex";
 const SHOWDOWN_SPRITES_BASE_URL = "https://play.pokemonshowdown.com/sprites";
+const POKEAPI_SPRITES_GITHUB_BASE_URL =
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 
 const generatedAt = new Date().toISOString();
 const moves = buildMoveDatabase();
@@ -171,17 +173,28 @@ function getPokemonSpriteCandidates(species, key) {
     addSpriteIdVariants(ids, value);
   });
 
-  return [...ids]
+  const showdownUrls = [...ids]
     .filter(Boolean)
     .flatMap((spriteId) => [
-      `${SHOWDOWN_SPRITES_BASE_URL}/gen5/${spriteId}.png`,
       `${SHOWDOWN_SPRITES_BASE_URL}/dex/${spriteId}.png`,
+      `${SHOWDOWN_SPRITES_BASE_URL}/gen5/${spriteId}.png`,
       `${SHOWDOWN_SPRITES_BASE_URL}/ani/${spriteId}.gif`,
+      `${SHOWDOWN_SPRITES_BASE_URL}/gen5ani/${spriteId}.gif`,
     ]);
+  const numericUrls = Number(species?.num || 0) > 0
+    ? [
+        `${POKEAPI_SPRITES_GITHUB_BASE_URL}/${species.num}.png`,
+        `${POKEAPI_SPRITES_GITHUB_BASE_URL}/other/showdown/${species.num}.gif`,
+        `${POKEAPI_SPRITES_GITHUB_BASE_URL}/other/official-artwork/${species.num}.png`,
+      ]
+    : [];
+
+  return [...new Set([...showdownUrls, ...numericUrls])];
 }
 
 function addSpriteIdVariants(ids, value) {
   const normalizedId = normalizeSpriteId(value);
+  const aliasIds = getSpriteAliases(normalizedId);
 
   if (!normalizedId) {
     return;
@@ -189,6 +202,11 @@ function addSpriteIdVariants(ids, value) {
 
   ids.add(normalizedId);
   ids.add(normalizedId.replace(/-/g, ""));
+
+  aliasIds.forEach((aliasId) => {
+    ids.add(aliasId);
+    ids.add(aliasId.replace(/-/g, ""));
+  });
 }
 
 function normalizeSpriteId(value) {
@@ -202,6 +220,27 @@ function normalizeSpriteId(value) {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .toLowerCase();
+}
+
+function getSpriteAliases(spriteId) {
+  const aliases = {
+    farfetchd: ["farfetchd"],
+    farfetchdoriginal: ["farfetchd"],
+    "farfetch-d": ["farfetchd"],
+    "mr-mime": ["mrmime"],
+    mrmime: ["mrmime"],
+    "nidoran-f": ["nidoranf"],
+    nidoranf: ["nidoranf"],
+    "nidoran-m": ["nidoranm"],
+    nidoranm: ["nidoranm"],
+    "oricorio-pa-u": ["oricorio-pau", "oricoriopau"],
+    "oricorio-pau": ["oricorio-pau", "oricoriopau"],
+    "toxtricity-low-key": ["toxtricity-low-key", "toxtricitylowkey"],
+    "lycanroc-dusk": ["lycanroc-dusk", "lycanrocdusk"],
+    "ogerpon-hearthflame": ["ogerpon-hearthflame", "ogerpon-hearthflame-mask"],
+  };
+
+  return aliases[spriteId] ?? [];
 }
 
 function formatDisplayName(name) {

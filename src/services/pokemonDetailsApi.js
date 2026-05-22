@@ -95,7 +95,7 @@ async function createPokemonFallbackFromKnownData(apiName, originalName) {
     displayName,
     sprite: sprite || getLocalPokemonSprite(apiName),
     types,
-    spriteCandidates: getPokemonSpriteFallbacks(apiName),
+    spriteCandidates: getPokemonSpriteFallbacks(displayName || apiName),
     source: types.length > 0 || sprite ? "local-fallback" : "basic-fallback",
     isBasicFallback: types.length === 0 && !sprite,
   };
@@ -144,6 +144,7 @@ function mapPokemonDetails(rawPokemon) {
       .map((item) => formatPokemonDisplayName(item.ability?.name))
       .filter(Boolean),
     stats,
+    spriteCandidates: getPokemonSpriteFallbacks(rawPokemon.name),
     totalStats: Object.values(stats).reduce((total, value) => total + Number(value || 0), 0),
   };
 }
@@ -158,6 +159,7 @@ function createBasicPokemonFallback(pokemonName) {
     name: apiName,
     displayName: formatPokemonDisplayName(pokemonName || apiName),
     sprite: getLocalPokemonSprite(pokemonName || apiName),
+    spriteCandidates: getPokemonSpriteFallbacks(pokemonName || apiName),
     types: [],
     height: null,
     weight: null,

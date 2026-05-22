@@ -35,6 +35,15 @@ const names = [
   "Oricorio-Pa'u",
 ];
 
+const spriteCandidateNames = [
+  "Pikachu",
+  "Charizard",
+  "Regieleki",
+  "Chien-Pao",
+  "Oricorio-Pa'u",
+  "Toxtricity-Low-Key",
+];
+
 for (const name of names) {
   const normalizedName = normalizePokemonApiName(name);
   const spriteCandidates = getPokemonShowdownSpriteCandidates(name);
@@ -45,6 +54,12 @@ for (const name of names) {
   assertTruthy(spriteCandidates.length > 0, `${name} should have sprite candidates`);
   assertTruthy(allSpriteFallbacks.length > 0, `${name} should have complete sprite fallbacks`);
   assertTruthy(types.length > 0, `${name} should have local type fallback`);
+}
+
+for (const name of spriteCandidateNames) {
+  const spriteCandidates = getPokemonShowdownSpriteCandidates(name);
+
+  assertTruthy(spriteCandidates.length > 0, `${name} should have sprite candidates`);
 }
 
 if (Number(pokemonDetailsData.count || 0) > 0) {
@@ -58,6 +73,12 @@ if (Number(pokemonDetailsData.count || 0) > 0) {
     assertTruthy(
       Array.isArray(pokemon.spriteCandidates) && pokemon.spriteCandidates.length > 0,
       `${pokemonKey} should include generated sprite candidates`,
+    );
+    assertTruthy(
+      pokemon.spriteCandidates.some(
+        (url) => url.includes("play.pokemonshowdown.com") || url.includes("raw.githubusercontent.com"),
+      ),
+      `${pokemonKey} should include a supported generated sprite URL`,
     );
   });
 }

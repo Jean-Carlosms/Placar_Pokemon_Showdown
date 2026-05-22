@@ -62,6 +62,7 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Melhorar aliases de formas especiais.
 - Gerar sprites locais futuramente.
 - Baixar sprites como assets locais para modo 100% offline.
+- Criar cache local de imagens.
 - Melhorar descricoes usando PokeAPI CSV ou fonte complementar.
 - Criar fallback local de descricoes para moves sem texto no Showdown Dex.
 - Usar Pokemon Showdown Dex como fonte principal definitiva.

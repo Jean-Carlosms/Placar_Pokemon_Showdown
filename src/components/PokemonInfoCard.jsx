@@ -5,6 +5,7 @@ import {
   getAllPokemonFromLocalDatabase,
   getUniquePokemonFromHistory,
 } from "../utils/pokemonCatalog.js";
+import PokemonSprite from "./PokemonSprite.jsx";
 
 const STAT_LABELS = [
   ["hp", "HP"],
@@ -156,33 +157,19 @@ function PokemonInfoCard({ history }) {
 }
 
 function PokemonDetails({ pokemonDetails, usageCount }) {
-  const [spriteIndex, setSpriteIndex] = useState(0);
-  const spriteCandidates = useMemo(() => getSpriteCandidates(pokemonDetails), [pokemonDetails]);
-  const currentSprite = spriteCandidates[spriteIndex] ?? "";
-
-  useEffect(() => {
-    setSpriteIndex(0);
-  }, [pokemonDetails.name, pokemonDetails.displayName]);
-
   return (
     <article className="pokemon-details">
       <div className="pokemon-details-main">
         <div className="pokemon-details-sprite">
-          {currentSprite ? (
-            <img
-              src={currentSprite}
-              alt={`Sprite de ${pokemonDetails.displayName}`}
-              width="120"
-              height="120"
-              onError={() => {
-                setSpriteIndex((currentIndex) =>
-                  currentIndex < spriteCandidates.length - 1 ? currentIndex + 1 : currentIndex,
-                );
-              }}
-            />
-          ) : (
-            <span>{pokemonDetails.displayName}</span>
-          )}
+          <PokemonSprite
+            pokemonName={pokemonDetails.displayName}
+            sprite={pokemonDetails.sprite}
+            spriteCandidates={pokemonDetails.spriteCandidates}
+            className="pokemon-details-sprite-image"
+            alt={`Sprite de ${pokemonDetails.displayName}`}
+            fallbackLabel={pokemonDetails.displayName}
+            size={120}
+          />
         </div>
 
         <div className="pokemon-details-meta">
@@ -239,13 +226,6 @@ function PokemonDetails({ pokemonDetails, usageCount }) {
       <p className="pokemon-info-source">Fonte: {getPokemonSourceLabel(pokemonDetails.source)}</p>
     </article>
   );
-}
-
-function getSpriteCandidates(pokemonDetails) {
-  return [
-    pokemonDetails.sprite,
-    ...(Array.isArray(pokemonDetails.spriteCandidates) ? pokemonDetails.spriteCandidates : []),
-  ].filter((url, index, urls) => url && urls.indexOf(url) === index);
 }
 
 function PokemonMetaItem({ label, value }) {
