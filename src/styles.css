@@ -706,7 +706,6 @@ dd {
 }
 
 .type-electric {
-  color: #2b2400;
   background: #f7d02c;
 }
 
@@ -715,7 +714,6 @@ dd {
 }
 
 .type-ice {
-  color: #083b3a;
   background: #96d9d6;
 }
 
@@ -728,7 +726,6 @@ dd {
 }
 
 .type-ground {
-  color: #3b2b00;
   background: #e2bf65;
 }
 
@@ -741,7 +738,6 @@ dd {
 }
 
 .type-bug {
-  color: #222222;
   background: #a6b91a;
 }
 
@@ -762,7 +758,6 @@ dd {
 }
 
 .type-steel {
-  color: #202030;
   background: #b7b7ce;
 }
 
@@ -772,6 +767,10 @@ dd {
 
 .type-unknown {
   background: var(--color-muted);
+}
+
+.pokemon-type-badge[class*="type-"] {
+  color: #ffffff;
 }
 
 .backup-actions {
