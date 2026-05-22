@@ -8,6 +8,7 @@
     "build": "vite build",
     "data:moves": "node scripts/downloadMoveDetails.mjs",
     "data:pokemon": "node scripts/downloadPokemonDetails.mjs",
+    "data:showdown": "node scripts/generateShowdownData.mjs",
     "check:replay": "node scripts/checkReplayParser.mjs",
     "check:moves": "node scripts/checkPokemonMoveStats.mjs",
     "check:types": "node scripts/checkPokemonTypes.mjs",

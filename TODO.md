@@ -54,6 +54,10 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Expandir fallback local para todos os Pokemon usando Pokemon Showdown Dex.
 - Gerar banco local de Pokemon com npm run data:showdown.
 - Remover dependencia de fallbacks manuais no futuro.
+- Comparar campos da PokeAPI vs Pokemon Showdown Dex.
+- Melhorar aliases de formas especiais.
+- Gerar sprites locais futuramente.
+- Usar Pokemon Showdown Dex como fonte principal definitiva.
 - Adicionar testes automatizados para multiplos replays reais.
 - Adicionar arquivamento de temporadas antigas.
 - Comparar desempenho entre temporadas.

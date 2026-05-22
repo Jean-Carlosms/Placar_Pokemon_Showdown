@@ -155,6 +155,33 @@ Durante o uso do app, a consulta de Pokemon segue esta ordem:
 
 Em ambiente corporativo pode ocorrer `SELF_SIGNED_CERT_IN_CHAIN`. Nesse caso, gere o banco fora da rede corporativa ou configure `NODE_EXTRA_CA_CERTS` para o Node. Evite usar `NODE_TLS_REJECT_UNAUTHORIZED=0` como solucao permanente.
 
+## Gerar Banco Local sem PokeAPI
+
+Em redes corporativas, a PokeAPI pode falhar com `SELF_SIGNED_CERT_IN_CHAIN` ou retornar `HTTP 401` por bloqueio/proxy.
+
+Como alternativa offline, o projeto tambem pode gerar os bancos locais usando o Dex do pacote `pokemon-showdown`, sem chamadas HTTPS para a PokeAPI:
+
+```bash
+npm run data:showdown
+```
+
+Esse comando gera:
+
+```text
+src/data/moveDetails.generated.json
+src/data/pokemonDetails.generated.json
+```
+
+Depois valide os arquivos e o build:
+
+```bash
+npm run check:move-data
+npm run check:pokemon-data
+npm run build
+```
+
+O app continua consultando primeiro os arquivos gerados locais. Se eles estiverem vazios ou incompletos, os servicos ainda usam fallbacks e API online quando possivel.
+
 ## Consulta de Moves
 
 O card `Consulta de Moves` fica abaixo da secao de estatisticas e lista apenas os moves que apareceram nos replays importados.

@@ -1,6 +1,7 @@
 import pokemonDetailsData from "../data/pokemonDetails.generated.json";
 import {
   getLocalPokemonSprite,
+  getPokemonSpriteFallbacks,
   getPokemonSprite,
   getPokemonTypes,
   normalizePokemonApiName,
@@ -43,6 +44,10 @@ async function fetchPokemonDetails(apiName, originalName) {
   if (localPokemon) {
     return {
       ...localPokemon,
+      sprite:
+        localPokemon.sprite ||
+        getPokemonSpriteFallbacks(apiName)[0] ||
+        getLocalPokemonSprite(apiName),
       source: "local-pokemon-database",
     };
   }

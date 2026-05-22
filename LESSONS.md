@@ -269,3 +269,19 @@ Um README bem organizado mostra nao apenas como rodar o projeto, mas tambem quai
 ## Organizacao de README para Projeto React
 
 Em projetos React, a documentacao fica mais clara quando separa objetivo, tecnologias, funcionalidades, fluxo de dados, arquitetura, comandos locais, build, troubleshooting e roadmap. Essa organizacao facilita manutencao e apresentacao do projeto.
+
+## HTTP 401 em API Publica
+
+Mesmo APIs publicas podem retornar `HTTP 401` quando a rede corporativa usa proxy, filtro ou autenticacao intermediaria. Nesses casos, o problema pode estar no caminho de rede, nao no codigo da aplicacao.
+
+## Alternativa Offline via Pacote NPM
+
+O pacote `pokemon-showdown` inclui dados do Dex que podem ser usados localmente para gerar bancos de Pokemon e moves sem chamadas HTTPS em runtime ou em scripts de download.
+
+## Geracao de Banco Local sem HTTPS
+
+Gerar `moveDetails.generated.json` e `pokemonDetails.generated.json` a partir do Pokemon Showdown Dex reduz dependencia da PokeAPI e evita bloqueios como certificado self-signed ou proxy autenticado.
+
+## Compatibilidade com Replays do Pokemon Showdown
+
+Usar o Pokemon Showdown Dex como fonte alternativa ajuda a alinhar nomes, formas e moves com os mesmos dados que aparecem nos replays importados pelo app.
