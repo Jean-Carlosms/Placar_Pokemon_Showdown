@@ -3,6 +3,7 @@ import BackupControls from "./components/BackupControls.jsx";
 import Header from "./components/Header.jsx";
 import MatchHistory from "./components/MatchHistory.jsx";
 import MoveInfoCard from "./components/MoveInfoCard.jsx";
+import PokemonInfoCard from "./components/PokemonInfoCard.jsx";
 import PlayerCard from "./components/PlayerCard.jsx";
 import ReplayImport from "./components/ReplayImport.jsx";
 import ScoreControls from "./components/ScoreControls.jsx";
@@ -161,6 +162,7 @@ function App() {
         generalStats={generalStats}
         players={PLAYERS}
       />
+      <PokemonInfoCard history={scoreboard.history} />
       <MoveInfoCard history={scoreboard.history} />
       <MatchHistory
         history={visibleHistory}

@@ -45,6 +45,7 @@ Um GIF ou video curto da aplicacao podera ser adicionado futuramente. Veja as in
 - Historico em timeline com sprites dos Pokemon usados.
 - Tooltip no historico com os ataques usados por cada Pokemon no replay.
 - Badges de tipo dos Pokemon no card principal e no historico.
+- Consulta de Pokemon com sprite, tipos, abilities, altura, peso e base stats.
 - Consulta de detalhes dos moves usados nos replays importados.
 - Pokemon destaque calculado por participacao em vitorias.
 - Suporte a temporadas.
@@ -122,6 +123,37 @@ Com isso, os ataques usados por cada Pokemon ficam salvos dentro do proprio item
 No historico da batalha, ao passar o mouse ou focar com o teclado em um Pokemon do time, a interface mostra um pop-up com os ataques usados por ele naquele replay. Historicos antigos sem `movesByPokemon` continuam funcionando e exibem a mensagem de que nenhum ataque foi registrado.
 
 O banco agregado de ataques e derivado do historico com `pokemonMoveStats.js`, sem criar um estado paralelo obrigatorio. Assim, backups JSON preservam os ataques automaticamente, porque exportam o historico inteiro.
+
+## Consulta de Pokemon
+
+O card `Consulta de Pokemon` aparece entre `Estatisticas` e `Consulta de Moves`.
+
+Ele lista apenas os Pokemon encontrados nos times dos replays importados e mostra sprite, numero da Pokedex, tipos, altura, peso, abilities, base experience, total de base stats e barras para HP, Attack, Defense, Special Attack, Special Defense e Speed.
+
+Se nao houver Pokemon no historico, o card mostra um estado vazio. Se o banco local estiver vazio e a PokeAPI falhar, o app continua funcionando com dados basicos e indica a fonte usada.
+
+## Banco Local de Pokemon
+
+O projeto pode gerar um banco local com detalhes dos Pokemon da PokeAPI:
+
+```bash
+npm run data:pokemon
+```
+
+O arquivo gerado fica em:
+
+```text
+src/data/pokemonDetails.generated.json
+```
+
+Durante o uso do app, a consulta de Pokemon segue esta ordem:
+
+1. banco local gerado;
+2. fallbacks locais de sprite/tipos;
+3. PokeAPI online;
+4. dados basicos universais.
+
+Em ambiente corporativo pode ocorrer `SELF_SIGNED_CERT_IN_CHAIN`. Nesse caso, gere o banco fora da rede corporativa ou configure `NODE_EXTRA_CA_CERTS` para o Node. Evite usar `NODE_TLS_REJECT_UNAUTHORIZED=0` como solucao permanente.
 
 ## Consulta de Moves
 
@@ -378,7 +410,10 @@ git push origin main
     |-- App.jsx
     |-- styles.css
     |-- data/
+    |   |-- moveDetails.generated.json
+    |   |-- moveFallbacks.js
     |   |-- playerAliases.js
+    |   |-- pokemonDetails.generated.json
     |   `-- players.js
     |-- components/
     |   |-- BackupControls.jsx
@@ -386,6 +421,7 @@ git push origin main
     |   |-- MatchHistory.jsx
     |   |-- MoveInfoCard.jsx
     |   |-- PlayerCard.jsx
+    |   |-- PokemonInfoCard.jsx
     |   |-- PokemonMoveTooltip.jsx
     |   |-- PokemonMiniTeam.jsx
     |   |-- PokemonTypeBadges.jsx
@@ -395,10 +431,12 @@ git push origin main
     |   `-- StatsPanel.jsx
     |-- services/
     |   |-- moveApi.js
+    |   |-- pokemonDetailsApi.js
     |   `-- pokemonApi.js
     `-- utils/
         |-- backup.js
         |-- moveCatalog.js
+        |-- pokemonCatalog.js
         |-- pokemonMoveStats.js
         |-- pokemonStats.js
         |-- replayParser.js

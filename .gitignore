@@ -6,3 +6,4 @@ npm-debug.log*
 vite-dev.log
 vite-dev.err
 src/data/moveDetails.generated.tmp.json
+src/data/pokemonDetails.generated.tmp.json

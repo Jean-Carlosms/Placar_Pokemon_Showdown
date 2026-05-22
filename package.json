@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "data:moves": "node scripts/downloadMoveDetails.mjs",
+    "data:pokemon": "node scripts/downloadPokemonDetails.mjs",
     "check:replay": "node scripts/checkReplayParser.mjs",
     "check:moves": "node scripts/checkPokemonMoveStats.mjs",
     "check:types": "node scripts/checkPokemonTypes.mjs",
     "check:move-catalog": "node scripts/checkMoveCatalog.mjs",
     "check:move-data": "node scripts/checkMoveData.mjs",
+    "check:pokemon-data": "node scripts/checkPokemonData.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -214,6 +214,22 @@ A consulta de moves usa uma ordem de confianca: banco local gerado, fallback man
 
 Dados carregados em runtime dependem da rede do usuario. Dados gerados em build-time ou versionados no repositorio ficam disponiveis imediatamente, mas precisam de processo de atualizacao.
 
+## Pre-download de Base de Pokemon
+
+Assim como os moves, os dados de Pokemon podem ser baixados uma vez da PokeAPI e salvos em JSON local. Isso evita depender da rede para mostrar base stats durante o uso comum do app.
+
+## Base Stats
+
+Os base stats de Pokemon ficam mais legiveis quando combinam valores numericos e barras visuais. A barra usa uma escala fixa, mantendo comparacoes consistentes entre HP, Attack, Defense, Special Attack, Special Defense e Speed.
+
+## Visualizacao com Barras
+
+Barras simples em CSS resolvem bem dados numericos pequenos sem adicionar biblioteca de graficos. Elas deixam o card mais escaneavel em desktop e mobile.
+
+## Fallback de Pokemon em Camadas
+
+A consulta de Pokemon usa banco local, dados conhecidos de sprite/tipos, PokeAPI online e fallback basico. Essa ordem preserva a interface mesmo quando a base gerada esta vazia.
+
 ## Mermaid Diagrams
 
 Diagramas Mermaid no README ajudam a explicar fluxos sem depender de imagens estaticas. O GitHub renderiza esses blocos automaticamente, o que facilita mostrar a importacao de replay e a arquitetura geral do app.

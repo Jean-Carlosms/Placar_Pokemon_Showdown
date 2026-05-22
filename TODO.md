@@ -14,8 +14,16 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Gerar estatisticas por Pokemon usado.
 - Configurar nomes Showdown dos jogadores pela UI.
 - Criar ranking global de Pokemon mais vencedores.
+- Criar ranking dos Pokemon por total base stats.
+- Criar comparacao lado a lado entre dois Pokemon.
 - Adicionar filtros por Pokemon no historico.
+- Adicionar filtro por tipo na consulta de Pokemon.
+- Adicionar filtro por stat dominante.
 - Criar estatisticas de Pokemon por formato Single/Double.
+- Criar banco local de species/evolucoes.
+- Criar grafico radar de stats.
+- Criar cache persistente de Pokemon no localStorage.
+- Atualizar base de Pokemon via GitHub Actions.
 - Criar grafico de evolucao por Pokemon.
 - Exportar estatisticas por Pokemon em CSV.
 - Criar ranking dos ataques mais usados.
