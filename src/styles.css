@@ -589,28 +589,48 @@ dd {
   image-rendering: crisp-edges;
 }
 
-.mini-team-sprite {
-  width: var(--sprite-team-size);
-  height: var(--sprite-team-size);
+.pokemon-sprite-shell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pokemon-sprite-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
 
+.mini-team-sprite {
+  width: var(--sprite-team-size);
+  height: var(--sprite-team-size);
+}
+
 .pokemon-sprite-fallback {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--sprite-featured-size, 150px);
-  height: var(--sprite-featured-size, 150px);
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   padding: 0.5rem;
-  color: var(--color-muted);
+  color: #ffffff;
   font-size: 0.8rem;
   font-weight: 900;
   text-align: center;
-  border: 1px dashed var(--color-border);
+  border: 1px dashed rgba(255, 255, 255, 0.35);
   border-radius: 1rem;
-  background: var(--color-surface-soft);
+  background: rgba(15, 23, 42, 0.82);
 }
 
 .pokemon-sprite-fallback.mini-team-sprite {
@@ -1226,8 +1246,10 @@ button:active {
 .pokemon-details-sprite {
   display: grid;
   place-items: center;
-  width: 148px;
-  min-height: 148px;
+  width: 160px;
+  height: 160px;
+  min-width: 160px;
+  min-height: 160px;
   padding: 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1243,11 +1265,8 @@ button:active {
 }
 
 .pokemon-details-sprite-image {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  width: 136px;
+  height: 136px;
 }
 
 .pokemon-details-sprite span {

@@ -116,7 +116,8 @@ function mapMoveDetails(dexId, move) {
 function mapPokemonDetails(dexId, species) {
   const displayName = formatDisplayName(species.name || dexId);
   const key = normalizeKey(displayName || dexId);
-  const spriteCandidates = getPokemonSpriteCandidates(species, key);
+  const localSprite = `/sprites/pokemon/${key}.png`;
+  const spriteCandidates = [localSprite, ...getPokemonSpriteCandidates(species, key)];
   const stats = {
     hp: species.baseStats?.hp ?? null,
     attack: species.baseStats?.atk ?? null,
@@ -130,7 +131,8 @@ function mapPokemonDetails(dexId, species) {
     id: species.num ?? null,
     name: key,
     displayName,
-    sprite: spriteCandidates[0] ?? null,
+    localSprite,
+    sprite: localSprite,
     spriteCandidates,
     types: Array.isArray(species.types) ? species.types : [],
     height: toPokeApiHeight(species.heightm),

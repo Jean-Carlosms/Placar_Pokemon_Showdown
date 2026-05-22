@@ -28,6 +28,7 @@ assertTruthy(samplePokemon.displayName, "Sample Pokemon should include displayNa
 assertTruthy(samplePokemon.stats && typeof samplePokemon.stats === "object", "Sample Pokemon should include stats");
 assertTruthy("totalStats" in samplePokemon, "Sample Pokemon should include totalStats");
 assertTruthy(Array.isArray(samplePokemon.types), "Sample Pokemon should include types");
+assertTruthy(samplePokemon.localSprite, "Sample Pokemon should include localSprite");
 assertTruthy(pokemonWithSpriteCandidates, "At least one Pokemon should include spriteCandidates");
 
 ["regieleki", "annihilape", "trubbish"].forEach((pokemonKey) => {
@@ -43,6 +44,10 @@ assertTruthy(pokemonWithSpriteCandidates, "At least one Pokemon should include s
   assertTruthy(
     Array.isArray(pokemon.spriteCandidates) && pokemon.spriteCandidates.length > 0,
     `${pokemonKey} should include spriteCandidates`,
+  );
+  assertTruthy(
+    pokemon.spriteCandidates[0] === `/sprites/pokemon/${pokemonKey}.png`,
+    `${pokemonKey} should include local sprite as first candidate`,
   );
   assertTruthy(
     pokemon.spriteCandidates.some(isSupportedSpriteUrl),
@@ -74,6 +79,10 @@ if (pokemonData.pokemon["chien-pao"]) {
     "Chien-Pao should include spriteCandidates",
   );
   assertTruthy(
+    pokemonData.pokemon["chien-pao"].spriteCandidates[0] === "/sprites/pokemon/chien-pao.png",
+    "Chien-Pao should include local sprite as first candidate",
+  );
+  assertTruthy(
     pokemonData.pokemon["chien-pao"].spriteCandidates.some(isSupportedSpriteUrl),
     "Chien-Pao should include a supported sprite URL",
   );
@@ -84,6 +93,10 @@ if (pokemonData.pokemon.pikachu) {
     Array.isArray(pokemonData.pokemon.pikachu.spriteCandidates) &&
       pokemonData.pokemon.pikachu.spriteCandidates.length > 0,
     "Pikachu should include spriteCandidates",
+  );
+  assertTruthy(
+    pokemonData.pokemon.pikachu.spriteCandidates[0] === "/sprites/pokemon/pikachu.png",
+    "Pikachu should include local sprite as first candidate",
   );
   assertTruthy(
     pokemonData.pokemon.pikachu.spriteCandidates.some(isSupportedSpriteUrl),

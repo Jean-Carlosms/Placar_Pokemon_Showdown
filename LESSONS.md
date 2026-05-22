@@ -318,6 +318,18 @@ Sprites nao devem depender de uma URL unica. Um componente reutilizavel que tent
 
 Guardar apenas `sprite` deixa o app fragil quando aquela URL falha. Guardar `spriteCandidates` no banco local torna a consulta mais resiliente e facilita testar formas especiais.
 
+## URL Externa Pode Falhar
+
+Mesmo quando uma URL esta correta, uma rede corporativa pode bloquear `play.pokemonshowdown.com`, `raw.githubusercontent.com` ou certificados externos. Assets locais reduzem essa dependencia.
+
+## Fallback Visivel Imediato
+
+O fallback visual precisa aparecer antes da tentativa externa terminar. Assim a UI nunca fica com espaco vazio enquanto o navegador aguarda uma imagem bloqueada ou lenta.
+
+## SpriteCandidates Nao Bastam Sozinhos
+
+Ter muitas URLs candidatas ajuda, mas se todas forem bloqueadas o app ainda precisa de uma imagem local ou placeholder. Dados robustos e renderizacao robusta precisam trabalhar juntos.
+
 ## Descricao em Cadeia
 
 Moves podem ter `shortDesc`, `desc`, ambos ou nenhum texto util. Usar uma cadeia como `description`, `shortEffect`, `effect`, `flavorText` e fallback evita campos vazios no card de consulta.

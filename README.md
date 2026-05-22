@@ -159,6 +159,24 @@ Durante o uso do app, a consulta de Pokemon segue esta ordem:
 
 Em ambiente corporativo pode ocorrer `SELF_SIGNED_CERT_IN_CHAIN`. Nesse caso, gere o banco fora da rede corporativa ou configure `NODE_EXTRA_CA_CERTS` para o Node. Evite usar `NODE_TLS_REJECT_UNAUTHORIZED=0` como solucao permanente.
 
+## Sprites Locais
+
+O projeto tenta usar sprites locais primeiro para evitar falhas em redes que bloqueiam `play.pokemonshowdown.com`, `raw.githubusercontent.com` ou a PokeAPI.
+
+Para baixar sprites para o projeto:
+
+```bash
+npm run data:sprites
+```
+
+As imagens ficam em:
+
+```text
+public/sprites/pokemon
+```
+
+Se a rede corporativa bloquear o download, rode o comando fora dessa rede ou configure o certificado do Node. Quando a sprite local ou externa nao existir, o app mostra um placeholder visivel em `public/sprites/pokemon/_placeholder.svg`.
+
 ## Gerar Banco Local sem PokeAPI
 
 Em redes corporativas, a PokeAPI pode falhar com `SELF_SIGNED_CERT_IN_CHAIN` ou retornar `HTTP 401` por bloqueio/proxy.
