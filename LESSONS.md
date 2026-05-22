@@ -226,9 +226,33 @@ Os base stats de Pokemon ficam mais legiveis quando combinam valores numericos e
 
 Barras simples em CSS resolvem bem dados numericos pequenos sem adicionar biblioteca de graficos. Elas deixam o card mais escaneavel em desktop e mobile.
 
+## Badges Visuais Acessiveis
+
+Badges com texto, `aria-label` e `title` comunicam a informacao mesmo quando o usuario nao distingue apenas cor ou icone.
+
+## Icones CSS e Unicode
+
+Icones simples em Unicode e CSS reduzem dependencia de assets externos e evitam novos problemas de carregamento de imagens.
+
+## Categorias de Moves
+
+Physical, Special e Status ficam mais faceis de escanear quando recebem tratamento visual proprio, mas o texto continua importante para acessibilidade.
+
 ## Fallback de Pokemon em Camadas
 
 A consulta de Pokemon usa banco local, dados conhecidos de sprite/tipos, PokeAPI online e fallback basico. Essa ordem preserva a interface mesmo quando a base gerada esta vazia.
+
+## Formas Especiais de Pokemon
+
+Formas como `Lycanroc-Dusk`, `Toxtricity-Low-Key` e `Oricorio-Pa'u` exigem normalizacao explicita. O nome salvo no replay, o nome da PokeAPI e o nome dos sprites do Pokemon Showdown podem divergir.
+
+## Fallback Local em Rede Corporativa
+
+Em ambientes com certificado self-signed ou bloqueio de rede, fallbacks locais de tipo e candidatos de sprite evitam que o historico fique visualmente quebrado.
+
+## Testes de Normalizacao Visual
+
+Checks para normalizacao, sprites e tipos ajudam a impedir regressao quando um novo replay traz Pokemon ou formas ainda nao usados no projeto.
 
 ## Mermaid Diagrams
 

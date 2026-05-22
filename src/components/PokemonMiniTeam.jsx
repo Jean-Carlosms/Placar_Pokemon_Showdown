@@ -55,9 +55,19 @@ function MiniPokemon({ pokemon, moves }) {
     };
   }, [pokemon]);
 
+  function handleSpriteError() {
+    setSpriteUrl(getLocalPokemonSprite(pokemon));
+  }
+
   return (
     <li className="pokemon-mini-card" tabIndex={0}>
-      <img src={spriteUrl} alt={`Sprite de ${pokemon}`} width="36" height="36" />
+      <img
+        src={spriteUrl}
+        alt={`Sprite de ${pokemon}`}
+        width="36"
+        height="36"
+        onError={handleSpriteError}
+      />
       <span>{pokemon}</span>
       <PokemonTypeBadges pokemonName={pokemon} />
       <PokemonMoveTooltip pokemonName={pokemon} moves={moves} />

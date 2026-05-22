@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { getMoveDetails, normalizeMoveApiName } from "../services/moveApi.js";
 import { countMoveUsageFromHistory, getUniqueMovesFromHistory } from "../utils/moveCatalog.js";
+import MoveDamageClassBadge from "./MoveDamageClassBadge.jsx";
 
 function MoveInfoCard({ history }) {
   const moves = useMemo(() => getUniqueMovesFromHistory(history), [history]);
@@ -128,15 +129,7 @@ function MoveDetails({ moveDetails, usageCount }) {
               {moveDetails.type}
             </span>
           )}
-          {moveDetails.damageClass && (
-            <span
-              className={`damage-class-badge damage-class-${normalizeMoveApiName(
-                moveDetails.damageClass,
-              )}`}
-            >
-              {moveDetails.damageClass}
-            </span>
-          )}
+          <MoveDamageClassBadge damageClass={moveDetails.damageClass} />
         </div>
       </div>
 

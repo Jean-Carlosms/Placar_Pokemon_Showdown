@@ -1029,29 +1029,49 @@ button:active {
 
 .damage-class-badge {
   display: inline-flex;
+}
+
+.damage-class-chip {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.18rem 0.5rem;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
   color: #ffffff;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 999px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.damage-class-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .damage-class-physical {
-  background: #d24d3d;
+  background: linear-gradient(135deg, #c0392b, #e67e22);
 }
 
 .damage-class-special {
-  background: #4a6ee0;
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
 }
 
 .damage-class-status {
-  background: #7a8193;
+  background: linear-gradient(135deg, #64748b, #22c55e);
+}
+
+.damage-class-unknown {
+  background: linear-gradient(135deg, #6b7280, #374151);
 }
 
 .move-meta-grid {

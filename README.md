@@ -161,6 +161,8 @@ O card `Consulta de Moves` fica abaixo da secao de estatisticas e lista apenas o
 
 Ao selecionar um move, o app busca detalhes na PokeAPI e mostra tipo, categoria, power, accuracy, PP, priority, target, generation, descricao curta, efeito e flavor text.
 
+O card tambem mostra a categoria do move com badge visual: Physical, Special ou Status.
+
 Se a PokeAPI falhar ou a rede bloquear a chamada, o app tenta usar fallbacks locais para moves comuns. Quando nao houver fallback, ele mostra uma mensagem amigavel. O historico continua sendo a fonte da verdade: nenhum move externo e baixado em massa.
 
 ## Banco Local de Moves
@@ -364,6 +366,22 @@ O app tenta carregar sprites em camadas:
 4. Fallback visual local.
 
 Se a rede bloquear fontes externas, o fallback local evita que a interface quebre.
+
+### Pokemon aparece sem sprite ou sem tipagem
+
+Isso normalmente acontece quando entra um Pokemon novo ou uma forma especial ainda nao mapeada, como `Lycanroc-Dusk`, `Toxtricity-Low-Key` ou `Oricorio-Pa'u`.
+
+Para corrigir:
+
+1. adicione o Pokemon em `src/data/pokemonTypeFallbacks.js`;
+2. revise `normalizePokemonApiName` em `src/services/pokemonApi.js`;
+3. garanta candidatos em `getPokemonShowdownSpriteCandidates`;
+4. rode:
+
+```bash
+npm run check:sprites
+npm run build
+```
 
 </details>
 

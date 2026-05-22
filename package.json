@@ -11,12 +11,14 @@
     "check:replay": "node scripts/checkReplayParser.mjs",
     "check:moves": "node scripts/checkPokemonMoveStats.mjs",
     "check:types": "node scripts/checkPokemonTypes.mjs",
+    "check:sprites": "node scripts/checkPokemonSprites.mjs",
     "check:move-catalog": "node scripts/checkMoveCatalog.mjs",
     "check:move-data": "node scripts/checkMoveData.mjs",
     "check:pokemon-data": "node scripts/checkPokemonData.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
+    "pokemon-showdown": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

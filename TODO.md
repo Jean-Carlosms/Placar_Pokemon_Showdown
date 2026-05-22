@@ -32,6 +32,7 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Adicionar filtros por ataque.
 - Adicionar filtro por tipo do move.
 - Adicionar filtro por categoria Physical/Special/Status.
+- Substituir badges CSS por sprites oficiais das categorias Physical/Special/Status.
 - Criar estatisticas de ataques por Pokemon.
 - Diferenciar ataques por Single/Double.
 - Comparar moves usados por Jean e Felipe.
@@ -50,6 +51,9 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Criar estatisticas de vitoria por tipo.
 - Criar grafico de tipos mais usados.
 - Comparar tipos usados por Jean e Felipe.
+- Expandir fallback local para todos os Pokemon usando Pokemon Showdown Dex.
+- Gerar banco local de Pokemon com npm run data:showdown.
+- Remover dependencia de fallbacks manuais no futuro.
 - Adicionar testes automatizados para multiplos replays reais.
 - Adicionar arquivamento de temporadas antigas.
 - Comparar desempenho entre temporadas.
