@@ -948,7 +948,7 @@ button:active {
 
 .move-info-controls {
   display: grid;
-  grid-template-columns: minmax(180px, 0.8fr) minmax(240px, 1.2fr);
+  grid-template-columns: minmax(170px, 0.75fr) minmax(220px, 1fr) minmax(240px, 1.15fr);
   gap: 12px;
 }
 
@@ -964,7 +964,9 @@ button:active {
 }
 
 .move-select,
-.move-search {
+.move-search,
+.catalog-filter-select,
+.catalog-search-input {
   width: 100%;
   min-height: 46px;
   padding: 10px 12px;
@@ -975,9 +977,22 @@ button:active {
 }
 
 .move-select:focus-visible,
-.move-search:focus-visible {
+.move-search:focus-visible,
+.catalog-filter-select:focus-visible,
+.catalog-search-input:focus-visible {
   outline: none;
   box-shadow: var(--shadow-focus);
+}
+
+.catalog-filter-row {
+  align-items: end;
+}
+
+.catalog-count-hint {
+  margin: -4px 0 0;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  font-weight: 900;
 }
 
 .move-details {
@@ -1126,7 +1141,7 @@ button:active {
 
 .pokemon-info-controls {
   display: grid;
-  grid-template-columns: minmax(180px, 0.8fr) minmax(240px, 1.2fr);
+  grid-template-columns: minmax(170px, 0.75fr) minmax(220px, 1fr) minmax(240px, 1.15fr);
   gap: 12px;
 }
 
@@ -1142,7 +1157,9 @@ button:active {
 }
 
 .pokemon-select,
-.pokemon-search {
+.pokemon-search,
+.catalog-filter-select,
+.catalog-search-input {
   width: 100%;
   min-height: 46px;
   padding: 10px 12px;
@@ -1153,7 +1170,9 @@ button:active {
 }
 
 .pokemon-select:focus-visible,
-.pokemon-search:focus-visible {
+.pokemon-search:focus-visible,
+.catalog-filter-select:focus-visible,
+.catalog-search-input:focus-visible {
   outline: none;
   box-shadow: var(--shadow-focus);
 }

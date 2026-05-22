@@ -13,6 +13,7 @@
     "check:moves": "node scripts/checkPokemonMoveStats.mjs",
     "check:types": "node scripts/checkPokemonTypes.mjs",
     "check:sprites": "node scripts/checkPokemonSprites.mjs",
+    "check:pokemon-catalog": "node scripts/checkPokemonCatalog.mjs",
     "check:move-catalog": "node scripts/checkMoveCatalog.mjs",
     "check:move-data": "node scripts/checkMoveData.mjs",
     "check:pokemon-data": "node scripts/checkPokemonData.mjs",

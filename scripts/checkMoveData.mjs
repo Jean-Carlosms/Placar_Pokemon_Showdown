@@ -17,6 +17,7 @@ if (Number(moveData.count || 0) === 0 || moveKeys.length === 0) {
 
 const sampleMove = moveData.moves[moveKeys[0]];
 
+assertTruthy(moveKeys.length > 1, "Move data should include multiple moves when populated");
 assertTruthy(sampleMove.name, "Sample move should include name");
 assertTruthy(sampleMove.displayName, "Sample move should include displayName");
 assertTruthy("power" in sampleMove, "Sample move should include power");
@@ -36,6 +37,7 @@ if (moveData.moves["sucker-punch"]) {
     "Sucker Punch displayName should be valid",
   );
   assertEqual(moveData.moves["sucker-punch"].type, "Dark", "Sucker Punch type should be Dark");
+  assertEqual(moveData.moves["sucker-punch"].power, 70, "Sucker Punch power should be 70");
   assertEqual(
     moveData.moves["sucker-punch"].damageClass,
     "Physical",

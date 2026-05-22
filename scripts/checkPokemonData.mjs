@@ -20,6 +20,7 @@ if (Number(pokemonData.count || 0) === 0 || pokemonKeys.length === 0) {
 
 const samplePokemon = pokemonData.pokemon[pokemonKeys[0]];
 
+assertTruthy(pokemonKeys.length > 1, "Pokemon data should include multiple entries when populated");
 assertTruthy(samplePokemon.displayName, "Sample Pokemon should include displayName");
 assertTruthy(samplePokemon.stats && typeof samplePokemon.stats === "object", "Sample Pokemon should include stats");
 assertTruthy("totalStats" in samplePokemon, "Sample Pokemon should include totalStats");
@@ -36,6 +37,26 @@ assertTruthy(Array.isArray(samplePokemon.types), "Sample Pokemon should include 
   assertTruthy(Number(pokemon.totalStats) > 0, `${pokemonKey} should include totalStats`);
   assertTruthy(Array.isArray(pokemon.types) && pokemon.types.length > 0, `${pokemonKey} should include types`);
 });
+
+if (pokemonData.pokemon.regieleki) {
+  assertTruthy(
+    pokemonData.pokemon.regieleki.displayName === "Regieleki",
+    "Regieleki displayName should be valid",
+  );
+}
+
+if (pokemonData.pokemon["chien-pao"]) {
+  assertTruthy(
+    Array.isArray(pokemonData.pokemon["chien-pao"].types) &&
+      pokemonData.pokemon["chien-pao"].types.includes("Dark") &&
+      pokemonData.pokemon["chien-pao"].types.includes("Ice"),
+    "Chien-Pao should include Dark/Ice types",
+  );
+  assertTruthy(
+    Number(pokemonData.pokemon["chien-pao"].stats?.attack) > 0,
+    "Chien-Pao should include attack stat",
+  );
+}
 
 console.log("Pokemon data check passed.");
 

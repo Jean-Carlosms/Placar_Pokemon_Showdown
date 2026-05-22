@@ -1,35 +1,47 @@
 import { useEffect, useMemo, useState } from "react";
 import { getMoveDetails, normalizeMoveApiName } from "../services/moveApi.js";
-import { countMoveUsageFromHistory, getUniqueMovesFromHistory } from "../utils/moveCatalog.js";
+import {
+  countMoveUsageFromHistory,
+  getAllMovesFromLocalDatabase,
+  getUniqueMovesFromHistory,
+} from "../utils/moveCatalog.js";
 import MoveDamageClassBadge from "./MoveDamageClassBadge.jsx";
 
 function MoveInfoCard({ history }) {
-  const moves = useMemo(() => getUniqueMovesFromHistory(history), [history]);
+  const allMoves = useMemo(() => getAllMovesFromLocalDatabase(), []);
+  const usedMoves = useMemo(() => getUniqueMovesFromHistory(history), [history]);
   const moveUsage = useMemo(() => countMoveUsageFromHistory(history), [history]);
+  const [filterMode, setFilterMode] = useState("all");
   const [selectedMoveKey, setSelectedMoveKey] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [moveDetails, setMoveDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const moves = useMemo(
+    () => (filterMode === "all" && allMoves.length > 0 ? allMoves : usedMoves),
+    [allMoves, filterMode, usedMoves],
+  );
+  const visibleMoves = useMemo(() => {
+    const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+
+    return normalizedSearchTerm
+      ? moves.filter((move) => move.displayName.toLowerCase().includes(normalizedSearchTerm))
+      : moves;
+  }, [moves, searchTerm]);
+  const selectedMove = moves.find((move) => move.key === selectedMoveKey);
+  const catalogLabel = filterMode === "all" && allMoves.length > 0 ? "disponiveis" : "usados nos replays";
 
   useEffect(() => {
-    if (moves.length === 0) {
+    if (visibleMoves.length === 0) {
       setSelectedMoveKey("");
       return;
     }
 
-    const selectedMoveExists = moves.some((move) => move.key === selectedMoveKey);
+    const selectedMoveExists = visibleMoves.some((move) => move.key === selectedMoveKey);
 
     if (!selectedMoveExists) {
-      setSelectedMoveKey(moves[0].key);
+      setSelectedMoveKey(visibleMoves[0].key);
     }
-  }, [moves, selectedMoveKey]);
-
-  const selectedMove = moves.find((move) => move.key === selectedMoveKey);
-  const filteredMoves = moves.filter((move) =>
-    move.displayName.toLowerCase().includes(searchTerm.trim().toLowerCase()),
-  );
-  const visibleMoves =
-    filteredMoves.length > 0 ? includeSelectedMove(filteredMoves, selectedMove) : moves;
+  }, [visibleMoves, selectedMoveKey]);
 
   useEffect(() => {
     let isMounted = true;
@@ -69,19 +81,31 @@ function MoveInfoCard({ history }) {
 
       {moves.length === 0 ? (
         <p className="move-empty-state">
-          Importe um replay com ataques registrados para consultar os moves.
+          Nenhum move disponivel. Gere o banco local com npm run data:showdown ou importe um replay.
         </p>
       ) : (
         <>
-          <div className="move-info-controls">
+          <div className="catalog-filter-row move-info-controls">
+            <label>
+              <span>Filtro do catalogo</span>
+              <select
+                className="catalog-filter-select"
+                value={filterMode}
+                onChange={(event) => setFilterMode(event.target.value)}
+              >
+                <option value="all">Mostrar todos</option>
+                <option value="used">Somente usados nos replays</option>
+              </select>
+            </label>
+
             <label>
               <span>Filtrar por nome</span>
               <input
-                className="move-search"
+                className="move-search catalog-search-input"
                 type="search"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Ex.: Protect"
+                placeholder="Buscar move..."
               />
             </label>
 
@@ -101,6 +125,14 @@ function MoveInfoCard({ history }) {
             </label>
           </div>
 
+          <p className="catalog-count-hint">
+            {visibleMoves.length} moves {catalogLabel}
+          </p>
+
+          {visibleMoves.length === 0 && (
+            <p className="move-empty-state">Nenhum move encontrado para a busca atual.</p>
+          )}
+
           {isLoading && <p className="move-empty-state">Carregando detalhes do move...</p>}
 
           {!isLoading && moveDetails && (
@@ -118,7 +150,7 @@ function MoveDetails({ moveDetails, usageCount }) {
       <div className="move-details-title">
         <div>
           <h3>{moveDetails.displayName}</h3>
-          <p>Uso nos historicos: {usageCount} vez{usageCount === 1 ? "" : "es"}</p>
+          <p>Uso nos historicos: {usageCount} vez</p>
           {moveDetails.isBasicFallback && (
             <p className="move-fallback-note">Dados basicos exibidos por fallback local.</p>
           )}
@@ -180,14 +212,6 @@ function formatMoveValue(value) {
 
 function formatAccuracy(value) {
   return value === null || value === undefined ? "—" : `${value}%`;
-}
-
-function includeSelectedMove(moves, selectedMove) {
-  if (!selectedMove || moves.some((move) => move.key === selectedMove.key)) {
-    return moves;
-  }
-
-  return [selectedMove, ...moves];
 }
 
 function getMoveSourceLabel(source) {

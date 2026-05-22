@@ -128,9 +128,13 @@ O banco agregado de ataques e derivado do historico com `pokemonMoveStats.js`, s
 
 O card `Consulta de Pokemon` aparece entre `Estatisticas` e `Consulta de Moves`.
 
-Ele lista apenas os Pokemon encontrados nos times dos replays importados e mostra sprite, numero da Pokedex, tipos, altura, peso, abilities, base experience, total de base stats e barras para HP, Attack, Defense, Special Attack, Special Defense e Speed.
+Ele pode listar todos os Pokemon do banco local gerado ou apenas os Pokemon encontrados nos times dos replays importados. O modo padrao e `Mostrar todos`.
 
-Se nao houver Pokemon no historico, o card mostra um estado vazio. Se o banco local estiver vazio e a PokeAPI falhar, o app continua funcionando com dados basicos e indica a fonte usada.
+O card mostra sprite, numero da Pokedex, tipos, altura, peso, abilities, base experience, total de base stats e barras para HP, Attack, Defense, Special Attack, Special Defense e Speed.
+
+O historico continua sendo usado para mostrar o contador `Uso nos historicos`. Se o Pokemon nunca apareceu em replay, o uso aparece como `0 vez`.
+
+Se o banco local estiver vazio, o app usa os Pokemon do historico como fallback. Se a PokeAPI falhar, o app continua funcionando com dados basicos e indica a fonte usada.
 
 ## Banco Local de Pokemon
 
@@ -184,13 +188,34 @@ O app continua consultando primeiro os arquivos gerados locais. Se eles estivere
 
 ## Consulta de Moves
 
-O card `Consulta de Moves` fica abaixo da secao de estatisticas e lista apenas os moves que apareceram nos replays importados.
+O card `Consulta de Moves` fica abaixo da secao de estatisticas.
 
-Ao selecionar um move, o app busca detalhes na PokeAPI e mostra tipo, categoria, power, accuracy, PP, priority, target, generation, descricao curta, efeito e flavor text.
+Ele pode listar todos os moves do banco local gerado ou apenas os moves que apareceram nos replays importados. O modo padrao e `Mostrar todos`.
+
+Ao selecionar um move, o app mostra tipo, categoria, power, accuracy, PP, priority, target, generation, descricao curta, efeito e flavor text.
 
 O card tambem mostra a categoria do move com badge visual: Physical, Special ou Status.
 
-Se a PokeAPI falhar ou a rede bloquear a chamada, o app tenta usar fallbacks locais para moves comuns. Quando nao houver fallback, ele mostra uma mensagem amigavel. O historico continua sendo a fonte da verdade: nenhum move externo e baixado em massa.
+O historico continua sendo usado para mostrar o contador `Uso nos historicos`. Se o move nunca apareceu em replay, o uso aparece como `0 vez`.
+
+Se a PokeAPI falhar ou a rede bloquear a chamada, o app tenta usar o banco local e fallbacks locais. Quando nao houver fallback, ele mostra uma mensagem amigavel.
+
+## Consulta em Banco Completo
+
+Depois de rodar:
+
+```bash
+npm run data:showdown
+```
+
+os cards `Consulta de Pokemon` e `Consulta de Moves` passam a navegar pelo banco completo gerado pelo Pokemon Showdown Dex.
+
+Cada card possui o filtro:
+
+- `Mostrar todos`
+- `Somente usados nos replays`
+
+O banco local fornece os detalhes exibidos. O historico segue como fonte para calcular quantas vezes cada Pokemon ou move apareceu nas batalhas importadas.
 
 ## Banco Local de Moves
 

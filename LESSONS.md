@@ -285,3 +285,19 @@ Gerar `moveDetails.generated.json` e `pokemonDetails.generated.json` a partir do
 ## Compatibilidade com Replays do Pokemon Showdown
 
 Usar o Pokemon Showdown Dex como fonte alternativa ajuda a alinhar nomes, formas e moves com os mesmos dados que aparecem nos replays importados pelo app.
+
+## Catalogo Completo vs Historico Usado
+
+O banco local gerado funciona como catalogo completo de consulta, enquanto o historico representa apenas o que aconteceu nas partidas importadas. Separar essas duas fontes permite consultar Pikachu ou Thunderbolt mesmo que eles nunca tenham aparecido em replay.
+
+## Banco Local Gerado como Fonte de Consulta
+
+Quando os cards consultam `pokemonDetails.generated.json` e `moveDetails.generated.json`, a interface deixa de depender de chamadas externas para listar opcoes. A rede passa a ser fallback, nao requisito principal.
+
+## Filtros de Catalogo
+
+Um filtro simples entre `Mostrar todos` e `Somente usados nos replays` ajuda a alternar entre exploracao geral e analise das partidas reais sem duplicar componentes.
+
+## Fallback para Historico
+
+Se o banco local estiver vazio, os cards ainda conseguem listar Pokemon e moves derivados do historico. Isso preserva utilidade mesmo antes de gerar os JSONs completos.

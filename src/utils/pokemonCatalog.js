@@ -1,3 +1,5 @@
+import pokemonDetailsData from "../data/pokemonDetails.generated.json" with { type: "json" };
+
 export function normalizePokemonKey(name) {
   return String(name || "")
     .trim()
@@ -7,6 +9,22 @@ export function normalizePokemonKey(name) {
     .replace(/[^a-z0-9-]/g, "")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
+}
+
+export function getAllPokemonFromLocalDatabase() {
+  const pokemonDatabase = pokemonDetailsData?.pokemon;
+
+  if (!pokemonDatabase || typeof pokemonDatabase !== "object") {
+    return [];
+  }
+
+  return Object.entries(pokemonDatabase)
+    .map(([key, pokemon]) => ({
+      key,
+      displayName: pokemon?.displayName,
+    }))
+    .filter((pokemon) => pokemon.key && pokemon.displayName)
+    .sort((a, b) => a.displayName.localeCompare(b.displayName));
 }
 
 export function getUniquePokemonFromHistory(history) {

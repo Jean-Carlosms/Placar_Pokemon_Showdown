@@ -1,3 +1,5 @@
+import moveDetailsData from "../data/moveDetails.generated.json" with { type: "json" };
+
 export function normalizeMoveKey(moveName) {
   return String(moveName || "")
     .trim()
@@ -18,6 +20,22 @@ export function formatMoveName(moveName) {
     .filter(Boolean)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
+}
+
+export function getAllMovesFromLocalDatabase() {
+  const moveDatabase = moveDetailsData?.moves;
+
+  if (!moveDatabase || typeof moveDatabase !== "object") {
+    return [];
+  }
+
+  return Object.entries(moveDatabase)
+    .map(([key, move]) => ({
+      key,
+      displayName: move?.displayName,
+    }))
+    .filter((move) => move.key && move.displayName)
+    .sort((a, b) => a.displayName.localeCompare(b.displayName));
 }
 
 export function getUniqueMovesFromHistory(history) {

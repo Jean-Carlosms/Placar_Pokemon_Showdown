@@ -1,5 +1,6 @@
 import {
   countMoveUsageFromHistory,
+  getAllMovesFromLocalDatabase,
   getUniqueMovesFromHistory,
   normalizeMoveKey,
 } from "../src/utils/moveCatalog.js";
@@ -36,6 +37,7 @@ const history = [
 
 const uniqueMoves = getUniqueMovesFromHistory(history);
 const moveUsage = countMoveUsageFromHistory(history);
+const allMoves = getAllMovesFromLocalDatabase();
 
 assertTruthy(
   uniqueMoves.some((move) => move.key === "protect" && move.displayName === "Protect"),
@@ -48,6 +50,17 @@ assertTruthy(
 assertEqual(moveUsage.protect.count, 3, "Protect should be counted three times");
 assertEqual(moveUsage["tera-blast"].count, 1, "Tera Blast should be counted once");
 assertEqual(moveUsage["heat-wave"].count, 1, "Heat Wave should be counted once");
+
+if (allMoves.length > 0) {
+  assertTruthy(
+    allMoves.some((move) => move.key === "protect" && move.displayName === "Protect"),
+    "Local move database should include Protect when populated",
+  );
+  assertTruthy(
+    allMoves.some((move) => move.key === "sucker-punch" && move.displayName === "Sucker Punch"),
+    "Local move database should include Sucker Punch when populated",
+  );
+}
 
 console.log("Move catalog check passed.");
 

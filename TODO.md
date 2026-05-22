@@ -19,6 +19,7 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Adicionar filtros por Pokemon no historico.
 - Adicionar filtro por tipo na consulta de Pokemon.
 - Adicionar filtro por stat dominante.
+- Ordenar Pokemon por total base stats.
 - Criar estatisticas de Pokemon por formato Single/Double.
 - Criar banco local de species/evolucoes.
 - Criar grafico radar de stats.
@@ -32,10 +33,13 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Adicionar filtros por ataque.
 - Adicionar filtro por tipo do move.
 - Adicionar filtro por categoria Physical/Special/Status.
+- Ordenar moves por power.
 - Substituir badges CSS por sprites oficiais das categorias Physical/Special/Status.
 - Criar estatisticas de ataques por Pokemon.
 - Diferenciar ataques por Single/Double.
 - Comparar moves usados por Jean e Felipe.
+- Comparar dois Pokemon lado a lado.
+- Comparar dois moves lado a lado.
 - Criar cache persistente de detalhes dos moves no localStorage.
 - Expandir fallbacks locais de detalhes dos moves.
 - Criar cache persistente de sprites.

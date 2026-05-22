@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getPokemonDetails, normalizePokemonApiName } from "../services/pokemonDetailsApi.js";
 import {
   countPokemonUsageFromHistory,
+  getAllPokemonFromLocalDatabase,
   getUniquePokemonFromHistory,
 } from "../utils/pokemonCatalog.js";
 
@@ -15,32 +16,40 @@ const STAT_LABELS = [
 ];
 
 function PokemonInfoCard({ history }) {
-  const pokemonList = useMemo(() => getUniquePokemonFromHistory(history), [history]);
+  const allPokemon = useMemo(() => getAllPokemonFromLocalDatabase(), []);
+  const usedPokemon = useMemo(() => getUniquePokemonFromHistory(history), [history]);
   const pokemonUsage = useMemo(() => countPokemonUsageFromHistory(history), [history]);
+  const [filterMode, setFilterMode] = useState("all");
   const [selectedPokemonKey, setSelectedPokemonKey] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const pokemonList = useMemo(
+    () => (filterMode === "all" && allPokemon.length > 0 ? allPokemon : usedPokemon),
+    [allPokemon, filterMode, usedPokemon],
+  );
+  const visiblePokemon = useMemo(() => {
+    const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+
+    return normalizedSearchTerm
+      ? pokemonList.filter((pokemon) => pokemon.displayName.toLowerCase().includes(normalizedSearchTerm))
+      : pokemonList;
+  }, [pokemonList, searchTerm]);
+  const selectedPokemon = pokemonList.find((pokemon) => pokemon.key === selectedPokemonKey);
+  const catalogLabel = filterMode === "all" && allPokemon.length > 0 ? "disponiveis" : "usados nos replays";
 
   useEffect(() => {
-    if (pokemonList.length === 0) {
+    if (visiblePokemon.length === 0) {
       setSelectedPokemonKey("");
       return;
     }
 
-    const selectedPokemonExists = pokemonList.some((pokemon) => pokemon.key === selectedPokemonKey);
+    const selectedPokemonExists = visiblePokemon.some((pokemon) => pokemon.key === selectedPokemonKey);
 
     if (!selectedPokemonExists) {
-      setSelectedPokemonKey(pokemonList[0].key);
+      setSelectedPokemonKey(visiblePokemon[0].key);
     }
-  }, [pokemonList, selectedPokemonKey]);
-
-  const selectedPokemon = pokemonList.find((pokemon) => pokemon.key === selectedPokemonKey);
-  const filteredPokemon = pokemonList.filter((pokemon) =>
-    pokemon.displayName.toLowerCase().includes(searchTerm.trim().toLowerCase()),
-  );
-  const visiblePokemon =
-    filteredPokemon.length > 0 ? includeSelectedPokemon(filteredPokemon, selectedPokemon) : pokemonList;
+  }, [visiblePokemon, selectedPokemonKey]);
 
   useEffect(() => {
     let isMounted = true;
@@ -80,19 +89,31 @@ function PokemonInfoCard({ history }) {
 
       {pokemonList.length === 0 ? (
         <p className="pokemon-empty-state">
-          Importe um replay com times registrados para consultar os Pokemon.
+          Nenhum Pokemon disponivel. Gere o banco local com npm run data:showdown ou importe um replay.
         </p>
       ) : (
         <>
-          <div className="pokemon-info-controls">
+          <div className="catalog-filter-row pokemon-info-controls">
+            <label>
+              <span>Filtro do catalogo</span>
+              <select
+                className="catalog-filter-select"
+                value={filterMode}
+                onChange={(event) => setFilterMode(event.target.value)}
+              >
+                <option value="all">Mostrar todos</option>
+                <option value="used">Somente usados nos replays</option>
+              </select>
+            </label>
+
             <label>
               <span>Filtrar por nome</span>
               <input
-                className="pokemon-search"
+                className="pokemon-search catalog-search-input"
                 type="search"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Ex.: Regieleki"
+                placeholder="Buscar Pokemon..."
               />
             </label>
 
@@ -111,6 +132,14 @@ function PokemonInfoCard({ history }) {
               </select>
             </label>
           </div>
+
+          <p className="catalog-count-hint">
+            {visiblePokemon.length} Pokemon {catalogLabel}
+          </p>
+
+          {visiblePokemon.length === 0 && (
+            <p className="pokemon-empty-state">Nenhum Pokemon encontrado para a busca atual.</p>
+          )}
 
           {isLoading && <p className="pokemon-empty-state">Carregando detalhes do Pokemon...</p>}
 
@@ -149,7 +178,7 @@ function PokemonDetails({ pokemonDetails, usageCount }) {
               {pokemonDetails.id ? `Pokedex #${pokemonDetails.id}` : "Pokedex nao informado"}
             </p>
             <h3>{pokemonDetails.displayName}</h3>
-            <p>Uso nos historicos: {usageCount} vez{usageCount === 1 ? "" : "es"}</p>
+            <p>Uso nos historicos: {usageCount} vez</p>
             {pokemonDetails.source !== "local-pokemon-database" && pokemonDetails.source !== "pokeapi" && (
               <p className="pokemon-info-warning">Dados basicos exibidos por fallback local.</p>
             )}
@@ -232,14 +261,6 @@ function formatWeight(weight) {
 
 function formatValue(value) {
   return value === null || value === undefined ? "-" : value;
-}
-
-function includeSelectedPokemon(pokemonList, selectedPokemon) {
-  if (!selectedPokemon || pokemonList.some((pokemon) => pokemon.key === selectedPokemon.key)) {
-    return pokemonList;
-  }
-
-  return [selectedPokemon, ...pokemonList];
 }
 
 function getPokemonSourceLabel(source) {
