@@ -70,9 +70,13 @@ function HistoryItem({ entry, getPlayerName }) {
     <li className="history-item">
       <span className="timeline-dot" aria-hidden="true" />
       <div className="history-main">
-        <div>
+        <div className="history-card-header">
+          <span className="history-date">{formatDateTime(entry.timestamp)}</span>
+          <span className={`battle-badge ${entry.battleType}`}>{BATTLE_TYPES[entry.battleType]}</span>
+          <span className="history-card-spacer" aria-hidden="true" />
+        </div>
+        <div className="history-summary">
           <strong>{getPlayerName(entry.player)}</strong>
-          <span>{formatDateTime(entry.timestamp)}</span>
           {entry.source === "pokemon-showdown-replay" && (
             <small>
               Replay importado
@@ -88,7 +92,6 @@ function HistoryItem({ entry, getPlayerName }) {
           </div>
         )}
       </div>
-      <span className={`battle-badge ${entry.battleType}`}>{BATTLE_TYPES[entry.battleType]}</span>
     </li>
   );
 }
