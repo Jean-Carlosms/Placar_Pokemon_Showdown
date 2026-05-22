@@ -4,6 +4,10 @@ import {
   getPokemonTypes,
   normalizePokemonApiName,
 } from "../src/services/pokemonApi.js";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const pokemonDetailsData = require("../src/data/pokemonDetails.generated.json");
 
 const names = [
   "Ambipom",
@@ -41,6 +45,21 @@ for (const name of names) {
   assertTruthy(spriteCandidates.length > 0, `${name} should have sprite candidates`);
   assertTruthy(allSpriteFallbacks.length > 0, `${name} should have complete sprite fallbacks`);
   assertTruthy(types.length > 0, `${name} should have local type fallback`);
+}
+
+if (Number(pokemonDetailsData.count || 0) > 0) {
+  ["regieleki", "chien-pao", "pikachu"].forEach((pokemonKey) => {
+    const pokemon = pokemonDetailsData.pokemon?.[pokemonKey];
+
+    if (!pokemon) {
+      return;
+    }
+
+    assertTruthy(
+      Array.isArray(pokemon.spriteCandidates) && pokemon.spriteCandidates.length > 0,
+      `${pokemonKey} should include generated sprite candidates`,
+    );
+  });
 }
 
 console.log("Pokemon sprite/type fallback check passed.");

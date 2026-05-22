@@ -145,6 +145,8 @@ function MoveInfoCard({ history }) {
 }
 
 function MoveDetails({ moveDetails, usageCount }) {
+  const description = getMoveDescription(moveDetails);
+
   return (
     <article className="move-details">
       <div className="move-details-title">
@@ -175,6 +177,12 @@ function MoveDetails({ moveDetails, usageCount }) {
       </dl>
 
       <div className="move-description">
+        <p>
+          <strong>Descricao:</strong> {description}
+        </p>
+        {!moveDetails.hasCompleteDescription && (
+          <p className="move-fallback-note">Descricao completa nao disponivel no banco local.</p>
+        )}
         {moveDetails.shortEffect && (
           <p>
             <strong>Descricao curta:</strong> {moveDetails.shortEffect}
@@ -194,6 +202,16 @@ function MoveDetails({ moveDetails, usageCount }) {
 
       <p className="move-data-source">Fonte: {getMoveSourceLabel(moveDetails.source)}</p>
     </article>
+  );
+}
+
+function getMoveDescription(move) {
+  return (
+    move.description ||
+    move.shortEffect ||
+    move.effect ||
+    move.flavorText ||
+    "Descricao nao disponivel para este move."
   );
 }
 

@@ -49,19 +49,18 @@ export async function getMoveDetails(moveName) {
 
 async function fetchMoveDetails(apiName) {
   const localMove = getLocalMove(apiName);
+  const fallbackMove = getMoveFallback(apiName);
 
   if (localMove) {
     return {
-      ...localMove,
+      ...normalizeLocalMove(localMove, fallbackMove),
       source: "local-move-database",
     };
   }
 
-  const fallbackMove = getMoveFallback(apiName);
-
   if (fallbackMove) {
     return {
-      ...fallbackMove,
+      ...normalizeLocalMove(fallbackMove),
       source: "local-fallback",
     };
   }
@@ -82,6 +81,30 @@ async function fetchMoveDetails(apiName) {
   } catch (error) {
     return createBasicFallbackMove(apiName);
   }
+}
+
+function normalizeLocalMove(move, fallbackMove = {}) {
+  const description =
+    move.description ||
+    move.shortEffect ||
+    move.effect ||
+    move.flavorText ||
+    fallbackMove.shortEffect ||
+    fallbackMove.effect ||
+    fallbackMove.flavorText ||
+    "Descricao nao disponivel para este move.";
+  const shortEffect = move.shortEffect || fallbackMove.shortEffect || description;
+  const effect = move.effect || fallbackMove.effect || shortEffect || description;
+  const flavorText = move.flavorText || fallbackMove.flavorText || effect || description;
+
+  return {
+    ...move,
+    shortEffect,
+    effect,
+    flavorText,
+    description,
+    hasCompleteDescription: Boolean(move.description || move.shortEffect || move.effect || move.flavorText),
+  };
 }
 
 function mapMoveDetails(move, fallbackMove) {

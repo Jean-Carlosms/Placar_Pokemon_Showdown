@@ -19,12 +19,16 @@ if (Number(pokemonData.count || 0) === 0 || pokemonKeys.length === 0) {
 }
 
 const samplePokemon = pokemonData.pokemon[pokemonKeys[0]];
+const pokemonWithSpriteCandidates = pokemonKeys.find((pokemonKey) =>
+  Array.isArray(pokemonData.pokemon[pokemonKey]?.spriteCandidates),
+);
 
 assertTruthy(pokemonKeys.length > 1, "Pokemon data should include multiple entries when populated");
 assertTruthy(samplePokemon.displayName, "Sample Pokemon should include displayName");
 assertTruthy(samplePokemon.stats && typeof samplePokemon.stats === "object", "Sample Pokemon should include stats");
 assertTruthy("totalStats" in samplePokemon, "Sample Pokemon should include totalStats");
 assertTruthy(Array.isArray(samplePokemon.types), "Sample Pokemon should include types");
+assertTruthy(pokemonWithSpriteCandidates, "At least one Pokemon should include spriteCandidates");
 
 ["regieleki", "annihilape", "trubbish"].forEach((pokemonKey) => {
   const pokemon = pokemonData.pokemon[pokemonKey];
@@ -36,6 +40,10 @@ assertTruthy(Array.isArray(samplePokemon.types), "Sample Pokemon should include 
   assertTruthy("hp" in pokemon.stats, `${pokemonKey} should include hp stat`);
   assertTruthy(Number(pokemon.totalStats) > 0, `${pokemonKey} should include totalStats`);
   assertTruthy(Array.isArray(pokemon.types) && pokemon.types.length > 0, `${pokemonKey} should include types`);
+  assertTruthy(
+    Array.isArray(pokemon.spriteCandidates) && pokemon.spriteCandidates.length > 0,
+    `${pokemonKey} should include spriteCandidates`,
+  );
 });
 
 if (pokemonData.pokemon.regieleki) {
@@ -55,6 +63,19 @@ if (pokemonData.pokemon["chien-pao"]) {
   assertTruthy(
     Number(pokemonData.pokemon["chien-pao"].stats?.attack) > 0,
     "Chien-Pao should include attack stat",
+  );
+  assertTruthy(
+    Array.isArray(pokemonData.pokemon["chien-pao"].spriteCandidates) &&
+      pokemonData.pokemon["chien-pao"].spriteCandidates.length > 0,
+    "Chien-Pao should include spriteCandidates",
+  );
+}
+
+if (pokemonData.pokemon.pikachu) {
+  assertTruthy(
+    Array.isArray(pokemonData.pokemon.pikachu.spriteCandidates) &&
+      pokemonData.pokemon.pikachu.spriteCandidates.length > 0,
+    "Pikachu should include spriteCandidates",
   );
 }
 

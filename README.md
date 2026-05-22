@@ -186,6 +186,12 @@ npm run build
 
 O app continua consultando primeiro os arquivos gerados locais. Se eles estiverem vazios ou incompletos, os servicos ainda usam fallbacks e API online quando possivel.
 
+O banco local gerado pelo Pokemon Showdown Dex inclui candidatos de sprites e descricoes de moves quando disponiveis.
+
+As sprites usam URLs publicas do Pokemon Showdown. Se a primeira URL falhar, o app tenta a proxima candidata ate cair no fallback visual local.
+
+Os moves usam descricao em cadeia: `description`, `shortEffect`, `effect`, `flavorText` e, por fim, uma mensagem de fallback quando nenhum texto estiver disponivel.
+
 ## Consulta de Moves
 
 O card `Consulta de Moves` fica abaixo da secao de estatisticas.

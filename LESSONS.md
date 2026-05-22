@@ -301,3 +301,19 @@ Um filtro simples entre `Mostrar todos` e `Somente usados nos replays` ajuda a a
 ## Fallback para Historico
 
 Se o banco local estiver vazio, os cards ainda conseguem listar Pokemon e moves derivados do historico. Isso preserva utilidade mesmo antes de gerar os JSONs completos.
+
+## Sprite Direta nem Sempre Existe
+
+O Pokemon Showdown Dex traz nomes, formas e stats, mas nem sempre entrega uma URL final de sprite. Gerar uma lista de candidatos por especie torna a UI mais resistente a divergencias entre `spriteid`, nome exibido e nome de arquivo.
+
+## Candidatos de Sprite
+
+Para formas especiais, e melhor testar variacoes como nome com hifen e nome compactado. Assim `Chien-Pao`, `Toxtricity-Low-Key` e `Oricorio-Pa'u` podem tentar varias URLs antes de cair no fallback local.
+
+## Descricao em Cadeia
+
+Moves podem ter `shortDesc`, `desc`, ambos ou nenhum texto util. Usar uma cadeia como `description`, `shortEffect`, `effect`, `flavorText` e fallback evita campos vazios no card de consulta.
+
+## Validacoes de Completude
+
+Checks de dados gerados nao devem validar apenas formato JSON. Eles tambem precisam confirmar que os dados estao completos o bastante para a interface, como `spriteCandidates` em Pokemon e descricoes em moves importantes.

@@ -42,12 +42,15 @@ async function fetchPokemonDetails(apiName, originalName) {
   const localPokemon = getLocalPokemon(apiName) ?? getLocalPokemon(lookupName);
 
   if (localPokemon) {
+    const spriteCandidates = getPokemonSpriteCandidates(localPokemon, apiName);
+
     return {
       ...localPokemon,
       sprite:
         localPokemon.sprite ||
-        getPokemonSpriteFallbacks(apiName)[0] ||
+        spriteCandidates[0] ||
         getLocalPokemonSprite(apiName),
+      spriteCandidates,
       source: "local-pokemon-database",
     };
   }
@@ -92,9 +95,22 @@ async function createPokemonFallbackFromKnownData(apiName, originalName) {
     displayName,
     sprite: sprite || getLocalPokemonSprite(apiName),
     types,
+    spriteCandidates: getPokemonSpriteFallbacks(apiName),
     source: types.length > 0 || sprite ? "local-fallback" : "basic-fallback",
     isBasicFallback: types.length === 0 && !sprite,
   };
+}
+
+function getPokemonSpriteCandidates(pokemon, fallbackName) {
+  const localCandidates = Array.isArray(pokemon?.spriteCandidates) ? pokemon.spriteCandidates : [];
+  const generatedCandidates = getPokemonSpriteFallbacks(pokemon?.displayName || pokemon?.name || fallbackName);
+
+  return [
+    pokemon?.sprite,
+    ...localCandidates,
+    ...generatedCandidates,
+    getLocalPokemonSprite(pokemon?.displayName || pokemon?.name || fallbackName),
+  ].filter((url, index, urls) => url && urls.indexOf(url) === index);
 }
 
 function mapPokemonDetails(rawPokemon) {

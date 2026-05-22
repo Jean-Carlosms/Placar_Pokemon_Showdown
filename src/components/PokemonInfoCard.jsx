@@ -156,16 +156,29 @@ function PokemonInfoCard({ history }) {
 }
 
 function PokemonDetails({ pokemonDetails, usageCount }) {
+  const [spriteIndex, setSpriteIndex] = useState(0);
+  const spriteCandidates = useMemo(() => getSpriteCandidates(pokemonDetails), [pokemonDetails]);
+  const currentSprite = spriteCandidates[spriteIndex] ?? "";
+
+  useEffect(() => {
+    setSpriteIndex(0);
+  }, [pokemonDetails.name, pokemonDetails.displayName]);
+
   return (
     <article className="pokemon-details">
       <div className="pokemon-details-main">
         <div className="pokemon-details-sprite">
-          {pokemonDetails.sprite ? (
+          {currentSprite ? (
             <img
-              src={pokemonDetails.sprite}
+              src={currentSprite}
               alt={`Sprite de ${pokemonDetails.displayName}`}
               width="120"
               height="120"
+              onError={() => {
+                setSpriteIndex((currentIndex) =>
+                  currentIndex < spriteCandidates.length - 1 ? currentIndex + 1 : currentIndex,
+                );
+              }}
             />
           ) : (
             <span>{pokemonDetails.displayName}</span>
@@ -226,6 +239,13 @@ function PokemonDetails({ pokemonDetails, usageCount }) {
       <p className="pokemon-info-source">Fonte: {getPokemonSourceLabel(pokemonDetails.source)}</p>
     </article>
   );
+}
+
+function getSpriteCandidates(pokemonDetails) {
+  return [
+    pokemonDetails.sprite,
+    ...(Array.isArray(pokemonDetails.spriteCandidates) ? pokemonDetails.spriteCandidates : []),
+  ].filter((url, index, urls) => url && urls.indexOf(url) === index);
 }
 
 function PokemonMetaItem({ label, value }) {

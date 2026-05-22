@@ -10,6 +10,7 @@ const MOVE_TMP_PATH = resolve("src/data/moveDetails.generated.tmp.json");
 const POKEMON_OUTPUT_PATH = resolve("src/data/pokemonDetails.generated.json");
 const POKEMON_TMP_PATH = resolve("src/data/pokemonDetails.generated.tmp.json");
 const SOURCE = "pokemon-showdown-dex";
+const SHOWDOWN_SPRITES_BASE_URL = "https://play.pokemonshowdown.com/sprites";
 
 const generatedAt = new Date().toISOString();
 const moves = buildMoveDatabase();
@@ -41,7 +42,10 @@ function buildMoveDatabase() {
       return;
     }
 
-    const details = mapMoveDetails(dexId, move);
+    const details = mapMoveDetails(dexId, {
+      ...move,
+      ...Dex.moves.get(dexId),
+    });
     const key = normalizeKey(details.displayName || dexId);
 
     if (!key) {
@@ -63,7 +67,10 @@ function buildPokemonDatabase() {
       return;
     }
 
-    const details = mapPokemonDetails(dexId, species);
+    const details = mapPokemonDetails(dexId, {
+      ...species,
+      ...Dex.species.get(dexId),
+    });
     const key = normalizeKey(details.displayName || dexId);
 
     if (!key) {
@@ -82,6 +89,7 @@ function mapMoveDetails(dexId, move) {
   const accuracy = move.accuracy === true ? null : move.accuracy ?? null;
   const shortEffect = cleanText(move.shortDesc || move.desc || "");
   const effect = cleanText(move.desc || move.shortDesc || "");
+  const description = shortEffect || effect || "Descricao nao disponivel no banco local.";
 
   return {
     id: move.num ?? null,
@@ -98,12 +106,15 @@ function mapMoveDetails(dexId, move) {
     shortEffect,
     effect,
     flavorText: effect || shortEffect,
+    description,
     source: SOURCE,
   };
 }
 
 function mapPokemonDetails(dexId, species) {
   const displayName = formatDisplayName(species.name || dexId);
+  const key = normalizeKey(displayName || dexId);
+  const spriteCandidates = getPokemonSpriteCandidates(species, key);
   const stats = {
     hp: species.baseStats?.hp ?? null,
     attack: species.baseStats?.atk ?? null,
@@ -115,9 +126,10 @@ function mapPokemonDetails(dexId, species) {
 
   return {
     id: species.num ?? null,
-    name: normalizeKey(displayName),
+    name: key,
     displayName,
-    sprite: null,
+    sprite: spriteCandidates[0] ?? null,
+    spriteCandidates,
     types: Array.isArray(species.types) ? species.types : [],
     height: toPokeApiHeight(species.heightm),
     weight: toPokeApiWeight(species.weightkg),
@@ -134,8 +146,59 @@ function normalizeKey(name) {
     .trim()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[’']/g, "")
+    .replace(/[\u2018\u2019'`.]/g, "")
     .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase();
+}
+
+function getShowdownSpriteId(species, key) {
+  return normalizeSpriteId(species?.spriteid || species?.id || key);
+}
+
+function getPokemonSpriteCandidates(species, key) {
+  const ids = new Set();
+
+  [
+    getShowdownSpriteId(species, key),
+    species?.id,
+    species?.spriteid,
+    key,
+    species?.name,
+    normalizeKey(species?.name),
+  ].forEach((value) => {
+    addSpriteIdVariants(ids, value);
+  });
+
+  return [...ids]
+    .filter(Boolean)
+    .flatMap((spriteId) => [
+      `${SHOWDOWN_SPRITES_BASE_URL}/gen5/${spriteId}.png`,
+      `${SHOWDOWN_SPRITES_BASE_URL}/dex/${spriteId}.png`,
+      `${SHOWDOWN_SPRITES_BASE_URL}/ani/${spriteId}.gif`,
+    ]);
+}
+
+function addSpriteIdVariants(ids, value) {
+  const normalizedId = normalizeSpriteId(value);
+
+  if (!normalizedId) {
+    return;
+  }
+
+  ids.add(normalizedId);
+  ids.add(normalizedId.replace(/-/g, ""));
+}
+
+function normalizeSpriteId(value) {
+  return String(value || "")
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[\u2018\u2019'`.]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-zA-Z0-9-]/g, "")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .toLowerCase();
