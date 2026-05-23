@@ -87,3 +87,6 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Adicionar banner SVG animado.
 - Criar loader SVG de Pokebola.
 - Adicionar video curto da importacao de replay.
+- Fazer lazy load dos catalogos completos para reduzir o bundle inicial.
+- Mover JSONs grandes para `public/data` e carregar sob demanda.
+- Usar `React.lazy` nos cards Consulta de Pokemon e Consulta de Moves.

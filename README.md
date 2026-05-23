@@ -108,6 +108,14 @@ Quando nao existe nenhuma partida registrada, os percentuais ficam em `0%` para 
 
 O Pokemon destaque e calculado a partir do historico importado por replay: para cada vitoria, todos os Pokemon do time vencedor recebem +1 participacao em vitoria. O Pokemon com mais participacoes aparece no card principal do jogador.
 
+## Integridade do Placar
+
+O placar aceita importacao automatica somente quando o replay identifica uma batalha entre Jean Carlos e Felipe Eckert. Replays contra terceiros sao exibidos na previa, mas ficam bloqueados para registro.
+
+Quando o replay possui `replayId`, o app impede que o mesmo replay seja importado novamente e some pontos duplicados. Replays sem ID ainda podem ser registrados, com aviso de que a duplicidade nao pode ser verificada automaticamente.
+
+Nos backups atuais, o historico e a fonte da verdade: durante a importacao, as pontuacoes sao recalculadas a partir das partidas registradas. Backups legados sem historico continuam aceitando os placares salvos.
+
 ## Banco de Ataques por Pokemon
 
 Durante a importacao do replay HTML, o app tambem le as linhas `move` do log do Pokemon Showdown.
@@ -555,6 +563,7 @@ Algumas ideias principais:
 - criar ranking global de Pokemon mais vencedores;
 - gravar GIF real de demonstracao;
 - publicar com GitHub Pages.
+- carregar catalogos completos sob demanda para reduzir o bundle inicial.
 
 </details>
 

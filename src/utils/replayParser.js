@@ -89,6 +89,38 @@ export function mapShowdownPlayers(showdownPlayers) {
   }, {});
 }
 
+export function isReplayBetweenTrackedPlayers(mappedPlayers) {
+  const playerIds = Object.values(mappedPlayers || {}).filter(Boolean);
+  const uniqueIds = [...new Set(playerIds)];
+
+  return (
+    uniqueIds.length === 2 &&
+    uniqueIds.includes("jean") &&
+    uniqueIds.includes("felipe")
+  );
+}
+
+export function validateTrackedReplay(parsedReplay) {
+  if (!isReplayBetweenTrackedPlayers(parsedReplay?.mappedPlayers)) {
+    return {
+      valid: false,
+      reason: "Este replay nao parece ser uma batalha entre Jean Carlos e Felipe Eckert.",
+    };
+  }
+
+  if (!parsedReplay?.mappedWinnerId) {
+    return {
+      valid: false,
+      reason: "Nao foi possivel identificar o vencedor entre Jean Carlos e Felipe Eckert.",
+    };
+  }
+
+  return {
+    valid: true,
+    reason: null,
+  };
+}
+
 export function extractPokemonNameFromSwitchLine(line) {
   const { command, args } = parseShowdownLine(line);
 

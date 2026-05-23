@@ -147,7 +147,11 @@ function App() {
         onSelectSeason={handleSelectSeason}
       />
 
-      <ReplayImport players={PLAYERS} onRegisterReplayWin={handleAddWin} />
+      <ReplayImport
+        players={PLAYERS}
+        history={scoreboard.history}
+        onRegisterReplayWin={handleAddWin}
+      />
 
       <BackupControls
         scoreboard={scoreboard}

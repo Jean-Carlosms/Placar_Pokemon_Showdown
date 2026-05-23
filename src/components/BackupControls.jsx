@@ -22,7 +22,7 @@ function BackupControls({ scoreboard, history, stats, onImportBackup }) {
     }
 
     try {
-      const importedScoreboard = await parseBackupFile(file);
+      const { scoreboard: importedScoreboard, wasRecalculated } = await parseBackupFile(file);
       const shouldImport = confirm(
         "Importar este backup vai substituir o placar e o histórico atuais. Deseja continuar?",
       );
@@ -33,8 +33,12 @@ function BackupControls({ scoreboard, history, stats, onImportBackup }) {
       }
 
       onImportBackup(importedScoreboard);
-      setMessage("Backup JSON importado com sucesso.");
-      setMessageType("success");
+      setMessage(
+        wasRecalculated
+          ? "O placar foi recalculado com base no historico importado."
+          : "Backup JSON importado com sucesso.",
+      );
+      setMessageType(wasRecalculated ? "info" : "success");
     } catch (error) {
       setMessage(error.message);
       setMessageType("error");

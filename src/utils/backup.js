@@ -54,7 +54,7 @@ export function validateBackupPayload(payload) {
     return { isValid: false, message: "O backup não possui placar válido." };
   }
 
-  if (!Array.isArray(payload.data.history)) {
+  if (payload.data.history !== undefined && !Array.isArray(payload.data.history)) {
     return { isValid: false, message: "O backup não possui histórico válido." };
   }
 
@@ -75,10 +75,22 @@ export function parseBackupFile(file) {
           return;
         }
 
-        resolve(normalizeScoreboard({
-          ...payload.data.scoreboard,
-          history: payload.data.history,
-        }));
+        const importedHistory = Array.isArray(payload.data.history)
+          ? payload.data.history
+          : payload.data.scoreboard.history;
+        const hasHistory = Array.isArray(importedHistory);
+        const scoreboardPayload = hasHistory
+          ? {
+              ...payload.data.scoreboard,
+              history: importedHistory,
+            }
+          : payload.data.scoreboard;
+        const scoreboard = normalizeScoreboard(scoreboardPayload);
+
+        resolve({
+          scoreboard,
+          wasRecalculated: hasHistory && hasScoreDifference(payload.data.scoreboard.scores, scoreboard.scores),
+        });
       } catch (error) {
         reject(new Error("Não foi possível ler o arquivo JSON selecionado."));
       }
@@ -87,6 +99,16 @@ export function parseBackupFile(file) {
     reader.onerror = () => reject(new Error("Não foi possível abrir o arquivo selecionado."));
     reader.readAsText(file);
   });
+}
+
+function hasScoreDifference(savedScores, calculatedScores) {
+  return ["jean", "felipe"].some((playerId) =>
+    ["single", "double"].some(
+      (battleType) =>
+        Number(savedScores?.[playerId]?.[battleType] || 0) !==
+        Number(calculatedScores?.[playerId]?.[battleType] || 0),
+    ),
+  );
 }
 
 function getCurrentDateSlug() {

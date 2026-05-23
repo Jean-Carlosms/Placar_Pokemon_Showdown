@@ -337,3 +337,23 @@ Moves podem ter `shortDesc`, `desc`, ambos ou nenhum texto util. Usar uma cadeia
 ## Validacoes de Completude
 
 Checks de dados gerados nao devem validar apenas formato JSON. Eles tambem precisam confirmar que os dados estao completos o bastante para a interface, como `spriteCandidates` em Pokemon e descricoes em moves importantes.
+
+## Validacao de Dominio Antes do Estado
+
+Um replay tecnicamente valido nao e necessariamente uma partida valida para o placar. Antes de incrementar resultados, a aplicacao precisa confirmar que os dois participantes pertencem ao duelo acompanhado.
+
+## ReplayId como Chave de Idempotencia
+
+Guardar e verificar o `replayId` impede que a mesma partida seja importada duas vezes e altere estatisticas por engano. A protecao deve existir na interface e na funcao que altera o estado.
+
+## Historico como Fonte da Verdade
+
+Quando um backup atual inclui historico, os scores devem ser derivados das partidas em vez de confiados cegamente. Isso evita restaurar placares que nao correspondem aos registros exibidos.
+
+## Consistencia entre Scores e History
+
+Manter contadores e historico no mesmo payload cria risco de divergencia. Validacao e reconciliacao na importacao tornam esse formato mais seguro sem quebrar backups legados sem historico.
+
+## JSON Grande no Bundle Inicial
+
+Importar catalogos JSON completos diretamente nos modulos React inclui esses dados no JavaScript inicial. Para bases grandes, carregamento sob demanda e divisao de componentes melhoram o tempo de abertura da aplicacao.

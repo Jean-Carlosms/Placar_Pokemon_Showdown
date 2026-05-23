@@ -1,13 +1,17 @@
 import { useRef, useState } from "react";
 import { BATTLE_TYPES } from "../data/players.js";
-import { parsePokemonShowdownReplay } from "../utils/replayParser.js";
+import { parsePokemonShowdownReplay, validateTrackedReplay } from "../utils/replayParser.js";
+import { hasReplayId } from "../utils/scoreboard.js";
 import PokemonMiniTeam from "./PokemonMiniTeam.jsx";
 
-function ReplayImport({ players, onRegisterReplayWin }) {
+function ReplayImport({ players, history, onRegisterReplayWin }) {
   const fileInputRef = useRef(null);
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("info");
+  const replayValidation = preview ? validateTrackedReplay(preview) : null;
+  const duplicateReplay = preview ? hasReplayId(history, preview.replayId) : false;
+  const isReplayBlocked = Boolean(preview && (!replayValidation?.valid || duplicateReplay));
 
   function getMappedPlayerName(playerId) {
     return players.find((player) => player.id === playerId)?.name ?? "Nao mapeado";
@@ -50,8 +54,25 @@ function ReplayImport({ players, onRegisterReplayWin }) {
         }
 
         setPreview(parsedReplay);
-        setMessage(parsedReplay.warning ?? "Replay lido com sucesso. Confira a previa antes de registrar.");
-        setMessageType(parsedReplay.warning ? "error" : "success");
+        const validation = validateTrackedReplay(parsedReplay);
+
+        if (!validation.valid) {
+          setMessage(
+            "Replay bloqueado: este placar aceita apenas batalhas entre Jean Carlos e Felipe Eckert.",
+          );
+          setMessageType("error");
+        } else if (hasReplayId(history, parsedReplay.replayId)) {
+          setMessage(
+            "Este replay ja foi importado anteriormente. Para evitar duplicidade, ele nao sera registrado novamente.",
+          );
+          setMessageType("error");
+        } else if (!parsedReplay.replayId) {
+          setMessage("Replay sem ID detectado. Nao sera possivel validar duplicidade automaticamente.");
+          setMessageType("info");
+        } else {
+          setMessage(parsedReplay.warning ?? "Replay lido com sucesso. Confira a previa antes de registrar.");
+          setMessageType(parsedReplay.warning ? "error" : "success");
+        }
       } catch (error) {
         setPreview(null);
         setMessage(error.message);
@@ -76,8 +97,18 @@ function ReplayImport({ players, onRegisterReplayWin }) {
       return;
     }
 
-    if (!preview.mappedWinnerId) {
-      setMessage("Nao foi possivel registrar: vencedor nao mapeado para Jean ou Felipe.");
+    const validation = validateTrackedReplay(preview);
+
+    if (!validation.valid) {
+      setMessage("Replay bloqueado: este placar aceita apenas batalhas entre Jean Carlos e Felipe Eckert.");
+      setMessageType("error");
+      return;
+    }
+
+    if (hasReplayId(history, preview.replayId)) {
+      setMessage(
+        "Este replay ja foi importado anteriormente. Para evitar duplicidade, ele nao sera registrado novamente.",
+      );
       setMessageType("error");
       return;
     }
@@ -182,6 +213,17 @@ function ReplayImport({ players, onRegisterReplayWin }) {
               <dd>{preview.showdownPlayers.p2 || "Nao encontrado"}</dd>
             </div>
             <div>
+              <dt>Mapeamento encontrado</dt>
+              <dd>
+                p1: {getMappedPlayerName(preview.mappedPlayers.p1)} / p2:{" "}
+                {getMappedPlayerName(preview.mappedPlayers.p2)}
+              </dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>{isReplayBlocked ? "Bloqueado" : "Valido para importacao"}</dd>
+            </div>
+            <div>
               <dt>Vencedor no replay</dt>
               <dd>{preview.winner}</dd>
             </div>
@@ -214,7 +256,7 @@ function ReplayImport({ players, onRegisterReplayWin }) {
             className="replay-confirm-button"
             type="button"
             onClick={handleConfirmImport}
-            disabled={!preview.mappedWinnerId}
+            disabled={!preview.mappedWinnerId || isReplayBlocked}
           >
             Registrar vitoria do replay
           </button>
