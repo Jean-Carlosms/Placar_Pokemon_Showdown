@@ -4,6 +4,7 @@ import {
   getPokemonTypes,
   normalizePokemonApiName,
 } from "../src/services/pokemonApi.js";
+import { getPokemonSpriteCandidatesByStyle } from "../src/services/pokemonSpriteSources.js";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
@@ -62,6 +63,53 @@ for (const name of spriteCandidateNames) {
   assertTruthy(spriteCandidates.length > 0, `${name} should have sprite candidates`);
 }
 
+const localSprite = "/sprites/pokemon/pikachu.png";
+const staticCandidates = getPokemonSpriteCandidatesByStyle({
+  pokemonName: "Pikachu",
+  pokemonId: 25,
+  localSprite,
+  style: "staticPixel",
+});
+const animatedCandidates = getPokemonSpriteCandidatesByStyle({
+  pokemonName: "Pikachu",
+  pokemonId: 25,
+  localSprite,
+  style: "animatedPixel",
+});
+const officialCandidates = getPokemonSpriteCandidatesByStyle({
+  pokemonName: "Pikachu",
+  pokemonId: 25,
+  localSprite,
+  style: "officialArtwork",
+});
+const smallCandidates = getPokemonSpriteCandidatesByStyle({
+  pokemonName: "Pikachu",
+  pokemonId: 25,
+  localSprite,
+  style: "smallIcon",
+});
+
+assertEqual(staticCandidates[0], localSprite, "Static pixel style should prefer local sprite");
+assertTruthy(
+  animatedCandidates[0].includes("/ani/") || animatedCandidates[0].includes("/gen5ani/"),
+  "Animated pixel style should prefer an animated URL",
+);
+assertTruthy(
+  officialCandidates[0].includes("/other/official-artwork/25.png"),
+  "Official artwork style should prefer official artwork when an ID exists",
+);
+assertTruthy(
+  smallCandidates.some((url) => url.endsWith("/sprites/pokemon/25.png")),
+  "Small icon style should include the compact PokeAPI sprite when an ID exists",
+);
+
+[staticCandidates, animatedCandidates, officialCandidates, smallCandidates].forEach((candidates) => {
+  assertTruthy(
+    candidates.includes("/sprites/pokemon/_placeholder.svg"),
+    "Every sprite style should include the local placeholder",
+  );
+});
+
 if (Number(pokemonDetailsData.count || 0) > 0) {
   ["regieleki", "chien-pao", "pikachu"].forEach((pokemonKey) => {
     const pokemon = pokemonDetailsData.pokemon?.[pokemonKey];
@@ -88,5 +136,11 @@ console.log("Pokemon sprite/type fallback check passed.");
 function assertTruthy(value, message) {
   if (!value) {
     throw new Error(message);
+  }
+}
+
+function assertEqual(actual, expected, message) {
+  if (actual !== expected) {
+    throw new Error(`${message}. Expected ${expected}, received ${actual}`);
   }
 }

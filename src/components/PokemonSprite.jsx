@@ -1,35 +1,30 @@
 import { useEffect, useMemo, useState } from "react";
 import {
-  getPokemonShowdownSpriteCandidates,
-  getPokemonSpriteFallbacks,
-  normalizePokemonApiName,
-} from "../services/pokemonApi.js";
-
-const PLACEHOLDER_SPRITE = "/sprites/pokemon/_placeholder.svg";
+  getPokemonSpriteCandidatesByStyle,
+  PLACEHOLDER_SPRITE,
+} from "../services/pokemonSpriteSources.js";
 
 function PokemonSprite({
   pokemonName,
+  pokemonId,
+  localSprite,
   sprite,
   spriteCandidates,
+  spriteStyle,
   className = "",
   alt,
   fallbackLabel,
   size,
 }) {
-  const normalizedKey = normalizePokemonApiName(pokemonName);
-  const localSprite = normalizedKey ? `/sprites/pokemon/${normalizedKey}.png` : "";
   const candidates = useMemo(() => {
-    const urls = [
+    return getPokemonSpriteCandidatesByStyle({
+      pokemonName,
+      pokemonId,
       localSprite,
-      sprite,
-      ...(Array.isArray(spriteCandidates) ? spriteCandidates : []),
-      ...getPokemonShowdownSpriteCandidates(pokemonName),
-      ...getPokemonSpriteFallbacks(pokemonName),
-      PLACEHOLDER_SPRITE,
-    ].filter(Boolean);
-
-    return [...new Set(urls)];
-  }, [localSprite, pokemonName, sprite, spriteCandidates]);
+      spriteCandidates: [sprite, ...(Array.isArray(spriteCandidates) ? spriteCandidates : [])],
+      style: spriteStyle,
+    });
+  }, [localSprite, pokemonId, pokemonName, sprite, spriteCandidates, spriteStyle]);
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const activeSrc = candidates[candidateIndex] || PLACEHOLDER_SPRITE;
@@ -38,7 +33,7 @@ function PokemonSprite({
   useEffect(() => {
     setCandidateIndex(0);
     setIsLoaded(false);
-  }, [pokemonName, sprite, spriteCandidates]);
+  }, [pokemonName, pokemonId, localSprite, sprite, spriteCandidates, spriteStyle]);
 
   function handleError() {
     setIsLoaded(false);

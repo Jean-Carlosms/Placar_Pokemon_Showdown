@@ -3,7 +3,7 @@ import PokemonMoveTooltip from "./PokemonMoveTooltip.jsx";
 import PokemonSprite from "./PokemonSprite.jsx";
 import PokemonTypeBadges from "./PokemonTypeBadges.jsx";
 
-function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
+function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon, spriteStyle }) {
   return (
     <div className="mini-team">
       <h4>{title}</h4>
@@ -16,6 +16,7 @@ function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
             key={pokemon}
             pokemon={pokemon}
             moves={getMovesFromPokemonMap(movesByPokemon?.[playerId], pokemon)}
+            spriteStyle={spriteStyle}
           />
         ))}
       </ul>
@@ -23,11 +24,12 @@ function PokemonMiniTeam({ title, pokemons, playerId, movesByPokemon }) {
   );
 }
 
-function MiniPokemon({ pokemon, moves }) {
+function MiniPokemon({ pokemon, moves, spriteStyle }) {
   return (
     <li className="pokemon-mini-card" tabIndex={0}>
       <PokemonSprite
         pokemonName={pokemon}
+        spriteStyle={spriteStyle}
         className="mini-team-sprite"
         alt={`Sprite de ${pokemon}`}
         fallbackLabel={pokemon}

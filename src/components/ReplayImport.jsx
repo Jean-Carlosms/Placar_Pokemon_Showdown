@@ -4,7 +4,7 @@ import { parsePokemonShowdownReplay, validateTrackedReplay } from "../utils/repl
 import { hasReplayId } from "../utils/scoreboard.js";
 import PokemonMiniTeam from "./PokemonMiniTeam.jsx";
 
-function ReplayImport({ players, history, onRegisterReplayWin }) {
+function ReplayImport({ players, history, onRegisterReplayWin, spriteStyle }) {
   const fileInputRef = useRef(null);
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState("");
@@ -243,12 +243,14 @@ function ReplayImport({ players, history, onRegisterReplayWin }) {
               playerId="jean"
               pokemons={preview.teams.jean}
               movesByPokemon={preview.movesByPokemon}
+              spriteStyle={spriteStyle}
             />
             <PokemonMiniTeam
               title="Time Felipe Eckert"
               playerId="felipe"
               pokemons={preview.teams.felipe}
               movesByPokemon={preview.movesByPokemon}
+              spriteStyle={spriteStyle}
             />
           </div>
 

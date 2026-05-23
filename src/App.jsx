@@ -8,8 +8,10 @@ import PlayerCard from "./components/PlayerCard.jsx";
 import ReplayImport from "./components/ReplayImport.jsx";
 import ScoreControls from "./components/ScoreControls.jsx";
 import SeasonControls from "./components/SeasonControls.jsx";
+import SpriteStyleSelector from "./components/SpriteStyleSelector.jsx";
 import StatsPanel from "./components/StatsPanel.jsx";
 import { PLAYERS } from "./data/players.js";
+import { getInitialSpriteStyle, saveSpriteStyle } from "./data/spriteStyles.js";
 import { getFeaturedPokemonForPlayer } from "./utils/pokemonStats.js";
 import {
   addWinToScoreboard,
@@ -30,6 +32,7 @@ function App() {
   const [scoreboard, setScoreboard] = useState(() => loadScoreboard());
   const [lastScoredPlayer, setLastScoredPlayer] = useState("");
   const [currentTheme, setCurrentTheme] = useState(() => getInitialTheme());
+  const [spriteStyle, setSpriteStyle] = useState(() => getInitialSpriteStyle());
   const [historyFilter, setHistoryFilter] = useState("active");
 
   useEffect(() => {
@@ -40,6 +43,10 @@ function App() {
     applyTheme(currentTheme);
     saveTheme(currentTheme);
   }, [currentTheme]);
+
+  useEffect(() => {
+    saveSpriteStyle(spriteStyle);
+  }, [spriteStyle]);
 
   useEffect(() => {
     if (!lastScoredPlayer) {
@@ -117,8 +124,10 @@ function App() {
   }, {});
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell sprite-style-${spriteStyle}`}>
       <Header currentTheme={currentTheme} onToggleTheme={handleToggleTheme} />
+
+      <SpriteStyleSelector value={spriteStyle} onChange={setSpriteStyle} />
 
       <section className="scoreboard" aria-label="Placar dos jogadores">
         {PLAYERS.map((player) => (
@@ -129,6 +138,7 @@ function App() {
             status={isTie ? "tie" : playerScores[player.id].total === highestScore ? "leader" : "chaser"}
             isRecentlyScored={lastScoredPlayer === player.id}
             featuredPokemon={featuredPokemonByPlayer[player.id]}
+            spriteStyle={spriteStyle}
           />
         ))}
       </section>
@@ -151,6 +161,7 @@ function App() {
         players={PLAYERS}
         history={scoreboard.history}
         onRegisterReplayWin={handleAddWin}
+        spriteStyle={spriteStyle}
       />
 
       <BackupControls
@@ -166,7 +177,7 @@ function App() {
         generalStats={generalStats}
         players={PLAYERS}
       />
-      <PokemonInfoCard history={scoreboard.history} />
+      <PokemonInfoCard history={scoreboard.history} spriteStyle={spriteStyle} />
       <MoveInfoCard history={scoreboard.history} />
       <MatchHistory
         history={visibleHistory}
@@ -174,6 +185,7 @@ function App() {
         historyFilter={historyFilter}
         activeSeasonName={activeSeason.name}
         onHistoryFilterChange={setHistoryFilter}
+        spriteStyle={spriteStyle}
       />
     </main>
   );

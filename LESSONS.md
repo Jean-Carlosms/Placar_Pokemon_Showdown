@@ -357,3 +357,19 @@ Manter contadores e historico no mesmo payload cria risco de divergencia. Valida
 ## JSON Grande no Bundle Inicial
 
 Importar catalogos JSON completos diretamente nos modulos React inclui esses dados no JavaScript inicial. Para bases grandes, carregamento sob demanda e divisao de componentes melhoram o tempo de abertura da aplicacao.
+
+## Fallback por Estilo Visual
+
+Uma mesma entidade pode ter varias apresentacoes visuais sem duplicar o componente de imagem. Ordenar candidatos por estilo permite alternar entre pixel art, GIF, artwork e icone mantendo o placeholder local ao final.
+
+## Preferencia Visual Persistida
+
+Guardar o estilo selecionado no `localStorage` faz a interface respeitar a escolha do usuario em novas visitas, do mesmo modo que o tema salvo.
+
+## Dados e Apresentacao Separados
+
+O Pokemon continua identificado pelo mesmo nome e ID; apenas a ordem das fontes de sprite muda. Essa separacao permite evoluir a aparencia sem alterar historico, replay ou placar.
+
+## Custo de GIFs e Artworks
+
+GIFs animados e artworks maiores podem consumir mais rede e memoria do que sprites estaticas. O fallback local preserva disponibilidade, enquanto melhorias futuras podem baixar e otimizar pacotes por estilo.

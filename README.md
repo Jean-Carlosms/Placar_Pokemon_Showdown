@@ -185,6 +185,17 @@ public/sprites/pokemon
 
 Se a rede corporativa bloquear o download, rode o comando fora dessa rede ou configure o certificado do Node. Quando a sprite local ou externa nao existir, o app mostra um placeholder visivel em `public/sprites/pokemon/_placeholder.svg`.
 
+## Estilo de Sprites
+
+O seletor `Estilo das sprites` altera a apresentacao dos Pokemon no placar, na previa e historico de replays e na consulta de Pokemon:
+
+- `Pixel Art Estatica`: prioriza as imagens locais e sprites estaticas do Pokemon Showdown.
+- `Pixel Art Animada`: tenta GIFs do Pokemon Showdown antes da imagem estatica.
+- `Oficial/Artwork`: prioriza artwork oficial da base PokeAPI/sprites quando o ID do Pokemon esta disponivel.
+- `Icone pequeno`: prioriza a sprite compacta da base PokeAPI/sprites quando o ID esta disponivel.
+
+A escolha fica salva no `localStorage` do navegador. Todos os estilos conservam fallback para sprite estatica local e, ao final, para `public/sprites/pokemon/_placeholder.svg`.
+
 ## Gerar Banco Local sem PokeAPI
 
 Em redes corporativas, a PokeAPI pode falhar com `SELF_SIGNED_CERT_IN_CHAIN` ou retornar `HTTP 401` por bloqueio/proxy.

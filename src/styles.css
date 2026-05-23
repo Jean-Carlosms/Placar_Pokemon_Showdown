@@ -138,6 +138,50 @@ h2 {
   margin-bottom: 22px;
 }
 
+.sprite-style-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 22px;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.sprite-style-selector-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.sprite-style-selector-row label {
+  color: var(--color-text);
+  font-weight: 850;
+}
+
+.sprite-style-select {
+  min-width: 220px;
+  padding: 0.6rem 0.8rem;
+  color: var(--color-text);
+  font-weight: 700;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background: var(--color-panel);
+}
+
+.sprite-style-select:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.sprite-style-description {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
 .player-card,
 .controls,
 .season-section,
@@ -606,6 +650,10 @@ dd {
   object-fit: contain;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+}
+
+.sprite-style-officialArtwork .pokemon-sprite-image {
+  image-rendering: auto;
 }
 
 .mini-team-sprite {
@@ -1610,6 +1658,7 @@ button:active {
   }
 
   .player-card,
+  .sprite-style-selector,
   .controls,
   .season-section,
   .replay-section,
@@ -1622,6 +1671,7 @@ button:active {
   }
 
   .player-card,
+  .sprite-style-selector,
   .controls,
   .season-section,
   .replay-section,

@@ -7,6 +7,7 @@ function MatchHistory({
   historyFilter,
   activeSeasonName,
   onHistoryFilterChange,
+  spriteStyle,
 }) {
   const historyCountLabel = `${history.length} registro${history.length === 1 ? "" : "s"}`;
   const reversedHistory = [...history].reverse();
@@ -48,7 +49,12 @@ function MatchHistory({
 
       <ol className="history-list">
         {reversedHistory.map((entry) => (
-          <HistoryItem key={entry.id} entry={entry} getPlayerName={getPlayerName} />
+          <HistoryItem
+            key={entry.id}
+            entry={entry}
+            getPlayerName={getPlayerName}
+            spriteStyle={spriteStyle}
+          />
         ))}
       </ol>
 
@@ -61,7 +67,7 @@ function MatchHistory({
   );
 }
 
-function HistoryItem({ entry, getPlayerName }) {
+function HistoryItem({ entry, getPlayerName, spriteStyle }) {
   const replay = entry.replay;
   const teams = replay?.teams;
   const movesByPokemon = replay?.movesByPokemon;
@@ -93,12 +99,14 @@ function HistoryItem({ entry, getPlayerName }) {
               playerId="jean"
               pokemons={teams.jean}
               movesByPokemon={movesByPokemon}
+              spriteStyle={spriteStyle}
             />
             <PokemonMiniTeam
               title="Time Felipe Eckert"
               playerId="felipe"
               pokemons={teams.felipe}
               movesByPokemon={movesByPokemon}
+              spriteStyle={spriteStyle}
             />
           </div>
         )}

@@ -90,3 +90,7 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Fazer lazy load dos catalogos completos para reduzir o bundle inicial.
 - Mover JSONs grandes para `public/data` e carregar sob demanda.
 - Usar `React.lazy` nos cards Consulta de Pokemon e Consulta de Moves.
+- Baixar pacotes locais separados para sprites animadas, official artwork e icones pequenos.
+- Permitir estilo de sprite diferente para Historico e Consulta de Pokemon.
+- Comprimir e otimizar imagens usadas pelos estilos de sprite.
+- Implementar lazy loading avancado de sprites.

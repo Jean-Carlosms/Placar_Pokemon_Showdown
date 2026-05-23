@@ -16,7 +16,7 @@ const STAT_LABELS = [
   ["speed", "Speed"],
 ];
 
-function PokemonInfoCard({ history }) {
+function PokemonInfoCard({ history, spriteStyle }) {
   const allPokemon = useMemo(() => getAllPokemonFromLocalDatabase(), []);
   const usedPokemon = useMemo(() => getUniquePokemonFromHistory(history), [history]);
   const pokemonUsage = useMemo(() => countPokemonUsageFromHistory(history), [history]);
@@ -148,6 +148,7 @@ function PokemonInfoCard({ history }) {
             <PokemonDetails
               pokemonDetails={pokemonDetails}
               usageCount={pokemonUsage[selectedPokemonKey]?.count ?? 0}
+              spriteStyle={spriteStyle}
             />
           )}
         </>
@@ -156,15 +157,18 @@ function PokemonInfoCard({ history }) {
   );
 }
 
-function PokemonDetails({ pokemonDetails, usageCount }) {
+function PokemonDetails({ pokemonDetails, usageCount, spriteStyle }) {
   return (
     <article className="pokemon-details">
       <div className="pokemon-details-main">
         <div className="pokemon-details-sprite">
           <PokemonSprite
             pokemonName={pokemonDetails.displayName}
+            pokemonId={pokemonDetails.id}
+            localSprite={pokemonDetails.localSprite}
             sprite={pokemonDetails.sprite}
             spriteCandidates={pokemonDetails.spriteCandidates}
+            spriteStyle={spriteStyle}
             className="pokemon-details-sprite-image"
             alt={`Sprite de ${pokemonDetails.displayName}`}
             fallbackLabel={pokemonDetails.displayName}
