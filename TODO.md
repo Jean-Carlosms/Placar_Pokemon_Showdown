@@ -94,3 +94,7 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Permitir estilo de sprite diferente para Historico e Consulta de Pokemon.
 - Comprimir e otimizar imagens usadas pelos estilos de sprite.
 - Implementar lazy loading avancado de sprites.
+- Mostrar habilidades no historico.
+- Filtrar Pokemon por ability.
+- Criar ranking de abilities mais comuns.
+- Mostrar Hidden Ability separada quando disponivel.

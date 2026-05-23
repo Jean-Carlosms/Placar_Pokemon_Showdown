@@ -373,3 +373,15 @@ O Pokemon continua identificado pelo mesmo nome e ID; apenas a ordem das fontes 
 ## Custo de GIFs e Artworks
 
 GIFs animados e artworks maiores podem consumir mais rede e memoria do que sprites estaticas. O fallback local preserva disponibilidade, enquanto melhorias futuras podem baixar e otimizar pacotes por estilo.
+
+## Dex Tambem Serve para Abilities
+
+O Pokemon Showdown Dex nao precisa gerar apenas Pokemon e moves. Reaproveitar a mesma fonte para abilities mantém os metadados perto do restante do dominio e evita depender de API externa durante o uso.
+
+## Tooltip Acessivel
+
+Um tooltip acionado por `hover` e `focus` atende mouse e teclado. Badges focaveis com `aria-describedby` tornam descricoes de abilities descobriveis sem criar um modal pesado.
+
+## Banco Local para Metadados
+
+Descricoes de habilidades sao dados de apresentacao, mas ainda precisam ser versionadas e validadas. Um JSON gerado com check dedicado evita fallback silencioso quando a UI espera textos completos.

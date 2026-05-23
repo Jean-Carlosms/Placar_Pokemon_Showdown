@@ -205,6 +205,10 @@ h2 {
   gap: 16px;
 }
 
+.pokemon-info-card {
+  overflow: visible;
+}
+
 .section-heading p {
   margin-top: 5px;
   color: var(--color-muted);
@@ -1279,6 +1283,7 @@ button:active {
   display: grid;
   gap: 16px;
   padding: 16px;
+  overflow: visible;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface-soft);
@@ -1373,16 +1378,84 @@ button:active {
   font-size: 1rem;
 }
 
-.pokemon-abilities span {
+.pokemon-abilities-title {
   color: var(--color-muted);
   font-size: 0.82rem;
   font-weight: 900;
 }
 
-.pokemon-abilities p {
-  margin-top: 6px;
+.pokemon-abilities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 8px;
   color: var(--color-text);
   font-weight: 850;
+}
+
+.ability-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  outline: none;
+}
+
+.ability-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.65rem;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 900;
+  cursor: help;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ability-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.6rem);
+  z-index: 30;
+  width: min(320px, 80vw);
+  padding: 0.8rem;
+  color: #ffffff;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.9rem;
+  background: rgba(12, 18, 32, 0.96);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  transform: translateX(-50%);
+}
+
+.ability-tooltip strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #ffffff;
+}
+
+.ability-tooltip span {
+  display: block;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ability-tooltip span + span {
+  margin-top: 0.45rem;
+}
+
+.ability-tooltip small {
+  display: block;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ability-tooltip-wrapper:focus-visible .ability-badge {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
 }
 
 .pokemon-total-stats {

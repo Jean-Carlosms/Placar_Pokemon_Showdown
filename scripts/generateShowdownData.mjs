@@ -9,6 +9,8 @@ const MOVE_OUTPUT_PATH = resolve("src/data/moveDetails.generated.json");
 const MOVE_TMP_PATH = resolve("src/data/moveDetails.generated.tmp.json");
 const POKEMON_OUTPUT_PATH = resolve("src/data/pokemonDetails.generated.json");
 const POKEMON_TMP_PATH = resolve("src/data/pokemonDetails.generated.tmp.json");
+const ABILITY_OUTPUT_PATH = resolve("src/data/abilityDetails.generated.json");
+const ABILITY_TMP_PATH = resolve("src/data/abilityDetails.generated.tmp.json");
 const SOURCE = "pokemon-showdown-dex";
 const SHOWDOWN_SPRITES_BASE_URL = "https://play.pokemonshowdown.com/sprites";
 const POKEAPI_SPRITES_GITHUB_BASE_URL =
@@ -17,6 +19,7 @@ const POKEAPI_SPRITES_GITHUB_BASE_URL =
 const generatedAt = new Date().toISOString();
 const moves = buildMoveDatabase();
 const pokemon = buildPokemonDatabase();
+const abilities = buildAbilityDatabase();
 
 writeJsonSafely(MOVE_TMP_PATH, MOVE_OUTPUT_PATH, {
   generatedAt,
@@ -32,8 +35,16 @@ writeJsonSafely(POKEMON_TMP_PATH, POKEMON_OUTPUT_PATH, {
   pokemon,
 });
 
+writeJsonSafely(ABILITY_TMP_PATH, ABILITY_OUTPUT_PATH, {
+  generatedAt,
+  source: SOURCE,
+  count: Object.keys(abilities).length,
+  abilities,
+});
+
 console.log(`Pokemon Showdown move data generated: ${Object.keys(moves).length} moves.`);
 console.log(`Pokemon Showdown pokemon data generated: ${Object.keys(pokemon).length} Pokemon.`);
+console.log(`Pokemon Showdown ability data generated: ${Object.keys(abilities).length} abilities.`);
 
 function buildMoveDatabase() {
   const entries = Object.entries(Dex.data.Moves ?? {});
@@ -74,6 +85,31 @@ function buildPokemonDatabase() {
       ...Dex.species.get(dexId),
     });
     const key = normalizeKey(details.displayName || dexId);
+
+    if (!key) {
+      return;
+    }
+
+    database[key] = details;
+  });
+
+  return sortObjectByKey(database);
+}
+
+function buildAbilityDatabase() {
+  const entries = Object.entries(Dex.data.Abilities ?? {});
+  const database = {};
+
+  entries.forEach(([dexId, ability]) => {
+    if (!ability || ability.isNonstandard === "CAP") {
+      return;
+    }
+
+    const details = mapAbilityDetails({
+      ...ability,
+      ...Dex.abilities.get(dexId),
+    }, dexId);
+    const key = normalizeAbilityKey(details.displayName || dexId);
 
     if (!key) {
       return;
@@ -145,6 +181,24 @@ function mapPokemonDetails(dexId, species) {
   };
 }
 
+function mapAbilityDetails(rawAbility, key) {
+  const displayName = formatAbilityDisplayName(rawAbility.name || key);
+  const id = normalizeAbilityKey(displayName || key);
+  const shortEffect = cleanText(rawAbility.shortDesc || rawAbility.desc || "");
+  const effect = cleanText(rawAbility.desc || rawAbility.shortDesc || "");
+  const description = shortEffect || effect || "Descricao nao disponivel para esta habilidade.";
+
+  return {
+    id,
+    name: id,
+    displayName,
+    shortEffect,
+    effect,
+    description,
+    source: SOURCE,
+  };
+}
+
 function normalizeKey(name) {
   return String(name || "")
     .trim()
@@ -155,6 +209,18 @@ function normalizeKey(name) {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .toLowerCase();
+}
+
+function normalizeAbilityKey(name) {
+  return normalizeKey(name);
+}
+
+function formatAbilityDisplayName(name) {
+  return formatDisplayName(
+    String(name || "")
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/-/g, " "),
+  );
 }
 
 function getShowdownSpriteId(species, key) {

@@ -144,6 +144,16 @@ O historico continua sendo usado para mostrar o contador `Uso nos historicos`. S
 
 Se o banco local estiver vazio, o app usa os Pokemon do historico como fallback. Se a PokeAPI falhar, o app continua funcionando com dados basicos e indica a fonte usada.
 
+## Tooltips de Habilidades
+
+No card `Consulta de Pokemon`, as habilidades aparecem como badges com tooltip. Ao passar o mouse ou focar pelo teclado, o app mostra nome, descricao curta, efeito completo quando disponivel e a fonte dos dados.
+
+As descricoes vêm do banco local gerado pelo Pokemon Showdown Dex, sem depender da PokeAPI em runtime. Para regenerar Pokemon, moves e abilities, rode:
+
+```bash
+npm run data:showdown
+```
+
 ## Banco Local de Pokemon
 
 O projeto pode gerar um banco local com detalhes dos Pokemon da PokeAPI:
@@ -209,6 +219,7 @@ npm run data:showdown
 Esse comando gera:
 
 ```text
+src/data/abilityDetails.generated.json
 src/data/moveDetails.generated.json
 src/data/pokemonDetails.generated.json
 ```
@@ -218,12 +229,13 @@ Depois valide os arquivos e o build:
 ```bash
 npm run check:move-data
 npm run check:pokemon-data
+npm run check:ability-data
 npm run build
 ```
 
 O app continua consultando primeiro os arquivos gerados locais. Se eles estiverem vazios ou incompletos, os servicos ainda usam fallbacks e API online quando possivel.
 
-O banco local gerado pelo Pokemon Showdown Dex inclui candidatos de sprites e descricoes de moves quando disponiveis.
+O banco local gerado pelo Pokemon Showdown Dex inclui candidatos de sprites, descricoes de moves e descricoes de abilities quando disponiveis.
 
 As sprites usam URLs publicas do Pokemon Showdown. Se a primeira URL falhar, o app tenta a proxima candidata ate cair no fallback visual local.
 

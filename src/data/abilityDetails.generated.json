@@ -1,0 +1,2806 @@
+{
+  "generatedAt": "2026-05-23T20:49:10.962Z",
+  "source": "pokemon-showdown-dex",
+  "count": 311,
+  "abilities": {
+    "adaptability": {
+      "id": "adaptability",
+      "name": "adaptability",
+      "displayName": "Adaptability",
+      "shortEffect": "This Pokemon's same-type attack bonus (STAB) is 2 instead of 1.5.",
+      "effect": "This Pokemon's moves that match one of its types have a same-type attack bonus (STAB) of 2 instead of 1.5.",
+      "description": "This Pokemon's same-type attack bonus (STAB) is 2 instead of 1.5.",
+      "source": "pokemon-showdown-dex"
+    },
+    "aerilate": {
+      "id": "aerilate",
+      "name": "aerilate",
+      "displayName": "Aerilate",
+      "shortEffect": "This Pokemon's Normal-type moves become Flying type and have 1.2x power.",
+      "effect": "This Pokemon's Normal-type moves become Flying-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+      "description": "This Pokemon's Normal-type moves become Flying type and have 1.2x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "aftermath": {
+      "id": "aftermath",
+      "name": "aftermath",
+      "displayName": "Aftermath",
+      "shortEffect": "If this Pokemon is KOed with a contact move, that move's user loses 1/4 its max HP.",
+      "effect": "If this Pokemon is knocked out with a contact move, that move's user loses 1/4 of its maximum HP, rounded down. If any active Pokemon has the Damp Ability, this effect is prevented.",
+      "description": "If this Pokemon is KOed with a contact move, that move's user loses 1/4 its max HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "air-lock": {
+      "id": "air-lock",
+      "name": "air-lock",
+      "displayName": "Air Lock",
+      "shortEffect": "While this Pokemon is active, the effects of weather conditions are disabled.",
+      "effect": "While this Pokemon is active, the effects of weather conditions are disabled.",
+      "description": "While this Pokemon is active, the effects of weather conditions are disabled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "analytic": {
+      "id": "analytic",
+      "name": "analytic",
+      "displayName": "Analytic",
+      "shortEffect": "This Pokemon's attacks have 1.3x power if it is the last to move in a turn.",
+      "effect": "The power of this Pokemon's move is multiplied by 1.3 if it is the last to move in a turn. Does not affect Doom Desire and Future Sight.",
+      "description": "This Pokemon's attacks have 1.3x power if it is the last to move in a turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "anger-point": {
+      "id": "anger-point",
+      "name": "anger-point",
+      "displayName": "Anger Point",
+      "shortEffect": "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
+      "effect": "If this Pokemon, but not its substitute, is struck by a critical hit, its Attack is raised by 12 stages.",
+      "description": "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
+      "source": "pokemon-showdown-dex"
+    },
+    "anger-shell": {
+      "id": "anger-shell",
+      "name": "anger-shell",
+      "displayName": "Anger Shell",
+      "shortEffect": "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
+      "effect": "When this Pokemon has more than 1/2 its maximum HP and takes damage from an attack bringing it to 1/2 or less of its maximum HP, its Attack, Special Attack, and Speed are raised by 1 stage, and its Defense and Special Defense are lowered by 1 stage. This effect applies after all hits from a multi-hit move. This effect is prevented if the move had a secondary effect removed by the Sheer Force Ability.",
+      "description": "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
+      "source": "pokemon-showdown-dex"
+    },
+    "anticipation": {
+      "id": "anticipation",
+      "name": "anticipation",
+      "displayName": "Anticipation",
+      "shortEffect": "On switch-in, this Pokemon shudders if any foe has a supereffective or OHKO move.",
+      "effect": "On switch-in, this Pokemon is alerted if any opposing Pokemon has an attack that is super effective against this Pokemon, or an OHKO move. This effect considers any move that deals direct damage as an attacking move of its respective type, Hidden Power counts as its determined type, and Judgment, Multi-Attack, Natural Gift, Revelation Dance, Techno Blast, and Weather Ball are considered Normal-type moves.",
+      "description": "On switch-in, this Pokemon shudders if any foe has a supereffective or OHKO move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "arena-trap": {
+      "id": "arena-trap",
+      "name": "arena-trap",
+      "displayName": "Arena Trap",
+      "shortEffect": "Prevents opposing Pokemon from choosing to switch out unless they are airborne.",
+      "effect": "Prevents opposing Pokemon from choosing to switch out unless they are airborne, are holding a Shed Shell, or are a Ghost type.",
+      "description": "Prevents opposing Pokemon from choosing to switch out unless they are airborne.",
+      "source": "pokemon-showdown-dex"
+    },
+    "armor-tail": {
+      "id": "armor-tail",
+      "name": "armor-tail",
+      "displayName": "Armor Tail",
+      "shortEffect": "This Pokemon and its allies are protected from opposing priority moves.",
+      "effect": "Priority moves used by opposing Pokemon targeting this Pokemon or its allies are prevented from having an effect.",
+      "description": "This Pokemon and its allies are protected from opposing priority moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "aroma-veil": {
+      "id": "aroma-veil",
+      "name": "aroma-veil",
+      "displayName": "Aroma Veil",
+      "shortEffect": "Protects user/allies from Attract, Disable, Encore, Heal Block, Taunt, and Torment.",
+      "effect": "This Pokemon and its allies cannot become affected by Attract, Disable, Encore, Heal Block, Taunt, or Torment.",
+      "description": "Protects user/allies from Attract, Disable, Encore, Heal Block, Taunt, and Torment.",
+      "source": "pokemon-showdown-dex"
+    },
+    "as-one-glastrier": {
+      "id": "as-one-glastrier",
+      "name": "as-one-glastrier",
+      "displayName": "As One (glastrier)",
+      "shortEffect": "Combination of the Unnerve and Chilling Neigh Abilities.",
+      "effect": "Combination of the Unnerve and Chilling Neigh Abilities.",
+      "description": "Combination of the Unnerve and Chilling Neigh Abilities.",
+      "source": "pokemon-showdown-dex"
+    },
+    "as-one-spectrier": {
+      "id": "as-one-spectrier",
+      "name": "as-one-spectrier",
+      "displayName": "As One (spectrier)",
+      "shortEffect": "Combination of the Unnerve and Grim Neigh Abilities.",
+      "effect": "Combination of the Unnerve and Grim Neigh Abilities.",
+      "description": "Combination of the Unnerve and Grim Neigh Abilities.",
+      "source": "pokemon-showdown-dex"
+    },
+    "aura-break": {
+      "id": "aura-break",
+      "name": "aura-break",
+      "displayName": "Aura Break",
+      "shortEffect": "While this Pokemon is active, the Dark Aura and Fairy Aura power modifier is 0.75x.",
+      "effect": "While this Pokemon is active, the effects of the Dark Aura and Fairy Aura Abilities are reversed, multiplying the power of Dark- and Fairy-type moves, respectively, by 3/4 instead of 1.33.",
+      "description": "While this Pokemon is active, the Dark Aura and Fairy Aura power modifier is 0.75x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "bad-dreams": {
+      "id": "bad-dreams",
+      "name": "bad-dreams",
+      "displayName": "Bad Dreams",
+      "shortEffect": "Causes sleeping foes to lose 1/8 of their max HP at the end of each turn.",
+      "effect": "Causes opposing Pokemon to lose 1/8 of their maximum HP, rounded down, at the end of each turn if they are asleep.",
+      "description": "Causes sleeping foes to lose 1/8 of their max HP at the end of each turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "ball-fetch": {
+      "id": "ball-fetch",
+      "name": "ball-fetch",
+      "displayName": "Ball Fetch",
+      "shortEffect": "No competitive use.",
+      "effect": "No competitive use.",
+      "description": "No competitive use.",
+      "source": "pokemon-showdown-dex"
+    },
+    "battery": {
+      "id": "battery",
+      "name": "battery",
+      "displayName": "Battery",
+      "shortEffect": "This Pokemon's allies have the power of their special attacks multiplied by 1.3.",
+      "effect": "This Pokemon's allies have the power of their special attacks multiplied by 1.3.",
+      "description": "This Pokemon's allies have the power of their special attacks multiplied by 1.3.",
+      "source": "pokemon-showdown-dex"
+    },
+    "battle-armor": {
+      "id": "battle-armor",
+      "name": "battle-armor",
+      "displayName": "Battle Armor",
+      "shortEffect": "This Pokemon cannot be struck by a critical hit.",
+      "effect": "This Pokemon cannot be struck by a critical hit.",
+      "description": "This Pokemon cannot be struck by a critical hit.",
+      "source": "pokemon-showdown-dex"
+    },
+    "battle-bond": {
+      "id": "battle-bond",
+      "name": "battle-bond",
+      "displayName": "Battle Bond",
+      "shortEffect": "After KOing a Pokemon: raises Attack, Sp. Atk, Speed by 1 stage. Once per battle.",
+      "effect": "If this Pokemon is a Greninja, its Attack, Special Attack, and Speed are raised by 1 stage if it attacks and knocks out another Pokemon. This effect can only happen once per battle.",
+      "description": "After KOing a Pokemon: raises Attack, Sp. Atk, Speed by 1 stage. Once per battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "beads-of-ruin": {
+      "id": "beads-of-ruin",
+      "name": "beads-of-ruin",
+      "displayName": "Beads Of Ruin",
+      "shortEffect": "Active Pokemon without this Ability have their Special Defense multiplied by 0.75.",
+      "effect": "Active Pokemon without this Ability have their Special Defense multiplied by 0.75.",
+      "description": "Active Pokemon without this Ability have their Special Defense multiplied by 0.75.",
+      "source": "pokemon-showdown-dex"
+    },
+    "beast-boost": {
+      "id": "beast-boost",
+      "name": "beast-boost",
+      "displayName": "Beast Boost",
+      "shortEffect": "This Pokemon's highest stat is raised by 1 if it attacks and KOes another Pokemon.",
+      "effect": "This Pokemon's highest stat is raised by 1 stage if it attacks and knocks out another Pokemon. Stat stage changes are not considered. If multiple stats are tied, Attack, Defense, Special Attack, Special Defense, and Speed are prioritized in that order.",
+      "description": "This Pokemon's highest stat is raised by 1 if it attacks and KOes another Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "berserk": {
+      "id": "berserk",
+      "name": "berserk",
+      "displayName": "Berserk",
+      "shortEffect": "This Pokemon's Sp. Atk is raised by 1 when it reaches 1/2 or less of its max HP.",
+      "effect": "When this Pokemon has more than 1/2 its maximum HP and takes damage from an attack bringing it to 1/2 or less of its maximum HP, its Special Attack is raised by 1 stage. This effect applies after all hits from a multi-hit move. This effect is prevented if the move had a secondary effect removed by the Sheer Force Ability.",
+      "description": "This Pokemon's Sp. Atk is raised by 1 when it reaches 1/2 or less of its max HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "big-pecks": {
+      "id": "big-pecks",
+      "name": "big-pecks",
+      "displayName": "Big Pecks",
+      "shortEffect": "Prevents other Pokemon from lowering this Pokemon's Defense stat stage.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's Defense stat stage.",
+      "description": "Prevents other Pokemon from lowering this Pokemon's Defense stat stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "blaze": {
+      "id": "blaze",
+      "name": "blaze",
+      "displayName": "Blaze",
+      "shortEffect": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Fire attacks.",
+      "effect": "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Fire-type attack.",
+      "description": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Fire attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "bulletproof": {
+      "id": "bulletproof",
+      "name": "bulletproof",
+      "displayName": "Bulletproof",
+      "shortEffect": "This Pokemon is immune to bullet moves.",
+      "effect": "This Pokemon is immune to bullet moves.",
+      "description": "This Pokemon is immune to bullet moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "cheek-pouch": {
+      "id": "cheek-pouch",
+      "name": "cheek-pouch",
+      "displayName": "Cheek Pouch",
+      "shortEffect": "If this Pokemon eats a Berry, it restores 1/3 of its max HP after the Berry's effect.",
+      "effect": "If this Pokemon eats a held Berry, it restores 1/3 of its maximum HP, rounded down, in addition to the Berry's effect. This effect can also activate after the effects of Bug Bite, Fling, Pluck, Stuff Cheeks, and Teatime if the eaten Berry had an effect on this Pokemon.",
+      "description": "If this Pokemon eats a Berry, it restores 1/3 of its max HP after the Berry's effect.",
+      "source": "pokemon-showdown-dex"
+    },
+    "chilling-neigh": {
+      "id": "chilling-neigh",
+      "name": "chilling-neigh",
+      "displayName": "Chilling Neigh",
+      "shortEffect": "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+      "effect": "This Pokemon's Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
+      "description": "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "chlorophyll": {
+      "id": "chlorophyll",
+      "name": "chlorophyll",
+      "displayName": "Chlorophyll",
+      "shortEffect": "If Sunny Day is active, this Pokemon's Speed is doubled.",
+      "effect": "If Sunny Day is active, this Pokemon's Speed is doubled. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+      "description": "If Sunny Day is active, this Pokemon's Speed is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "clear-body": {
+      "id": "clear-body",
+      "name": "clear-body",
+      "displayName": "Clear Body",
+      "shortEffect": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "description": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "source": "pokemon-showdown-dex"
+    },
+    "cloud-nine": {
+      "id": "cloud-nine",
+      "name": "cloud-nine",
+      "displayName": "Cloud Nine",
+      "shortEffect": "While this Pokemon is active, the effects of weather conditions are disabled.",
+      "effect": "While this Pokemon is active, the effects of weather conditions are disabled.",
+      "description": "While this Pokemon is active, the effects of weather conditions are disabled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "color-change": {
+      "id": "color-change",
+      "name": "color-change",
+      "displayName": "Color Change",
+      "shortEffect": "This Pokemon's type changes to the type of a move it's hit by, unless it has the type.",
+      "effect": "This Pokemon's type changes to match the type of the last move that hit it, unless that type is already one of its types. This effect applies after all hits from a multi-hit move. This effect is prevented if the move had a secondary effect removed by the Sheer Force Ability.",
+      "description": "This Pokemon's type changes to the type of a move it's hit by, unless it has the type.",
+      "source": "pokemon-showdown-dex"
+    },
+    "comatose": {
+      "id": "comatose",
+      "name": "comatose",
+      "displayName": "Comatose",
+      "shortEffect": "This Pokemon cannot be statused, and is considered to be asleep.",
+      "effect": "This Pokemon is considered to be asleep and cannot become affected by a non-volatile status condition or Yawn.",
+      "description": "This Pokemon cannot be statused, and is considered to be asleep.",
+      "source": "pokemon-showdown-dex"
+    },
+    "commander": {
+      "id": "commander",
+      "name": "commander",
+      "displayName": "Commander",
+      "shortEffect": "If ally is Dondozo: this Pokemon cannot act or be hit, +2 to all Dondozo's stats.",
+      "effect": "If this Pokemon is a Tatsugiri and a Dondozo is an active ally, this Pokemon goes into the Dondozo's mouth. The Dondozo has its Attack, Special Attack, Speed, Defense, and Special Defense raised by 2 stages. During the effect, the Dondozo cannot be switched out, this Pokemon cannot select an action, and attacks targeted at this Pokemon will be avoided but it will still take indirect damage. If this Pokemon faints during the effect, a Pokemon can be switched in as a replacement but the Dondozo remains unable to be switched out. If the Dondozo faints during the effect, this Pokemon regains the ability to select an action.",
+      "description": "If ally is Dondozo: this Pokemon cannot act or be hit, +2 to all Dondozo's stats.",
+      "source": "pokemon-showdown-dex"
+    },
+    "competitive": {
+      "id": "competitive",
+      "name": "competitive",
+      "displayName": "Competitive",
+      "shortEffect": "This Pokemon's Sp. Atk is raised by 2 for each of its stats that is lowered by a foe.",
+      "effect": "This Pokemon's Special Attack is raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon.",
+      "description": "This Pokemon's Sp. Atk is raised by 2 for each of its stats that is lowered by a foe.",
+      "source": "pokemon-showdown-dex"
+    },
+    "compound-eyes": {
+      "id": "compound-eyes",
+      "name": "compound-eyes",
+      "displayName": "Compound Eyes",
+      "shortEffect": "This Pokemon's moves have their accuracy multiplied by 1.3.",
+      "effect": "This Pokemon's moves have their accuracy multiplied by 1.3.",
+      "description": "This Pokemon's moves have their accuracy multiplied by 1.3.",
+      "source": "pokemon-showdown-dex"
+    },
+    "contrary": {
+      "id": "contrary",
+      "name": "contrary",
+      "displayName": "Contrary",
+      "shortEffect": "If this Pokemon has a stat stage raised it is lowered instead, and vice versa.",
+      "effect": "If this Pokemon has a stat stage raised it is lowered instead, and vice versa.",
+      "description": "If this Pokemon has a stat stage raised it is lowered instead, and vice versa.",
+      "source": "pokemon-showdown-dex"
+    },
+    "corrosion": {
+      "id": "corrosion",
+      "name": "corrosion",
+      "displayName": "Corrosion",
+      "shortEffect": "This Pokemon can poison or badly poison a Pokemon regardless of its typing.",
+      "effect": "This Pokemon can poison or badly poison a Pokemon regardless of its typing.",
+      "description": "This Pokemon can poison or badly poison a Pokemon regardless of its typing.",
+      "source": "pokemon-showdown-dex"
+    },
+    "costar": {
+      "id": "costar",
+      "name": "costar",
+      "displayName": "Costar",
+      "shortEffect": "On switch-in, this Pokemon copies all of its ally's stat stage changes.",
+      "effect": "On switch-in, this Pokemon copies all of its ally's stat stage changes.",
+      "description": "On switch-in, this Pokemon copies all of its ally's stat stage changes.",
+      "source": "pokemon-showdown-dex"
+    },
+    "cotton-down": {
+      "id": "cotton-down",
+      "name": "cotton-down",
+      "displayName": "Cotton Down",
+      "shortEffect": "If this Pokemon is hit, it lowers the Speed of all other Pokemon on the field 1 stage.",
+      "effect": "When this Pokemon is hit by an attack, the Speed of all other Pokemon on the field is lowered by 1 stage.",
+      "description": "If this Pokemon is hit, it lowers the Speed of all other Pokemon on the field 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "cud-chew": {
+      "id": "cud-chew",
+      "name": "cud-chew",
+      "displayName": "Cud Chew",
+      "shortEffect": "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
+      "effect": "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
+      "description": "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "curious-medicine": {
+      "id": "curious-medicine",
+      "name": "curious-medicine",
+      "displayName": "Curious Medicine",
+      "shortEffect": "On switch-in, this Pokemon's allies have their stat stages reset to 0.",
+      "effect": "On switch-in, this Pokemon's allies have their stat stages reset to 0.",
+      "description": "On switch-in, this Pokemon's allies have their stat stages reset to 0.",
+      "source": "pokemon-showdown-dex"
+    },
+    "cursed-body": {
+      "id": "cursed-body",
+      "name": "cursed-body",
+      "displayName": "Cursed Body",
+      "shortEffect": "If this Pokemon is hit by an attack, there is a 30% chance that move gets disabled.",
+      "effect": "If this Pokemon is hit by an attack, there is a 30% chance that move gets disabled unless one of the attacker's moves is already disabled.",
+      "description": "If this Pokemon is hit by an attack, there is a 30% chance that move gets disabled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "cute-charm": {
+      "id": "cute-charm",
+      "name": "cute-charm",
+      "displayName": "Cute Charm",
+      "shortEffect": "30% chance of infatuating Pokemon of the opposite gender if they make contact.",
+      "effect": "There is a 30% chance a Pokemon making contact with this Pokemon will become infatuated if it is of the opposite gender.",
+      "description": "30% chance of infatuating Pokemon of the opposite gender if they make contact.",
+      "source": "pokemon-showdown-dex"
+    },
+    "damp": {
+      "id": "damp",
+      "name": "damp",
+      "displayName": "Damp",
+      "shortEffect": "Prevents Explosion/Mind Blown/Misty Explosion/Self-Destruct/Aftermath while active.",
+      "effect": "While this Pokemon is active, Explosion, Mind Blown, Misty Explosion, Self-Destruct, and the Aftermath Ability are prevented from having an effect.",
+      "description": "Prevents Explosion/Mind Blown/Misty Explosion/Self-Destruct/Aftermath while active.",
+      "source": "pokemon-showdown-dex"
+    },
+    "dancer": {
+      "id": "dancer",
+      "name": "dancer",
+      "displayName": "Dancer",
+      "shortEffect": "After another Pokemon uses a dance move, this Pokemon uses the same move.",
+      "effect": "After another Pokemon uses a dance move, this Pokemon uses the same move. The copied move is subject to all effects that can prevent a move from being executed. A move used through this Ability cannot be copied again by other Pokemon with this Ability.",
+      "description": "After another Pokemon uses a dance move, this Pokemon uses the same move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "dark-aura": {
+      "id": "dark-aura",
+      "name": "dark-aura",
+      "displayName": "Dark Aura",
+      "shortEffect": "While this Pokemon is active, a Dark move used by any Pokemon has 1.33x power.",
+      "effect": "While this Pokemon is active, the power of Dark-type moves used by active Pokemon is multiplied by 1.33.",
+      "description": "While this Pokemon is active, a Dark move used by any Pokemon has 1.33x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "dauntless-shield": {
+      "id": "dauntless-shield",
+      "name": "dauntless-shield",
+      "displayName": "Dauntless Shield",
+      "shortEffect": "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
+      "effect": "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
+      "description": "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "dazzling": {
+      "id": "dazzling",
+      "name": "dazzling",
+      "displayName": "Dazzling",
+      "shortEffect": "This Pokemon and its allies are protected from opposing priority moves.",
+      "effect": "Priority moves used by opposing Pokemon targeting this Pokemon or its allies are prevented from having an effect.",
+      "description": "This Pokemon and its allies are protected from opposing priority moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "defeatist": {
+      "id": "defeatist",
+      "name": "defeatist",
+      "displayName": "Defeatist",
+      "shortEffect": "While this Pokemon has 1/2 or less of its max HP, its Attack and Sp. Atk are halved.",
+      "effect": "While this Pokemon has 1/2 or less of its maximum HP, its Attack and Special Attack are halved.",
+      "description": "While this Pokemon has 1/2 or less of its max HP, its Attack and Sp. Atk are halved.",
+      "source": "pokemon-showdown-dex"
+    },
+    "defiant": {
+      "id": "defiant",
+      "name": "defiant",
+      "displayName": "Defiant",
+      "shortEffect": "This Pokemon's Attack is raised by 2 for each of its stats that is lowered by a foe.",
+      "effect": "This Pokemon's Attack is raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon.",
+      "description": "This Pokemon's Attack is raised by 2 for each of its stats that is lowered by a foe.",
+      "source": "pokemon-showdown-dex"
+    },
+    "delta-stream": {
+      "id": "delta-stream",
+      "name": "delta-stream",
+      "displayName": "Delta Stream",
+      "shortEffect": "On switch-in, strong winds begin until this Ability is not active in battle.",
+      "effect": "On switch-in, the weather becomes Delta Stream, which removes the weaknesses of the Flying type from Flying-type Pokemon. This weather remains in effect until this Ability is no longer active for any Pokemon, or the weather is changed by the Desolate Land or Primordial Sea Abilities.",
+      "description": "On switch-in, strong winds begin until this Ability is not active in battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "desolate-land": {
+      "id": "desolate-land",
+      "name": "desolate-land",
+      "displayName": "Desolate Land",
+      "shortEffect": "On switch-in, extremely harsh sunlight begins until this Ability is not active in battle.",
+      "effect": "On switch-in, the weather becomes Desolate Land, which includes all the effects of Sunny Day and prevents damaging Water-type moves from executing. This weather remains in effect until this Ability is no longer active for any Pokemon, or the weather is changed by the Delta Stream or Primordial Sea Abilities.",
+      "description": "On switch-in, extremely harsh sunlight begins until this Ability is not active in battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "disguise": {
+      "id": "disguise",
+      "name": "disguise",
+      "displayName": "Disguise",
+      "shortEffect": "(Mimikyu only) The first hit it takes is blocked, and it takes 1/8 HP damage instead.",
+      "effect": "If this Pokemon is a Mimikyu, the first hit it takes in battle deals 0 neutral damage. Its disguise is then broken, it changes to Busted Form, and it loses 1/8 of its max HP. Confusion damage also breaks the disguise.",
+      "description": "(Mimikyu only) The first hit it takes is blocked, and it takes 1/8 HP damage instead.",
+      "source": "pokemon-showdown-dex"
+    },
+    "download": {
+      "id": "download",
+      "name": "download",
+      "displayName": "Download",
+      "shortEffect": "On switch-in, Attack or Sp. Atk is raised 1 stage based on the foes' weaker Defense.",
+      "effect": "On switch-in, this Pokemon's Attack or Special Attack is raised by 1 stage based on the weaker combined defensive stat of all opposing Pokemon. Attack is raised if their Defense is lower, and Special Attack is raised if their Special Defense is the same or lower.",
+      "description": "On switch-in, Attack or Sp. Atk is raised 1 stage based on the foes' weaker Defense.",
+      "source": "pokemon-showdown-dex"
+    },
+    "dragons-maw": {
+      "id": "dragons-maw",
+      "name": "dragons-maw",
+      "displayName": "Dragon's Maw",
+      "shortEffect": "This Pokemon's offensive stat is multiplied by 1.5 while using a Dragon-type attack.",
+      "effect": "This Pokemon's offensive stat is multiplied by 1.5 while using a Dragon-type attack.",
+      "description": "This Pokemon's offensive stat is multiplied by 1.5 while using a Dragon-type attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "drizzle": {
+      "id": "drizzle",
+      "name": "drizzle",
+      "displayName": "Drizzle",
+      "shortEffect": "On switch-in, this Pokemon summons Rain Dance.",
+      "effect": "On switch-in, this Pokemon summons Rain Dance.",
+      "description": "On switch-in, this Pokemon summons Rain Dance.",
+      "source": "pokemon-showdown-dex"
+    },
+    "drought": {
+      "id": "drought",
+      "name": "drought",
+      "displayName": "Drought",
+      "shortEffect": "On switch-in, this Pokemon summons Sunny Day.",
+      "effect": "On switch-in, this Pokemon summons Sunny Day.",
+      "description": "On switch-in, this Pokemon summons Sunny Day.",
+      "source": "pokemon-showdown-dex"
+    },
+    "dry-skin": {
+      "id": "dry-skin",
+      "name": "dry-skin",
+      "displayName": "Dry Skin",
+      "shortEffect": "This Pokemon is healed 1/4 by Water, 1/8 by Rain; is hurt 1.25x by Fire, 1/8 by Sun.",
+      "effect": "This Pokemon is immune to Water-type moves and restores 1/4 of its maximum HP, rounded down, when hit by a Water-type move. The power of Fire-type moves is multiplied by 1.25 when used on this Pokemon. At the end of each turn, this Pokemon restores 1/8 of its maximum HP, rounded down, if the weather is Rain Dance, and loses 1/8 of its maximum HP, rounded down, if the weather is Sunny Day. The weather effects are prevented if this Pokemon is holding a Utility Umbrella.",
+      "description": "This Pokemon is healed 1/4 by Water, 1/8 by Rain; is hurt 1.25x by Fire, 1/8 by Sun.",
+      "source": "pokemon-showdown-dex"
+    },
+    "early-bird": {
+      "id": "early-bird",
+      "name": "early-bird",
+      "displayName": "Early Bird",
+      "shortEffect": "This Pokemon's sleep counter drops by 2 instead of 1.",
+      "effect": "This Pokemon's sleep counter drops by 2 instead of 1.",
+      "description": "This Pokemon's sleep counter drops by 2 instead of 1.",
+      "source": "pokemon-showdown-dex"
+    },
+    "earth-eater": {
+      "id": "earth-eater",
+      "name": "earth-eater",
+      "displayName": "Earth Eater",
+      "shortEffect": "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+      "effect": "This Pokemon is immune to Ground-type moves and restores 1/4 of its maximum HP, rounded down, when hit by a Ground-type move.",
+      "description": "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "effect-spore": {
+      "id": "effect-spore",
+      "name": "effect-spore",
+      "displayName": "Effect Spore",
+      "shortEffect": "30% chance of poison/paralysis/sleep on others making contact with this Pokemon.",
+      "effect": "30% chance a Pokemon making contact with this Pokemon will be poisoned, paralyzed, or fall asleep.",
+      "description": "30% chance of poison/paralysis/sleep on others making contact with this Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "electric-surge": {
+      "id": "electric-surge",
+      "name": "electric-surge",
+      "displayName": "Electric Surge",
+      "shortEffect": "On switch-in, this Pokemon summons Electric Terrain.",
+      "effect": "On switch-in, this Pokemon summons Electric Terrain.",
+      "description": "On switch-in, this Pokemon summons Electric Terrain.",
+      "source": "pokemon-showdown-dex"
+    },
+    "electromorphosis": {
+      "id": "electromorphosis",
+      "name": "electromorphosis",
+      "displayName": "Electromorphosis",
+      "shortEffect": "This Pokemon gains the Charge effect when it takes a hit from an attack.",
+      "effect": "This Pokemon gains the Charge effect when it takes a hit from an attack.",
+      "description": "This Pokemon gains the Charge effect when it takes a hit from an attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "embody-aspect-cornerstone": {
+      "id": "embody-aspect-cornerstone",
+      "name": "embody-aspect-cornerstone",
+      "displayName": "Embody Aspect (cornerstone)",
+      "shortEffect": "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+      "effect": "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+      "description": "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "embody-aspect-hearthflame": {
+      "id": "embody-aspect-hearthflame",
+      "name": "embody-aspect-hearthflame",
+      "displayName": "Embody Aspect (hearthflame)",
+      "shortEffect": "On switch-in, this Pokemon's Attack is raised by 1 stage.",
+      "effect": "On switch-in, this Pokemon's Attack is raised by 1 stage.",
+      "description": "On switch-in, this Pokemon's Attack is raised by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "embody-aspect-teal": {
+      "id": "embody-aspect-teal",
+      "name": "embody-aspect-teal",
+      "displayName": "Embody Aspect (teal)",
+      "shortEffect": "On switch-in, this Pokemon's Speed is raised by 1 stage.",
+      "effect": "On switch-in, this Pokemon's Speed is raised by 1 stage.",
+      "description": "On switch-in, this Pokemon's Speed is raised by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "embody-aspect-wellspring": {
+      "id": "embody-aspect-wellspring",
+      "name": "embody-aspect-wellspring",
+      "displayName": "Embody Aspect (wellspring)",
+      "shortEffect": "On switch-in, this Pokemon's Special Defense is raised by 1 stage.",
+      "effect": "On switch-in, this Pokemon's Special Defense is raised by 1 stage.",
+      "description": "On switch-in, this Pokemon's Special Defense is raised by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "emergency-exit": {
+      "id": "emergency-exit",
+      "name": "emergency-exit",
+      "displayName": "Emergency Exit",
+      "shortEffect": "This Pokemon switches out when it reaches 1/2 or less of its maximum HP.",
+      "effect": "When this Pokemon has more than 1/2 its maximum HP and takes damage bringing it to 1/2 or less of its maximum HP, it immediately switches out to a chosen ally. This effect applies after all hits from a multi-hit move. This effect is prevented if the move had a secondary effect removed by the Sheer Force Ability. This effect applies to both direct and indirect damage, except Curse and Substitute on use, Belly Drum, Pain Split, and confusion damage.",
+      "description": "This Pokemon switches out when it reaches 1/2 or less of its maximum HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "fairy-aura": {
+      "id": "fairy-aura",
+      "name": "fairy-aura",
+      "displayName": "Fairy Aura",
+      "shortEffect": "While this Pokemon is active, a Fairy move used by any Pokemon has 1.33x power.",
+      "effect": "While this Pokemon is active, the power of Fairy-type moves used by active Pokemon is multiplied by 1.33.",
+      "description": "While this Pokemon is active, a Fairy move used by any Pokemon has 1.33x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "filter": {
+      "id": "filter",
+      "name": "filter",
+      "displayName": "Filter",
+      "shortEffect": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "effect": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "description": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "flame-body": {
+      "id": "flame-body",
+      "name": "flame-body",
+      "displayName": "Flame Body",
+      "shortEffect": "30% chance a Pokemon making contact with this Pokemon will be burned.",
+      "effect": "30% chance a Pokemon making contact with this Pokemon will be burned.",
+      "description": "30% chance a Pokemon making contact with this Pokemon will be burned.",
+      "source": "pokemon-showdown-dex"
+    },
+    "flare-boost": {
+      "id": "flare-boost",
+      "name": "flare-boost",
+      "displayName": "Flare Boost",
+      "shortEffect": "While this Pokemon is burned, its special attacks have 1.5x power.",
+      "effect": "While this Pokemon is burned, the power of its special attacks is multiplied by 1.5.",
+      "description": "While this Pokemon is burned, its special attacks have 1.5x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "flash-fire": {
+      "id": "flash-fire",
+      "name": "flash-fire",
+      "displayName": "Flash Fire",
+      "shortEffect": "This Pokemon's Fire attacks do 1.5x damage if hit by one Fire move; Fire immunity.",
+      "effect": "This Pokemon is immune to Fire-type moves. The first time it is hit by a Fire-type move, its offensive stat is multiplied by 1.5 while using a Fire-type attack as long as it remains active and has this Ability. If this Pokemon is frozen, it cannot be defrosted by Fire-type attacks.",
+      "description": "This Pokemon's Fire attacks do 1.5x damage if hit by one Fire move; Fire immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "flower-gift": {
+      "id": "flower-gift",
+      "name": "flower-gift",
+      "displayName": "Flower Gift",
+      "shortEffect": "If user is Cherrim and Sunny Day is active, it and allies' Attack and Sp. Def are 1.5x.",
+      "effect": "If this Pokemon is a Cherrim and Sunny Day is active, it changes to Sunshine Form and the Attack and Special Defense of it and its allies are multiplied by 1.5. These effects are prevented if the Pokemon is holding a Utility Umbrella.",
+      "description": "If user is Cherrim and Sunny Day is active, it and allies' Attack and Sp. Def are 1.5x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "flower-veil": {
+      "id": "flower-veil",
+      "name": "flower-veil",
+      "displayName": "Flower Veil",
+      "shortEffect": "This side's Grass types can't have stats lowered or status inflicted by other Pokemon.",
+      "effect": "Grass-type Pokemon on this Pokemon's side cannot have their stat stages lowered by other Pokemon or have a non-volatile status condition inflicted on them by other Pokemon.",
+      "description": "This side's Grass types can't have stats lowered or status inflicted by other Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "fluffy": {
+      "id": "fluffy",
+      "name": "fluffy",
+      "displayName": "Fluffy",
+      "shortEffect": "This Pokemon takes 1/2 damage from contact moves, 2x damage from Fire moves.",
+      "effect": "This Pokemon receives 1/2 damage from contact moves, but double damage from Fire moves.",
+      "description": "This Pokemon takes 1/2 damage from contact moves, 2x damage from Fire moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "forecast": {
+      "id": "forecast",
+      "name": "forecast",
+      "displayName": "Forecast",
+      "shortEffect": "Castform's type changes to the current weather condition's type, except Sandstorm.",
+      "effect": "If this Pokemon is a Castform, its type changes to the current weather condition's type, except Sandstorm. This effect is prevented if this Pokemon is holding a Utility Umbrella and the weather is Rain Dance or Sunny Day.",
+      "description": "Castform's type changes to the current weather condition's type, except Sandstorm.",
+      "source": "pokemon-showdown-dex"
+    },
+    "forewarn": {
+      "id": "forewarn",
+      "name": "forewarn",
+      "displayName": "Forewarn",
+      "shortEffect": "On switch-in, this Pokemon is alerted to the foes' move with the highest power.",
+      "effect": "On switch-in, this Pokemon is alerted to the move with the highest power, at random, known by an opposing Pokemon. This effect considers OHKO moves to have 150 power, Counter, Mirror Coat, and Metal Burst to have 120 power, every other attacking move with an unspecified power to have 80 power, and non-damaging moves to have 1 power.",
+      "description": "On switch-in, this Pokemon is alerted to the foes' move with the highest power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "friend-guard": {
+      "id": "friend-guard",
+      "name": "friend-guard",
+      "displayName": "Friend Guard",
+      "shortEffect": "This Pokemon's allies receive 3/4 damage from other Pokemon's attacks.",
+      "effect": "This Pokemon's allies receive 3/4 damage from other Pokemon's attacks.",
+      "description": "This Pokemon's allies receive 3/4 damage from other Pokemon's attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "frisk": {
+      "id": "frisk",
+      "name": "frisk",
+      "displayName": "Frisk",
+      "shortEffect": "On switch-in, this Pokemon identifies the held items of all opposing Pokemon.",
+      "effect": "On switch-in, this Pokemon identifies the held items of all opposing Pokemon.",
+      "description": "On switch-in, this Pokemon identifies the held items of all opposing Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "full-metal-body": {
+      "id": "full-metal-body",
+      "name": "full-metal-body",
+      "displayName": "Full Metal Body",
+      "shortEffect": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "description": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "source": "pokemon-showdown-dex"
+    },
+    "fur-coat": {
+      "id": "fur-coat",
+      "name": "fur-coat",
+      "displayName": "Fur Coat",
+      "shortEffect": "This Pokemon's Defense is doubled.",
+      "effect": "This Pokemon's Defense is doubled.",
+      "description": "This Pokemon's Defense is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "gale-wings": {
+      "id": "gale-wings",
+      "name": "gale-wings",
+      "displayName": "Gale Wings",
+      "shortEffect": "If this Pokemon is at full HP, its Flying-type moves have their priority increased by 1.",
+      "effect": "If this Pokemon is at full HP, its Flying-type moves have their priority increased by 1.",
+      "description": "If this Pokemon is at full HP, its Flying-type moves have their priority increased by 1.",
+      "source": "pokemon-showdown-dex"
+    },
+    "galvanize": {
+      "id": "galvanize",
+      "name": "galvanize",
+      "displayName": "Galvanize",
+      "shortEffect": "This Pokemon's Normal-type moves become Electric type and have 1.2x power.",
+      "effect": "This Pokemon's Normal-type moves become Electric-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+      "description": "This Pokemon's Normal-type moves become Electric type and have 1.2x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "gluttony": {
+      "id": "gluttony",
+      "name": "gluttony",
+      "displayName": "Gluttony",
+      "shortEffect": "This Pokemon eats Berries at 1/2 max HP or less instead of their usual 1/4 max HP.",
+      "effect": "When this Pokemon is holding a Berry that usually activates with 1/4 or less of its maximum HP, it is eaten at 1/2 or less of its maximum HP instead.",
+      "description": "This Pokemon eats Berries at 1/2 max HP or less instead of their usual 1/4 max HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "good-as-gold": {
+      "id": "good-as-gold",
+      "name": "good-as-gold",
+      "displayName": "Good As Gold",
+      "shortEffect": "This Pokemon is immune to Status moves.",
+      "effect": "This Pokemon is immune to Status moves.",
+      "description": "This Pokemon is immune to Status moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "gooey": {
+      "id": "gooey",
+      "name": "gooey",
+      "displayName": "Gooey",
+      "shortEffect": "Pokemon making contact with this Pokemon have their Speed lowered by 1 stage.",
+      "effect": "Pokemon making contact with this Pokemon have their Speed lowered by 1 stage.",
+      "description": "Pokemon making contact with this Pokemon have their Speed lowered by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "gorilla-tactics": {
+      "id": "gorilla-tactics",
+      "name": "gorilla-tactics",
+      "displayName": "Gorilla Tactics",
+      "shortEffect": "This Pokemon's Attack is 1.5x, but it can only select the first move it executes.",
+      "effect": "This Pokemon's Attack is multiplied by 1.5, but it can only select the first move it executes. These effects are prevented while this Pokemon is Dynamaxed.",
+      "description": "This Pokemon's Attack is 1.5x, but it can only select the first move it executes.",
+      "source": "pokemon-showdown-dex"
+    },
+    "grass-pelt": {
+      "id": "grass-pelt",
+      "name": "grass-pelt",
+      "displayName": "Grass Pelt",
+      "shortEffect": "If Grassy Terrain is active, this Pokemon's Defense is multiplied by 1.5.",
+      "effect": "If Grassy Terrain is active, this Pokemon's Defense is multiplied by 1.5.",
+      "description": "If Grassy Terrain is active, this Pokemon's Defense is multiplied by 1.5.",
+      "source": "pokemon-showdown-dex"
+    },
+    "grassy-surge": {
+      "id": "grassy-surge",
+      "name": "grassy-surge",
+      "displayName": "Grassy Surge",
+      "shortEffect": "On switch-in, this Pokemon summons Grassy Terrain.",
+      "effect": "On switch-in, this Pokemon summons Grassy Terrain.",
+      "description": "On switch-in, this Pokemon summons Grassy Terrain.",
+      "source": "pokemon-showdown-dex"
+    },
+    "grim-neigh": {
+      "id": "grim-neigh",
+      "name": "grim-neigh",
+      "displayName": "Grim Neigh",
+      "shortEffect": "This Pokemon's Sp. Atk is raised by 1 stage if it attacks and KOes another Pokemon.",
+      "effect": "This Pokemon's Special Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
+      "description": "This Pokemon's Sp. Atk is raised by 1 stage if it attacks and KOes another Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "guard-dog": {
+      "id": "guard-dog",
+      "name": "guard-dog",
+      "displayName": "Guard Dog",
+      "shortEffect": "Immune to Intimidate. Intimidated: +1 Attack. Cannot be forced to switch out.",
+      "effect": "This Pokemon is immune to the effect of the Intimidate Ability and raises its Attack by 1 stage instead. This Pokemon cannot be forced to switch out by another Pokemon's attack or item.",
+      "description": "Immune to Intimidate. Intimidated: +1 Attack. Cannot be forced to switch out.",
+      "source": "pokemon-showdown-dex"
+    },
+    "gulp-missile": {
+      "id": "gulp-missile",
+      "name": "gulp-missile",
+      "displayName": "Gulp Missile",
+      "shortEffect": "When hit after Surf/Dive, attacker takes 1/4 max HP and -1 Defense or paralysis.",
+      "effect": "If this Pokemon is a Cramorant, it changes forme when it hits a target with Surf or uses the first turn of Dive successfully. It becomes Gulping Form with an Arrokuda in its mouth if it has more than 1/2 of its maximum HP remaining, or Gorging Form with a Pikachu in its mouth if it has 1/2 or less of its maximum HP remaining. If Cramorant gets hit in Gulping or Gorging Form, it spits the Arrokuda or Pikachu at its attacker, even if it has no HP remaining. The projectile deals damage equal to 1/4 of the target's maximum HP, rounded down; this damage is blocked by the Magic Guard Ability but not by a substitute. An Arrokuda also lowers the target's Defense by 1 stage, and a Pikachu paralyzes the target. Cramorant will return to normal if it spits out a projectile, switches out, or Dynamaxes.",
+      "description": "When hit after Surf/Dive, attacker takes 1/4 max HP and -1 Defense or paralysis.",
+      "source": "pokemon-showdown-dex"
+    },
+    "guts": {
+      "id": "guts",
+      "name": "guts",
+      "displayName": "Guts",
+      "shortEffect": "If this Pokemon is statused, its Attack is 1.5x; ignores burn halving physical damage.",
+      "effect": "If this Pokemon has a non-volatile status condition, its Attack is multiplied by 1.5. This Pokemon's physical attacks ignore the burn effect of halving damage.",
+      "description": "If this Pokemon is statused, its Attack is 1.5x; ignores burn halving physical damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "hadron-engine": {
+      "id": "hadron-engine",
+      "name": "hadron-engine",
+      "displayName": "Hadron Engine",
+      "shortEffect": "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
+      "effect": "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
+      "description": "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "harvest": {
+      "id": "harvest",
+      "name": "harvest",
+      "displayName": "Harvest",
+      "shortEffect": "If last item used is a Berry, 50% chance to restore it each end of turn. 100% in Sun.",
+      "effect": "If the last item this Pokemon used is a Berry, there is a 50% chance it gets restored at the end of each turn. If Sunny Day is active, this chance is 100%.",
+      "description": "If last item used is a Berry, 50% chance to restore it each end of turn. 100% in Sun.",
+      "source": "pokemon-showdown-dex"
+    },
+    "healer": {
+      "id": "healer",
+      "name": "healer",
+      "displayName": "Healer",
+      "shortEffect": "30% chance this Pokemon's ally has its status cured at the end of each turn.",
+      "effect": "30% chance this Pokemon's ally has its non-volatile status condition cured at the end of each turn.",
+      "description": "30% chance this Pokemon's ally has its status cured at the end of each turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "heatproof": {
+      "id": "heatproof",
+      "name": "heatproof",
+      "displayName": "Heatproof",
+      "shortEffect": "Fire damage against this Pokemon is dealt with 1/2 offensive stat; 1/2 burn damage.",
+      "effect": "If a Pokemon uses a Fire-type attack against this Pokemon, that Pokemon's offensive stat is halved when calculating the damage to this Pokemon. This Pokemon takes half of the usual burn damage, rounded down.",
+      "description": "Fire damage against this Pokemon is dealt with 1/2 offensive stat; 1/2 burn damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "heavy-metal": {
+      "id": "heavy-metal",
+      "name": "heavy-metal",
+      "displayName": "Heavy Metal",
+      "shortEffect": "This Pokemon's weight is doubled.",
+      "effect": "This Pokemon's weight is doubled. This effect is calculated after the effect of Autotomize, and before the effect of Float Stone.",
+      "description": "This Pokemon's weight is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "honey-gather": {
+      "id": "honey-gather",
+      "name": "honey-gather",
+      "displayName": "Honey Gather",
+      "shortEffect": "No competitive use.",
+      "effect": "No competitive use.",
+      "description": "No competitive use.",
+      "source": "pokemon-showdown-dex"
+    },
+    "hospitality": {
+      "id": "hospitality",
+      "name": "hospitality",
+      "displayName": "Hospitality",
+      "shortEffect": "On switch-in, this Pokemon restores 1/4 of its ally's maximum HP, rounded down.",
+      "effect": "On switch-in, this Pokemon restores 1/4 of its ally's maximum HP, rounded down.",
+      "description": "On switch-in, this Pokemon restores 1/4 of its ally's maximum HP, rounded down.",
+      "source": "pokemon-showdown-dex"
+    },
+    "huge-power": {
+      "id": "huge-power",
+      "name": "huge-power",
+      "displayName": "Huge Power",
+      "shortEffect": "This Pokemon's Attack is doubled.",
+      "effect": "This Pokemon's Attack is doubled.",
+      "description": "This Pokemon's Attack is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "hunger-switch": {
+      "id": "hunger-switch",
+      "name": "hunger-switch",
+      "displayName": "Hunger Switch",
+      "shortEffect": "If Morpeko, it changes between Full Belly and Hangry Mode at the end of each turn.",
+      "effect": "If this Pokemon is a Morpeko, it changes formes between its Full Belly Mode and Hangry Mode at the end of each turn.",
+      "description": "If Morpeko, it changes between Full Belly and Hangry Mode at the end of each turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "hustle": {
+      "id": "hustle",
+      "name": "hustle",
+      "displayName": "Hustle",
+      "shortEffect": "This Pokemon's Attack is 1.5x and accuracy of its physical attacks is 0.8x.",
+      "effect": "This Pokemon's Attack is multiplied by 1.5 and the accuracy of its physical attacks is multiplied by 0.8.",
+      "description": "This Pokemon's Attack is 1.5x and accuracy of its physical attacks is 0.8x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "hydration": {
+      "id": "hydration",
+      "name": "hydration",
+      "displayName": "Hydration",
+      "shortEffect": "This Pokemon has its status cured at the end of each turn if Rain Dance is active.",
+      "effect": "This Pokemon has its non-volatile status condition cured at the end of each turn if Rain Dance is active. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+      "description": "This Pokemon has its status cured at the end of each turn if Rain Dance is active.",
+      "source": "pokemon-showdown-dex"
+    },
+    "hyper-cutter": {
+      "id": "hyper-cutter",
+      "name": "hyper-cutter",
+      "displayName": "Hyper Cutter",
+      "shortEffect": "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
+      "description": "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "ice-body": {
+      "id": "ice-body",
+      "name": "ice-body",
+      "displayName": "Ice Body",
+      "shortEffect": "If Snow is active, this Pokemon heals 1/16 of its max HP each turn.",
+      "effect": "If Snow is active, this Pokemon restores 1/16 of its maximum HP, rounded down, at the end of each turn.",
+      "description": "If Snow is active, this Pokemon heals 1/16 of its max HP each turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "ice-face": {
+      "id": "ice-face",
+      "name": "ice-face",
+      "displayName": "Ice Face",
+      "shortEffect": "If Eiscue, the first physical hit it takes deals 0 damage. Effect is restored in Snow.",
+      "effect": "If this Pokemon is an Eiscue, the first physical hit it takes in battle deals 0 neutral damage. Its ice face is then broken and it changes forme to Noice Face. Eiscue regains its Ice Face forme when Snow begins or when Eiscue switches in while Snow is active. Confusion damage also breaks the ice face.",
+      "description": "If Eiscue, the first physical hit it takes deals 0 damage. Effect is restored in Snow.",
+      "source": "pokemon-showdown-dex"
+    },
+    "ice-scales": {
+      "id": "ice-scales",
+      "name": "ice-scales",
+      "displayName": "Ice Scales",
+      "shortEffect": "This Pokemon receives 1/2 damage from special attacks.",
+      "effect": "This Pokemon receives 1/2 damage from special attacks.",
+      "description": "This Pokemon receives 1/2 damage from special attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "illuminate": {
+      "id": "illuminate",
+      "name": "illuminate",
+      "displayName": "Illuminate",
+      "shortEffect": "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage.",
+      "description": "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat.",
+      "source": "pokemon-showdown-dex"
+    },
+    "illusion": {
+      "id": "illusion",
+      "name": "illusion",
+      "displayName": "Illusion",
+      "shortEffect": "This Pokemon appears as the last Pokemon in the party until it takes direct damage.",
+      "effect": "When this Pokemon switches in, it appears as the last unfainted Pokemon in its party until it takes direct damage from another Pokemon's attack. This Pokemon's actual level and HP are displayed instead of those of the mimicked Pokemon.",
+      "description": "This Pokemon appears as the last Pokemon in the party until it takes direct damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "immunity": {
+      "id": "immunity",
+      "name": "immunity",
+      "displayName": "Immunity",
+      "shortEffect": "This Pokemon cannot be poisoned. Gaining this Ability while poisoned cures it.",
+      "effect": "This Pokemon cannot be poisoned. Gaining this Ability while poisoned cures it.",
+      "description": "This Pokemon cannot be poisoned. Gaining this Ability while poisoned cures it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "imposter": {
+      "id": "imposter",
+      "name": "imposter",
+      "displayName": "Imposter",
+      "shortEffect": "On switch-in, this Pokemon Transforms into the opposing Pokemon that is facing it.",
+      "effect": "On switch-in, this Pokemon Transforms into the opposing Pokemon that is facing it. If there is no Pokemon at that position, this Pokemon does not Transform.",
+      "description": "On switch-in, this Pokemon Transforms into the opposing Pokemon that is facing it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "infiltrator": {
+      "id": "infiltrator",
+      "name": "infiltrator",
+      "displayName": "Infiltrator",
+      "shortEffect": "Moves ignore substitutes and foe's Reflect/Light Screen/Safeguard/Mist/Aurora Veil.",
+      "effect": "This Pokemon's moves ignore substitutes and the opposing side's Reflect, Light Screen, Safeguard, Mist, and Aurora Veil.",
+      "description": "Moves ignore substitutes and foe's Reflect/Light Screen/Safeguard/Mist/Aurora Veil.",
+      "source": "pokemon-showdown-dex"
+    },
+    "innards-out": {
+      "id": "innards-out",
+      "name": "innards-out",
+      "displayName": "Innards Out",
+      "shortEffect": "If this Pokemon is KOed with a move, that move's user loses an equal amount of HP.",
+      "effect": "If this Pokemon is knocked out with a move, that move's user loses HP equal to the amount of damage inflicted on this Pokemon.",
+      "description": "If this Pokemon is KOed with a move, that move's user loses an equal amount of HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "inner-focus": {
+      "id": "inner-focus",
+      "name": "inner-focus",
+      "displayName": "Inner Focus",
+      "shortEffect": "This Pokemon cannot be made to flinch. Immune to Intimidate.",
+      "effect": "This Pokemon cannot be made to flinch. This Pokemon is immune to the effect of the Intimidate Ability.",
+      "description": "This Pokemon cannot be made to flinch. Immune to Intimidate.",
+      "source": "pokemon-showdown-dex"
+    },
+    "insomnia": {
+      "id": "insomnia",
+      "name": "insomnia",
+      "displayName": "Insomnia",
+      "shortEffect": "This Pokemon cannot fall asleep. Gaining this Ability while asleep cures it.",
+      "effect": "This Pokemon cannot fall asleep. Gaining this Ability while asleep cures it.",
+      "description": "This Pokemon cannot fall asleep. Gaining this Ability while asleep cures it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "intimidate": {
+      "id": "intimidate",
+      "name": "intimidate",
+      "displayName": "Intimidate",
+      "shortEffect": "On switch-in, this Pokemon lowers the Attack of opponents by 1 stage.",
+      "effect": "On switch-in, this Pokemon lowers the Attack of opposing Pokemon by 1 stage. Pokemon with the Inner Focus, Oblivious, Own Tempo, or Scrappy Abilities and Pokemon behind a substitute are immune.",
+      "description": "On switch-in, this Pokemon lowers the Attack of opponents by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "intrepid-sword": {
+      "id": "intrepid-sword",
+      "name": "intrepid-sword",
+      "displayName": "Intrepid Sword",
+      "shortEffect": "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
+      "effect": "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
+      "description": "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "iron-barbs": {
+      "id": "iron-barbs",
+      "name": "iron-barbs",
+      "displayName": "Iron Barbs",
+      "shortEffect": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+      "effect": "Pokemon making contact with this Pokemon lose 1/8 of their maximum HP, rounded down.",
+      "description": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "iron-fist": {
+      "id": "iron-fist",
+      "name": "iron-fist",
+      "displayName": "Iron Fist",
+      "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
+      "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+      "description": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
+      "source": "pokemon-showdown-dex"
+    },
+    "justified": {
+      "id": "justified",
+      "name": "justified",
+      "displayName": "Justified",
+      "shortEffect": "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
+      "effect": "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
+      "description": "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "keen-eye": {
+      "id": "keen-eye",
+      "name": "keen-eye",
+      "displayName": "Keen Eye",
+      "shortEffect": "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage.",
+      "description": "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat.",
+      "source": "pokemon-showdown-dex"
+    },
+    "klutz": {
+      "id": "klutz",
+      "name": "klutz",
+      "displayName": "Klutz",
+      "shortEffect": "This Pokemon's held item has no effect, except Macho Brace. Fling cannot be used.",
+      "effect": "This Pokemon's held item has no effect. This Pokemon cannot use Fling successfully. Macho Brace, Power Anklet, Power Band, Power Belt, Power Bracer, Power Lens, and Power Weight still have their effects.",
+      "description": "This Pokemon's held item has no effect, except Macho Brace. Fling cannot be used.",
+      "source": "pokemon-showdown-dex"
+    },
+    "leaf-guard": {
+      "id": "leaf-guard",
+      "name": "leaf-guard",
+      "displayName": "Leaf Guard",
+      "shortEffect": "If Sunny Day is active, this Pokemon cannot be statused and Rest will fail for it.",
+      "effect": "If Sunny Day is active, this Pokemon cannot become affected by a non-volatile status condition or Yawn, and Rest will fail for it. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+      "description": "If Sunny Day is active, this Pokemon cannot be statused and Rest will fail for it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "levitate": {
+      "id": "levitate",
+      "name": "levitate",
+      "displayName": "Levitate",
+      "shortEffect": "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
+      "effect": "This Pokemon is immune to Ground-type attacks and the effects of Spikes, Toxic Spikes, Sticky Web, and the Arena Trap Ability. The effects of Gravity, Ingrain, Smack Down, Thousand Arrows, and Iron Ball nullify the immunity. Thousand Arrows can hit this Pokemon as if it did not have this Ability.",
+      "description": "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "libero": {
+      "id": "libero",
+      "name": "libero",
+      "displayName": "Libero",
+      "shortEffect": "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
+      "effect": "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type. This effect can only happen once per switch-in, and only if this Pokemon is not Terastallized.",
+      "description": "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
+      "source": "pokemon-showdown-dex"
+    },
+    "light-metal": {
+      "id": "light-metal",
+      "name": "light-metal",
+      "displayName": "Light Metal",
+      "shortEffect": "This Pokemon's weight is halved.",
+      "effect": "This Pokemon's weight is halved, rounded down to a tenth of a kilogram. This effect is calculated after the effect of Autotomize, and before the effect of Float Stone. A Pokemon's weight will not drop below 0.1 kg.",
+      "description": "This Pokemon's weight is halved.",
+      "source": "pokemon-showdown-dex"
+    },
+    "lightning-rod": {
+      "id": "lightning-rod",
+      "name": "lightning-rod",
+      "displayName": "Lightning Rod",
+      "shortEffect": "This Pokemon draws Electric moves to itself to raise Sp. Atk by 1; Electric immunity.",
+      "effect": "This Pokemon is immune to Electric-type moves and raises its Special Attack by 1 stage when hit by an Electric-type move. If this Pokemon is not the target of a single-target Electric-type move used by another Pokemon, this Pokemon redirects that move to itself if it is within the range of that move. If multiple Pokemon could redirect with this Ability, it goes to the one with the highest Speed, or in the case of a tie to the one that has had this Ability active longer.",
+      "description": "This Pokemon draws Electric moves to itself to raise Sp. Atk by 1; Electric immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "limber": {
+      "id": "limber",
+      "name": "limber",
+      "displayName": "Limber",
+      "shortEffect": "This Pokemon cannot be paralyzed. Gaining this Ability while paralyzed cures it.",
+      "effect": "This Pokemon cannot be paralyzed. Gaining this Ability while paralyzed cures it.",
+      "description": "This Pokemon cannot be paralyzed. Gaining this Ability while paralyzed cures it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "lingering-aroma": {
+      "id": "lingering-aroma",
+      "name": "lingering-aroma",
+      "displayName": "Lingering Aroma",
+      "shortEffect": "Making contact with this Pokemon has the attacker's Ability become Lingering Aroma.",
+      "effect": "Pokemon making contact with this Pokemon have their Ability changed to Lingering Aroma. Does not affect Pokemon with the As One, Battle Bond, Comatose, Disguise, Gulp Missile, Ice Face, Lingering Aroma, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, Tera Shift, Zen Mode, or Zero to Hero Abilities.",
+      "description": "Making contact with this Pokemon has the attacker's Ability become Lingering Aroma.",
+      "source": "pokemon-showdown-dex"
+    },
+    "liquid-ooze": {
+      "id": "liquid-ooze",
+      "name": "liquid-ooze",
+      "displayName": "Liquid Ooze",
+      "shortEffect": "This Pokemon damages those draining HP from it for as much as they would heal.",
+      "effect": "This Pokemon damages those draining HP from it for as much as they would heal.",
+      "description": "This Pokemon damages those draining HP from it for as much as they would heal.",
+      "source": "pokemon-showdown-dex"
+    },
+    "liquid-voice": {
+      "id": "liquid-voice",
+      "name": "liquid-voice",
+      "displayName": "Liquid Voice",
+      "shortEffect": "This Pokemon's sound-based moves become Water type.",
+      "effect": "This Pokemon's sound-based moves become Water-type moves. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+      "description": "This Pokemon's sound-based moves become Water type.",
+      "source": "pokemon-showdown-dex"
+    },
+    "long-reach": {
+      "id": "long-reach",
+      "name": "long-reach",
+      "displayName": "Long Reach",
+      "shortEffect": "This Pokemon's attacks do not make contact with the target.",
+      "effect": "This Pokemon's attacks do not make contact with the target.",
+      "description": "This Pokemon's attacks do not make contact with the target.",
+      "source": "pokemon-showdown-dex"
+    },
+    "magic-bounce": {
+      "id": "magic-bounce",
+      "name": "magic-bounce",
+      "displayName": "Magic Bounce",
+      "shortEffect": "This Pokemon blocks certain Status moves and bounces them back to the user.",
+      "effect": "This Pokemon is unaffected by certain non-damaging moves directed at it and will instead use such moves against the original user. Moves reflected in this way are unable to be reflected again by this or Magic Coat's effect. Spikes, Stealth Rock, Sticky Web, and Toxic Spikes can only be reflected once per side, by the leftmost Pokemon under this or Magic Coat's effect. The Lightning Rod and Storm Drain Abilities redirect their respective moves before this Ability takes effect.",
+      "description": "This Pokemon blocks certain Status moves and bounces them back to the user.",
+      "source": "pokemon-showdown-dex"
+    },
+    "magic-guard": {
+      "id": "magic-guard",
+      "name": "magic-guard",
+      "displayName": "Magic Guard",
+      "shortEffect": "This Pokemon can only be damaged by direct attacks.",
+      "effect": "This Pokemon can only be damaged by direct attacks. Curse and Substitute on use, Belly Drum, Pain Split, Struggle recoil, and confusion damage are considered direct damage.",
+      "description": "This Pokemon can only be damaged by direct attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "magician": {
+      "id": "magician",
+      "name": "magician",
+      "displayName": "Magician",
+      "shortEffect": "If this Pokemon has no item, it steals the item off a Pokemon it hits with an attack.",
+      "effect": "If this Pokemon has no item, it steals the item off a Pokemon it hits with an attack. Does not affect Doom Desire and Future Sight.",
+      "description": "If this Pokemon has no item, it steals the item off a Pokemon it hits with an attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "magma-armor": {
+      "id": "magma-armor",
+      "name": "magma-armor",
+      "displayName": "Magma Armor",
+      "shortEffect": "This Pokemon cannot be frozen. Gaining this Ability while frozen cures it.",
+      "effect": "This Pokemon cannot be frozen. Gaining this Ability while frozen cures it.",
+      "description": "This Pokemon cannot be frozen. Gaining this Ability while frozen cures it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "magnet-pull": {
+      "id": "magnet-pull",
+      "name": "magnet-pull",
+      "displayName": "Magnet Pull",
+      "shortEffect": "Prevents opposing Steel-type Pokemon from choosing to switch out.",
+      "effect": "Prevents opposing Steel-type Pokemon from choosing to switch out, unless they are holding a Shed Shell or are a Ghost type.",
+      "description": "Prevents opposing Steel-type Pokemon from choosing to switch out.",
+      "source": "pokemon-showdown-dex"
+    },
+    "marvel-scale": {
+      "id": "marvel-scale",
+      "name": "marvel-scale",
+      "displayName": "Marvel Scale",
+      "shortEffect": "If this Pokemon has a non-volatile status condition, its Defense is multiplied by 1.5.",
+      "effect": "If this Pokemon has a non-volatile status condition, its Defense is multiplied by 1.5.",
+      "description": "If this Pokemon has a non-volatile status condition, its Defense is multiplied by 1.5.",
+      "source": "pokemon-showdown-dex"
+    },
+    "mega-launcher": {
+      "id": "mega-launcher",
+      "name": "mega-launcher",
+      "displayName": "Mega Launcher",
+      "shortEffect": "This Pokemon's pulse moves have 1.5x power. Heal Pulse heals 3/4 target's max HP.",
+      "effect": "This Pokemon's pulse moves have their power multiplied by 1.5. Heal Pulse restores 3/4 of a target's maximum HP, rounded half down.",
+      "description": "This Pokemon's pulse moves have 1.5x power. Heal Pulse heals 3/4 target's max HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "merciless": {
+      "id": "merciless",
+      "name": "merciless",
+      "displayName": "Merciless",
+      "shortEffect": "This Pokemon's attacks are critical hits if the target is poisoned.",
+      "effect": "This Pokemon's attacks are critical hits if the target is poisoned.",
+      "description": "This Pokemon's attacks are critical hits if the target is poisoned.",
+      "source": "pokemon-showdown-dex"
+    },
+    "mimicry": {
+      "id": "mimicry",
+      "name": "mimicry",
+      "displayName": "Mimicry",
+      "shortEffect": "This Pokemon's types change to match the Terrain. Type reverts when Terrain ends.",
+      "effect": "This Pokemon's types change to match the active Terrain when this Pokemon acquires this Ability, or whenever a Terrain begins. Electric type during Electric Terrain, Grass type during Grassy Terrain, Fairy type during Misty Terrain, and Psychic type during Psychic Terrain. If this Ability is acquired without an active Terrain, or a Terrain ends, this Pokemon's types become the original types for its species.",
+      "description": "This Pokemon's types change to match the Terrain. Type reverts when Terrain ends.",
+      "source": "pokemon-showdown-dex"
+    },
+    "minds-eye": {
+      "id": "minds-eye",
+      "name": "minds-eye",
+      "displayName": "Mind's Eye",
+      "shortEffect": "Fighting, Normal moves hit Ghost. Accuracy can't be lowered, ignores evasiveness.",
+      "effect": "This Pokemon can hit Ghost types with Normal- and Fighting-type moves. Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage.",
+      "description": "Fighting, Normal moves hit Ghost. Accuracy can't be lowered, ignores evasiveness.",
+      "source": "pokemon-showdown-dex"
+    },
+    "minus": {
+      "id": "minus",
+      "name": "minus",
+      "displayName": "Minus",
+      "shortEffect": "If an active ally has this Ability or the Plus Ability, this Pokemon's Sp. Atk is 1.5x.",
+      "effect": "If an active ally has this Ability or the Plus Ability, this Pokemon's Special Attack is multiplied by 1.5.",
+      "description": "If an active ally has this Ability or the Plus Ability, this Pokemon's Sp. Atk is 1.5x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "mirror-armor": {
+      "id": "mirror-armor",
+      "name": "mirror-armor",
+      "displayName": "Mirror Armor",
+      "shortEffect": "If this Pokemon's stat stages would be lowered, the attacker's are lowered instead.",
+      "effect": "When one of this Pokemon's stat stages would be lowered by another Pokemon, that Pokemon's stat stage is lowered instead. This effect does not happen if this Pokemon's stat stage was already -6. If the other Pokemon has a substitute, neither Pokemon has its stat stage lowered.",
+      "description": "If this Pokemon's stat stages would be lowered, the attacker's are lowered instead.",
+      "source": "pokemon-showdown-dex"
+    },
+    "misty-surge": {
+      "id": "misty-surge",
+      "name": "misty-surge",
+      "displayName": "Misty Surge",
+      "shortEffect": "On switch-in, this Pokemon summons Misty Terrain.",
+      "effect": "On switch-in, this Pokemon summons Misty Terrain.",
+      "description": "On switch-in, this Pokemon summons Misty Terrain.",
+      "source": "pokemon-showdown-dex"
+    },
+    "mold-breaker": {
+      "id": "mold-breaker",
+      "name": "mold-breaker",
+      "displayName": "Mold Breaker",
+      "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+      "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+      "description": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "moody": {
+      "id": "moody",
+      "name": "moody",
+      "displayName": "Moody",
+      "shortEffect": "Boosts a random stat (except accuracy/evasion) +2 and another stat -1 every turn.",
+      "effect": "This Pokemon has a random stat, other than accuracy or evasiveness, raised by 2 stages and another stat lowered by 1 stage at the end of each turn.",
+      "description": "Boosts a random stat (except accuracy/evasion) +2 and another stat -1 every turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "motor-drive": {
+      "id": "motor-drive",
+      "name": "motor-drive",
+      "displayName": "Motor Drive",
+      "shortEffect": "This Pokemon's Speed is raised 1 stage if hit by an Electric move; Electric immunity.",
+      "effect": "This Pokemon is immune to Electric-type moves and raises its Speed by 1 stage when hit by an Electric-type move.",
+      "description": "This Pokemon's Speed is raised 1 stage if hit by an Electric move; Electric immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "moxie": {
+      "id": "moxie",
+      "name": "moxie",
+      "displayName": "Moxie",
+      "shortEffect": "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+      "effect": "This Pokemon's Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
+      "description": "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "multiscale": {
+      "id": "multiscale",
+      "name": "multiscale",
+      "displayName": "Multiscale",
+      "shortEffect": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+      "effect": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+      "description": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+      "source": "pokemon-showdown-dex"
+    },
+    "multitype": {
+      "id": "multitype",
+      "name": "multitype",
+      "displayName": "Multitype",
+      "shortEffect": "If this Pokemon is an Arceus, its type changes to match its held Plate.",
+      "effect": "If this Pokemon is an Arceus, its type changes to match its held Plate.",
+      "description": "If this Pokemon is an Arceus, its type changes to match its held Plate.",
+      "source": "pokemon-showdown-dex"
+    },
+    "mummy": {
+      "id": "mummy",
+      "name": "mummy",
+      "displayName": "Mummy",
+      "shortEffect": "Pokemon making contact with this Pokemon have their Ability changed to Mummy.",
+      "effect": "Pokemon making contact with this Pokemon have their Ability changed to Mummy. Does not affect Pokemon with the As One, Battle Bond, Comatose, Disguise, Gulp Missile, Ice Face, Multitype, Mummy, Power Construct, RKS System, Schooling, Shields Down, Stance Change, Tera Shift, Zen Mode, or Zero to Hero Abilities.",
+      "description": "Pokemon making contact with this Pokemon have their Ability changed to Mummy.",
+      "source": "pokemon-showdown-dex"
+    },
+    "mycelium-might": {
+      "id": "mycelium-might",
+      "name": "mycelium-might",
+      "displayName": "Mycelium Might",
+      "shortEffect": "This Pokemon's Status moves go last in their priority bracket and ignore Abilities.",
+      "effect": "This Pokemon's Status moves ignore certain Abilities of other Pokemon, and go last among Pokemon using the same or greater priority moves.",
+      "description": "This Pokemon's Status moves go last in their priority bracket and ignore Abilities.",
+      "source": "pokemon-showdown-dex"
+    },
+    "natural-cure": {
+      "id": "natural-cure",
+      "name": "natural-cure",
+      "displayName": "Natural Cure",
+      "shortEffect": "This Pokemon has its non-volatile status condition cured when it switches out.",
+      "effect": "This Pokemon has its non-volatile status condition cured when it switches out.",
+      "description": "This Pokemon has its non-volatile status condition cured when it switches out.",
+      "source": "pokemon-showdown-dex"
+    },
+    "neuroforce": {
+      "id": "neuroforce",
+      "name": "neuroforce",
+      "displayName": "Neuroforce",
+      "shortEffect": "This Pokemon's attacks that are super effective against the target do 1.25x damage.",
+      "effect": "This Pokemon's attacks that are super effective against the target have their damage multiplied by 1.25.",
+      "description": "This Pokemon's attacks that are super effective against the target do 1.25x damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "neutralizing-gas": {
+      "id": "neutralizing-gas",
+      "name": "neutralizing-gas",
+      "displayName": "Neutralizing Gas",
+      "shortEffect": "While this Pokemon is active, Abilities have no effect.",
+      "effect": "While this Pokemon is active, Abilities have no effect. This Ability activates before hazards and other Abilities take effect. Does not affect the As One, Battle Bond, Comatose, Disguise, Gulp Missile, Ice Face, Multitype, Neutralizing Gas, Power Construct, RKS System, Schooling, Shields Down, Stance Change, Tera Shift, Zen Mode, or Zero to Hero Abilities.",
+      "description": "While this Pokemon is active, Abilities have no effect.",
+      "source": "pokemon-showdown-dex"
+    },
+    "no-ability": {
+      "id": "no-ability",
+      "name": "no-ability",
+      "displayName": "No Ability",
+      "shortEffect": "Does nothing.",
+      "effect": "Does nothing.",
+      "description": "Does nothing.",
+      "source": "pokemon-showdown-dex"
+    },
+    "no-guard": {
+      "id": "no-guard",
+      "name": "no-guard",
+      "displayName": "No Guard",
+      "shortEffect": "Every move used by or against this Pokemon will always hit.",
+      "effect": "Every move used by or against this Pokemon will always hit.",
+      "description": "Every move used by or against this Pokemon will always hit.",
+      "source": "pokemon-showdown-dex"
+    },
+    "normalize": {
+      "id": "normalize",
+      "name": "normalize",
+      "displayName": "Normalize",
+      "shortEffect": "This Pokemon's moves are changed to be Normal type and have 1.2x power.",
+      "effect": "This Pokemon's moves are changed to be Normal type and have their power multiplied by 1.2. This effect comes before other effects that change a move's type.",
+      "description": "This Pokemon's moves are changed to be Normal type and have 1.2x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "oblivious": {
+      "id": "oblivious",
+      "name": "oblivious",
+      "displayName": "Oblivious",
+      "shortEffect": "This Pokemon cannot be infatuated or taunted. Immune to Intimidate.",
+      "effect": "This Pokemon cannot be infatuated or taunted. Gaining this Ability while infatuated or taunted cures it. This Pokemon is immune to the effect of the Intimidate Ability.",
+      "description": "This Pokemon cannot be infatuated or taunted. Immune to Intimidate.",
+      "source": "pokemon-showdown-dex"
+    },
+    "opportunist": {
+      "id": "opportunist",
+      "name": "opportunist",
+      "displayName": "Opportunist",
+      "shortEffect": "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
+      "effect": "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
+      "description": "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
+      "source": "pokemon-showdown-dex"
+    },
+    "orichalcum-pulse": {
+      "id": "orichalcum-pulse",
+      "name": "orichalcum-pulse",
+      "displayName": "Orichalcum Pulse",
+      "shortEffect": "On switch-in, summons Sunny Day. During Sunny Day, Attack is 1.3333x.",
+      "effect": "On switch-in, summons Sunny Day. During Sunny Day, Attack is 1.3333x.",
+      "description": "On switch-in, summons Sunny Day. During Sunny Day, Attack is 1.3333x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "overcoat": {
+      "id": "overcoat",
+      "name": "overcoat",
+      "displayName": "Overcoat",
+      "shortEffect": "This Pokemon is immune to powder moves, Sandstorm damage, and Effect Spore.",
+      "effect": "This Pokemon is immune to powder moves, damage from Sandstorm, and the effects of Rage Powder and the Effect Spore Ability.",
+      "description": "This Pokemon is immune to powder moves, Sandstorm damage, and Effect Spore.",
+      "source": "pokemon-showdown-dex"
+    },
+    "overgrow": {
+      "id": "overgrow",
+      "name": "overgrow",
+      "displayName": "Overgrow",
+      "shortEffect": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Grass attacks.",
+      "effect": "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Grass-type attack.",
+      "description": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Grass attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "own-tempo": {
+      "id": "own-tempo",
+      "name": "own-tempo",
+      "displayName": "Own Tempo",
+      "shortEffect": "This Pokemon cannot be confused. Immune to Intimidate.",
+      "effect": "This Pokemon cannot be confused. Gaining this Ability while confused cures it. This Pokemon is immune to the effect of the Intimidate Ability.",
+      "description": "This Pokemon cannot be confused. Immune to Intimidate.",
+      "source": "pokemon-showdown-dex"
+    },
+    "parental-bond": {
+      "id": "parental-bond",
+      "name": "parental-bond",
+      "displayName": "Parental Bond",
+      "shortEffect": "This Pokemon's damaging moves hit twice. The second hit has its damage quartered.",
+      "effect": "This Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage quartered. Does not affect Doom Desire, Dragon Darts, Dynamax Cannon, Endeavor, Explosion, Final Gambit, Fling, Future Sight, Ice Ball, Rollout, Self-Destruct, any multi-hit move, any move that has multiple targets, or any two-turn move.",
+      "description": "This Pokemon's damaging moves hit twice. The second hit has its damage quartered.",
+      "source": "pokemon-showdown-dex"
+    },
+    "pastel-veil": {
+      "id": "pastel-veil",
+      "name": "pastel-veil",
+      "displayName": "Pastel Veil",
+      "shortEffect": "This Pokemon and its allies cannot be poisoned. On switch-in, cures poisoned allies.",
+      "effect": "This Pokemon and its allies cannot be poisoned. Gaining this Ability while this Pokemon or its ally is poisoned cures them. If this Ability is being ignored during an effect that causes poison, this Pokemon is cured immediately but its ally is not.",
+      "description": "This Pokemon and its allies cannot be poisoned. On switch-in, cures poisoned allies.",
+      "source": "pokemon-showdown-dex"
+    },
+    "perish-body": {
+      "id": "perish-body",
+      "name": "perish-body",
+      "displayName": "Perish Body",
+      "shortEffect": "Making contact with this Pokemon starts the Perish Song effect for it and the attacker.",
+      "effect": "Making contact with this Pokemon starts the Perish Song effect for it and the attacker. This effect does not happen for this Pokemon if the attacker already has a perish count.",
+      "description": "Making contact with this Pokemon starts the Perish Song effect for it and the attacker.",
+      "source": "pokemon-showdown-dex"
+    },
+    "pickpocket": {
+      "id": "pickpocket",
+      "name": "pickpocket",
+      "displayName": "Pickpocket",
+      "shortEffect": "If this Pokemon has no item and is hit by a contact move, it steals the attacker's item.",
+      "effect": "If this Pokemon has no item and is hit by a contact move, it steals the attacker's item. This effect applies after all hits from a multi-hit move. This effect is prevented if the move had a secondary effect removed by the Sheer Force Ability.",
+      "description": "If this Pokemon has no item and is hit by a contact move, it steals the attacker's item.",
+      "source": "pokemon-showdown-dex"
+    },
+    "pickup": {
+      "id": "pickup",
+      "name": "pickup",
+      "displayName": "Pickup",
+      "shortEffect": "If this Pokemon has no item, it finds one used by an adjacent Pokemon this turn.",
+      "effect": "At the end of each turn, if this Pokemon is not holding an item and at least one adjacent Pokemon used an item during this turn, one of those Pokemon is selected at random and this Pokemon obtains that Pokemon's last used item. An item is not considered the last used if it was a popped Air Balloon, if the item was picked up by another Pokemon with this Ability, or if the item was lost to Bug Bite, Corrosive Gas, Covet, Incinerate, Knock Off, Pluck, or Thief. Items thrown with Fling can be picked up.",
+      "description": "If this Pokemon has no item, it finds one used by an adjacent Pokemon this turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "pixilate": {
+      "id": "pixilate",
+      "name": "pixilate",
+      "displayName": "Pixilate",
+      "shortEffect": "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
+      "effect": "This Pokemon's Normal-type moves become Fairy-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+      "description": "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "plus": {
+      "id": "plus",
+      "name": "plus",
+      "displayName": "Plus",
+      "shortEffect": "If an active ally has this Ability or the Minus Ability, this Pokemon's Sp. Atk is 1.5x.",
+      "effect": "If an active ally has this Ability or the Minus Ability, this Pokemon's Special Attack is multiplied by 1.5.",
+      "description": "If an active ally has this Ability or the Minus Ability, this Pokemon's Sp. Atk is 1.5x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "poison-heal": {
+      "id": "poison-heal",
+      "name": "poison-heal",
+      "displayName": "Poison Heal",
+      "shortEffect": "This Pokemon is healed by 1/8 of its max HP each turn when poisoned; no HP loss.",
+      "effect": "If this Pokemon is poisoned, it restores 1/8 of its maximum HP, rounded down, at the end of each turn instead of losing HP.",
+      "description": "This Pokemon is healed by 1/8 of its max HP each turn when poisoned; no HP loss.",
+      "source": "pokemon-showdown-dex"
+    },
+    "poison-point": {
+      "id": "poison-point",
+      "name": "poison-point",
+      "displayName": "Poison Point",
+      "shortEffect": "30% chance a Pokemon making contact with this Pokemon will be poisoned.",
+      "effect": "30% chance a Pokemon making contact with this Pokemon will be poisoned.",
+      "description": "30% chance a Pokemon making contact with this Pokemon will be poisoned.",
+      "source": "pokemon-showdown-dex"
+    },
+    "poison-puppeteer": {
+      "id": "poison-puppeteer",
+      "name": "poison-puppeteer",
+      "displayName": "Poison Puppeteer",
+      "shortEffect": "Pecharunt: If this Pokemon poisons a target, the target also becomes confused.",
+      "effect": "If this Pokemon is a Pecharunt and poisons or badly poisons a target, the target also becomes confused.",
+      "description": "Pecharunt: If this Pokemon poisons a target, the target also becomes confused.",
+      "source": "pokemon-showdown-dex"
+    },
+    "poison-touch": {
+      "id": "poison-touch",
+      "name": "poison-touch",
+      "displayName": "Poison Touch",
+      "shortEffect": "This Pokemon's contact moves have a 30% chance of poisoning.",
+      "effect": "This Pokemon's contact moves have a 30% chance of poisoning. This effect comes after a move's inherent secondary effect chance.",
+      "description": "This Pokemon's contact moves have a 30% chance of poisoning.",
+      "source": "pokemon-showdown-dex"
+    },
+    "power-construct": {
+      "id": "power-construct",
+      "name": "power-construct",
+      "displayName": "Power Construct",
+      "shortEffect": "If Zygarde 10%/50%, changes to Complete if at 1/2 max HP or less at end of turn.",
+      "effect": "If this Pokemon is a Zygarde in its 10% or 50% Forme, it changes to Complete Forme when it has 1/2 or less of its maximum HP at the end of the turn.",
+      "description": "If Zygarde 10%/50%, changes to Complete if at 1/2 max HP or less at end of turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "power-of-alchemy": {
+      "id": "power-of-alchemy",
+      "name": "power-of-alchemy",
+      "displayName": "Power Of Alchemy",
+      "shortEffect": "This Pokemon copies the Ability of an ally that faints.",
+      "effect": "This Pokemon copies the Ability of an ally that faints. Abilities that cannot be copied are As One, Battle Bond, Comatose, Commander, Disguise, Embody Aspect, Flower Gift, Forecast, Hunger Switch, Ice Face, Illusion, Imposter, Multitype, Neutralizing Gas, Poison Puppeteer, Power Construct, Power of Alchemy, Protosynthesis, Quark Drive, Receiver, RKS System, Schooling, Shields Down, Stance Change, Tera Shell, Tera Shift, Teraform Zero, Trace, Wonder Guard, Zen Mode, and Zero to Hero.",
+      "description": "This Pokemon copies the Ability of an ally that faints.",
+      "source": "pokemon-showdown-dex"
+    },
+    "power-spot": {
+      "id": "power-spot",
+      "name": "power-spot",
+      "displayName": "Power Spot",
+      "shortEffect": "This Pokemon's allies have the power of their moves multiplied by 1.3.",
+      "effect": "This Pokemon's allies have the power of their moves multiplied by 1.3. This affects Doom Desire and Future Sight, even if the user is not on the field.",
+      "description": "This Pokemon's allies have the power of their moves multiplied by 1.3.",
+      "source": "pokemon-showdown-dex"
+    },
+    "prankster": {
+      "id": "prankster",
+      "name": "prankster",
+      "displayName": "Prankster",
+      "shortEffect": "This Pokemon's Status moves have priority raised by 1, but Dark types are immune.",
+      "effect": "This Pokemon's non-damaging moves have their priority increased by 1. Opposing Dark-type Pokemon are immune to these moves, and any move called by these moves, if the resulting user of the move has this Ability.",
+      "description": "This Pokemon's Status moves have priority raised by 1, but Dark types are immune.",
+      "source": "pokemon-showdown-dex"
+    },
+    "pressure": {
+      "id": "pressure",
+      "name": "pressure",
+      "displayName": "Pressure",
+      "shortEffect": "If this Pokemon is the target of a foe's move, that move loses one additional PP.",
+      "effect": "If this Pokemon is the target of an opposing Pokemon's move, that move loses one additional PP. Imprison, Snatch, and Tera Blast also lose one additional PP when used by an opposing Pokemon, but Sticky Web does not.",
+      "description": "If this Pokemon is the target of a foe's move, that move loses one additional PP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "primordial-sea": {
+      "id": "primordial-sea",
+      "name": "primordial-sea",
+      "displayName": "Primordial Sea",
+      "shortEffect": "On switch-in, heavy rain begins until this Ability is not active in battle.",
+      "effect": "On switch-in, the weather becomes Primordial Sea, which includes all the effects of Rain Dance and prevents damaging Fire-type moves from executing. This weather remains in effect until this Ability is no longer active for any Pokemon, or the weather is changed by the Delta Stream or Desolate Land Abilities.",
+      "description": "On switch-in, heavy rain begins until this Ability is not active in battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "prism-armor": {
+      "id": "prism-armor",
+      "name": "prism-armor",
+      "displayName": "Prism Armor",
+      "shortEffect": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "effect": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "description": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "propeller-tail": {
+      "id": "propeller-tail",
+      "name": "propeller-tail",
+      "displayName": "Propeller Tail",
+      "shortEffect": "This Pokemon's moves cannot be redirected to a different target by any effect.",
+      "effect": "This Pokemon's moves cannot be redirected to a different target by any effect.",
+      "description": "This Pokemon's moves cannot be redirected to a different target by any effect.",
+      "source": "pokemon-showdown-dex"
+    },
+    "protean": {
+      "id": "protean",
+      "name": "protean",
+      "displayName": "Protean",
+      "shortEffect": "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
+      "effect": "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type. This effect can only happen once per switch-in, and only if this Pokemon is not Terastallized.",
+      "description": "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
+      "source": "pokemon-showdown-dex"
+    },
+    "protosynthesis": {
+      "id": "protosynthesis",
+      "name": "protosynthesis",
+      "displayName": "Protosynthesis",
+      "shortEffect": "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+      "effect": "If Sunny Day is active or this Pokemon uses a held Booster Energy, this Pokemon's highest stat is multiplied by 1.3, or by 1.5 if the highest stat is Speed. Stat stage changes are considered at the time this Ability activates. If multiple stats are tied, Attack, Defense, Special Attack, Special Defense, and Speed are prioritized in that order. If this effect was started by Sunny Day, a held Booster Energy will not activate and the effect ends when Sunny Day is no longer active. If this effect was started by a held Booster Energy, it ends when this Pokemon is no longer active.",
+      "description": "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+      "source": "pokemon-showdown-dex"
+    },
+    "psychic-surge": {
+      "id": "psychic-surge",
+      "name": "psychic-surge",
+      "displayName": "Psychic Surge",
+      "shortEffect": "On switch-in, this Pokemon summons Psychic Terrain.",
+      "effect": "On switch-in, this Pokemon summons Psychic Terrain.",
+      "description": "On switch-in, this Pokemon summons Psychic Terrain.",
+      "source": "pokemon-showdown-dex"
+    },
+    "punk-rock": {
+      "id": "punk-rock",
+      "name": "punk-rock",
+      "displayName": "Punk Rock",
+      "shortEffect": "This Pokemon receives 1/2 damage from sound moves. Its own have 1.3x power.",
+      "effect": "This Pokemon's sound-based moves have their power multiplied by 1.3. This Pokemon takes halved damage from sound-based moves.",
+      "description": "This Pokemon receives 1/2 damage from sound moves. Its own have 1.3x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "pure-power": {
+      "id": "pure-power",
+      "name": "pure-power",
+      "displayName": "Pure Power",
+      "shortEffect": "This Pokemon's Attack is doubled.",
+      "effect": "This Pokemon's Attack is doubled.",
+      "description": "This Pokemon's Attack is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "purifying-salt": {
+      "id": "purifying-salt",
+      "name": "purifying-salt",
+      "displayName": "Purifying Salt",
+      "shortEffect": "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
+      "effect": "This Pokemon cannot become affected by a non-volatile status condition or Yawn. If a Pokemon uses a Ghost-type attack against this Pokemon, that Pokemon's offensive stat is halved when calculating the damage to this Pokemon.",
+      "description": "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
+      "source": "pokemon-showdown-dex"
+    },
+    "quark-drive": {
+      "id": "quark-drive",
+      "name": "quark-drive",
+      "displayName": "Quark Drive",
+      "shortEffect": "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+      "effect": "If Electric Terrain is active or this Pokemon uses a held Booster Energy, this Pokemon's highest stat is multiplied by 1.3, or by 1.5 if the highest stat is Speed. Stat stage changes are considered at the time this Ability activates. If multiple stats are tied, Attack, Defense, Special Attack, Special Defense, and Speed are prioritized in that order. If this effect was started by Electric Terrain, a held Booster Energy will not activate and the effect ends when Electric Terrain is no longer active. If this effect was started by a held Booster Energy, it ends when this Pokemon is no longer active.",
+      "description": "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+      "source": "pokemon-showdown-dex"
+    },
+    "queenly-majesty": {
+      "id": "queenly-majesty",
+      "name": "queenly-majesty",
+      "displayName": "Queenly Majesty",
+      "shortEffect": "This Pokemon and its allies are protected from opposing priority moves.",
+      "effect": "Priority moves used by opposing Pokemon targeting this Pokemon or its allies are prevented from having an effect.",
+      "description": "This Pokemon and its allies are protected from opposing priority moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "quick-draw": {
+      "id": "quick-draw",
+      "name": "quick-draw",
+      "displayName": "Quick Draw",
+      "shortEffect": "This Pokemon has a 30% chance to move first in its priority bracket with attacking moves.",
+      "effect": "This Pokemon has a 30% chance to move first in its priority bracket with attacking moves.",
+      "description": "This Pokemon has a 30% chance to move first in its priority bracket with attacking moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "quick-feet": {
+      "id": "quick-feet",
+      "name": "quick-feet",
+      "displayName": "Quick Feet",
+      "shortEffect": "If this Pokemon is statused, its Speed is 1.5x; ignores Speed drop from paralysis.",
+      "effect": "If this Pokemon has a non-volatile status condition, its Speed is multiplied by 1.5. This Pokemon ignores the paralysis effect of halving Speed.",
+      "description": "If this Pokemon is statused, its Speed is 1.5x; ignores Speed drop from paralysis.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rain-dish": {
+      "id": "rain-dish",
+      "name": "rain-dish",
+      "displayName": "Rain Dish",
+      "shortEffect": "If Rain Dance is active, this Pokemon heals 1/16 of its max HP each turn.",
+      "effect": "If Rain Dance is active, this Pokemon restores 1/16 of its maximum HP, rounded down, at the end of each turn. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+      "description": "If Rain Dance is active, this Pokemon heals 1/16 of its max HP each turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rattled": {
+      "id": "rattled",
+      "name": "rattled",
+      "displayName": "Rattled",
+      "shortEffect": "Speed is raised 1 stage if hit by a Bug-, Dark-, or Ghost-type attack, or Intimidated.",
+      "effect": "This Pokemon's Speed is raised by 1 stage if hit by a Bug-, Dark-, or Ghost-type attack, or if an opposing Pokemon affected this Pokemon with the Intimidate Ability.",
+      "description": "Speed is raised 1 stage if hit by a Bug-, Dark-, or Ghost-type attack, or Intimidated.",
+      "source": "pokemon-showdown-dex"
+    },
+    "receiver": {
+      "id": "receiver",
+      "name": "receiver",
+      "displayName": "Receiver",
+      "shortEffect": "This Pokemon copies the Ability of an ally that faints.",
+      "effect": "This Pokemon copies the Ability of an ally that faints. Abilities that cannot be copied are As One, Battle Bond, Comatose, Commander, Disguise, Embody Aspect, Flower Gift, Forecast, Hunger Switch, Ice Face, Illusion, Imposter, Multitype, Neutralizing Gas, Poison Puppeteer, Power Construct, Power of Alchemy, Protosynthesis, Quark Drive, Receiver, RKS System, Schooling, Shields Down, Stance Change, Tera Shell, Tera Shift, Teraform Zero, Trace, Wonder Guard, Zen Mode, and Zero to Hero.",
+      "description": "This Pokemon copies the Ability of an ally that faints.",
+      "source": "pokemon-showdown-dex"
+    },
+    "reckless": {
+      "id": "reckless",
+      "name": "reckless",
+      "displayName": "Reckless",
+      "shortEffect": "This Pokemon's attacks with recoil or crash damage have 1.2x power; not Struggle.",
+      "effect": "This Pokemon's attacks with recoil or crash damage have their power multiplied by 1.2. Does not affect Struggle.",
+      "description": "This Pokemon's attacks with recoil or crash damage have 1.2x power; not Struggle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "refrigerate": {
+      "id": "refrigerate",
+      "name": "refrigerate",
+      "displayName": "Refrigerate",
+      "shortEffect": "This Pokemon's Normal-type moves become Ice type and have 1.2x power.",
+      "effect": "This Pokemon's Normal-type moves become Ice-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+      "description": "This Pokemon's Normal-type moves become Ice type and have 1.2x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "regenerator": {
+      "id": "regenerator",
+      "name": "regenerator",
+      "displayName": "Regenerator",
+      "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+      "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+      "description": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+      "source": "pokemon-showdown-dex"
+    },
+    "ripen": {
+      "id": "ripen",
+      "name": "ripen",
+      "displayName": "Ripen",
+      "shortEffect": "When this Pokemon eats certain Berries, the effects are doubled.",
+      "effect": "When this Pokemon eats certain Berries, the effects are doubled. Berries that restore HP or PP have the amount doubled, Berries that raise stat stages have the amount doubled, Berries that halve damage taken quarter it instead, and a Jaboca Berry or Rowap Berry has the attacker lose 1/4 of its maximum HP, rounded down.",
+      "description": "When this Pokemon eats certain Berries, the effects are doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rivalry": {
+      "id": "rivalry",
+      "name": "rivalry",
+      "displayName": "Rivalry",
+      "shortEffect": "This Pokemon's attacks do 1.25x on same gender targets; 0.75x on opposite gender.",
+      "effect": "This Pokemon's attacks have their power multiplied by 1.25 against targets of the same gender or multiplied by 0.75 against targets of the opposite gender. There is no modifier if either this Pokemon or the target is genderless.",
+      "description": "This Pokemon's attacks do 1.25x on same gender targets; 0.75x on opposite gender.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rks-system": {
+      "id": "rks-system",
+      "name": "rks-system",
+      "displayName": "Rks System",
+      "shortEffect": "If this Pokemon is a Silvally, its type changes to match its held Memory.",
+      "effect": "If this Pokemon is a Silvally, its type changes to match its held Memory.",
+      "description": "If this Pokemon is a Silvally, its type changes to match its held Memory.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rock-head": {
+      "id": "rock-head",
+      "name": "rock-head",
+      "displayName": "Rock Head",
+      "shortEffect": "This Pokemon does not take recoil damage besides Struggle/Life Orb/crash damage.",
+      "effect": "This Pokemon does not take recoil damage, except Struggle. Does not affect Life Orb damage or crash damage.",
+      "description": "This Pokemon does not take recoil damage besides Struggle/Life Orb/crash damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rocky-payload": {
+      "id": "rocky-payload",
+      "name": "rocky-payload",
+      "displayName": "Rocky Payload",
+      "shortEffect": "This Pokemon's offensive stat is multiplied by 1.5 while using a Rock-type attack.",
+      "effect": "This Pokemon's offensive stat is multiplied by 1.5 while using a Rock-type attack.",
+      "description": "This Pokemon's offensive stat is multiplied by 1.5 while using a Rock-type attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "rough-skin": {
+      "id": "rough-skin",
+      "name": "rough-skin",
+      "displayName": "Rough Skin",
+      "shortEffect": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+      "effect": "Pokemon making contact with this Pokemon lose 1/8 of their maximum HP, rounded down.",
+      "description": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "run-away": {
+      "id": "run-away",
+      "name": "run-away",
+      "displayName": "Run Away",
+      "shortEffect": "No competitive use.",
+      "effect": "No competitive use.",
+      "description": "No competitive use.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sand-force": {
+      "id": "sand-force",
+      "name": "sand-force",
+      "displayName": "Sand Force",
+      "shortEffect": "This Pokemon's Ground/Rock/Steel attacks do 1.3x in Sandstorm; immunity to it.",
+      "effect": "If Sandstorm is active, this Pokemon's Ground-, Rock-, and Steel-type attacks have their power multiplied by 1.3. This Pokemon takes no damage from Sandstorm.",
+      "description": "This Pokemon's Ground/Rock/Steel attacks do 1.3x in Sandstorm; immunity to it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sand-rush": {
+      "id": "sand-rush",
+      "name": "sand-rush",
+      "displayName": "Sand Rush",
+      "shortEffect": "If Sandstorm is active, this Pokemon's Speed is doubled; immunity to Sandstorm.",
+      "effect": "If Sandstorm is active, this Pokemon's Speed is doubled. This Pokemon takes no damage from Sandstorm.",
+      "description": "If Sandstorm is active, this Pokemon's Speed is doubled; immunity to Sandstorm.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sand-spit": {
+      "id": "sand-spit",
+      "name": "sand-spit",
+      "displayName": "Sand Spit",
+      "shortEffect": "When this Pokemon is hit by an attack, the effect of Sandstorm begins.",
+      "effect": "When this Pokemon is hit by an attack, the effect of Sandstorm begins.",
+      "description": "When this Pokemon is hit by an attack, the effect of Sandstorm begins.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sand-stream": {
+      "id": "sand-stream",
+      "name": "sand-stream",
+      "displayName": "Sand Stream",
+      "shortEffect": "On switch-in, this Pokemon summons Sandstorm.",
+      "effect": "On switch-in, this Pokemon summons Sandstorm.",
+      "description": "On switch-in, this Pokemon summons Sandstorm.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sand-veil": {
+      "id": "sand-veil",
+      "name": "sand-veil",
+      "displayName": "Sand Veil",
+      "shortEffect": "If Sandstorm is active, this Pokemon's evasiveness is 1.25x; immunity to Sandstorm.",
+      "effect": "If Sandstorm is active, the accuracy of moves used against this Pokemon is multiplied by 0.8. This Pokemon takes no damage from Sandstorm.",
+      "description": "If Sandstorm is active, this Pokemon's evasiveness is 1.25x; immunity to Sandstorm.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sap-sipper": {
+      "id": "sap-sipper",
+      "name": "sap-sipper",
+      "displayName": "Sap Sipper",
+      "shortEffect": "This Pokemon's Attack is raised 1 stage if hit by a Grass move; Grass immunity.",
+      "effect": "This Pokemon is immune to Grass-type moves and raises its Attack by 1 stage when hit by a Grass-type move.",
+      "description": "This Pokemon's Attack is raised 1 stage if hit by a Grass move; Grass immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "schooling": {
+      "id": "schooling",
+      "name": "schooling",
+      "displayName": "Schooling",
+      "shortEffect": "If user is Wishiwashi, changes to School Form if it has > 1/4 max HP, else Solo Form.",
+      "effect": "On switch-in, if this Pokemon is a Wishiwashi that is level 20 or above and has more than 1/4 of its maximum HP left, it changes to School Form. If it is in School Form and its HP drops to 1/4 of its maximum HP or less, it changes to Solo Form at the end of the turn. If it is in Solo Form and its HP is greater than 1/4 its maximum HP at the end of the turn, it changes to School Form.",
+      "description": "If user is Wishiwashi, changes to School Form if it has > 1/4 max HP, else Solo Form.",
+      "source": "pokemon-showdown-dex"
+    },
+    "scrappy": {
+      "id": "scrappy",
+      "name": "scrappy",
+      "displayName": "Scrappy",
+      "shortEffect": "Fighting, Normal moves hit Ghost. Immune to Intimidate.",
+      "effect": "This Pokemon can hit Ghost types with Normal- and Fighting-type moves. This Pokemon is immune to the effect of the Intimidate Ability.",
+      "description": "Fighting, Normal moves hit Ghost. Immune to Intimidate.",
+      "source": "pokemon-showdown-dex"
+    },
+    "screen-cleaner": {
+      "id": "screen-cleaner",
+      "name": "screen-cleaner",
+      "displayName": "Screen Cleaner",
+      "shortEffect": "On switch-in, the effects of Aurora Veil, Light Screen, and Reflect end for both sides.",
+      "effect": "On switch-in, the effects of Aurora Veil, Light Screen, and Reflect end for both sides.",
+      "description": "On switch-in, the effects of Aurora Veil, Light Screen, and Reflect end for both sides.",
+      "source": "pokemon-showdown-dex"
+    },
+    "seed-sower": {
+      "id": "seed-sower",
+      "name": "seed-sower",
+      "displayName": "Seed Sower",
+      "shortEffect": "When this Pokemon is hit by an attack, the effect of Grassy Terrain begins.",
+      "effect": "When this Pokemon is hit by an attack, the effect of Grassy Terrain begins.",
+      "description": "When this Pokemon is hit by an attack, the effect of Grassy Terrain begins.",
+      "source": "pokemon-showdown-dex"
+    },
+    "serene-grace": {
+      "id": "serene-grace",
+      "name": "serene-grace",
+      "displayName": "Serene Grace",
+      "shortEffect": "This Pokemon's moves have their secondary effect chance doubled.",
+      "effect": "This Pokemon's moves have their secondary effect chance doubled. This effect stacks with the Rainbow effect, except for secondary effects that cause the target to flinch.",
+      "description": "This Pokemon's moves have their secondary effect chance doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "shadow-shield": {
+      "id": "shadow-shield",
+      "name": "shadow-shield",
+      "displayName": "Shadow Shield",
+      "shortEffect": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+      "effect": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+      "description": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+      "source": "pokemon-showdown-dex"
+    },
+    "shadow-tag": {
+      "id": "shadow-tag",
+      "name": "shadow-tag",
+      "displayName": "Shadow Tag",
+      "shortEffect": "Prevents foes from choosing to switch unless they also have this Ability.",
+      "effect": "Prevents opposing Pokemon from choosing to switch out, unless they are holding a Shed Shell, are a Ghost type, or also have this Ability.",
+      "description": "Prevents foes from choosing to switch unless they also have this Ability.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sharpness": {
+      "id": "sharpness",
+      "name": "sharpness",
+      "displayName": "Sharpness",
+      "shortEffect": "This Pokemon's slicing moves have their power multiplied by 1.5.",
+      "effect": "This Pokemon's slicing moves have their power multiplied by 1.5.",
+      "description": "This Pokemon's slicing moves have their power multiplied by 1.5.",
+      "source": "pokemon-showdown-dex"
+    },
+    "shed-skin": {
+      "id": "shed-skin",
+      "name": "shed-skin",
+      "displayName": "Shed Skin",
+      "shortEffect": "This Pokemon has a 33% chance to have its status cured at the end of each turn.",
+      "effect": "This Pokemon has a 33% chance to have its non-volatile status condition cured at the end of each turn.",
+      "description": "This Pokemon has a 33% chance to have its status cured at the end of each turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sheer-force": {
+      "id": "sheer-force",
+      "name": "sheer-force",
+      "displayName": "Sheer Force",
+      "shortEffect": "This Pokemon's attacks with secondary effects have 1.3x power; nullifies the effects.",
+      "effect": "This Pokemon's attacks with secondary effects have their power multiplied by 1.3, but the secondary effects are removed. If a secondary effect was removed, it also removes the user's Life Orb recoil and Shell Bell recovery, and prevents the target's Anger Shell, Berserk, Color Change, Emergency Exit, Pickpocket, Wimp Out, Red Card, Eject Button, Kee Berry, and Maranga Berry from activating.",
+      "description": "This Pokemon's attacks with secondary effects have 1.3x power; nullifies the effects.",
+      "source": "pokemon-showdown-dex"
+    },
+    "shell-armor": {
+      "id": "shell-armor",
+      "name": "shell-armor",
+      "displayName": "Shell Armor",
+      "shortEffect": "This Pokemon cannot be struck by a critical hit.",
+      "effect": "This Pokemon cannot be struck by a critical hit.",
+      "description": "This Pokemon cannot be struck by a critical hit.",
+      "source": "pokemon-showdown-dex"
+    },
+    "shield-dust": {
+      "id": "shield-dust",
+      "name": "shield-dust",
+      "displayName": "Shield Dust",
+      "shortEffect": "This Pokemon is not affected by the secondary effect of another Pokemon's attack.",
+      "effect": "This Pokemon is not affected by the secondary effect of another Pokemon's attack.",
+      "description": "This Pokemon is not affected by the secondary effect of another Pokemon's attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "shields-down": {
+      "id": "shields-down",
+      "name": "shields-down",
+      "displayName": "Shields Down",
+      "shortEffect": "If Minior, switch-in/end of turn it changes to Core at 1/2 max HP or less, else Meteor.",
+      "effect": "If this Pokemon is a Minior, it changes to its Core forme if it has 1/2 or less of its maximum HP, and changes to Meteor Form if it has more than 1/2 its maximum HP. This check is done on switch-in and at the end of each turn. While in its Meteor Form, it cannot become affected by a non-volatile status condition or Yawn.",
+      "description": "If Minior, switch-in/end of turn it changes to Core at 1/2 max HP or less, else Meteor.",
+      "source": "pokemon-showdown-dex"
+    },
+    "simple": {
+      "id": "simple",
+      "name": "simple",
+      "displayName": "Simple",
+      "shortEffect": "When one of this Pokemon's stat stages is raised or lowered, the amount is doubled.",
+      "effect": "When one of this Pokemon's stat stages is raised or lowered, the amount is doubled.",
+      "description": "When one of this Pokemon's stat stages is raised or lowered, the amount is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "skill-link": {
+      "id": "skill-link",
+      "name": "skill-link",
+      "displayName": "Skill Link",
+      "shortEffect": "This Pokemon's multi-hit attacks always hit the maximum number of times.",
+      "effect": "This Pokemon's multi-hit attacks always hit the maximum number of times. Triple Kick and Triple Axel do not check accuracy for the second and third hits.",
+      "description": "This Pokemon's multi-hit attacks always hit the maximum number of times.",
+      "source": "pokemon-showdown-dex"
+    },
+    "slow-start": {
+      "id": "slow-start",
+      "name": "slow-start",
+      "displayName": "Slow Start",
+      "shortEffect": "On switch-in, this Pokemon's Attack and Speed are halved for 5 turns.",
+      "effect": "On switch-in, this Pokemon's Attack and Speed are halved for 5 turns.",
+      "description": "On switch-in, this Pokemon's Attack and Speed are halved for 5 turns.",
+      "source": "pokemon-showdown-dex"
+    },
+    "slush-rush": {
+      "id": "slush-rush",
+      "name": "slush-rush",
+      "displayName": "Slush Rush",
+      "shortEffect": "If Snow is active, this Pokemon's Speed is doubled.",
+      "effect": "If Snow is active, this Pokemon's Speed is doubled.",
+      "description": "If Snow is active, this Pokemon's Speed is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sniper": {
+      "id": "sniper",
+      "name": "sniper",
+      "displayName": "Sniper",
+      "shortEffect": "If this Pokemon strikes with a critical hit, the damage is multiplied by 1.5.",
+      "effect": "If this Pokemon strikes with a critical hit, the damage is multiplied by 1.5.",
+      "description": "If this Pokemon strikes with a critical hit, the damage is multiplied by 1.5.",
+      "source": "pokemon-showdown-dex"
+    },
+    "snow-cloak": {
+      "id": "snow-cloak",
+      "name": "snow-cloak",
+      "displayName": "Snow Cloak",
+      "shortEffect": "If Snow is active, this Pokemon's evasiveness is 1.25x.",
+      "effect": "If Snow is active, the accuracy of moves used against this Pokemon is multiplied by 0.8.",
+      "description": "If Snow is active, this Pokemon's evasiveness is 1.25x.",
+      "source": "pokemon-showdown-dex"
+    },
+    "snow-warning": {
+      "id": "snow-warning",
+      "name": "snow-warning",
+      "displayName": "Snow Warning",
+      "shortEffect": "On switch-in, this Pokemon summons Snow.",
+      "effect": "On switch-in, this Pokemon summons Snow.",
+      "description": "On switch-in, this Pokemon summons Snow.",
+      "source": "pokemon-showdown-dex"
+    },
+    "solar-power": {
+      "id": "solar-power",
+      "name": "solar-power",
+      "displayName": "Solar Power",
+      "shortEffect": "If Sunny Day is active, this Pokemon's Sp. Atk is 1.5x; loses 1/8 max HP per turn.",
+      "effect": "If Sunny Day is active, this Pokemon's Special Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn. These effects are prevented if the Pokemon is holding a Utility Umbrella.",
+      "description": "If Sunny Day is active, this Pokemon's Sp. Atk is 1.5x; loses 1/8 max HP per turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "solid-rock": {
+      "id": "solid-rock",
+      "name": "solid-rock",
+      "displayName": "Solid Rock",
+      "shortEffect": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "effect": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "description": "This Pokemon receives 3/4 damage from supereffective attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "soul-heart": {
+      "id": "soul-heart",
+      "name": "soul-heart",
+      "displayName": "Soul Heart",
+      "shortEffect": "This Pokemon's Special Attack is raised by 1 stage when another Pokemon faints.",
+      "effect": "This Pokemon's Special Attack is raised by 1 stage when another Pokemon faints.",
+      "description": "This Pokemon's Special Attack is raised by 1 stage when another Pokemon faints.",
+      "source": "pokemon-showdown-dex"
+    },
+    "soundproof": {
+      "id": "soundproof",
+      "name": "soundproof",
+      "displayName": "Soundproof",
+      "shortEffect": "This Pokemon is immune to sound-based moves, unless it used the move.",
+      "effect": "This Pokemon is immune to sound-based moves, unless it used the move.",
+      "description": "This Pokemon is immune to sound-based moves, unless it used the move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "speed-boost": {
+      "id": "speed-boost",
+      "name": "speed-boost",
+      "displayName": "Speed Boost",
+      "shortEffect": "This Pokemon's Speed is raised 1 stage at the end of each full turn on the field.",
+      "effect": "This Pokemon's Speed is raised by 1 stage at the end of each full turn it has been on the field.",
+      "description": "This Pokemon's Speed is raised 1 stage at the end of each full turn on the field.",
+      "source": "pokemon-showdown-dex"
+    },
+    "stakeout": {
+      "id": "stakeout",
+      "name": "stakeout",
+      "displayName": "Stakeout",
+      "shortEffect": "This Pokemon's offensive stat is doubled against a target that switched in this turn.",
+      "effect": "This Pokemon's offensive stat is doubled against a target that switched in this turn.",
+      "description": "This Pokemon's offensive stat is doubled against a target that switched in this turn.",
+      "source": "pokemon-showdown-dex"
+    },
+    "stall": {
+      "id": "stall",
+      "name": "stall",
+      "displayName": "Stall",
+      "shortEffect": "This Pokemon moves last among Pokemon using the same or greater priority moves.",
+      "effect": "This Pokemon moves last among Pokemon using the same or greater priority moves.",
+      "description": "This Pokemon moves last among Pokemon using the same or greater priority moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "stalwart": {
+      "id": "stalwart",
+      "name": "stalwart",
+      "displayName": "Stalwart",
+      "shortEffect": "This Pokemon's moves cannot be redirected to a different target by any effect.",
+      "effect": "This Pokemon's moves cannot be redirected to a different target by any effect.",
+      "description": "This Pokemon's moves cannot be redirected to a different target by any effect.",
+      "source": "pokemon-showdown-dex"
+    },
+    "stamina": {
+      "id": "stamina",
+      "name": "stamina",
+      "displayName": "Stamina",
+      "shortEffect": "This Pokemon's Defense is raised by 1 stage after it is damaged by a move.",
+      "effect": "This Pokemon's Defense is raised by 1 stage after it is damaged by a move.",
+      "description": "This Pokemon's Defense is raised by 1 stage after it is damaged by a move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "stance-change": {
+      "id": "stance-change",
+      "name": "stance-change",
+      "displayName": "Stance Change",
+      "shortEffect": "If Aegislash, changes Forme to Blade before attacks and Shield before King's Shield.",
+      "effect": "If this Pokemon is an Aegislash, it changes to Blade Forme before using an attacking move, and changes to Shield Forme before using King's Shield.",
+      "description": "If Aegislash, changes Forme to Blade before attacks and Shield before King's Shield.",
+      "source": "pokemon-showdown-dex"
+    },
+    "static": {
+      "id": "static",
+      "name": "static",
+      "displayName": "Static",
+      "shortEffect": "30% chance a Pokemon making contact with this Pokemon will be paralyzed.",
+      "effect": "30% chance a Pokemon making contact with this Pokemon will be paralyzed.",
+      "description": "30% chance a Pokemon making contact with this Pokemon will be paralyzed.",
+      "source": "pokemon-showdown-dex"
+    },
+    "steadfast": {
+      "id": "steadfast",
+      "name": "steadfast",
+      "displayName": "Steadfast",
+      "shortEffect": "If this Pokemon flinches, its Speed is raised by 1 stage.",
+      "effect": "If this Pokemon flinches, its Speed is raised by 1 stage.",
+      "description": "If this Pokemon flinches, its Speed is raised by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "steam-engine": {
+      "id": "steam-engine",
+      "name": "steam-engine",
+      "displayName": "Steam Engine",
+      "shortEffect": "This Pokemon's Speed is raised by 6 stages after it is damaged by Fire/Water moves.",
+      "effect": "This Pokemon's Speed is raised by 6 stages after it is damaged by a Fire- or Water-type move.",
+      "description": "This Pokemon's Speed is raised by 6 stages after it is damaged by Fire/Water moves.",
+      "source": "pokemon-showdown-dex"
+    },
+    "steelworker": {
+      "id": "steelworker",
+      "name": "steelworker",
+      "displayName": "Steelworker",
+      "shortEffect": "This Pokemon's offensive stat is multiplied by 1.5 while using a Steel-type attack.",
+      "effect": "This Pokemon's offensive stat is multiplied by 1.5 while using a Steel-type attack.",
+      "description": "This Pokemon's offensive stat is multiplied by 1.5 while using a Steel-type attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "steely-spirit": {
+      "id": "steely-spirit",
+      "name": "steely-spirit",
+      "displayName": "Steely Spirit",
+      "shortEffect": "This Pokemon and its allies' Steel-type moves have their power multiplied by 1.5.",
+      "effect": "This Pokemon and its allies' Steel-type moves have their power multiplied by 1.5. This affects Doom Desire even if the user is not on the field.",
+      "description": "This Pokemon and its allies' Steel-type moves have their power multiplied by 1.5.",
+      "source": "pokemon-showdown-dex"
+    },
+    "stench": {
+      "id": "stench",
+      "name": "stench",
+      "displayName": "Stench",
+      "shortEffect": "This Pokemon's attacks without a chance to flinch gain a 10% chance to flinch.",
+      "effect": "This Pokemon's attacks without a chance to make the target flinch gain a 10% chance to make the target flinch.",
+      "description": "This Pokemon's attacks without a chance to flinch gain a 10% chance to flinch.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sticky-hold": {
+      "id": "sticky-hold",
+      "name": "sticky-hold",
+      "displayName": "Sticky Hold",
+      "shortEffect": "This Pokemon cannot lose its held item due to another Pokemon's Ability or attack.",
+      "effect": "This Pokemon cannot lose its held item due to another Pokemon's Ability or attack, unless the attack knocks out this Pokemon. A Sticky Barb will be transferred to other Pokemon regardless of this Ability.",
+      "description": "This Pokemon cannot lose its held item due to another Pokemon's Ability or attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "storm-drain": {
+      "id": "storm-drain",
+      "name": "storm-drain",
+      "displayName": "Storm Drain",
+      "shortEffect": "This Pokemon draws Water moves to itself to raise Sp. Atk by 1; Water immunity.",
+      "effect": "This Pokemon is immune to Water-type moves and raises its Special Attack by 1 stage when hit by a Water-type move. If this Pokemon is not the target of a single-target Water-type move used by another Pokemon, this Pokemon redirects that move to itself if it is within the range of that move. If multiple Pokemon could redirect with this Ability, it goes to the one with the highest Speed, or in the case of a tie to the one that has had this Ability active longer.",
+      "description": "This Pokemon draws Water moves to itself to raise Sp. Atk by 1; Water immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "strong-jaw": {
+      "id": "strong-jaw",
+      "name": "strong-jaw",
+      "displayName": "Strong Jaw",
+      "shortEffect": "This Pokemon's bite-based attacks have 1.5x power. Bug Bite is not boosted.",
+      "effect": "This Pokemon's bite-based attacks have their power multiplied by 1.5.",
+      "description": "This Pokemon's bite-based attacks have 1.5x power. Bug Bite is not boosted.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sturdy": {
+      "id": "sturdy",
+      "name": "sturdy",
+      "displayName": "Sturdy",
+      "shortEffect": "If this Pokemon is at full HP, it survives one hit with at least 1 HP. Immune to OHKO.",
+      "effect": "If this Pokemon is at full HP, it survives one hit with at least 1 HP. OHKO moves fail when used against this Pokemon.",
+      "description": "If this Pokemon is at full HP, it survives one hit with at least 1 HP. Immune to OHKO.",
+      "source": "pokemon-showdown-dex"
+    },
+    "suction-cups": {
+      "id": "suction-cups",
+      "name": "suction-cups",
+      "displayName": "Suction Cups",
+      "shortEffect": "This Pokemon cannot be forced to switch out by another Pokemon's attack or item.",
+      "effect": "This Pokemon cannot be forced to switch out by another Pokemon's attack or item.",
+      "description": "This Pokemon cannot be forced to switch out by another Pokemon's attack or item.",
+      "source": "pokemon-showdown-dex"
+    },
+    "super-luck": {
+      "id": "super-luck",
+      "name": "super-luck",
+      "displayName": "Super Luck",
+      "shortEffect": "This Pokemon's critical hit ratio is raised by 1 stage.",
+      "effect": "This Pokemon's critical hit ratio is raised by 1 stage.",
+      "description": "This Pokemon's critical hit ratio is raised by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "supersweet-syrup": {
+      "id": "supersweet-syrup",
+      "name": "supersweet-syrup",
+      "displayName": "Supersweet Syrup",
+      "shortEffect": "On switch-in, this Pokemon lowers the evasiveness of opponents 1 stage. Once per battle.",
+      "effect": "On switch-in, this Pokemon lowers the evasiveness of opponents 1 stage. Once per battle.",
+      "description": "On switch-in, this Pokemon lowers the evasiveness of opponents 1 stage. Once per battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "supreme-overlord": {
+      "id": "supreme-overlord",
+      "name": "supreme-overlord",
+      "displayName": "Supreme Overlord",
+      "shortEffect": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+      "effect": "This Pokemon's moves have their power multiplied by 1+(X*0.1), where X is the total number of times any Pokemon has fainted on the user's side when this Ability became active, and X cannot be greater than 5.",
+      "description": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+      "source": "pokemon-showdown-dex"
+    },
+    "surge-surfer": {
+      "id": "surge-surfer",
+      "name": "surge-surfer",
+      "displayName": "Surge Surfer",
+      "shortEffect": "If Electric Terrain is active, this Pokemon's Speed is doubled.",
+      "effect": "If Electric Terrain is active, this Pokemon's Speed is doubled.",
+      "description": "If Electric Terrain is active, this Pokemon's Speed is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "swarm": {
+      "id": "swarm",
+      "name": "swarm",
+      "displayName": "Swarm",
+      "shortEffect": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Bug attacks.",
+      "effect": "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Bug-type attack.",
+      "description": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Bug attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sweet-veil": {
+      "id": "sweet-veil",
+      "name": "sweet-veil",
+      "displayName": "Sweet Veil",
+      "shortEffect": "This Pokemon and its allies cannot fall asleep; those already asleep do not wake up.",
+      "effect": "This Pokemon and its allies cannot fall asleep, but those already asleep do not wake up immediately. This Pokemon and its allies cannot use Rest successfully or become affected by Yawn, and those previously affected will not fall asleep.",
+      "description": "This Pokemon and its allies cannot fall asleep; those already asleep do not wake up.",
+      "source": "pokemon-showdown-dex"
+    },
+    "swift-swim": {
+      "id": "swift-swim",
+      "name": "swift-swim",
+      "displayName": "Swift Swim",
+      "shortEffect": "If Rain Dance is active, this Pokemon's Speed is doubled.",
+      "effect": "If Rain Dance is active, this Pokemon's Speed is doubled. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+      "description": "If Rain Dance is active, this Pokemon's Speed is doubled.",
+      "source": "pokemon-showdown-dex"
+    },
+    "sword-of-ruin": {
+      "id": "sword-of-ruin",
+      "name": "sword-of-ruin",
+      "displayName": "Sword Of Ruin",
+      "shortEffect": "Active Pokemon without this Ability have their Defense multiplied by 0.75.",
+      "effect": "Active Pokemon without this Ability have their Defense multiplied by 0.75.",
+      "description": "Active Pokemon without this Ability have their Defense multiplied by 0.75.",
+      "source": "pokemon-showdown-dex"
+    },
+    "symbiosis": {
+      "id": "symbiosis",
+      "name": "symbiosis",
+      "displayName": "Symbiosis",
+      "shortEffect": "If an ally uses its item, this Pokemon gives its item to that ally immediately.",
+      "effect": "If an ally uses its item, this Pokemon gives its item to that ally immediately. Does not activate if the ally's item was stolen or knocked off, or if the ally used an Eject Button or Eject Pack.",
+      "description": "If an ally uses its item, this Pokemon gives its item to that ally immediately.",
+      "source": "pokemon-showdown-dex"
+    },
+    "synchronize": {
+      "id": "synchronize",
+      "name": "synchronize",
+      "displayName": "Synchronize",
+      "shortEffect": "If another Pokemon burns/poisons/paralyzes this Pokemon, it also gets that status.",
+      "effect": "If another Pokemon burns, paralyzes, poisons, or badly poisons this Pokemon, that Pokemon receives the same non-volatile status condition.",
+      "description": "If another Pokemon burns/poisons/paralyzes this Pokemon, it also gets that status.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tablets-of-ruin": {
+      "id": "tablets-of-ruin",
+      "name": "tablets-of-ruin",
+      "displayName": "Tablets Of Ruin",
+      "shortEffect": "Active Pokemon without this Ability have their Attack multiplied by 0.75.",
+      "effect": "Active Pokemon without this Ability have their Attack multiplied by 0.75.",
+      "description": "Active Pokemon without this Ability have their Attack multiplied by 0.75.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tangled-feet": {
+      "id": "tangled-feet",
+      "name": "tangled-feet",
+      "displayName": "Tangled Feet",
+      "shortEffect": "This Pokemon's evasiveness is doubled as long as it is confused.",
+      "effect": "This Pokemon's evasiveness is doubled as long as it is confused.",
+      "description": "This Pokemon's evasiveness is doubled as long as it is confused.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tangling-hair": {
+      "id": "tangling-hair",
+      "name": "tangling-hair",
+      "displayName": "Tangling Hair",
+      "shortEffect": "Pokemon making contact with this Pokemon have their Speed lowered by 1 stage.",
+      "effect": "Pokemon making contact with this Pokemon have their Speed lowered by 1 stage.",
+      "description": "Pokemon making contact with this Pokemon have their Speed lowered by 1 stage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "technician": {
+      "id": "technician",
+      "name": "technician",
+      "displayName": "Technician",
+      "shortEffect": "This Pokemon's moves of 60 power or less have 1.5x power, including Struggle.",
+      "effect": "This Pokemon's moves of 60 power or less have their power multiplied by 1.5, including Struggle. This effect comes after a move's effect changes its own power.",
+      "description": "This Pokemon's moves of 60 power or less have 1.5x power, including Struggle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "telepathy": {
+      "id": "telepathy",
+      "name": "telepathy",
+      "displayName": "Telepathy",
+      "shortEffect": "This Pokemon does not take damage from attacks made by its allies.",
+      "effect": "This Pokemon does not take damage from attacks made by its allies.",
+      "description": "This Pokemon does not take damage from attacks made by its allies.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tera-shell": {
+      "id": "tera-shell",
+      "name": "tera-shell",
+      "displayName": "Tera Shell",
+      "shortEffect": "Terapagos: If full HP, attacks taken have 0.5x effectiveness unless naturally immune.",
+      "effect": "If this Pokemon is a Terapagos at full HP, the effectiveness of attacks against it is changed to 0.5 unless this Pokemon is immune to the move. Multi-hit moves retain the same effectiveness throughout the attack.",
+      "description": "Terapagos: If full HP, attacks taken have 0.5x effectiveness unless naturally immune.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tera-shift": {
+      "id": "tera-shift",
+      "name": "tera-shift",
+      "displayName": "Tera Shift",
+      "shortEffect": "If this Pokemon is a Terapagos, it transforms into its Terastal Form on entry.",
+      "effect": "If this Pokemon is a Terapagos, it transforms into its Terastal Form on entry.",
+      "description": "If this Pokemon is a Terapagos, it transforms into its Terastal Form on entry.",
+      "source": "pokemon-showdown-dex"
+    },
+    "teraform-zero": {
+      "id": "teraform-zero",
+      "name": "teraform-zero",
+      "displayName": "Teraform Zero",
+      "shortEffect": "Terapagos: Terastallizing ends the effects of weather and terrain. Once per battle.",
+      "effect": "Terapagos: Terastallizing ends the effects of weather and terrain. Once per battle.",
+      "description": "Terapagos: Terastallizing ends the effects of weather and terrain. Once per battle.",
+      "source": "pokemon-showdown-dex"
+    },
+    "teravolt": {
+      "id": "teravolt",
+      "name": "teravolt",
+      "displayName": "Teravolt",
+      "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+      "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+      "description": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "thermal-exchange": {
+      "id": "thermal-exchange",
+      "name": "thermal-exchange",
+      "displayName": "Thermal Exchange",
+      "shortEffect": "This Pokemon's Attack is raised by 1 when damaged by Fire moves; can't be burned.",
+      "effect": "This Pokemon's Attack is raised 1 stage after it is damaged by a Fire-type move. This Pokemon cannot be burned. Gaining this Ability while burned cures it.",
+      "description": "This Pokemon's Attack is raised by 1 when damaged by Fire moves; can't be burned.",
+      "source": "pokemon-showdown-dex"
+    },
+    "thick-fat": {
+      "id": "thick-fat",
+      "name": "thick-fat",
+      "displayName": "Thick Fat",
+      "shortEffect": "Fire-/Ice-type moves against this Pokemon deal damage with a halved offensive stat.",
+      "effect": "If a Pokemon uses a Fire- or Ice-type attack against this Pokemon, that Pokemon's offensive stat is halved when calculating the damage to this Pokemon.",
+      "description": "Fire-/Ice-type moves against this Pokemon deal damage with a halved offensive stat.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tinted-lens": {
+      "id": "tinted-lens",
+      "name": "tinted-lens",
+      "displayName": "Tinted Lens",
+      "shortEffect": "This Pokemon's attacks that are not very effective on a target deal double damage.",
+      "effect": "This Pokemon's attacks that are not very effective on a target deal double damage.",
+      "description": "This Pokemon's attacks that are not very effective on a target deal double damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "torrent": {
+      "id": "torrent",
+      "name": "torrent",
+      "displayName": "Torrent",
+      "shortEffect": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Water attacks.",
+      "effect": "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Water-type attack.",
+      "description": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Water attacks.",
+      "source": "pokemon-showdown-dex"
+    },
+    "tough-claws": {
+      "id": "tough-claws",
+      "name": "tough-claws",
+      "displayName": "Tough Claws",
+      "shortEffect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+      "effect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+      "description": "This Pokemon's contact moves have their power multiplied by 1.3.",
+      "source": "pokemon-showdown-dex"
+    },
+    "toxic-boost": {
+      "id": "toxic-boost",
+      "name": "toxic-boost",
+      "displayName": "Toxic Boost",
+      "shortEffect": "While this Pokemon is poisoned, its physical attacks have 1.5x power.",
+      "effect": "While this Pokemon is poisoned, the power of its physical attacks is multiplied by 1.5.",
+      "description": "While this Pokemon is poisoned, its physical attacks have 1.5x power.",
+      "source": "pokemon-showdown-dex"
+    },
+    "toxic-chain": {
+      "id": "toxic-chain",
+      "name": "toxic-chain",
+      "displayName": "Toxic Chain",
+      "shortEffect": "This Pokemon's attacks have a 30% chance of badly poisoning.",
+      "effect": "This Pokemon's attacks have a 30% chance of badly poisoning. This effect comes before a move's inherent secondary effect chance.",
+      "description": "This Pokemon's attacks have a 30% chance of badly poisoning.",
+      "source": "pokemon-showdown-dex"
+    },
+    "toxic-debris": {
+      "id": "toxic-debris",
+      "name": "toxic-debris",
+      "displayName": "Toxic Debris",
+      "shortEffect": "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+      "effect": "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+      "description": "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+      "source": "pokemon-showdown-dex"
+    },
+    "trace": {
+      "id": "trace",
+      "name": "trace",
+      "displayName": "Trace",
+      "shortEffect": "On switch-in, or when it can, this Pokemon copies a random adjacent foe's Ability.",
+      "effect": "On switch-in, this Pokemon copies a random opposing Pokemon's Ability. Abilities that cannot be copied are As One, Battle Bond, Comatose, Commander, Disguise, Embody Aspect, Flower Gift, Forecast, Hunger Switch, Ice Face, Illusion, Imposter, Multitype, Neutralizing Gas, Poison Puppeteer, Power Construct, Power of Alchemy, Protosynthesis, Quark Drive, Receiver, RKS System, Schooling, Shields Down, Stance Change, Teraform Zero, Tera Shell, Tera Shift, Trace, Zen Mode, and Zero to Hero. If no opposing Pokemon has an Ability that can be copied, this Ability will activate as soon as one does.",
+      "description": "On switch-in, or when it can, this Pokemon copies a random adjacent foe's Ability.",
+      "source": "pokemon-showdown-dex"
+    },
+    "transistor": {
+      "id": "transistor",
+      "name": "transistor",
+      "displayName": "Transistor",
+      "shortEffect": "This Pokemon's offensive stat is multiplied by 1.3 while using an Electric-type attack.",
+      "effect": "This Pokemon's offensive stat is multiplied by 1.3 while using an Electric-type attack.",
+      "description": "This Pokemon's offensive stat is multiplied by 1.3 while using an Electric-type attack.",
+      "source": "pokemon-showdown-dex"
+    },
+    "triage": {
+      "id": "triage",
+      "name": "triage",
+      "displayName": "Triage",
+      "shortEffect": "This Pokemon's healing moves have their priority increased by 3.",
+      "effect": "This Pokemon's healing moves have their priority increased by 3.",
+      "description": "This Pokemon's healing moves have their priority increased by 3.",
+      "source": "pokemon-showdown-dex"
+    },
+    "truant": {
+      "id": "truant",
+      "name": "truant",
+      "displayName": "Truant",
+      "shortEffect": "This Pokemon skips every other turn instead of using a move.",
+      "effect": "This Pokemon skips every other turn instead of using a move.",
+      "description": "This Pokemon skips every other turn instead of using a move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "turboblaze": {
+      "id": "turboblaze",
+      "name": "turboblaze",
+      "displayName": "Turboblaze",
+      "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+      "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+      "description": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "unaware": {
+      "id": "unaware",
+      "name": "unaware",
+      "displayName": "Unaware",
+      "shortEffect": "This Pokemon ignores other Pokemon's stat stages when taking or doing damage.",
+      "effect": "This Pokemon ignores other Pokemon's Attack, Special Attack, and accuracy stat stages when taking damage, and ignores other Pokemon's Defense, Special Defense, and evasiveness stat stages when dealing damage.",
+      "description": "This Pokemon ignores other Pokemon's stat stages when taking or doing damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "unburden": {
+      "id": "unburden",
+      "name": "unburden",
+      "displayName": "Unburden",
+      "shortEffect": "Speed is doubled on held item loss; boost is lost if it switches, gets new item/Ability.",
+      "effect": "If this Pokemon loses its held item for any reason, its Speed is doubled as long as it remains active, has this Ability, and is not holding an item.",
+      "description": "Speed is doubled on held item loss; boost is lost if it switches, gets new item/Ability.",
+      "source": "pokemon-showdown-dex"
+    },
+    "unnerve": {
+      "id": "unnerve",
+      "name": "unnerve",
+      "displayName": "Unnerve",
+      "shortEffect": "While this Pokemon is active, it prevents opposing Pokemon from using their Berries.",
+      "effect": "While this Pokemon is active, it prevents opposing Pokemon from using their Berries. This Ability activates before hazards and other Abilities take effect.",
+      "description": "While this Pokemon is active, it prevents opposing Pokemon from using their Berries.",
+      "source": "pokemon-showdown-dex"
+    },
+    "unseen-fist": {
+      "id": "unseen-fist",
+      "name": "unseen-fist",
+      "displayName": "Unseen Fist",
+      "shortEffect": "This Pokemon's contact moves ignore the target's protection, except Max Guard.",
+      "effect": "This Pokemon's contact moves ignore the target's protection, except Max Guard.",
+      "description": "This Pokemon's contact moves ignore the target's protection, except Max Guard.",
+      "source": "pokemon-showdown-dex"
+    },
+    "vessel-of-ruin": {
+      "id": "vessel-of-ruin",
+      "name": "vessel-of-ruin",
+      "displayName": "Vessel Of Ruin",
+      "shortEffect": "Active Pokemon without this Ability have their Special Attack multiplied by 0.75.",
+      "effect": "Active Pokemon without this Ability have their Special Attack multiplied by 0.75.",
+      "description": "Active Pokemon without this Ability have their Special Attack multiplied by 0.75.",
+      "source": "pokemon-showdown-dex"
+    },
+    "victory-star": {
+      "id": "victory-star",
+      "name": "victory-star",
+      "displayName": "Victory Star",
+      "shortEffect": "This Pokemon and its allies' moves have their accuracy multiplied by 1.1.",
+      "effect": "This Pokemon and its allies' moves have their accuracy multiplied by 1.1.",
+      "description": "This Pokemon and its allies' moves have their accuracy multiplied by 1.1.",
+      "source": "pokemon-showdown-dex"
+    },
+    "vital-spirit": {
+      "id": "vital-spirit",
+      "name": "vital-spirit",
+      "displayName": "Vital Spirit",
+      "shortEffect": "This Pokemon cannot fall asleep. Gaining this Ability while asleep cures it.",
+      "effect": "This Pokemon cannot fall asleep. Gaining this Ability while asleep cures it.",
+      "description": "This Pokemon cannot fall asleep. Gaining this Ability while asleep cures it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "volt-absorb": {
+      "id": "volt-absorb",
+      "name": "volt-absorb",
+      "displayName": "Volt Absorb",
+      "shortEffect": "This Pokemon heals 1/4 of its max HP when hit by Electric moves; Electric immunity.",
+      "effect": "This Pokemon is immune to Electric-type moves and restores 1/4 of its maximum HP, rounded down, when hit by an Electric-type move.",
+      "description": "This Pokemon heals 1/4 of its max HP when hit by Electric moves; Electric immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "wandering-spirit": {
+      "id": "wandering-spirit",
+      "name": "wandering-spirit",
+      "displayName": "Wandering Spirit",
+      "shortEffect": "Pokemon making contact with this Pokemon have their Ability swapped with this one.",
+      "effect": "Pokemon making contact with this Pokemon have their Ability swapped with this one. Does not affect Pokemon with the Abilities As One, Battle Bond, Comatose, Commander, Disguise, Embody Aspect, Hunger Switch, Ice Face, Illusion, Multitype, Neutralizing Gas, Poison Puppeteer, Power Construct, Protosynthesis, Quark Drive, RKS System, Schooling, Shields Down, Stance Change, Tera Shell, Tera Shift, Teraform Zero, Wonder Guard, Zen Mode, or Zero to Hero.",
+      "description": "Pokemon making contact with this Pokemon have their Ability swapped with this one.",
+      "source": "pokemon-showdown-dex"
+    },
+    "water-absorb": {
+      "id": "water-absorb",
+      "name": "water-absorb",
+      "displayName": "Water Absorb",
+      "shortEffect": "This Pokemon heals 1/4 of its max HP when hit by Water moves; Water immunity.",
+      "effect": "This Pokemon is immune to Water-type moves and restores 1/4 of its maximum HP, rounded down, when hit by a Water-type move.",
+      "description": "This Pokemon heals 1/4 of its max HP when hit by Water moves; Water immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "water-bubble": {
+      "id": "water-bubble",
+      "name": "water-bubble",
+      "displayName": "Water Bubble",
+      "shortEffect": "This Pokemon's Water power is 2x; it can't be burned; Fire power against it is halved.",
+      "effect": "This Pokemon's offensive stat is doubled while using a Water-type attack. If a Pokemon uses a Fire-type attack against this Pokemon, that Pokemon's offensive stat is halved when calculating the damage to this Pokemon. This Pokemon cannot be burned. Gaining this Ability while burned cures it.",
+      "description": "This Pokemon's Water power is 2x; it can't be burned; Fire power against it is halved.",
+      "source": "pokemon-showdown-dex"
+    },
+    "water-compaction": {
+      "id": "water-compaction",
+      "name": "water-compaction",
+      "displayName": "Water Compaction",
+      "shortEffect": "This Pokemon's Defense is raised 2 stages after it is damaged by a Water-type move.",
+      "effect": "This Pokemon's Defense is raised 2 stages after it is damaged by a Water-type move.",
+      "description": "This Pokemon's Defense is raised 2 stages after it is damaged by a Water-type move.",
+      "source": "pokemon-showdown-dex"
+    },
+    "water-veil": {
+      "id": "water-veil",
+      "name": "water-veil",
+      "displayName": "Water Veil",
+      "shortEffect": "This Pokemon cannot be burned. Gaining this Ability while burned cures it.",
+      "effect": "This Pokemon cannot be burned. Gaining this Ability while burned cures it.",
+      "description": "This Pokemon cannot be burned. Gaining this Ability while burned cures it.",
+      "source": "pokemon-showdown-dex"
+    },
+    "weak-armor": {
+      "id": "weak-armor",
+      "name": "weak-armor",
+      "displayName": "Weak Armor",
+      "shortEffect": "If a physical attack hits this Pokemon, Defense is lowered by 1, Speed is raised by 2.",
+      "effect": "If a physical attack hits this Pokemon, its Defense is lowered by 1 stage and its Speed is raised by 2 stages.",
+      "description": "If a physical attack hits this Pokemon, Defense is lowered by 1, Speed is raised by 2.",
+      "source": "pokemon-showdown-dex"
+    },
+    "well-baked-body": {
+      "id": "well-baked-body",
+      "name": "well-baked-body",
+      "displayName": "Well Baked Body",
+      "shortEffect": "This Pokemon's Defense is raised 2 stages if hit by a Fire move; Fire immunity.",
+      "effect": "This Pokemon is immune to Fire-type moves and raises its Defense by 2 stages when hit by a Fire-type move.",
+      "description": "This Pokemon's Defense is raised 2 stages if hit by a Fire move; Fire immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "white-smoke": {
+      "id": "white-smoke",
+      "name": "white-smoke",
+      "displayName": "White Smoke",
+      "shortEffect": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "effect": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "description": "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+      "source": "pokemon-showdown-dex"
+    },
+    "wimp-out": {
+      "id": "wimp-out",
+      "name": "wimp-out",
+      "displayName": "Wimp Out",
+      "shortEffect": "This Pokemon switches out when it reaches 1/2 or less of its maximum HP.",
+      "effect": "When this Pokemon has more than 1/2 its maximum HP and takes damage bringing it to 1/2 or less of its maximum HP, it immediately switches out to a chosen ally. This effect applies after all hits from a multi-hit move. This effect is prevented if the move had a secondary effect removed by the Sheer Force Ability. This effect applies to both direct and indirect damage, except Curse and Substitute on use, Belly Drum, Pain Split, and confusion damage.",
+      "description": "This Pokemon switches out when it reaches 1/2 or less of its maximum HP.",
+      "source": "pokemon-showdown-dex"
+    },
+    "wind-power": {
+      "id": "wind-power",
+      "name": "wind-power",
+      "displayName": "Wind Power",
+      "shortEffect": "This Pokemon gains the Charge effect when hit by a wind move or Tailwind begins.",
+      "effect": "This Pokemon gains the Charge effect when it takes a hit from a wind move or when Tailwind begins on this Pokemon's side.",
+      "description": "This Pokemon gains the Charge effect when hit by a wind move or Tailwind begins.",
+      "source": "pokemon-showdown-dex"
+    },
+    "wind-rider": {
+      "id": "wind-rider",
+      "name": "wind-rider",
+      "displayName": "Wind Rider",
+      "shortEffect": "Attack raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
+      "effect": "This Pokemon is immune to wind moves and raises its Attack by 1 stage when hit by a wind move or when Tailwind begins on this Pokemon's side.",
+      "description": "Attack raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
+      "source": "pokemon-showdown-dex"
+    },
+    "wonder-guard": {
+      "id": "wonder-guard",
+      "name": "wonder-guard",
+      "displayName": "Wonder Guard",
+      "shortEffect": "This Pokemon can only be damaged by supereffective moves and indirect damage.",
+      "effect": "This Pokemon can only be damaged by supereffective moves and indirect damage.",
+      "description": "This Pokemon can only be damaged by supereffective moves and indirect damage.",
+      "source": "pokemon-showdown-dex"
+    },
+    "wonder-skin": {
+      "id": "wonder-skin",
+      "name": "wonder-skin",
+      "displayName": "Wonder Skin",
+      "shortEffect": "Status moves with accuracy checks are 50% accurate when used on this Pokemon.",
+      "effect": "Non-damaging moves that check accuracy have their accuracy changed to 50% when used against this Pokemon. This effect comes before other effects that modify accuracy.",
+      "description": "Status moves with accuracy checks are 50% accurate when used on this Pokemon.",
+      "source": "pokemon-showdown-dex"
+    },
+    "zen-mode": {
+      "id": "zen-mode",
+      "name": "zen-mode",
+      "displayName": "Zen Mode",
+      "shortEffect": "If Darmanitan, at end of turn changes Mode to Standard if > 1/2 max HP, else Zen.",
+      "effect": "If this Pokemon is a Darmanitan or Galarian Darmanitan, it changes to Zen Mode if it has 1/2 or less of its maximum HP at the end of a turn. If Darmanitan's HP is above 1/2 of its maximum HP at the end of a turn, it changes back to Standard Mode.",
+      "description": "If Darmanitan, at end of turn changes Mode to Standard if > 1/2 max HP, else Zen.",
+      "source": "pokemon-showdown-dex"
+    },
+    "zero-to-hero": {
+      "id": "zero-to-hero",
+      "name": "zero-to-hero",
+      "displayName": "Zero To Hero",
+      "shortEffect": "If this Pokemon is a Palafin in Zero Form, switching out has it change to Hero Form.",
+      "effect": "If this Pokemon is a Palafin in Zero Form, switching out has it change to Hero Form.",
+      "description": "If this Pokemon is a Palafin in Zero Form, switching out has it change to Hero Form.",
+      "source": "pokemon-showdown-dex"
+    }
+  }
+}

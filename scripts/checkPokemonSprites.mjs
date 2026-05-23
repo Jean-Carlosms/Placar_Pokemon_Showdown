@@ -88,6 +88,16 @@ const smallCandidates = getPokemonSpriteCandidatesByStyle({
   localSprite,
   style: "smallIcon",
 });
+const candidatesWithMissingOptionalSprite = getPokemonSpriteCandidatesByStyle({
+  pokemonName: "Pikachu",
+  spriteCandidates: [undefined],
+  style: "staticPixel",
+});
+const paldeanTaurosArtworkCandidates = getPokemonSpriteCandidatesByStyle({
+  pokemonName: "Tauros-Paldea-Combat",
+  pokemonId: 128,
+  style: "officialArtwork",
+});
 
 assertEqual(staticCandidates[0], localSprite, "Static pixel style should prefer local sprite");
 assertTruthy(
@@ -102,8 +112,16 @@ assertTruthy(
   smallCandidates.some((url) => url.endsWith("/sprites/pokemon/25.png")),
   "Small icon style should include the compact PokeAPI sprite when an ID exists",
 );
+assertTruthy(
+  candidatesWithMissingOptionalSprite.includes("/sprites/pokemon/pikachu.png"),
+  "Missing optional sprite URL should not prevent local sprite fallback",
+);
+assertTruthy(
+  paldeanTaurosArtworkCandidates[0].endsWith("/other/official-artwork/10250.png"),
+  "Paldean Tauros artwork should use its form-specific PokeAPI sprite ID",
+);
 
-[staticCandidates, animatedCandidates, officialCandidates, smallCandidates].forEach((candidates) => {
+[staticCandidates, animatedCandidates, officialCandidates, smallCandidates, candidatesWithMissingOptionalSprite, paldeanTaurosArtworkCandidates].forEach((candidates) => {
   assertTruthy(
     candidates.includes("/sprites/pokemon/_placeholder.svg"),
     "Every sprite style should include the local placeholder",

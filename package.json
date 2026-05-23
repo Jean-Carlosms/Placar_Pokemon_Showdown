@@ -19,6 +19,7 @@
     "check:local-sprites": "node scripts/checkLocalSprites.mjs",
     "check:pokemon-catalog": "node scripts/checkPokemonCatalog.mjs",
     "check:move-catalog": "node scripts/checkMoveCatalog.mjs",
+    "check:ability-data": "node scripts/checkAbilityData.mjs",
     "check:move-data": "node scripts/checkMoveData.mjs",
     "check:pokemon-data": "node scripts/checkPokemonData.mjs",
     "preview": "vite preview"

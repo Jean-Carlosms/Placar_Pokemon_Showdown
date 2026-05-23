@@ -5,6 +5,7 @@ import {
   getAllPokemonFromLocalDatabase,
   getUniquePokemonFromHistory,
 } from "../utils/pokemonCatalog.js";
+import PokemonAbilityTooltip from "./PokemonAbilityTooltip.jsx";
 import PokemonSprite from "./PokemonSprite.jsx";
 
 const STAT_LABELS = [
@@ -207,8 +208,14 @@ function PokemonDetails({ pokemonDetails, usageCount, spriteStyle }) {
           </dl>
 
           <div className="pokemon-abilities">
-            <span>Abilities</span>
-            <p>{pokemonDetails.abilities?.length ? pokemonDetails.abilities.join(", ") : "-"}</p>
+            <span className="pokemon-abilities-title">Abilities</span>
+            <div className="pokemon-abilities-list">
+              {pokemonDetails.abilities?.length
+                ? pokemonDetails.abilities.map((ability) => (
+                    <PokemonAbilityTooltip key={ability} abilityName={ability} />
+                  ))
+                : "-"}
+            </div>
           </div>
         </div>
       </div>

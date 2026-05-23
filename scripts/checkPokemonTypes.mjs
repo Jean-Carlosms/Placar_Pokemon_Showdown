@@ -18,6 +18,11 @@ assertEqual(
 );
 assertEqual(normalizePokemonApiName("Oricorio-Pa'u"), "oricorio-pau", "Oricorio-Pa'u should normalize");
 assertEqual(normalizePokemonApiName("Iron Treads"), "iron-treads", "Iron Treads should normalize");
+assertEqual(
+  normalizePokemonApiName("Tauros-Paldea-Combat"),
+  "tauros-paldea-combat-breed",
+  "Tauros-Paldea-Combat should normalize to the PokeAPI form",
+);
 assertArrayEqual(await getPokemonTypes("Regieleki"), ["Electric"], "Regieleki should use local fallback");
 assertArrayEqual(
   await getPokemonTypes("Chien-Pao"),
@@ -50,6 +55,21 @@ assertArrayEqual(
   await getPokemonTypes("Okidogi"),
   ["Poison", "Fighting"],
   "Okidogi should use local fallback",
+);
+assertArrayEqual(
+  await getPokemonTypes("Tauros-Paldea-Combat"),
+  ["Fighting"],
+  "Tauros-Paldea-Combat should use local fallback",
+);
+assertArrayEqual(
+  await getPokemonTypes("Tauros-Paldea-Blaze"),
+  ["Fighting", "Fire"],
+  "Tauros-Paldea-Blaze should use local fallback",
+);
+assertArrayEqual(
+  await getPokemonTypes("Tauros-Paldea-Aqua"),
+  ["Fighting", "Water"],
+  "Tauros-Paldea-Aqua should use local fallback",
 );
 
 console.log("Pokemon types check passed.");
