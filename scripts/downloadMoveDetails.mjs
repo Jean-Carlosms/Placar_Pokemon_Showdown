@@ -1,4 +1,4 @@
-import { existsSync, renameSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -9,8 +9,9 @@ const BATCH_DELAY_MS = 80;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, "..");
-const outputPath = resolve(projectRoot, "src/data/moveDetails.generated.json");
-const tmpPath = resolve(projectRoot, "src/data/moveDetails.generated.tmp.json");
+const outputDir = resolve(projectRoot, "public/data");
+const outputPath = resolve(outputDir, "moveDetails.generated.json");
+const tmpPath = resolve(outputDir, "moveDetails.generated.tmp.json");
 
 async function main() {
   console.log(`Buscando lista de moves: ${MOVE_LIST_URL}`);
@@ -42,6 +43,7 @@ async function main() {
     ),
   };
 
+  mkdirSync(outputDir, { recursive: true });
   writeFileSync(tmpPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 
   if (!existsSync(tmpPath)) {

@@ -2,6 +2,11 @@
 
 Proximas melhorias planejadas para o Placar Pokemon Showdown:
 
+Concluido recentemente:
+
+- Mover JSONs grandes para `public/data` e carregar sob demanda.
+- Carregar catalogos locais com `fetch` e cache em memoria.
+
 - Exportar historico em CSV.
 - Integrar com backend seguro.
 - Sincronizar automaticamente em banco online.
@@ -87,9 +92,10 @@ Proximas melhorias planejadas para o Placar Pokemon Showdown:
 - Adicionar banner SVG animado.
 - Criar loader SVG de Pokebola.
 - Adicionar video curto da importacao de replay.
-- Fazer lazy load dos catalogos completos para reduzir o bundle inicial.
-- Mover JSONs grandes para `public/data` e carregar sob demanda.
 - Usar `React.lazy` nos cards Consulta de Pokemon e Consulta de Moves.
+- Adicionar paginacao ou virtualizacao nos selects de Pokemon e moves.
+- Comprimir os JSONs gerados em `public/data`.
+- Criar cache persistente dos bancos locais em IndexedDB.
 - Baixar pacotes locais separados para sprites animadas, official artwork e icones pequenos.
 - Permitir estilo de sprite diferente para Historico e Consulta de Pokemon.
 - Comprimir e otimizar imagens usadas pelos estilos de sprite.

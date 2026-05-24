@@ -5,12 +5,13 @@ import { dirname, resolve } from "node:path";
 const require = createRequire(import.meta.url);
 const { Dex } = require("pokemon-showdown");
 
-const MOVE_OUTPUT_PATH = resolve("src/data/moveDetails.generated.json");
-const MOVE_TMP_PATH = resolve("src/data/moveDetails.generated.tmp.json");
-const POKEMON_OUTPUT_PATH = resolve("src/data/pokemonDetails.generated.json");
-const POKEMON_TMP_PATH = resolve("src/data/pokemonDetails.generated.tmp.json");
-const ABILITY_OUTPUT_PATH = resolve("src/data/abilityDetails.generated.json");
-const ABILITY_TMP_PATH = resolve("src/data/abilityDetails.generated.tmp.json");
+const DATA_OUTPUT_DIR = resolve("public/data");
+const MOVE_OUTPUT_PATH = resolve(DATA_OUTPUT_DIR, "moveDetails.generated.json");
+const MOVE_TMP_PATH = resolve(DATA_OUTPUT_DIR, "moveDetails.generated.tmp.json");
+const POKEMON_OUTPUT_PATH = resolve(DATA_OUTPUT_DIR, "pokemonDetails.generated.json");
+const POKEMON_TMP_PATH = resolve(DATA_OUTPUT_DIR, "pokemonDetails.generated.tmp.json");
+const ABILITY_OUTPUT_PATH = resolve(DATA_OUTPUT_DIR, "abilityDetails.generated.json");
+const ABILITY_TMP_PATH = resolve(DATA_OUTPUT_DIR, "abilityDetails.generated.tmp.json");
 const SOURCE = "pokemon-showdown-dex";
 const SHOWDOWN_SPRITES_BASE_URL = "https://play.pokemonshowdown.com/sprites";
 const POKEAPI_SPRITES_GITHUB_BASE_URL =
@@ -20,6 +21,8 @@ const generatedAt = new Date().toISOString();
 const moves = buildMoveDatabase();
 const pokemon = buildPokemonDatabase();
 const abilities = buildAbilityDatabase();
+
+mkdirSync(DATA_OUTPUT_DIR, { recursive: true });
 
 writeJsonSafely(MOVE_TMP_PATH, MOVE_OUTPUT_PATH, {
   generatedAt,

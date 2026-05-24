@@ -18,7 +18,9 @@ const STAT_LABELS = [
 ];
 
 function PokemonInfoCard({ history, spriteStyle }) {
-  const allPokemon = useMemo(() => getAllPokemonFromLocalDatabase(), []);
+  const [allPokemonOptions, setAllPokemonOptions] = useState([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState("");
   const usedPokemon = useMemo(() => getUniquePokemonFromHistory(history), [history]);
   const pokemonUsage = useMemo(() => countPokemonUsageFromHistory(history), [history]);
   const [filterMode, setFilterMode] = useState("all");
@@ -27,8 +29,8 @@ function PokemonInfoCard({ history, spriteStyle }) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const pokemonList = useMemo(
-    () => (filterMode === "all" && allPokemon.length > 0 ? allPokemon : usedPokemon),
-    [allPokemon, filterMode, usedPokemon],
+    () => (filterMode === "all" && allPokemonOptions.length > 0 ? allPokemonOptions : usedPokemon),
+    [allPokemonOptions, filterMode, usedPokemon],
   );
   const visiblePokemon = useMemo(() => {
     const normalizedSearchTerm = searchTerm.trim().toLowerCase();
@@ -38,7 +40,40 @@ function PokemonInfoCard({ history, spriteStyle }) {
       : pokemonList;
   }, [pokemonList, searchTerm]);
   const selectedPokemon = pokemonList.find((pokemon) => pokemon.key === selectedPokemonKey);
-  const catalogLabel = filterMode === "all" && allPokemon.length > 0 ? "disponiveis" : "usados nos replays";
+  const catalogLabel =
+    filterMode === "all" && allPokemonOptions.length > 0 ? "disponiveis" : "usados nos replays";
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadPokemonCatalog() {
+      setCatalogLoading(true);
+      setCatalogError("");
+
+      try {
+        const catalog = await getAllPokemonFromLocalDatabase();
+
+        if (isMounted) {
+          setAllPokemonOptions(catalog);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setAllPokemonOptions([]);
+          setCatalogError("Nao foi possivel carregar o catalogo local de Pokemon.");
+        }
+      } finally {
+        if (isMounted) {
+          setCatalogLoading(false);
+        }
+      }
+    }
+
+    loadPokemonCatalog();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (visiblePokemon.length === 0) {
@@ -89,7 +124,9 @@ function PokemonInfoCard({ history, spriteStyle }) {
         </div>
       </div>
 
-      {pokemonList.length === 0 ? (
+      {catalogLoading ? (
+        <p className="pokemon-empty-state">Carregando catalogo de Pokemon...</p>
+      ) : pokemonList.length === 0 ? (
         <p className="pokemon-empty-state">
           Nenhum Pokemon disponivel. Gere o banco local com npm run data:showdown ou importe um replay.
         </p>
@@ -154,6 +191,8 @@ function PokemonInfoCard({ history, spriteStyle }) {
           )}
         </>
       )}
+
+      {!catalogLoading && catalogError && <p className="pokemon-empty-state">{catalogError}</p>}
     </section>
   );
 }

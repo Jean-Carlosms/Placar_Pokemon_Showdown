@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const abilityDataPath = resolve("src/data/abilityDetails.generated.json");
+const abilityDataPath = resolve("public/data/abilityDetails.generated.json");
 const abilityData = JSON.parse(readFileSync(abilityDataPath, "utf8"));
 
 assertTruthy(abilityData && typeof abilityData === "object", "Ability data should be an object");

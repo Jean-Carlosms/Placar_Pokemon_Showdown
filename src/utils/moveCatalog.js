@@ -1,4 +1,4 @@
-import moveDetailsData from "../data/moveDetails.generated.json" with { type: "json" };
+import { loadMoveDatabase } from "../services/localDataApi.js";
 
 export function normalizeMoveKey(moveName) {
   return String(moveName || "")
@@ -22,7 +22,8 @@ export function formatMoveName(moveName) {
     .join(" ");
 }
 
-export function getAllMovesFromLocalDatabase() {
+export async function getAllMovesFromLocalDatabase() {
+  const moveDetailsData = await loadMoveDatabase();
   const moveDatabase = moveDetailsData?.moves;
 
   if (!moveDatabase || typeof moveDatabase !== "object") {

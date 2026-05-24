@@ -1,4 +1,4 @@
-import pokemonDetailsData from "../data/pokemonDetails.generated.json";
+import { loadPokemonDatabase } from "./localDataApi.js";
 import {
   getLocalPokemonSprite,
   getPokemonSpriteFallbacks,
@@ -39,7 +39,9 @@ export async function getPokemonDetails(pokemonName) {
 
 async function fetchPokemonDetails(apiName, originalName) {
   const lookupName = getPokemonLookupName(apiName);
-  const localPokemon = getLocalPokemon(apiName) ?? getLocalPokemon(lookupName);
+  const pokemonDetailsData = await loadPokemonDatabase();
+  const localPokemon =
+    getLocalPokemon(pokemonDetailsData, apiName) ?? getLocalPokemon(pokemonDetailsData, lookupName);
 
   if (localPokemon) {
     const spriteCandidates = getPokemonSpriteCandidates(localPokemon, apiName);
@@ -75,7 +77,7 @@ async function fetchPokemonDetails(apiName, originalName) {
   }
 }
 
-function getLocalPokemon(apiName) {
+function getLocalPokemon(pokemonDetailsData, apiName) {
   return pokemonDetailsData.pokemon?.[apiName] ?? null;
 }
 

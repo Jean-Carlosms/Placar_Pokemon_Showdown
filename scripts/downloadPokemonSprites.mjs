@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 const SPRITE_DIR = resolve("public/sprites/pokemon");
-const POKEMON_DATA_PATH = resolve("src/data/pokemonDetails.generated.json");
+const POKEMON_DATA_PATH = resolve("public/data/pokemonDetails.generated.json");
 const CONCURRENCY = 8;
 
 const pokemonData = JSON.parse(readFileSync(POKEMON_DATA_PATH, "utf8"));

@@ -1,6 +1,7 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   countMoveUsageFromHistory,
-  getAllMovesFromLocalDatabase,
   getUniqueMovesFromHistory,
   normalizeMoveKey,
 } from "../src/utils/moveCatalog.js";
@@ -37,7 +38,14 @@ const history = [
 
 const uniqueMoves = getUniqueMovesFromHistory(history);
 const moveUsage = countMoveUsageFromHistory(history);
-const allMoves = getAllMovesFromLocalDatabase();
+const moveData = JSON.parse(readFileSync(resolve("public/data/moveDetails.generated.json"), "utf8"));
+const allMoves = Object.entries(moveData.moves ?? {})
+  .map(([key, move]) => ({
+    key,
+    displayName: move?.displayName,
+  }))
+  .filter((move) => move.key && move.displayName)
+  .sort((a, b) => a.displayName.localeCompare(b.displayName));
 
 assertTruthy(
   uniqueMoves.some((move) => move.key === "protect" && move.displayName === "Protect"),

@@ -8,7 +8,9 @@ import {
 import MoveDamageClassBadge from "./MoveDamageClassBadge.jsx";
 
 function MoveInfoCard({ history }) {
-  const allMoves = useMemo(() => getAllMovesFromLocalDatabase(), []);
+  const [allMoveOptions, setAllMoveOptions] = useState([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState("");
   const usedMoves = useMemo(() => getUniqueMovesFromHistory(history), [history]);
   const moveUsage = useMemo(() => countMoveUsageFromHistory(history), [history]);
   const [filterMode, setFilterMode] = useState("all");
@@ -17,8 +19,8 @@ function MoveInfoCard({ history }) {
   const [moveDetails, setMoveDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const moves = useMemo(
-    () => (filterMode === "all" && allMoves.length > 0 ? allMoves : usedMoves),
-    [allMoves, filterMode, usedMoves],
+    () => (filterMode === "all" && allMoveOptions.length > 0 ? allMoveOptions : usedMoves),
+    [allMoveOptions, filterMode, usedMoves],
   );
   const visibleMoves = useMemo(() => {
     const normalizedSearchTerm = searchTerm.trim().toLowerCase();
@@ -28,7 +30,39 @@ function MoveInfoCard({ history }) {
       : moves;
   }, [moves, searchTerm]);
   const selectedMove = moves.find((move) => move.key === selectedMoveKey);
-  const catalogLabel = filterMode === "all" && allMoves.length > 0 ? "disponiveis" : "usados nos replays";
+  const catalogLabel = filterMode === "all" && allMoveOptions.length > 0 ? "disponiveis" : "usados nos replays";
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadMoveCatalog() {
+      setCatalogLoading(true);
+      setCatalogError("");
+
+      try {
+        const catalog = await getAllMovesFromLocalDatabase();
+
+        if (isMounted) {
+          setAllMoveOptions(catalog);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setAllMoveOptions([]);
+          setCatalogError("Nao foi possivel carregar o catalogo local de moves.");
+        }
+      } finally {
+        if (isMounted) {
+          setCatalogLoading(false);
+        }
+      }
+    }
+
+    loadMoveCatalog();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (visibleMoves.length === 0) {
@@ -79,7 +113,9 @@ function MoveInfoCard({ history }) {
         </div>
       </div>
 
-      {moves.length === 0 ? (
+      {catalogLoading ? (
+        <p className="move-empty-state">Carregando catalogo de moves...</p>
+      ) : moves.length === 0 ? (
         <p className="move-empty-state">
           Nenhum move disponivel. Gere o banco local com npm run data:showdown ou importe um replay.
         </p>
@@ -140,6 +176,8 @@ function MoveInfoCard({ history }) {
           )}
         </>
       )}
+
+      {!catalogLoading && catalogError && <p className="move-empty-state">{catalogError}</p>}
     </section>
   );
 }

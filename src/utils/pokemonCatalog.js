@@ -1,4 +1,4 @@
-import pokemonDetailsData from "../data/pokemonDetails.generated.json" with { type: "json" };
+import { loadPokemonDatabase } from "../services/localDataApi.js";
 
 export function normalizePokemonKey(name) {
   return String(name || "")
@@ -11,7 +11,8 @@ export function normalizePokemonKey(name) {
     .replace(/^-|-$/g, "");
 }
 
-export function getAllPokemonFromLocalDatabase() {
+export async function getAllPokemonFromLocalDatabase() {
+  const pokemonDetailsData = await loadPokemonDatabase();
   const pokemonDatabase = pokemonDetailsData?.pokemon;
 
   if (!pokemonDatabase || typeof pokemonDatabase !== "object") {

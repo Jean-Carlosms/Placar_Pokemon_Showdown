@@ -165,7 +165,7 @@ npm run data:pokemon
 O arquivo gerado fica em:
 
 ```text
-src/data/pokemonDetails.generated.json
+public/data/pokemonDetails.generated.json
 ```
 
 Durante o uso do app, a consulta de Pokemon segue esta ordem:
@@ -219,9 +219,9 @@ npm run data:showdown
 Esse comando gera:
 
 ```text
-src/data/abilityDetails.generated.json
-src/data/moveDetails.generated.json
-src/data/pokemonDetails.generated.json
+public/data/abilityDetails.generated.json
+public/data/moveDetails.generated.json
+public/data/pokemonDetails.generated.json
 ```
 
 Depois valide os arquivos e o build:
@@ -242,6 +242,24 @@ As sprites usam URLs publicas do Pokemon Showdown. Se a primeira URL falhar, o a
 Na `Consulta de Pokemon`, as sprites usam fallback em cadeia: banco local gerado, Pokemon Showdown, GitHub da PokeAPI e fallback visual. Isso evita depender de uma unica URL para formas especiais.
 
 Os moves usam descricao em cadeia: `description`, `shortEffect`, `effect`, `flavorText` e, por fim, uma mensagem de fallback quando nenhum texto estiver disponivel.
+
+## Dados Locais sob Demanda
+
+Os bancos grandes gerados ficam em `public/data`, fora do bundle JavaScript inicial:
+
+```text
+public/data/abilityDetails.generated.json
+public/data/moveDetails.generated.json
+public/data/pokemonDetails.generated.json
+```
+
+Eles sao gerados por:
+
+```bash
+npm run data:showdown
+```
+
+A aplicacao carrega esses arquivos com `fetch` apenas quando a `Consulta de Pokemon`, a `Consulta de Moves` ou os tooltips de habilidades precisam dos dados. Isso reduz o JS inicial, mantem o app funcionando em modo local/offline quando os arquivos existem em `public/data` e evita downloads repetidos usando cache em memoria durante a sessao.
 
 ## Consulta de Moves
 
@@ -285,7 +303,7 @@ npm run data:moves
 O arquivo gerado fica em:
 
 ```text
-src/data/moveDetails.generated.json
+public/data/moveDetails.generated.json
 ```
 
 Durante o uso do app, a consulta de moves segue esta ordem:
@@ -532,15 +550,22 @@ git push origin main
 |   `-- screenshot-placeholder.svg
 |-- data/
 |   `-- scoreboard.example.json
+|-- public/
+|   |-- data/
+|   |   |-- abilityDetails.generated.json
+|   |   |-- moveDetails.generated.json
+|   |   `-- pokemonDetails.generated.json
+|   `-- sprites/
+|       `-- pokemon/
 `-- src/
     |-- main.jsx
     |-- App.jsx
     |-- styles.css
     |-- data/
-    |   |-- moveDetails.generated.json
     |   |-- moveFallbacks.js
     |   |-- playerAliases.js
-    |   |-- pokemonDetails.generated.json
+    |   |-- pokemonTypeFallbacks.js
+    |   |-- spriteStyles.js
     |   `-- players.js
     |-- components/
     |   |-- BackupControls.jsx

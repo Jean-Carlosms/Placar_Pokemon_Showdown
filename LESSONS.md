@@ -294,6 +294,22 @@ O banco local gerado funciona como catalogo completo de consulta, enquanto o his
 
 Quando os cards consultam `pokemonDetails.generated.json` e `moveDetails.generated.json`, a interface deixa de depender de chamadas externas para listar opcoes. A rede passa a ser fallback, nao requisito principal.
 
+## JSON Grande no Bundle Inicial
+
+Importar JSON grande diretamente em modulos React faz o Vite embutir esses dados no JavaScript inicial. Isso aumenta o tempo de parse, o tamanho do download e pode gerar avisos de chunk grande mesmo quando os dados so sao usados em telas secundarias.
+
+## Public Data com Fetch sob Demanda
+
+Mover bancos grandes para `public/data` e carrega-los com `fetch` deixa o JS inicial menor. Os arquivos continuam disponiveis no build estatico e podem ser acessados localmente quando a aplicacao abre a Consulta de Pokemon, a Consulta de Moves ou os tooltips de abilities.
+
+## Cache em Memoria para Dados Locais
+
+Um cache simples em `Map` evita buscar o mesmo JSON mais de uma vez durante a sessao. Isso preserva a reducao do bundle inicial sem transformar cada tooltip ou troca de card em nova leitura de arquivo.
+
+## Estados Async em Componentes de Consulta
+
+Quando catalogos passam a carregar de forma async, os componentes precisam tratar loading, empty e erro. Esse cuidado mantem o fallback para historico funcionando mesmo se o arquivo em `public/data` estiver vazio, ausente ou invalido.
+
 ## Filtros de Catalogo
 
 Um filtro simples entre `Mostrar todos` e `Somente usados nos replays` ajuda a alternar entre exploracao geral e analise das partidas reais sem duplicar componentes.

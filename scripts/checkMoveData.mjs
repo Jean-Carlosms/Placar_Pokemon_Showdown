@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const moveDataPath = resolve("src/data/moveDetails.generated.json");
+const moveDataPath = resolve("public/data/moveDetails.generated.json");
 const moveData = JSON.parse(readFileSync(moveDataPath, "utf8"));
 
 assertTruthy(moveData && typeof moveData === "object", "Move data should be an object");

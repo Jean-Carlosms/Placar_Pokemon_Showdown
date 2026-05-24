@@ -1,6 +1,7 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   countPokemonUsageFromHistory,
-  getAllPokemonFromLocalDatabase,
   getUniquePokemonFromHistory,
   normalizePokemonKey,
 } from "../src/utils/pokemonCatalog.js";
@@ -32,7 +33,14 @@ const history = [
 
 const uniquePokemon = getUniquePokemonFromHistory(history);
 const pokemonUsage = countPokemonUsageFromHistory(history);
-const allPokemon = getAllPokemonFromLocalDatabase();
+const pokemonData = JSON.parse(readFileSync(resolve("public/data/pokemonDetails.generated.json"), "utf8"));
+const allPokemon = Object.entries(pokemonData.pokemon ?? {})
+  .map(([key, pokemon]) => ({
+    key,
+    displayName: pokemon?.displayName,
+  }))
+  .filter((pokemon) => pokemon.key && pokemon.displayName)
+  .sort((a, b) => a.displayName.localeCompare(b.displayName));
 
 assertTruthy(
   uniquePokemon.some((pokemon) => pokemon.key === "regieleki" && pokemon.displayName === "Regieleki"),

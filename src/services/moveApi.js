@@ -1,5 +1,5 @@
 import { MOVE_DETAIL_FALLBACKS } from "../data/moveFallbacks.js";
-import moveDetailsData from "../data/moveDetails.generated.json";
+import { loadMoveDatabase } from "./localDataApi.js";
 
 const IS_DEV = Boolean(import.meta.env?.DEV);
 const POKEAPI_MOVE_BASE_URL = IS_DEV
@@ -48,7 +48,8 @@ export async function getMoveDetails(moveName) {
 }
 
 async function fetchMoveDetails(apiName) {
-  const localMove = getLocalMove(apiName);
+  const moveDetailsData = await loadMoveDatabase();
+  const localMove = getLocalMove(moveDetailsData, apiName);
   const fallbackMove = getMoveFallback(apiName);
 
   if (localMove) {
@@ -136,7 +137,7 @@ function getMoveFallback(apiName) {
   return MOVE_DETAIL_FALLBACKS[apiName] ?? null;
 }
 
-function getLocalMove(apiName) {
+function getLocalMove(moveDetailsData, apiName) {
   return moveDetailsData.moves?.[apiName] ?? null;
 }
 

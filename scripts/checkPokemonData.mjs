@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const pokemonDataPath = resolve("src/data/pokemonDetails.generated.json");
+const pokemonDataPath = resolve("public/data/pokemonDetails.generated.json");
 const pokemonData = JSON.parse(readFileSync(pokemonDataPath, "utf8"));
 
 assertTruthy(pokemonData && typeof pokemonData === "object", "Pokemon data should be an object");

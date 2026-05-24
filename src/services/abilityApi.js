@@ -1,6 +1,7 @@
-import abilityDetailsData from "../data/abilityDetails.generated.json" with { type: "json" };
+import { loadAbilityDatabase } from "./localDataApi.js";
 
 const DEFAULT_ABILITY_DESCRIPTION = "Descricao nao disponivel para esta habilidade.";
+const abilityDetailsCache = new Map();
 
 export function normalizeAbilityName(name) {
   return String(name || "")
@@ -27,7 +28,20 @@ export function formatAbilityName(name) {
     .join(" ");
 }
 
-export function getAbilityDetails(abilityName) {
+export async function getAbilityDetails(abilityName) {
+  const normalizedName = normalizeAbilityName(abilityName);
+
+  if (abilityDetailsCache.has(normalizedName)) {
+    return abilityDetailsCache.get(normalizedName);
+  }
+
+  const detailsRequest = loadAbilityDetails(abilityName);
+  abilityDetailsCache.set(normalizedName, detailsRequest);
+  return detailsRequest;
+}
+
+async function loadAbilityDetails(abilityName) {
+  const abilityDetailsData = await loadAbilityDatabase();
   const abilities = abilityDetailsData?.abilities ?? {};
   const ability = findAbility(abilities, abilityName);
 

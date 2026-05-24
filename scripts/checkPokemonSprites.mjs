@@ -8,7 +8,7 @@ import { getPokemonSpriteCandidatesByStyle } from "../src/services/pokemonSprite
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
-const pokemonDetailsData = require("../src/data/pokemonDetails.generated.json");
+const pokemonDetailsData = require("../public/data/pokemonDetails.generated.json");
 
 const names = [
   "Ambipom",
