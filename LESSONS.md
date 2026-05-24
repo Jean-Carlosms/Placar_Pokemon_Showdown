@@ -310,6 +310,22 @@ Um cache simples em `Map` evita buscar o mesmo JSON mais de uma vez durante a se
 
 Quando catalogos passam a carregar de forma async, os componentes precisam tratar loading, empty e erro. Esse cuidado mantem o fallback para historico funcionando mesmo se o arquivo em `public/data` estiver vazio, ausente ou invalido.
 
+## Check Script vs Teste Automatizado
+
+Scripts `check:*` sao bons para validar dados gerados, sprites e invariantes especificos do projeto. Testes com Vitest sao melhores para regras de dominio repetiveis, porque rodam rapido, usam assertions padronizadas e entram naturalmente no fluxo de CI.
+
+## Fixtures Pequenas para Replays
+
+Fixtures pequenas com apenas as linhas necessarias de `battle-log-data` facilitam manter testes do parser. Elas deixam claro qual comportamento esta sendo exercitado sem depender de HTML gigante exportado pelo Pokemon Showdown.
+
+## Regras Criticas Merecem Testes Unitarios
+
+Parser de replay, calculo de placar, validacao de adversario e reconciliacao de backup sao regras centrais. Cobrir essas funcoes puras reduz o risco de quebrar o placar ao evoluir componentes visuais ou fluxos de importacao.
+
+## Replay Duplicado como Idempotencia
+
+Bloquear `replayId` duplicado e uma regra de idempotencia: executar a mesma importacao duas vezes deve preservar o mesmo estado. Testar esse comportamento evita pontos duplicados e historico inflado.
+
 ## Filtros de Catalogo
 
 Um filtro simples entre `Mostrar todos` e `Somente usados nos replays` ajuda a alternar entre exploracao geral e analise das partidas reais sem duplicar componentes.

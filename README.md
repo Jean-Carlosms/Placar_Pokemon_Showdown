@@ -366,6 +366,27 @@ Os arquivos finais sao gerados na pasta `dist/`.
 </details>
 
 <details>
+<summary><strong>Testes Automatizados</strong></summary>
+
+Para rodar os testes unitarios com Vitest:
+
+```bash
+npm test
+```
+
+Para rodar em modo watch durante o desenvolvimento:
+
+```bash
+npm run test:watch
+```
+
+Use `npm test` para validar regras criticas de dominio, como parser de replay, placar, replay duplicado, replay contra terceiro e reconciliacao de backup.
+
+Os scripts `npm run check:*` continuam existindo como validacoes especificas de dados gerados, sprites, catalogos e fallbacks.
+
+</details>
+
+<details>
 <summary><strong>Como Importar Replay HTML</strong></summary>
 
 O app permite importar um arquivo `.html` de replay exportado do Pokemon Showdown.

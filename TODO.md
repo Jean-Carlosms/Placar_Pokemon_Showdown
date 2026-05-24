@@ -87,6 +87,11 @@ Concluido recentemente:
 - Filtrar o historico por jogador e tipo de batalha.
 - Adicionar botao para zerar apenas Single ou apenas Double.
 - Criar testes unitarios para as funcoes puras de `scoreboard.js`.
+- Criar testes de componentes com React Testing Library.
+- Criar testes para importacao de HTML pela UI.
+- Criar testes de `localStorage` bloqueado ou indisponivel.
+- Criar testes de temporada ativa e troca de temporada.
+- Criar testes dos filtros do historico.
 - Melhorar fluxo de publicacao com GitHub Pages.
 - Gravar GIF real de demonstracao.
 - Adicionar banner SVG animado.

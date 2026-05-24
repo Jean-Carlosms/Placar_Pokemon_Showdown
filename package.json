@@ -22,7 +22,9 @@
     "check:ability-data": "node scripts/checkAbilityData.mjs",
     "check:move-data": "node scripts/checkMoveData.mjs",
     "check:pokemon-data": "node scripts/checkPokemonData.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "pokemon-showdown": "^0.11.10",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^5.4.14"
+    "vite": "^5.4.14",
+    "vitest": "^4.1.7"
   }
 }
